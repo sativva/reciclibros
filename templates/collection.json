@@ -9,6 +9,27 @@
  */
 {
   "sections": {
+    "1770204248825b1fca": {
+      "type": "apps",
+      "blocks": {
+        "power_plus_breadcrumb_mRz6tF": {
+          "type": "shopify://apps/power-plus/blocks/breadcrumb/64c1060f-32d4-4613-bfc8-5c08d73fbde9",
+          "settings": {
+            "home": "Home"
+          }
+        }
+      },
+      "block_order": [
+        "power_plus_breadcrumb_mRz6tF"
+      ],
+      "custom_css": [
+        "[data-block-handle=\"breadcrumb\"] nav {gap: 10px;}",
+        "[data-block-handle=\"breadcrumb\"] {margin-left: 30px;}"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
     "banner": {
       "type": "main-collection-banner",
       "settings": {
@@ -91,6 +112,7 @@
     }
   },
   "order": [
+    "1770204248825b1fca",
     "banner",
     "product-grid",
     "3cf928a0-4ae7-4dbd-b666-3715ab87ee96"
