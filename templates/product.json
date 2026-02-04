@@ -9,6 +9,27 @@
  */
 {
   "sections": {
+    "1770204431bd7d980c": {
+      "type": "apps",
+      "blocks": {
+        "power_plus_breadcrumb_PEGUMg": {
+          "type": "shopify://apps/power-plus/blocks/breadcrumb/64c1060f-32d4-4613-bfc8-5c08d73fbde9",
+          "settings": {
+            "home": "Home"
+          }
+        }
+      },
+      "block_order": [
+        "power_plus_breadcrumb_PEGUMg"
+      ],
+      "custom_css": [
+        "[data-block-handle=\"breadcrumb\"] nav {gap: 10px;}",
+        "[data-block-handle=\"breadcrumb\"] {margin-left: 30px;}"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -237,6 +258,7 @@
     }
   },
   "order": [
+    "1770204431bd7d980c",
     "main",
     "b4b2e57a-b15e-4f11-b27e-b0500d52dc70",
     "image_banner_EGTiFE",
