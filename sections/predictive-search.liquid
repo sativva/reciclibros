@@ -1,0 +1,127 @@
+{% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+{%- if predictive_search.performed -%}
+  <div id="shopify-section-predictive-search" class="shopify-section shopify-section--predictive-search">
+    <ap-navtabs class="ap-navtabs ap-navtabs--edge2edge ap-navtabs--narrow ap-navtabs--no-border">
+      <ap-scrollablecontent class="ap-navtabs__scroller hide-scrollbar">
+        <div class="ap-navtabs__scroller-inner">
+          <div class="ap-navtabs__item-list">
+            <button type="button" class="ap-navtabs__item heading heading--small" ap-expanded-aria="true" ap-controlsaria="predictive-search-products">Productos</button>
+            <button type="button" class="ap-navtabs__item heading heading--small" ap-expanded-aria="false" ap-controlsaria="predictive-search-articles">Artículos</button>
+            <button type="button" class="ap-navtabs__item heading heading--small" ap-expanded-aria="false" ap-controlsaria="predictive-search-pages">Páginas</button>
+            <button type="button" class="ap-navtabs__item heading heading--small" ap-expanded-aria="false" ap-controlsaria="predictive-search-collections">Colección</button>
+          </div>
+        </div>
+      </ap-scrollablecontent>
+    </ap-navtabs>
+    {% if settings.apollo_search_enabled %}
+    <div class="predictive-search__results-categories">
+      <div class="predictive-search__results-categories-item" id="predictive-search-products">
+        <input type="hidden" form="predictive-search-form" name="type" value="product">
+        <input type="hidden" form="predictive-search-form" name="options[prefix]" value="last">
+        <input type="hidden" form="predictive-search-form" name="options[unavailable_products]" value="last">
+        <ul class="predictive-search__ap-productlist list--unstyled" role="list" data-type="products">
+          {%- for product in predictive_search.resources.products -%}
+            <li class="predictive-search__product-item line-item line-item--centered">
+              <a href="{{ product.url }}" class="line-item__content-wrapper">
+                <span class="line-item__image-wrapper">
+                  <img class="predictive-search__image"
+                    src="{{ product.featured_media | image_url: width: 250 }}"
+                    alt="{{ product.featured_media.alt }}"
+                    width="250"
+                    height="{{ 250 | divided_by: product.featured_media.preview_image.aspect_ratio }}"
+                  >
+                </span>
+                <div class="line-item__info">
+                  <div class="product-item-meta">
+                    {%- if settings.apollo_search_show_vendor -%} 
+                      <div class="predictive-search__item-vendor caption-with-letter-spacing">{{ product.vendor }}</div>
+                    {%- endif -%}
+                    <span class="product-item-meta__title text--small">{{ product.title }}</span>
+                    {%- if settings.apollo_search_show_price -%}
+                      {% render 'price', product: product, use_variant: true, show_badges: false, price_class: 'price--large' %} 
+                    {%- endif -%}
+                  </div>
+                </div>
+                <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-right  icon--direction-aware " viewBox="0 0 17 14">
+                  <path d="M0 7h15M9 1l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+                </svg>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+      
+      <div class="predictive-search__results-categories-item" hidden id="predictive-search-articles">
+        <ul class="predictive-search__ap-listarticle list--unstyled" role="list" data-type="articles">
+          {%- for article in predictive_search.resources.articles -%}
+            <li class="predictive-search__article-item">
+              <a class="article-item article-item--horizontal" href="{{ article.url }}">
+                <span class="predictive-search__article-image-wrapper">
+                  <img class="predictive-search__image"
+                    src="{{ article.image | image_url: width: 300 }}"
+                    alt="{{ article.image.alt }}"
+                    width="300"
+                    height="{{ 300 | divided_by: article.image.aspect_ratio }}"
+                  >
+                  <span class="article-item__arrow ap-nextap-buttonprev ap-nextap-buttonprev--small ap-nextap-buttonprev--next">
+                    <svg focusable="false" width="15" height="12" class="icon icon--nav-arrow-right  icon--direction-aware " viewBox="0 0 17 14">
+                      <path d="M0 7h15M9 1l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+                    </svg>
+                  </span>
+                </span>
+                <div class="predictive-search__article-info">
+                  <span class="predictive-search__article-title">{{ article.title }}</span>
+                  <div>{{ article.excerpt }}</div>
+                </div>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+      <div class="predictive-search__results-categories-item" hidden id="predictive-search-pages">
+        <ul class="predictive-search__linklist list--unstyled" role="list" data-type="pages">
+          {%- for page in predictive_search.resources.pages -%}
+            <li class="predictive-search__linklist-item">
+              <a class="predictive-search__linklist-link" href="{{ page.url }}">{{ page.title }} <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-right  icon--direction-aware " viewBox="0 0 17 14">
+                  <path d="M0 7h15M9 1l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+                </svg>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+      <div class="predictive-search__results-categories-item" hidden id="predictive-search-collections">
+        <ul class="predictive-search__linklist list--unstyled" role="list" data-type="pages">
+          {%- for collection in predictive_search.resources.collections -%}
+            <li class="predictive-search__article-item">
+              <a class="article-item article-item--horizontal" href="{{ collection.url }}">
+                <span class="predictive-search__article-image-wrapper">
+                  {% if collection.featured_image %}
+                    <img class="predictive-search__image"
+                      src="{{ collection.featured_image | image_url: width: 300 }}"
+                      alt="{{ collection.title }}"
+                      width="300"
+                      height="{{ 300 | divided_by: collection.featured_image.aspect_ratio }}"
+                    >
+                  {% else %}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {% endif %}
+                  <span class="article-item__arrow ap-nextap-buttonprev ap-nextap-buttonprev--small ap-nextap-buttonprev--next">
+                    <svg focusable="false" width="15" height="12" class="icon icon--nav-arrow-right  icon--direction-aware " viewBox="0 0 17 14">
+                      <path d="M0 7h15M9 1l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+                    </svg>
+                  </span>
+                </span>
+                <div class="predictive-search__article-info">
+                  <span class="predictive-search__article-title">{{ collection.title }}</span>
+                </div>
+              </a>
+            </li>
+          {%- endfor -%}
+          
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+{%- endif -%}

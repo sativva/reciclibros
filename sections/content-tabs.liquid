@@ -1,0 +1,513 @@
+{% render 'section-style' %}
+
+<style>
+#shopify-section-{{ section.id }} {
+  background-size: {{ section.settings.backrground_size }} !important;
+  background-repeat: no-repeat;
+}
+.content-tabs ,
+#shopify-section-{{ section.id }} {
+    position: relative;
+}
+#shopify-section-{{ section.id }} .ap-navtabs__item-list {
+    flex-direction: column;
+    align-items: start;
+}
+.collapsible-wp {
+    align-items: end;
+}
+#shopify-section-{{ section.id }} .section__header.text-left {
+  margin-bottom: 26px;
+}
+#shopify-section-{{ section.id }} .ap-navtabs__position.is-initialized {
+  display: none;
+}
+.ap-navtabs--loose .ap-navtabs__item-list {
+  gap: 0;
+}
+#shopify-section-{{ section.id }} .ap-navtabs__item {
+  color: {{ section.settings.color_nav }};
+  padding: 30px 0;
+  text-transform: capitalize;
+  width: 100%;
+  border-width: 0 0 1px;
+  border-style: solid;
+  border-color: rgb(var(--border-color));
+}
+#shopify-section-{{ section.id }} .ap-navtabs__item:first-child {
+  border-top: 1px solid rgb(var(--border-color));
+}
+.h2.content-tabs-btn {
+    line-height: 90px;
+}
+#shopify-section-{{ section.id }} .ap-navtabs__item[ap-expanded-aria=true] {
+  color: {{ section.settings.color_nav_act }};
+}
+.contentaps-title svg {
+    width: 84px;
+    height: 84px;
+}
+.contenttabs-imgchild {
+  position: absolute;
+  bottom: 0%;
+  right: -10%;
+  max-width: 165px;
+  max-height: 217px;
+}
+.product-tabs__content {
+  position: relative;
+}
+#shopify-section-{{ section.id }} .product-tabs__tab-item-wrapper {
+  border: none;
+}
+#shopify-section-{{ section.id }} .ap-navtabs__item .collapsible-btn {
+  opacity: 0;
+  visibility: hidden;
+}
+#shopify-section-{{ section.id }} .ap-navtabs__item[ap-expanded-aria=true] .collapsible-btn {
+  opacity: 1;
+  visibility: visible;
+}
+.content-tabs .row {
+  gap: 30px 0;
+}
+#shopify-section-{{ section.id }} .ap-navtabs[arrows] .ap-navtabs__scroller.is-scrollable:before {
+  display: none;
+}
+@media (min-width:1200px) {
+  .content-tabs_left {
+    flex: 1;
+    padding-right: 79px;
+    padding-left: 15px;
+  }
+  .product-tabs__content {
+    width: 45%;
+  }
+}
+@media (max-width: 1199px) {
+    .product-tabs__tab-item-wrapper:not([hidden]) .collapsible {
+        visibility: visible;
+        height: 100%;
+    }
+}
+@media (max-width: 767px) {
+  #shopify-section-{{ section.id }} .section__header.text-left {
+    min-height: unset;
+  }
+  .collapsible-img {
+    text-align: center;
+  }
+  #shopify-section-{{ section.id }} .ap-navtabs {
+    margin: 0;
+  }
+}
+@media (max-width: 425px) {
+  #shopify-section-{{ section.id }} .ap-navtabs__item {
+    flex-direction: column;
+    gap: 15px 0;
+  }
+  #shopify-section-{{ section.id }} .ap-navtabs__item .collapsible-btn {
+    display: none;
+  }
+  #shopify-section-{{ section.id }} .ap-navtabs__item[ap-expanded-aria=true] .collapsible-btn {
+    display: block;
+  }
+}
+</style>
+
+<section class="content-tabs">
+    <div class="{{ section.settings.setwidthout }}">
+
+      <div class="row">
+        
+        <div class="col col-md-6 col-12 content-tabs_left">
+            {% render 'section-heading' %}
+    
+            <ap-navtabs arrows="" class="ap-navtabs ap-navtabs--loose">
+                <ap-scrollablecontent class="ap-navtabs__scroller hide-scrollbar">
+                    <div class="ap-navtabs__scroller-inner">
+                    <div class="ap-navtabs__item-list">
+                        {% for block in section.blocks %}
+                          {%- case block.type -%}
+                            {%- when 'tab_custom' -%}
+                              <button type="button" class="ap-navtabs__item heading h4 content-tabs-btn d-flex justify-content-between align-items-center" ap-expanded-aria="{% if forloop.index == 1 %}true{% else %}false{% endif %}" ap-controlsaria="block-{{ block.id }}">
+                                {{ block.settings.tab_name }}
+                                {% if block.settings.btn_text != blank %}
+                                  <div class="collapsible-btn">
+                                    <a href="{{ block.settings.btn_link }}" class="button btn-base">
+                                      {{ block.settings.btn_text }}
+                                    </a>
+                                  </div>
+                                {% endif %}
+                              </button>
+
+                          {%- endcase -%}
+                        {% endfor %}
+                    </div>
+                    </div>
+                </ap-scrollablecontent>
+            </ap-navtabs>
+    
+        </div>
+    
+        <div class="col col-md-6 col-12 product-tabs__content">
+          {% for block in section.blocks %}
+
+              <div id="block-{{ block.id }}" class="product-tabs__tab-item-wrapper" {% if forloop.index != 1 %}hidden{% endif %}>
+    
+                  {%- case block.type -%}
+                      
+                      {%- when 'tab_custom' -%}
+
+                        <button is="toggle-button" class="collapsible-toggle heading heading--small hd-lap-and-up d-none" ap-controlsaria="block-{{ block.id }}-content" 
+                        {% if forloop.index == 1 %}ap-expanded-aria="true"{% else %}ap-expanded-aria="false"{% endif %}>
+                            {{ block.settings.tab_name }}
+                        </button>
+                        <ap-contentcollapsible id="block-{{ block.id }}-content" class="collapsible collapsible-wp" {% if forloop.index == 1 %}open{% endif %}>
+                          <div class="col collapsible-text mb-md-15">
+                              <div class="collapsible-text-wp">
+                                  <h3 class="contentaps-title heading h{{ section.settings.heading_size }} mb-25">
+                                      {{ block.settings.title }}
+                                  </h3>
+                                  {% if block.settings.tab_custom_content != blank %}
+                                  <div class="collapsible-description mb-25">
+                                    {{ block.settings.tab_custom_content }}
+                                  </div>
+                                  {% endif %}
+                              </div>
+                          </div>
+                          <div class="collapsible-img">
+                            {% if block.settings.collapsible_img != blank %}
+                              <img loading="lazy" 
+                              sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                              alt="" 
+                              src="{{ block.settings.collapsible_img | image_url: width: block.settings.collapsible_img.width }}" 
+                              data-srcset="{%- if block.settings.collapsible_img.width >= 3000 -%}{{ block.settings.collapsible_img | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                                  {{ block.settings.collapsible_img | image_url }} {{ block.settings.collapsible_img.width }}w"
+                              src="{{ block.settings.collapsible_img | image_url: width: 1500 }}"
+                              height="{{ block.settings.collapsible_img.height }}"
+                              width="{{ block.settings.collapsible_img.width }}">
+                            {% else %}
+                              <div class="banner-list-image">
+                              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                              </div>
+                            {% endif %}
+                          </div>
+                        </ap-contentcollapsible>
+                      
+                  {%- endcase -%}
+              </div>
+    
+          {% endfor %}
+
+          {% for block in section.blocks %}
+            {%- case block.type -%}
+              {%- when 'image-child' -%}
+                <div class="contenttabs-imgchild">
+                  {% if block.settings.img_child != blank %}
+                    <img loading="lazy" 
+                    sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                    alt="" 
+                    src="{{ block.settings.img_child | image_url: width: block.settings.img_child.width }}" 
+                    data-srcset="{%- if block.settings.img_child.width >= 3000 -%}{{ block.settings.img_child | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                        {{ block.settings.img_child | image_url }} {{ block.settings.img_child.width }}w"
+                    src="{{ block.settings.img_child | image_url: width: 1500 }}"
+                    height="{{ block.settings.img_child.height }}"
+                    width="{{ block.settings.img_child.width }}">
+                  {% else %}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {% endif %}
+                </div>
+          
+            {%- endcase -%}
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Content tabs",
+  "tag": "section",
+  "class": "section shopify-section-content-tabs",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Width Slideshow",
+      "default": "container",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "t:sections.all.background-color.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:sections.all.background_image.label"
+    },
+    {
+      "type": "select",
+      "id": "backrground_size",
+      "label": "Background Size",
+      "default": "cover",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_tablet_large",
+      "label": "Margin tablet larger",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "Padding desktop",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "text",
+      "id": "padding_tablet_lager",
+      "label": "Padding tablet larger",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "Padding mobile",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "liquid",
+      "id": "sub_heading",
+      "default": "Sub heading",
+      "label": "Sub heading"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.advanced-content.settings.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.advanced-content.settings.tab_heading_size.label"
+    },
+    {
+      "type": "text",
+      "id": "tab_description",
+      "label": "t:sections.advanced-content.settings.tab_description.label"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "style_btn",
+      "label": "Style Button",
+      "default": "btn-base",
+      "options": [
+        {
+          "value": "btn-base",
+          "label": "Button Base"
+        },
+        {
+          "value": "btn-outline",
+          "label": "Button Out Line"
+        },
+        {
+          "value": "btn-line",
+          "label": "Button Line"
+        },
+        {
+          "value": "btn-line-black",
+          "label": "Button Line Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+        "type": "header",
+        "content": "Settings items"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3,
+      "label": "Heading size"
+    },
+    {
+      "type": "color",
+      "id": "color_nav",
+      "label": "Color Nav tab"
+    },
+    {
+      "type": "color",
+      "id": "color_nav_act",
+      "label": "Color Nav tab active"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab_custom",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_name",
+          "default": "Custom",
+          "label": "Tab Name"
+        },
+        {
+          "type": "header",
+          "content": "Tab content"
+        },
+        {
+          "type": "liquid",
+          "id": "title",
+          "label": "Tab Title",
+          "default": "Content"
+        },
+        {
+          "type": "liquid",
+          "id": "tab_custom_content",
+          "label": "Tab content",
+          "default": "Content"
+        },
+        {
+          "type": "header",
+          "content": "Tab button"
+        },
+        {
+          "type": "liquid",
+          "id": "btn_text",
+          "label": "Button / HTML"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Tab image"
+        },
+        {
+          "type": "image_picker",
+          "id": "collapsible_img",
+          "label": "Imgae"
+        }
+      ]
+    },
+    {
+      "type": "image-child",
+      "name": "Image child",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img_child",
+          "label": "Image child"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ap Content Tabs",
+      "blocks": [
+        {
+          "type": "tab_custom"
+        },
+        {
+          "type": "tab_custom"
+        },
+        {
+          "type": "tab_custom"
+        },
+        {
+          "type": "tab_custom"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

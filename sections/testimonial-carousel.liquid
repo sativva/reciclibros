@@ -1,0 +1,667 @@
+<!-- testimonial-carousel.liquid -->
+{{ 'testimonial-carousel.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --heading-color: {{ section.settings.heading_color | color_extract: 'red' }}, {{ section.settings.heading_color | color_extract: 'green' }}, {{ section.settings.heading_color | color_extract: 'blue' }};
+    --sub-heading-color: {{ section.settings.subheading_color }};
+
+    --color-author: {{ section.settings.color_author }};
+    --color-job: {{ section.settings.color_job }};
+    --color-time: {{ section.settings.color_time }};
+    --color-des: {{ section.settings.color_content }};
+    --color-title: {{ section.settings.color_title }};
+    --color-icon: {{ section.settings.color_icon }};
+
+  }
+      
+  .testimonial-carousel {
+    {% if section.settings.padding_inner != blank %}
+    padding: 20px;
+    {% endif  %}
+    background-color: {{ section.settings.background_color_inner }};
+    border-radius: 10px;
+  }
+  .testimonial-carousel-infor {
+    border: 1px solid rgb(var(--border-color));
+    border-radius: 10px;
+  }
+  @media (min-width: 1200px) {
+    .testimonial-carousel {
+      padding: {{ section.settings.padding_inner }};
+    }
+    .testimonial-carousel-infor {
+      padding: {{ section.settings.padding_inner_item }};
+    }
+    .testimonial-left__button {
+      margin: -40px 0 0;
+    }
+    .testimonial-left {
+      text-align: center;
+      width: 15.5%;
+      flex: 0 1;
+    }
+    .testimonial-carousel {
+      flex: 1;
+      width: calc(100% - 15.5%);
+    }
+  }
+  @media (min-width: 1500px) {
+    {% if section.settings.nowrap %}
+    #shopify-section-{{ section.id }} .swiper-container {
+      overflow: visible;
+      clip-path: inset(-100% -200px -100% 0px);
+    }
+    {% endif %}
+  }
+  
+  {%- if template == 'page.about-us' -%}
+
+  {% endif %}
+
+/* PRODUCT */
+#section{{ section.id }} .testimonial-product {
+  padding-top: 20px;
+  margin-top: 32px;
+  border-top: 1px solid rgb(var(--border-color));
+}
+#section{{ section.id }} .product-cardmini_img {
+  width: 70px;
+  height: 76px;
+  margin-right: 20px;
+}
+#section{{ section.id }} .product-cardmini.d-flex {
+  align-items: center;
+}
+#section{{ section.id }} .price {
+    color: var(--color-accent-4);
+}
+
+{% if section.settings.tab_description != blank %}
+.section__header {
+  position: relative;
+}
+{% endif %}
+
+</style>
+
+{% render 'section-style' %}
+
+<section class="section testimonial-carousel-section" id="section{{ section.id }}">
+    
+    <div class="{{ section.settings.setwidthout }}">
+        {% render 'section-heading' %}
+        <div class="row">
+
+          {% if section.settings.content_html != blank or section.settings.button1_label != blank %}
+            <div class="testimonial-left mb-xl-0 mb-4">
+              <div class="testimonial-left__text">{{ section.settings.content_html }}</div>
+              <div class="testimonial-left__button">
+                {% if section.settings.button1_label != blank %}
+                  <a href="{{ section.settings.link1 }}" class="button btn-base btn-sm border">
+                      {{ section.settings.button1_label }}
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+
+          <div class="testimonial-carousel">
+            <div data-swiper-id="{{ section.id }}" class="ap-swiper mySwiper swiper-container" data-swiper='{
+              "spaceBetween": 15,
+              "slidesPerView": 1,  
+              "loop": true,
+              "breakpoints":{
+                "360": {
+                  "slidesPerView": 1,
+                  "spaceBetween": 15
+                },
+                "768":{
+                  "slidesPerView": 2,
+                  "spaceBetween": {{ section.settings.spaceBetween }}
+                },
+                "1200":{
+                  "slidesPerView": {{ section.settings.perviewDesktop }},
+                  "spaceBetween": {{ section.settings.spaceBetween }}
+                }
+              }
+              }'>
+              <div class="swiper-wrapper">
+  
+                {% for block in section.blocks %}
+                  {% case block.type %}
+                  {% when 'testimonial_item' %}
+                    <testimonial-carousel-item style="background-color: {{ section.settings.bg_color }};" id="block-{{ block.id }}" class="swiper-slide testimonial-carousel-item">
+                        <div class="testimonial-carousel-box d-flex text-{{ section.settings.text_align_item }} h-100">
+                          <div class="testimonial-carousel-infor">
+                              {% if block.settings.author != blank %}
+                              <div style="color: {{ section.settings.color_author }};" class="testimonial__author fw-bold {% if block.settings.job != blank or block.settings.time != blank %} mb-1 {% endif %}">{{ block.settings.author }}</div>
+                              {% endif %}
+                              <div class="quote-content-top">
+                                {% if block.settings.quote_icon != blank %}
+                                <div style="line-height: 1;" class="quote-icon">
+                                  {{ block.settings.quote_icon }}
+                                </div>
+                                {% endif %}
+                                {% if block.settings.rate != 0 %}
+                                  <ul class="quote-rating list-unstyled">
+                                      {% for i in (1..5) %}
+                                      {% assign iMax = block.settings.rate %}
+                                      {% if i <= iMax %}
+                                          <li class="rated">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                              <path d="M3.825 20L6.15 12.4L0 8H7.6L10 0L12.4 8H20L13.85 12.4L16.175 20L10 15.3L3.825 20Z"
+                                                fill="#FF961B" />
+                                            </svg>
+                                          </li>
+                                      {% else %}
+                                          <li>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                            <path d="M3.825 20L6.15 12.4L0 8H7.6L10 0L12.4 8H20L13.85 12.4L16.175 20L10 15.3L3.825 20Z" fill="black"/>
+                                            </svg>
+                                          </li>
+                                      {% endif %}
+                                      {% endfor %}
+                                  </ul>
+                                {% endif %}
+                                {% if block.settings.time != blank %}
+                                <div class="testimonial__time">{{ block.settings.time }}</div>
+                                {% endif %}
+                              </div>
+                              {% if block.settings.title != blank %}
+                              <div style="color: {{ section.settings.color_title }};" class="testimonial__content-title heading {{ section.settings.content_size }} mb-2">
+                                {{ block.settings.title }}
+                              </div>
+                              {% endif %}
+                              <blockquote class="testimonial__content blockquote {% if block.settings.job != blank %}mb-56{% endif %}">
+                                {{ block.settings.content }}
+                              </blockquote>
+                              <div class="testimonial-carousel-author">
+                                <div class="testimonial__job">{{ block.settings.job }}</div>
+                              </div>                            
+                          </div>
+                          {% if section.settings.show_image %}
+                          <div class="testimonial-img">
+                            {% if block.settings.image != blank %}
+                              <img src="{{ block.settings.image | image_url: width: 1920 }}" width="auto" height="auto" loading="lazy" alt="">
+                            {% else %}
+                              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                            {% endif %}
+                            {%- if block.settings.product_item != blank -%}
+                              <div class="testimonial-product">
+                                  {%- render 'product-card-mini', product: block.settings.product_item -%}
+                              </div>
+                            {%- endif -%}
+                          </div>
+                          {% endif %}
+                        </div>
+                    </testimonial-carousel-item>
+                  {% endcase %}
+                {% endfor %}
+  
+              </div>
+  
+              {% if section.settings.dots %}
+                <div class="swiper-pagination"></div>
+              {% endif %}
+          
+              {% if section.settings.arrows %}
+                <button class="swiper-button-prev" data-swiper-id="{{ section.id }}-prev">
+                  {% render 'icon-arrow-prev' %}
+                </button>
+                <button class="swiper-button-next" data-swiper-id="{{ section.id }}-next">
+                  {% render 'icon-arrow-next' %}
+                </button>
+              {% endif %}
+              
+            </div>
+          </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Testimonial Carousel",
+  "class": "shopify-section--ap-testimonial-carousel",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Set Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "id": "background_image",
+      "type": "image_picker",
+      "label": "Background image"
+    },
+    {
+      "id": "background-color",
+      "type": "color",
+      "label": "Background color"
+    },
+    {
+      "id": "background_color_inner",
+      "type": "color",
+      "label": "Background color inner"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "default": "#000",
+      "label": "Sub heading color"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.advanced-content.settings.heading_color.label"
+    },
+    {
+      "type": "header",    
+      "content": "Margin section"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "Margin desktop",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "Margin mobile",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "header",
+      "content": "Padding section"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "Padding desktop",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "Padding mobile",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "header",
+      "content": "Setting item"
+    },
+    {
+      "type": "liquid",
+      "id": "sub_heading",
+      "default": "Sub heading",
+      "label": "Sub heading"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.all.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.all.tab_heading_size.label"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_description",
+      "label": "Description / HTML"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "style_btn",
+      "label": "Style Button",
+      "default": "btn-base",
+      "options": [
+        {
+          "value": "btn-base",
+          "label": "Button Base"
+        },
+        {
+          "value": "btn-outline",
+          "label": "Button Out Line"
+        },
+        {
+          "value": "btn-line",
+          "label": "Button Line"
+        },
+        {
+          "value": "btn-line-black",
+          "label": "Button Line Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+      "type": "header",
+      "content": "Setting Carousel"
+    },
+    {
+      "type": "range",
+      "id": "perviewDesktop",
+      "label": "Per View Desktop",
+      "max": 6,
+      "min": 1,
+      "step": 1,
+      "unit": " c",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "spaceBetween",
+      "label": "Space Between",
+      "max": 60,
+      "min": 0,
+      "step": 1,
+      "unit": " sp",
+      "default": 30
+    },
+    {
+      "type": "checkbox",
+      "id": "nowrap",
+      "label": "Wrap Box",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "arrows",
+      "label": "Arrows",
+      "default": true
+    },    
+    {
+      "type": "text",
+      "id": "padding_inner",
+      "label": "Padding inner",
+      "info": "Eg: 20px 20px 20px 20px (corresponds to the positions 'Top' 'Right' 'Bottom' 'Left')"
+    },
+    {
+      "type": "text",
+      "id": "padding_inner_item",
+      "label": "Padding inner item",
+      "info": "Eg: 20px 20px 20px 20px (corresponds to the positions 'Top' 'Right' 'Bottom' 'Left')"
+    },
+    {
+      "type": "select",
+      "id": "text_align_item",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align item"
+    },
+    {
+      "type": "header",
+      "content": "Settings item"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "label": "Show image",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "content_size",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        },
+        {
+          "value": "sub-heading",
+          "label": "sub-heading"
+        },
+        {
+          "value": "p",
+          "label": "P"
+        }
+      ],
+      "default": "h3",
+      "label": "Heading size"
+    },
+    {
+      "type": "header",
+      "content": "Color item"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color item",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Color title",
+      "default": "#332F2C"
+    },
+    {
+      "type": "color",
+      "id": "color_content",
+      "label": "Color content",
+      "default": "#465058"
+    },
+    {
+      "type": "color",
+      "id": "color_author",
+      "label": "Color author",
+      "default": "#332F2C"
+    },
+    {
+      "type": "color",
+      "id": "color_job",
+      "label": "Color job",
+      "default": "#8D9396"
+    },
+    {
+      "type": "color",
+      "id": "color_time",
+      "label": "Color time",
+      "default": "#465058"
+    },
+    {
+      "type": "color",
+      "id": "color_icon",
+      "label": "Color icon",
+      "default": "#E6AF5D"
+    },
+    {
+      "type": "header",
+      "content": "Settings HTML left",
+      "info": "If the left content is empty, the right side will display full."
+    },
+    {
+      "type": "liquid",
+      "id": "content_html",
+      "label": "Content HTML"
+    },
+    {
+      "type": "liquid",
+      "id": "button1_label",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "link1",
+      "label": "Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial_item",
+      "name": "Testimonial Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },      
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Testimonial title",
+          "label": "Testimonial title"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "default": "Testimonial content",
+          "label": "content"
+        },
+        {
+          "type": "liquid",
+          "id": "quote_icon",
+          "label": "Quote Icon / HTML"
+        },
+        {
+          "type": "range",
+          "id": "rate",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        },
+        {
+          "type": "liquid",
+          "id": "author",
+          "default": "Author",
+          "label": "Author"
+        },
+        {
+          "type": "text",
+          "id": "job",
+          "default": "Admin",
+          "label": "Job"
+        },
+        {
+          "type": "text",
+          "id": "time",
+          "default": "18 Jan, 2023",
+          "label": "Time"
+        },
+        {
+          "type": "header",
+          "content": "Product "
+        },
+        {
+          "type": "product",
+          "id": "product_item",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial Carousel",
+      "blocks": [
+        {
+          "type": "testimonial_item"
+        },
+        {
+          "type": "testimonial_item"
+        },
+        {
+          "type": "testimonial_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

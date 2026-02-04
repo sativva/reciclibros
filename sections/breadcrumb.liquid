@@ -1,0 +1,44 @@
+{% style %}
+
+{% endstyle %}
+
+<section class="section section--breadcrumb">
+    <div class="section__color-wrapper">
+        <div class="container vertical-breather">
+            {% render 'breadcrumb' %}
+        </div>
+    </div>
+</section>
+{% schema %}
+{
+  "name": "t:sections.breadcrumb.name",
+  "tag": "section",
+  "class": "shopify-section--breadcrumb",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background",
+      "default": "#F5F5F5",
+      "label": "t:sections.breadcrumb.settings.background.label"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.breadcrumb.settings.heading_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.breadcrumb.settings.text_color.label"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "default": "#ffffff",
+      "label": "t:sections.breadcrumb.settings.button_background.label"
+    }
+  ]
+}
+{% endschema %}  

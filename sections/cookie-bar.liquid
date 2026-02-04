@@ -1,0 +1,64 @@
+{% if section.settings.show_cookie_bar %}
+<ap-cookiebar section="footer" class="ap-cookiebar text--xsmall" hidden="">
+    <p class="heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</p>
+    <p>{{ section.settings.content }}</p>
+    <div class="ap-cookiebar__actions">
+      <button class="button button--text button--primary button--small accept-policy" data-action="accept-policy">Accept</button>
+      <button class="button button--text button--ternary button--small decline-policy" data-action="decline-policy">Decline</button>
+    </div>
+</ap-cookiebar>
+{% endif %}
+
+{% schema %}
+{
+  "name": "ap-cookiebar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_cookie_bar",
+      "default": true,
+      "label": "Show Cookie"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Cookie policy",
+      "label": "t:sections.all.heading.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "heading--xxsmall",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "heading--xsmall",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "heading--small",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "heading--large",
+          "label": "t:sections.all.heading_size.options__5.label"
+        }
+      ],
+      "default": "heading--xsmall",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "textarea",
+      "id": "content",
+      "default": "I agree to the processing of my data in accordance with the conditions set out in the policy of Privacy.",
+      "label": "t:sections.all.content.label"
+    }
+  ]
+}
+{% endschema %}

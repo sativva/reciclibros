@@ -1,0 +1,271 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "setwidthout": "full",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "height": 450,
+        "margin_desktop": "",
+        "bg_img": "shopify://shop_images/Mask_group_13_1.jpg",
+        "background_color": "#222222",
+        "color_title": "#ffffff",
+        "color_breadcrumb": "#ffffff"
+      }
+    },
+    "banner_grid_2_NYBAHi": {
+      "type": "banner-grid-2",
+      "blocks": {
+        "banner_grid_EeqzE8": {
+          "type": "banner-grid",
+          "settings": {
+            "width": "50%",
+            "featured_image": "shopify://shop_images/blog_i_1.jpg",
+            "content_top": false,
+            "heading_title": "",
+            "heading": "Sea Transport Services",
+            "description": "When customers need, especially customers wishing to hire \"door to door\"...",
+            "description_2": "",
+            "button1_label": "Learn more",
+            "link1": "",
+            "button2_label": "",
+            "link2": ""
+          }
+        },
+        "banner_grid_fqkeFM": {
+          "type": "banner-grid",
+          "settings": {
+            "width": "50%",
+            "featured_image": "shopify://shop_images/blog_i_2.jpg",
+            "content_top": false,
+            "heading_title": "",
+            "heading": "Warehousing Services",
+            "description": "We offer complete warehouse services to take care of all your needs.",
+            "description_2": "",
+            "button1_label": "Learn more",
+            "link1": "",
+            "button2_label": "",
+            "link2": ""
+          }
+        }
+      },
+      "block_order": [
+        "banner_grid_EeqzE8",
+        "banner_grid_fqkeFM"
+      ],
+      "settings": {
+        "setwidthout": "container",
+        "margin_desktop": "80px 0",
+        "margin_mobile": "40px 0",
+        "padding_desktop": "",
+        "padding_mobile": "",
+        "background-color": "#ffffff",
+        "heading_color": "#000000",
+        "sub_heading": "Best Services",
+        "tab_heading": "We provide safe & reliable cargo solutions",
+        "tab_heading_size": 2,
+        "tab_description": "",
+        "btn_text": "",
+        "btn_link": "",
+        "style_btn": "btn-base",
+        "text_align": "center",
+        "distance_col": "15",
+        "text_align_item": "center",
+        "color_title": "",
+        "color_title_center": "",
+        "color_description": "",
+        "color_btn": "",
+        "bg_btn": "",
+        "color_btn_hover": "",
+        "bg_btn_hover": "",
+        "heading_size_2": "h3",
+        "style_btn_item": "btn-base",
+        "style_btn_2": "btn-base"
+      }
+    },
+    "3a8b723d-3b6e-4937-9827-0f5fa9a6b8b7": {
+      "type": "look-book",
+      "blocks": {
+        "template--18157989331225__3a8b723d-3b6e-4937-9827-0f5fa9a6b8b7-1678174993ec9617fa-0": {
+          "type": "look_book_item",
+          "settings": {
+            "image_wrapper": "shopify://shop_images/blog_i_3.jpg",
+            "image_wrapper_tablet": "shopify://shop_images/blog_i_3.jpg",
+            "show_product_list": true,
+            "collection": "frontpage",
+            "limit": 4,
+            "product_1": "scattershot-life-music-elton-and-me-5",
+            "product_1_show": true,
+            "product_1_top": 40,
+            "product_1_left": 46,
+            "product_1_top_tablet": 50,
+            "product_1_left_tablet": 50,
+            "product_2": "a-good-morning-america-book-club-pick-2",
+            "product_2_show": true,
+            "product_2_top": 76,
+            "product_2_left": 60,
+            "product_2_top_tablet": 50,
+            "product_2_left_tablet": 50,
+            "product_3": "copy-of-irons-steel-5swwilson",
+            "product_3_show": true,
+            "product_3_top": 23,
+            "product_3_left": 20,
+            "product_3_top_tablet": 50,
+            "product_3_left_tablet": 50,
+            "product_4": "e305-beautiful-esports-game-shirt",
+            "product_4_show": true,
+            "product_4_top": 74,
+            "product_4_left": 86,
+            "product_4_top_tablet": 50,
+            "product_4_left_tablet": 50,
+            "product_5": "copy-of-leather-case-for-airpods",
+            "product_5_show": true,
+            "product_5_top": 50,
+            "product_5_left": 73,
+            "product_5_top_tablet": 50,
+            "product_5_left_tablet": 22
+          }
+        }
+      },
+      "block_order": [
+        "template--18157989331225__3a8b723d-3b6e-4937-9827-0f5fa9a6b8b7-1678174993ec9617fa-0"
+      ],
+      "settings": {
+        "setwidthout": "container",
+        "background-color": "rgba(0,0,0,0)",
+        "heading_color": "#282828",
+        "text_color": "#282828",
+        "sub_heading": "",
+        "tab_heading": "",
+        "tab_heading_size": 2,
+        "tab_description": "",
+        "btn_text": "",
+        "btn_link": "",
+        "style_btn": "btn-base",
+        "text_align": "left",
+        "margin_desktop": "80px 0",
+        "margin_mobile": "40px 0",
+        "padding_desktop": "",
+        "padding_mobile": ""
+      }
+    },
+    "fb19401f-e85c-48e2-9c40-0a289639d179": {
+      "type": "product-list",
+      "settings": {
+        "setwidthout": "container",
+        "margin_desktop": "80px 0 80px",
+        "margin_mobile": "40px 0",
+        "padding_desktop": "",
+        "padding_mobile": "",
+        "background-color": "rgba(0,0,0,0)",
+        "heading_color": "#282828",
+        "text_color": "#282828",
+        "prev_next_button_background": "#ffffff",
+        "prev_next_button_color": "#282828",
+        "products_per_row_mobile": 2,
+        "products_per_row_tablet": 4,
+        "desktop_small": 4,
+        "products_per_row_desktop": 4,
+        "product_line": "1",
+        "sub_heading": "Our products",
+        "tab_heading": "Welcome to our store",
+        "tab_heading_size": 2,
+        "tab_description": "",
+        "time_picker": "",
+        "date_picker": "",
+        "btn_text": "",
+        "btn_link": "",
+        "style_btn": "btn-base",
+        "text_align": "center",
+        "collection": "frontpage",
+        "limit": 10,
+        "border_width": "",
+        "btn_text_2": "",
+        "btn_link_2": "",
+        "style_btn_2": "btn-base"
+      }
+    },
+    "instagram_customize_Tg9eWB": {
+      "type": "instagram-customize",
+      "blocks": {
+        "instagram_item_box_yyfh6N": {
+          "type": "instagram_item_box",
+          "settings": {
+            "bg_color": "#f6faeb",
+            "content_custom": "<span style=\"margin-bottom: 17px;\" class=\"heading h6\">\nFollow Along On \n<br>\nOur Journey\n</span>\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\">\n<path d=\"M16 2.88125C20.275 2.88125 20.7813 2.9 22.4625 2.975C24.025 3.04375 24.8688 3.30625 25.4313 3.525C26.175 3.8125 26.7125 4.1625 27.2688 4.71875C27.8313 5.28125 28.175 5.8125 28.4625 6.55625C28.6813 7.11875 28.9438 7.96875 29.0125 9.525C29.0875 11.2125 29.1063 11.7188 29.1063 15.9875C29.1063 20.2625 29.0875 20.7688 29.0125 22.45C28.9438 24.0125 28.6813 24.8563 28.4625 25.4188C28.175 26.1625 27.825 26.7 27.2688 27.2563C26.7063 27.8188 26.175 28.1625 25.4313 28.45C24.8688 28.6688 24.0188 28.9313 22.4625 29C20.775 29.075 20.2688 29.0938 16 29.0938C11.725 29.0938 11.2188 29.075 9.5375 29C7.975 28.9313 7.13125 28.6688 6.56875 28.45C5.825 28.1625 5.2875 27.8125 4.73125 27.2563C4.16875 26.6938 3.825 26.1625 3.5375 25.4188C3.31875 24.8563 3.05625 24.0063 2.9875 22.45C2.9125 20.7625 2.89375 20.2563 2.89375 15.9875C2.89375 11.7125 2.9125 11.2062 2.9875 9.525C3.05625 7.9625 3.31875 7.11875 3.5375 6.55625C3.825 5.8125 4.175 5.275 4.73125 4.71875C5.29375 4.15625 5.825 3.8125 6.56875 3.525C7.13125 3.30625 7.98125 3.04375 9.5375 2.975C11.2188 2.9 11.725 2.88125 16 2.88125ZM16 0C11.6563 0 11.1125 0.01875 9.40625 0.09375C7.70625 0.16875 6.5375 0.44375 5.525 0.8375C4.46875 1.25 3.575 1.79375 2.6875 2.6875C1.79375 3.575 1.25 4.46875 0.8375 5.51875C0.44375 6.5375 0.16875 7.7 0.09375 9.4C0.01875 11.1125 0 11.6563 0 16C0 20.3438 0.01875 20.8875 0.09375 22.5938C0.16875 24.2938 0.44375 25.4625 0.8375 26.475C1.25 27.5313 1.79375 28.425 2.6875 29.3125C3.575 30.2 4.46875 30.75 5.51875 31.1563C6.5375 31.55 7.7 31.825 9.4 31.9C11.1063 31.975 11.65 31.9937 15.9938 31.9937C20.3375 31.9937 20.8813 31.975 22.5875 31.9C24.2875 31.825 25.4563 31.55 26.4688 31.1563C27.5188 30.75 28.4125 30.2 29.3 29.3125C30.1875 28.425 30.7375 27.5313 31.1438 26.4813C31.5375 25.4625 31.8125 24.3 31.8875 22.6C31.9625 20.8938 31.9813 20.35 31.9813 16.0063C31.9813 11.6625 31.9625 11.1188 31.8875 9.4125C31.8125 7.7125 31.5375 6.54375 31.1438 5.53125C30.75 4.46875 30.2063 3.575 29.3125 2.6875C28.425 1.8 27.5313 1.25 26.4813 0.84375C25.4625 0.45 24.3 0.175 22.6 0.1C20.8875 0.01875 20.3438 0 16 0Z\" fill=\"black\"/>\n<path d=\"M16 7.78125C11.4625 7.78125 7.78125 11.4625 7.78125 16C7.78125 20.5375 11.4625 24.2188 16 24.2188C20.5375 24.2188 24.2188 20.5375 24.2188 16C24.2188 11.4625 20.5375 7.78125 16 7.78125ZM16 21.3312C13.0563 21.3312 10.6687 18.9438 10.6687 16C10.6687 13.0563 13.0563 10.6687 16 10.6687C18.9438 10.6687 21.3312 13.0563 21.3312 16C21.3312 18.9438 18.9438 21.3312 16 21.3312Z\" fill=\"black\"/>\n<path d=\"M26.4625 7.45684C26.4625 8.51934 25.6 9.37559 24.5438 9.37559C23.4813 9.37559 22.625 8.51309 22.625 7.45684C22.625 6.39434 23.4875 5.53809 24.5438 5.53809C25.6 5.53809 26.4625 6.40059 26.4625 7.45684Z\" fill=\"black\"/>\n</svg>\n<span style=\"margin-top: 10px;\" class=\"sub-heading\">\n@bokifa\n</span>"
+          }
+        },
+        "instagram_item_RnHtnJ": {
+          "type": "instagram_item",
+          "settings": {
+            "featured_image": "shopify://shop_images/3_1.png",
+            "url_item": ""
+          }
+        },
+        "instagram_item_XxB3Vz": {
+          "type": "instagram_item",
+          "settings": {
+            "featured_image": "shopify://shop_images/7_1.png",
+            "url_item": ""
+          }
+        },
+        "instagram_item_eeVDAj": {
+          "type": "instagram_item",
+          "settings": {
+            "featured_image": "shopify://shop_images/2_1_1.png",
+            "url_item": ""
+          }
+        },
+        "instagram_item_tQNxtJ": {
+          "type": "instagram_item",
+          "settings": {
+            "featured_image": "shopify://shop_images/1_3_1.png",
+            "url_item": ""
+          }
+        }
+      },
+      "block_order": [
+        "instagram_item_box_yyfh6N",
+        "instagram_item_RnHtnJ",
+        "instagram_item_XxB3Vz",
+        "instagram_item_eeVDAj",
+        "instagram_item_tQNxtJ"
+      ],
+      "settings": {
+        "fullwidth": false,
+        "margin_desktop": "0px 0px 0px 0px",
+        "margin_tablet_large": "0px 0px 0px 0px",
+        "margin_mobile": "0px 0px 0px 0px",
+        "padding_desktop": "0px 0px 120px 0px",
+        "padding_mobile": "0px 0px 50px 0px",
+        "tab_heading": "",
+        "tab_heading_size": 2,
+        "tab_description": "",
+        "heading_color": "",
+        "text_color": "",
+        "distance_slide": "15",
+        "products_per_row_ipad": 2,
+        "products_per_row_tablet": 3,
+        "products_per_row_desktop": 5,
+        "show_arrow": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "banner_grid_2_NYBAHi",
+    "3a8b723d-3b6e-4937-9827-0f5fa9a6b8b7",
+    "fb19401f-e85c-48e2-9c40-0a289639d179",
+    "instagram_customize_Tg9eWB"
+  ]
+}

@@ -1,0 +1,143 @@
+{% if section.settings.show_popup %}
+
+<style>
+  #shopify-section-{{ section.id }} .newsletter-modal__content {
+    background-image: url({{ section.settings.bg_img | image_url: width: 2000 }});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #shopify-section-{{ section.id }} {
+    --bg-input: {{ section.settings.bg_input }};
+    --color-title: {{ section.settings.color_title }};
+    --color-description: {{ section.settings.color_description }};
+  }
+
+  #shopify-section-{{ section.id }} .input__field {
+    background-color: var(--bg-input);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+  #shopify-section-{{ section.id }} .title-popup ,
+  .modal__close-button {
+    color: var(--color-title);
+  }
+  #shopify-section-{{ section.id }} .desciption-popup {
+    color: var(--color-description);
+  }
+</style>
+
+<ap-contentmodal section="popup" only-once="" ap-delayapparition="{{ section.settings.time_delay }}" id="newsletter-popup" class="modal">
+    <div class="modal__overlay"></div>
+    <div class="modal__content">
+      <button type="button" class="modal__close-button tap-area" data-action="close" title="Close">
+        <svg focusable="false" width="14" height="14" class="icon icon--close   " viewBox="0 0 14 14">
+          <path d="M13 13L1 1M13 1L1 13" stroke="currentColor" stroke-width="2" fill="none"></path>
+        </svg>
+      </button>
+      <div class="newsletter-modal ">
+        <div class="newsletter-modal__content  text-container text--center">
+          <h2 class="heading h5 title-popup">{{ section.settings.title }}</h2>
+          <p class="desciption-popup">{{ section.settings.desciption }}</p>
+          <form method="post" action="/contact#contact_form" accept-charset="UTF-8" class="form newsletter-modal__form">
+            <input type="hidden" name="form_type" value="customer">
+            <input type="hidden" name="utf8" value="✓">
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <input type="hidden" name="contact[context]" value="">
+            <div class="input">
+              <input type="email" id="newsletter[popup][contact][email]" name="contact[email]" class="input__field" required="">
+              <label for="newsletter[popup][contact][email]" class="input__label">{{ section.settings.input }}</label>
+            </div>
+            <div class="input">
+              <button type="submit" is="loader-button" class="button button--primary button--full">
+                <span class="ap-text-loaderbutton">{{ section.settings.button_text }}</span>
+                <span class="ap-loader-loaderbutton" hidden="">
+                  <div class="spinner">
+                    <svg focusable="false" width="24" height="24" class="icon icon--spinner" viewBox="25 25 50 50">
+                      <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="5"></circle>
+                    </svg>
+                  </div>
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</ap-contentmodal>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Popup",
+  "class": "shopify-section--popup",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_popup",
+      "default": true,
+      "label": "Show Popup"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_img",   
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Join our newletter and get 20% discount",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "desciption",
+      "default": "This website uses cookies to ensure you get the best experience on our website.",
+      "label": "Desciption"
+    },
+    {
+      "type": "text",
+      "id": "input",
+      "default": "Your Email...",
+      "label": "Input Content"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "default": "Subscribe",
+      "label": "Button Text"
+    },
+    {
+      "type": "header",
+      "content": "Setting Color"
+    },
+    {
+      "type": "range",
+      "id": "time_delay",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 5,
+      "label": "Time delay"
+    },
+    {
+      "type": "color",
+      "id": "bg_input",
+      "default": "#fff",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Color Title"
+    },
+    {
+      "type": "color",
+      "id": "color_description",
+      "label": "Color Desciption"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,244 @@
+{% assign show_secondary_image = true %}
+<product-item class="slider__item " reveal="" style="opacity: 1;" id="product-item-{{ product.id }}">
+    <div class="product-item-bg_wrapper h-100" style="background-color: var(--background-product);position: relative;">
+        <div class="product-item-wrapper">
+            <span class="product-line"></span>
+        
+            <div class="product-item__image-wrapper product-item__image-wrapper--multiple">
+
+                {% if product.available == false or product.compare_at_price > product.price and product.available %}
+                    <div class="product-item__label-list label-list label-list-sale">
+                        {% if product.available == false %}
+                            <span class="label label--subdued">{{ 'products.product.sold_out' | t }}</span>
+                        {% endif %}
+                        {% if product.compare_at_price > product.price and product.available %}
+                            {% if settings.sale_label_enable %}
+                                {%- assign sale_minus = product.compare_at_price_min | minus: product.price_min -%}
+                                {%- assign sale_percent = sale_minus | times:100 | divided_by: product.compare_at_price_min -%}
+                                
+                                <div class="label label--highlight" aria-hidden="true">
+                                    {% if settings.sale_label_layout == 'text' %}
+                                        {{ settings.sale_label_text | default:'sale' }}
+                                    {% else %}
+                                        -{{ sale_percent | append: '%'}}
+                                    {%- endif -%}
+                                </div>
+                            {%- endif -%}    
+                        {% endif %}   
+                        {% if settings.new_label_enable %}
+                            {%- liquid
+                                assign new = false 
+                                assign new_count = settings.new_label_day | plus: 0 
+                                assign date_published_year = product.published_at | date: '%Y' 
+                                assign date_published_month = product.published_at | date: '%m' 
+                                assign date_published_day = product.published_at | date: '%d' 
+                                
+                                assign date_now_year = 'now' | date: '%Y' 
+                                assign date_now_month = 'now' | date: '%m' 
+                                assign date_now_day = 'now' | date: '%d' 
+                                
+                                assign day_year = date_now_year | minus: date_published_year | times: 365 
+                                assign day_month = date_now_month | minus: date_published_month | times: 30 
+                                assign day_day = date_now_day | minus: date_published_day 
+                                
+                                assign date_difference = day_year | plus: day_month | plus: day_day 
+                
+                                if date_difference <= new_count
+                                    assign new = true
+                                endif
+                            -%}
+                            {% if new %}
+                                <span class="label label--new">
+                                    {{ settings.new_label_text | default: 'new' }}
+                                </span>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+                {%- capture sizes -%}(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2){%- endcapture -%}
+                <a href="{{ product.url }}" class="product-item__aspect-ratio aspect-ratio " style="padding-bottom: 100.0%; --aspect-ratio: {{ settings.size_img }}">
+                    <img class="product-item__primary-image" loading="eager" data-media-id="{{ product.featured_media.id }}" 
+                        sizes= "{{ sizes }}"
+                        alt="{{ product.title }}" 
+                        src="{{ product.featured_image | image_url: width: product.featured_media.width }}" 
+                        data-srcset="
+                            {%- if product.featured_media.width >= 165 -%}{{ product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                            {%- if product.featured_media.width >= 360 -%}{{ product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                            {%- if product.featured_media.width >= 533 -%}{{ product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                            {%- if product.featured_media.width >= 720 -%}{{ product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+                            {%- if product.featured_media.width >= 940 -%}{{ product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+                            {%- if product.featured_media.width >= 1066 -%}{{ product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                            {{ product.featured_media | image_url }} {{ product.featured_media.width }}w
+                        "
+                        width="{{ product.featured_media.width }}" height="{{ product.featured_media.height }}">
+                    
+                    {% if product.media[1] != nil and show_secondary_image %}
+                        <img class="product-item__secondary-image" loading="lazy" sizes="(max-width: 740px) 52vw, calc(min(100vw - 80px, 1520px) / 4 - 18px)" 
+                            alt="{{ product.title }}" 
+                            src="{{ product.media[1] | image_url: width: 800 }}" 
+                            data-srcset="
+                                {%- if product.media[1].width >= 165 -%}{{ product.media[1] | image_url: width: 165 }} 165w,{%- endif -%}
+                                {%- if product.media[1].width >= 360 -%}{{ product.media[1] | image_url: width: 360 }} 360w,{%- endif -%}
+                                {%- if product.media[1].width >= 533 -%}{{ product.media[1] | image_url: width: 533 }} 533w,{%- endif -%}
+                                {%- if product.media[1].width >= 720 -%}{{ product.media[1] | image_url: width: 720 }} 720w,{%- endif -%}
+                                {%- if product.media[1].width >= 940 -%}{{ product.media[1] | image_url: width: 940 }} 940w,{%- endif -%}
+                                {%- if product.media[1].width >= 1066 -%}{{ product.media[1] | image_url: width: 1066 }} 1066w,{%- endif -%}
+                                {{ product.media[1] | image_url }} {{ product.media[1].width }}w
+                            "
+                            width="{{ product.media[1].width }}" height="{{ product.media[1].height }}">
+                    {% else %}
+                        <img class="product-item__secondary-image" loading="lazy" data-media-id="{{ product.featured_media.id }}" 
+                            sizes= "{{ sizes }}"
+                            alt="{{ product.title }}" 
+                            src="{{ product.featured_image | image_url: width: product.featured_media.width }}" 
+                            data-srcset="
+                                {%- if product.featured_media.width >= 165 -%}{{ product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                                {%- if product.featured_media.width >= 360 -%}{{ product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                                {%- if product.featured_media.width >= 533 -%}{{ product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                                {%- if product.featured_media.width >= 720 -%}{{ product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+                                {%- if product.featured_media.width >= 940 -%}{{ product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+                                {%- if product.featured_media.width >= 1066 -%}{{ product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                                {{ product.featured_media | image_url }} {{ product.featured_media.width }}w
+                            "
+                            width="{{ product.featured_media.width }}" height="{{ product.featured_media.height }}">
+                    {% endif %}
+                </a>
+
+                <div title="Add to Wishlist">
+                    <div class="d-flex flex-row-reverse align-items-center w-100">
+                        <ap-wishlistbutton  class="btn-service btn-wishlist {% if template =='page.wishlist' %}deletewishlist{% endif %}" data-action="add" data-id="{{ product.id }}" alt="Add to wishlist">
+                            {% render 'icon-wishlist' %}
+                        </ap-wishlistbutton>
+                        <span class="text-name d-none">
+                            Add to wishlist   
+                        </span>
+                    </div>
+                </div>
+
+                <div class="service-product">
+
+                    <div title="Quickview">
+                        <div class="btn-service btn-quickview">
+                            <div class="product-item__quick-form">
+                                <button is="toggle-button" loader="" ap-controlsaria="product-{{ section.id }}-{{ product.id }}-drawer" ap-expanded-aria="false" class="button button--outline button--text button--full">
+                                    <span class="ap-text-loaderbutton">
+                                        {% render 'icon-quickview' %}
+                                    </span>
+                                    <span class="ap-loader-loaderbutton" hidden="">
+                                    <div class="spinner">
+                                        <svg focusable="false" width="24" height="24" class="icon icon--spinner" viewBox="25 25 50 50">
+                                        <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="5"></circle>
+                                        </svg>
+                                    </div>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <span class="text-name d-lg-block d-none">
+                            Quick view
+                        </span>
+                    </div>
+
+                    <div title="Add to Compare">
+                        <ap-comparebutton class="btn-service btn-compare {% if template =='page.compare' %}deletecompare{% endif %}"
+                            data-action="add" data-id="{{ product.id }}" alt="Add to comparebutton">
+                            {% render 'icon-compare' %}
+                        </ap-comparebutton>
+                        <span class="text-name d-lg-block d-none">
+                            Add to compare
+                        </span>
+                    </div>
+                
+                </div>    
+                                   
+            </div>
+        
+            <div class="product-item__info  ">
+                <div class="product-item-meta">
+                    
+                    {% if settings.enable_rating %}          
+                        <!-- Start of Judge.me code -->   
+                        <div class='jdgm-widget jdgm-preview-badge'>
+                            {{ product.metafields.judgeme.badge }}             
+                        </div>
+                        <!-- End of Judge.me code -->
+                    {% endif %}
+
+                    <a href="{{ product.url }}" class="product-item-meta__title mb-1">{{ product.title | truncatewords: 10 }}</a>
+
+                    {% if settings.enable_author %}
+                        <div class="author-product my-2">
+                            <a href="/collections/vendors?filter.p.vendor={{ product.vendor }}&q={{ product.vendor }}">
+                                {{ product.vendor }}
+                            </a>
+                        </div>
+                    {% endif %}
+
+                    {% if settings.enable_type %}
+                        <div class="type-product my-2">{{ product.type }}</div>
+                    {% endif %}
+
+                    <div class="description-product d-none">{{ product.description | strip_html | truncatewords: 25 }}</div>
+
+                    <div class="product-price">
+    
+                        {% render 'price-product-grid', product: product %}
+
+                    </div>
+
+                    <div class="product-quantity-cart">
+                        <div class="product-quantity_item d-none">
+                            {%- render 'product-quantity', product: product -%}
+                        </div>
+
+                        <div class="service-add-cart w-100">
+                            <div title="Add to cart" class="btn-service btn-addcart">
+                                {%- if product.selected_or_first_available_variant.available -%}
+                                    <form method="post" action="/cart/add" id="ap-productform-{{ section.id }}-{{ product.id }}" accept-charset="UTF-8" class="shopify-ap-productform" enctype="multipart/form-data" is="ap-productform">
+                                        <input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓">
+                                        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                                        <button is="loader-button" type="submit" class="button button--outline button--text button--full">
+                                            <span class="ap-text-loaderbutton">
+                                                {% render 'icon-addcart' %}
+                                                {{ 'products.product.add_to_cart' | t }}
+                                            </span>
+                                            <span class="ap-loader-loaderbutton" hidden="">
+                                                <div class="spinner">
+                                                <svg focusable="false" width="24" height="24" class="icon icon--spinner" viewBox="25 25 50 50">
+                                                    <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="5"></circle>
+                                                </svg>
+                                                </div>
+                                            </span>
+                                        </button>
+                                        <button type="submit" class="product-item__quick-buy-button hd-no-touch">
+                                        <span class="visually-hidden">
+                                            {% render 'icon-addcart' %}
+                                        </span>
+                                        <svg focusable="false" width="22" height="21" class="icon icon--quick-buy   " fill="none" viewBox="0 0 22 21">
+                                            <path d="M12 4H3L2 20H18C17.7517 16.0273 17.375 10 17.375 10" stroke="currentColor" stroke-width="2"></path>
+                                            <path d="M7 7V7C7 8.65685 8.34315 10 10 10V10C11.6569 10 13 8.65685 13 7V7" stroke="currentColor" stroke-width="2"></path>
+                                            <path d="M18 0V8M14 4H22" stroke="currentColor" stroke-width="2"></path>
+                                        </svg>
+                                        </button>
+                                    </form>
+                                {%- else -%}
+                                    <button class="sold-out">
+                                        {% render 'icon-addcart' %}
+                                        <span class="ml-2">
+                                            Sold out
+                                        </span>
+                                    </button>
+                                {%- endif -%}
+                            </div>
+                            <span class="text-name">
+                                Add to cart
+                            </span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</product-item>

@@ -1,0 +1,66 @@
+.image-text svg {
+  width: 100%;
+}
+.text-image .row {
+  flex-direction: column;
+}
+.text-image .container {
+  max-width: 1100px;
+}
+.text-image-content {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 0 30px;
+  margin-bottom: 10px;
+}
+.content-left,
+.content-right {
+  font-size: 70px;
+  line-height: 1;
+  text-transform: uppercase;
+  font-family: var(--hd-font-family);
+}
+.text-image a.button.btn-base {
+  padding: 0;
+}
+.text-image-content:nth-child(2) {
+  justify-content: start;
+}
+.text-image a.button.btn-base {
+  padding: 0;
+  margin: 50px auto 0;
+  background-color: var(--bg-color-btn);
+  color: var(--btn-color);
+}
+.text-image a.button.btn-base path {
+  fill: var(--btn-color);
+}
+.text-image a.button.btn-base:hover {
+  color: var(--btn-color-hover);
+}
+.text-image a.button.btn-base:hover path {
+  fill: var(--btn-color-hover);
+}
+.text-image a.button.btn-base:before {
+  background-color: var(--bg-color-btn-hover);
+}
+
+@media (max-width: 1199px) {
+  .content-left,
+  .content-right {
+    font-size: 50px;
+  }
+}
+@media (max-width: 767px) {
+  .content-left,
+  .content-right {
+    font-size: 24px;
+  }
+}
+@media (max-width: 576px) {
+  .text-image-content {
+    gap: 15px 30px;
+    flex-direction: column;
+  }
+}

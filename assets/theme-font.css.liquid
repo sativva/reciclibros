@@ -1,0 +1,52 @@
+{% if settings.enable_font_body_other %}
+
+    {%- liquid assign body_font_custom = settings.name_font_body_custom | replace: " ", "-" -%}
+
+    {%- if settings.text_font_family != settings.body_font_custom -%}
+    @font-face {
+        font-family: '{{ settings.name_font_body_custom | replace: " ", "-" }}';
+        src: local('☺'), url('{{ settings.font_body_custom }}') format('woff'),
+        local('☺'), url('{{ settings.font_body_custom_2 }}') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        font-display:swap;
+    }
+    {%- endif -%}
+
+{% endif %}
+
+{% if settings.enable_font_header_other %}
+
+    {%- liquid assign header_font_custom = settings.name_header_font_custom | replace: " ", "-" -%}
+
+    {%- if settings.heading_font_family != settings.name_header_font_custom -%}
+    @font-face {
+        font-family: '{{ settings.name_header_font_custom | replace: " ", "-" }}';
+        src: local('☺'), url('{{ settings.font_header_custom }}') format('woff'),
+        local('☺'), url('{{ settings.font_header_custom_2 }}') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        font-display:swap;
+    }
+    {%- endif -%}
+    
+{% endif %}
+
+{% if settings.enable_font_other %}
+    {%- liquid assign font_custom_other = settings.name_font_custom_other | replace: " ", "-" -%}
+    @font-face {
+        font-family: '{{ settings.name_font_custom_other | replace: " ", "-" }}';
+        src: local('☺'), url('{{ settings.link_font_custome_other }}') format('woff'),
+        local('☺'), url('{{ settings.link_font_custome_other_2 }}') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        font-display:swap;
+    }
+{% endif %}
+
+:root {
+    --hd-font-family: {{ header_font_custom }};
+    --body-font-family: {{ body_font_custom }};
+
+    --g-font-other: {{ font_custom_other }};
+}

@@ -1,0 +1,39 @@
+<div id="shopify-section-{{ section.id }}" class="shopify-section shopify-section--main-product">
+    thanhvn
+    <ap-quickbuy class="drawer drawer--large drawer--quick-buy">
+      <div class="drawer__content">
+        <div class="quick-buy-product">
+            {% liquid
+                if product.selected_or_first_available_variant.featured_media != null
+                    assign media = product.selected_or_first_available_variant.featured_media.preview_image
+                else
+                    assign media = product.featured_image
+                endif
+            %}
+          <img loading="lazy" sizes="114px" class="ap-quickbuyproduct__image" height="{{ media.width }}" width="{{ media.height }}" alt="{{ product.title }}" 
+            src="{{ media | image_url: width: media.width }}" 
+            data-srcset="{{ media | image_url: width: 114 }} 114w, {{ media | image_url: width: 228 }} 228w, {{ media | image_url: width: 342 }} 342w">
+          <div class="quick-buy-product__info ">
+            <ap-productmeta form-id="ap-productform-{{ section.id }}-{{ product.id }}" ap-unitpriceclass="text--xsmall" class="product-item-meta">
+                <a href="{{ product.url }}" class="product-item-meta__title heading heading--small">{{ product.title }}</a>
+                <a href="/collections/vendors?q={{ product.vendor }}" class="product-item-meta__vendor ">{{ product.vendor }}</a>
+              
+                {%- render 'price', product: product, use_variant: true, show_badges: false, price_class: 'price--large' -%}
+            </ap-productmeta>
+          </div>
+        </div>
+        <div class="ap-productform">
+            {%- render 'ap-productvariants', product: product show_size_chart: false -%}
+            {%- render 'product-quantity', product: product -%}
+            {%- render 'product-buy',
+              product: product,
+              section_id: section.id,
+              show_pickup_availability: true 
+            -%}
+        </div>
+        <div class="ap-productform__view-details">
+          <a href="{{ product.url }}" class="link text--subdued">View details</a>
+        </div>
+      </div>
+    </ap-quickbuy>
+  </div>   

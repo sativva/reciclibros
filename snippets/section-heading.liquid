@@ -1,0 +1,91 @@
+<style>
+    #shopify-section-{{ section.id }} {
+        {% if section.settings.sub_color != blank %}
+        --sub-heading-color: {{ section.settings.sub_color }};
+        {% endif %}
+        {% if section.settings.heading_color != blank %}
+        --heading-color: {{ section.settings.heading_color | color_extract: 'red' }}, {{ section.settings.heading_color | color_extract: 'green' }}, {{ section.settings.heading_color | color_extract: 'blue' }};
+        {% endif %}
+        {% if section.settings.text_color != blank %}
+        --color-body: {{ section.settings.text_color | color_extract: 'red' }}, {{ section.settings.text_color | color_extract: 'green' }}, {{ section.settings.text_color | color_extract: 'blue' }};
+        {% endif %}
+    }
+</style>
+
+{%- if section.settings.tab_heading != blank or section.settings.sub_heading != blank -%}
+
+{% if section.settings.text_align != "left" %}
+    <header class="section__header text-{{ section.settings.text_align }} mb-50">
+
+        {% if section.settings.sub_heading != blank %}
+        <p class="heading sub-heading mb-14">{{ section.settings.sub_heading }}</p>
+        {% endif %}
+
+        <h3 class="heading h{{ section.settings.tab_heading_size }} mb-20">
+            {{ section.settings.tab_heading }}
+        </h3>
+
+        {% if section.settings.tab_description != blank %}
+        <div class="heading-description {% if section.settings.h_description_2 != blank %}mb-40{% endif %}">
+        {{ section.settings.tab_description }}
+        </div>
+        {% endif %}
+
+        {% if section.settings.h_description_2 != blank %}
+            <div class="heading-description__custom {% if section.settings.btn_link != blank %}mb-3{% endif %}">
+            {{ section.settings.h_description_2 }}
+            </div>
+        {% endif %}
+
+        {% if section.settings.btn_link != blank %}
+        <div class="btn-more">
+            <a href="{{ section.settings.btn_link }}" class="button {{ section.settings.style_btn }}">
+                {{ section.settings.btn_text }}
+            </a>
+        </div>
+        {% endif %}
+
+    </header>
+{% else %}
+
+    <header style="gap: 15px 0;" class="section__header text-{{ section.settings.text_align }} d-flex flex-wrap align-items-center justify-content-between mb-30">
+
+        <div class="section__header-left">
+            {% if section.settings.sub_heading != blank %}
+            <p class="heading sub-heading mb-14">{{ section.settings.sub_heading }}</p>
+            {% endif %}
+        
+            <h3 class="heading h{{ section.settings.tab_heading_size }} mb-20">
+                {{ section.settings.tab_heading }}
+            </h3>
+
+            {% if section.settings.tab_description != blank %}
+                <div class="heading-description {% if section.settings.h_description_2 != blank %}mb-40{% endif %}">
+                {{ section.settings.tab_description }}
+                </div>
+            {% endif %}
+
+        </div>
+
+        <div style="gap: 20px;" class="section__header-right d-flex flex-wrap">
+            {% if section.settings.h_description_2 != blank %}
+                <div class="heading-description__custom">
+                {{ section.settings.h_description_2 }}
+                </div>
+            {% endif %}
+        
+            {% if section.settings.btn_link != blank %}
+            <div class="btn-more">
+                <a href="{{ section.settings.btn_link }}" class="button {{ section.settings.style_btn }}">
+                    {{ section.settings.btn_text }}
+                </a>
+            </div>
+            {% endif %}
+
+        </div>
+
+    </header>
+
+{% endif %}
+
+{% endif %}

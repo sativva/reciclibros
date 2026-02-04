@@ -1,0 +1,372 @@
+<div class="ap-productfacet__aside"> 
+    <div class="ap-productfacet_aside__categories hd-pocket">
+ {% if collection %}
+
+  {% assign current_handle = collection.handle %}
+  {% assign children_links = nil %}
+
+  {% for link in linklists.main-menu.links %}
+    {%- comment -%} Niveau 1 {%- endcomment -%}
+    {% if link.type == 'collection_link' and link.object.handle == current_handle %}
+      {% assign children_links = link.links %}
+    {% endif %}
+
+    {%- comment -%} Niveau 2 {%- endcomment -%}
+    {% for sublink in link.links %}
+      {% if sublink.type == 'collection_link' and sublink.object.handle == current_handle %}
+        {% assign children_links = sublink.links %}
+      {% endif %}
+
+      {%- comment -%} Niveau 3 (sécurité) {%- endcomment -%}
+      {% for sub_sublink in sublink.links %}
+        {% if sub_sublink.type == 'collection_link' and sub_sublink.object.handle == current_handle %}
+          {% assign children_links = sub_sublink.links %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+
+  {% endfor %}
+
+  {% if children_links and children_links.size > 0 %}
+    <div class="collapsible-toggle ap-productfacet_aside__categories-title heading h6 ap-productfacet__filters-header">Categorías</div>
+    <div class="ap-productfacet_aside__categories-list">
+      {% for child in children_links %}
+        {% if child.type == 'collection_link' %}
+          <a href="{{ child.url }}">
+            {{ child.title | escape }}
+            <span class="count">
+              ({{ child.object.products_count }})
+            </span>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endif %}   
+    <ap-safesticky class="ap-productfacet__aside-inner" offset="30">
+      <div class="ap-productfacet__filters-header hd-pocket">
+        <p class="heading h6">Filtros</p>
+      </div>
+
+        <ap-facetfilters id="ap-facetfilters" class="ap-productfacet__filters "always-visible="">
+
+            <span class="drawer__overlay"></span>
+              
+            <header class="drawer__header hd-lap-and-up">
+                <p class="drawer__title heading h6">Filtros<span class="ap-productfacet__active-count"></span></p>
+                <a class="drawer__header-action link text--subdued" data-action="clear-filters" href="{{ collection.url }}">Borrar todo</a>
+                <button type="button" class="drawer__close-button tap-area" data-action="close" title="Close">
+                    <svg focusable="false" width="14" height="14" class="icon icon--close   " viewBox="0 0 14 14">
+                        <path d="M13 13L1 1M13 1L1 13" stroke="currentColor" stroke-width="2" fill="none"></path>
+                    </svg>
+                </button>
+            </header>
+            <div class="drawer__content">
+                <form id="ap-facetfilters-form">
+                    <input id="input-s" type="hidden" name="sort_by" value="{{ sort_by }}">
+                    <input type="hidden" name="q" value="{{ search.terms | escape }}">
+                    <input type="hidden" name="type" value="product">
+                    <input type="hidden" name="option[prefix]" value="last">
+                    <input type="hidden" name="option[unavailable_products]" value="last">
+                    <div class="ap-productfacet__active-list tag-list hd-phone">
+                        {% liquid assign remove_all_status = 0 %}
+                        {%- for filter in collection.filters -%}
+                            {%- for value in filter.active_values -%}
+                                <div class="tag">
+                                    <a href="{{ value.url_to_remove }}" data-action="clear-filters" class="tag__icon tap-area" aria-label="Delete">
+                                        <svg focusable="false" width="10" height="10" class="icon icon--close   " viewBox="0 0 14 14">
+                                            <path d="M13 13L1 1M13 1L1 13" stroke="currentColor" stroke-width="2" fill="none"></path>
+                                        </svg>
+                                    </a>
+                                    {{ value.label | escape }}
+                                </div>
+                                {% liquid assign remove_all_status = 1 %}
+                            {%- endfor -%}
+
+                            {% if filter.type == "price_range" %}
+                                {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+                                    <div class="tag">
+                                        <a href="{{ filter.url_to_remove }}" data-action="" class="tag__icon tap-area" aria-label="Delete">
+                                            <svg focusable="false" width="10" height="10" class="icon icon--close   " viewBox="0 0 14 14">
+                                                <path d="M13 13L1 1M13 1L1 13" stroke="currentColor" stroke-width="2" fill="none"></path>
+                                            </svg>
+                                        </a>
+                                        {%- if filter.min_value.value -%}{{ filter.min_value.value | money }}{%- else -%}{{ 0 | money }}{%- endif -%}-{%- if filter.max_value.value -%}{{ filter.max_value.value | money }}{%- else -%}{{ filter.range_max | money }}{%- endif -%}
+                                    </div>
+                                    {% liquid assign remove_all_status = 1 %}
+                                {%- endif -%}
+                            {% endif %}
+                        {%- endfor -%}
+
+                        {%- if template contains 'search' -%}
+                            {% if remove_all_status == 1 %}
+                                <a id="clear-all" href="" data-action="" class="tag-link link text--subdued">Borrar todo</a>
+                            {% endif %}
+                        {% else %}
+                            {% if remove_all_status == 1 %}
+                                <a href="{{ collection.url }}?sort_by={{ sort_by }}" data-action="" class="tag-link link text--subdued">Borrar todo</a>
+                            {% endif %}
+                        {% endif %}
+           
+                    </div>
+                    <div class="ap-productfacet__filter-list">
+                        {% liquid assign remove_all_status = 0 %}
+                        {%- for filter in collection.filters -%}
+                            <div class="ap-productfacet__filter-item">
+                                <button type="button" is="toggle-button" class="collapsible-toggle text--strong" ap-controlsaria="{{ filter.param_name }}" ap-expanded-aria="true">
+                                    {{ filter.label | escape | capitalize }}
+                                    <svg aria-hidden="true" focusable="false" role="presentation" width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-chevron-down">
+                                        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>
+                                        <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>
+                                    </svg>
+                                </button>
+                                <ap-contentcollapsible id="{{ filter.param_name }}" class="collapsible" open animate-items="">
+                                    <div class="collapsible__content">
+                                        {% case filter.type %}
+                                            {% when 'boolean' or 'list' %}
+                                                {%- if settings.filter_color_enable and settings.option_name == filter.label -%}
+                                                    <div class="color-swatch-list">
+                                                        {%- for value in filter.values -%}
+                                                            {% liquid
+                                                                assign color_code = ''
+                                                                assign color_image = ''
+                                                                assign value_name = value.label | escape | downcase
+
+                                                                assign filter_color = settings.filter_color_1 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_1 != blank
+                                                                        assign color_image = settings.image_color_1 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_1 != blank
+                                                                        assign color_code = settings.color_1
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_2 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_2 != blank
+                                                                        assign color_image = settings.image_color_2 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_2 != blank
+                                                                        assign color_code = settings.color_2
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_3 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_3 != blank
+                                                                        assign color_image = settings.image_color_3 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_3 != blank
+                                                                        assign color_code = settings.color_3
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_4 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_4 != blank
+                                                                        assign color_image = settings.image_color_4 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_4 != blank
+                                                                        assign color_code = settings.color_4
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_5 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_5 != blank
+                                                                        assign color_image = settings.image_color_5 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_5 != blank
+                                                                        assign color_code = settings.color_5
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_6 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_6 != blank
+                                                                        assign color_image = settings.image_color_6 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_6 != blank
+                                                                        assign color_code = settings.color_6
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_7 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_7 != blank
+                                                                        assign color_image = settings.image_color_7 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_7 != blank
+                                                                        assign color_code = settings.color_7
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_8 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_8 != blank
+                                                                        assign color_image = settings.image_color_8 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_8 != blank
+                                                                        assign color_code = settings.color_8
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_9 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_9 != blank
+                                                                        assign color_image = settings.image_color_9 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_9 != blank
+                                                                        assign color_code = settings.color_9
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_10 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_10 != blank
+                                                                        assign color_image = settings.image_color_10 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_10 != blank
+                                                                        assign color_code = settings.color_10
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_11 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_11 != blank
+                                                                        assign color_image = settings.image_color_11 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_11 != blank
+                                                                        assign color_code = settings.color_11
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_13 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_13 != blank
+                                                                        assign color_image = settings.image_color_13 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_13 != blank
+                                                                        assign color_code = settings.color_13
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_14 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_14 != blank
+                                                                        assign color_image = settings.image_color_14 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_14 != blank
+                                                                        assign color_code = settings.color_14
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_15 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_15 != blank
+                                                                        assign color_image = settings.image_color_15 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_15 != blank
+                                                                        assign color_code = settings.color_15
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_16 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_16 != blank
+                                                                        assign color_image = settings.image_color_16 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_16 != blank
+                                                                        assign color_code = settings.color_16
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_17 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_17 != blank
+                                                                        assign color_image = settings.image_color_17 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_17 != blank
+                                                                        assign color_code = settings.color_17
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_18 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_18 != blank
+                                                                        assign color_image = settings.image_color_18 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_18 != blank
+                                                                        assign color_code = settings.color_18
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_19 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_19 != blank
+                                                                        assign color_image = settings.image_color_19 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_19 != blank
+                                                                        assign color_code = settings.color_19
+                                                                    endif
+                                                                endif
+                                                                assign filter_color = settings.filter_color_20 | escape | downcase
+                                                                if value_name == filter_color and filter_color != blank
+                                                                    if settings.image_color_20 != blank
+                                                                        assign color_image = settings.image_color_20 | image_url: width: 50
+                                                                    endif
+                                                                    if settings.color_20 != blank
+                                                                        assign color_code = settings.color_20
+                                                                    endif
+                                                                endif
+                                                            %}
+                                                            <div class="color-swatch" data-tooltip="{{ value.label | escape }}">
+                                                                <input class="color-swatch__radio visually-hidden" type="checkbox" name="{{ filter.param_name }}" id="filter-{{ filter.param_name | escape }}-{{ forloop.index }}" value="{{ value.label | escape }}" title="{{ value.label | escape }}" {% if value.active %}checked{% endif %} {% if value.count == 0 and value.active == false %}disabled=""{% endif %}>
+                                                                <label class="color-swatch__item" for="filter-{{ filter.param_name | escape }}-{{ forloop.index }}" 
+                                                                    style="{%- if color_code != '' -%}background-color: {{ color_code }};{%- endif -%}{%- if color_image != '' -%}background-image: url({{ color_image }}){%- endif -%}">
+                                                                    <span class="{% if color_code != '' or color_image != '' %}visually-hidden{% endif %}">{{ value.label | escape }}</span>
+                                                                </label>
+                                                            </div>
+                                                            
+                                                        {%- endfor -%}
+                                                    </div>
+                                                {%- else -%}
+                                                    {%- for value in filter.values -%}
+                                                        <div class="checkbox-container">
+                                                            <input class="checkbox" type="checkbox" name="{{ filter.param_name }}" id="filter-{{ filter.param_name | escape }}-{{ forloop.index }}" value="{{ value.value }}" {% if value.active %}checked{% endif %} {% if value.count == 0 and value.active == false %}disabled=""{% endif %}>
+                                                            <label for="filter-{{ filter.param_name | escape }}-{{ forloop.index }}">{{ value.label | escape }} ({{ value.count }})</label>
+                                                        </div>
+                                                    {%- endfor -%}
+                                                {%- endif -%}
+                                            {% when 'price_range' %}
+                                                {% liquid
+                                                    assign min_value_price = filter.min_value.value | default: 0 | divided_by: 100
+
+                                                    assign max_value_price = filter.max_value.value | default: filter.range_max | default: 0 | divided_by: 100
+                    
+
+                                                    assign max_price = filter.range_max | divided_by: 100
+                                                    
+                                                %}
+                                                {%- assign lower_bound_progress = min_value_price | times: 100.0 | divided_by: max_price -%}
+                                              {%- assign higher_bound_progress = max_value_price | times: 100.0 | divided_by: max_price -%}
+                                                <ap-pricerange class="ap-pricerange">
+                                                    <div class="ap-pricerange__range-group range-group" style="--range-min: {{ lower_bound_progress }}%; --range-max: {{ higher_bound_progress }}%">
+                                                      <input type="range" aria-label="From price" class="range" min="0" max="{{ max_price }}" value="{{ min_value_price }}">
+                                                      <input type="range" aria-label="To price" class="range" min="0" max="{{ max_price }}" value="{{ max_value_price }}" style="z-index:0;">
+                                                    </div>
+                              
+                                                    <div class="ap-pricerange__input-group">
+                                                      <div class="ap-pricerange__input input-prefix text--xsmall">
+                                                        <span class="input-prefix__value text--subdued">€</span>
+                                                        <input aria-label="From price" class="input-prefix__field" type="number" inputmode="numeric" value="{{ min_value_price }}" name="{{ filter.min_value.param_name }}" id="{{ filter.min_value.param_name }}" min="0" max="{{ max_value_price }}" placeholder="0">
+                                                      </div>
+                              
+                                                      <span class="ap-pricerange__delimiter text--small">a</span>
+                              
+                                                      <div class="ap-pricerange__input input-prefix text--xsmall">
+                                                        <span class="input-prefix__value text--subdued">€</span>
+                                                        <input aria-label="To price" class="input-prefix__field" type="number" inputmode="numeric" value="{{ max_value_price }}" name="{{ filter.max_value.param_name }}" id="{{ filter.max_value.param_name }}" min="{{ min_value_price }}" max="{{ max_price }}" placeholder="{{ max_price }}">
+                                                      </div>
+                                                    </div>
+                                                </ap-pricerange>
+                                        {% endcase %}
+                                        
+                                    </div>
+                                </ap-contentcollapsible>
+                            </div>
+                        {%- endfor -%}
+                    </div>
+                    <noscript>
+                        <button type="submit" class="ap-productfacet__submit button button--secondary">Apply filters</button>
+                    </noscript>
+                </form>
+            </div>
+        </ap-facetfilters>
+    </ap-safesticky>
+</div>
+</div>

@@ -1,0 +1,136 @@
+<div class="page-width{% if cart == empty %} is-empty{% endif %}" id="main-cart-footer" data-id="{{ section.id }}">
+  <div class="container container--medium">
+    <div class="cart__footer">
+      <div class="cart__footer-left">
+        {%- if settings.show_cart_note or 1 -%}
+        <ap-elementopen id="mini-ap-cartnote" class="mini-cart__order-note">
+            <span class="openable__overlay"></span>
+            <label for="cart[note]" class="mini-cart__order-note-title heading heading--xsmall">Add Note</label>
+            <textarea is="ap-cartnote" name="note" id="cart[note]" rows="3" ap-ariaowns="order-note-toggle" class="input__field input__field--textarea" placeholder="Add Note"></textarea>
+            <button type="button" data-action="close" class="d-none form__submit form__submit--closer button button--secondary">Save</button>
+        </ap-elementopen>
+        {%- endif -%}
+        {% if settings.cart_shipping_enable %}
+          <div class="shipping-cart">
+            <label for="Cart-note">Get shipping estimates</label>
+            {% render "shipping-calculator" %}
+          </div>
+        {%- endif -%}
+        {% if settings.cart_coupon_enable %}
+          <div class="coupon-cart">
+              <label for="discount">Código de descuento</label>
+              <div class="mini-cart__order-note-title" style="text-transform: none;font-weight: normal;font-size: 13px;">* El descuento se calculará y aplicará al finalizar la compra</div>
+              <div>
+	              <input class="discount_code_input" autocomplete="off" type="text" name="discount" value="" />
+              </div>
+          </div>
+      {% endif %}
+        {% for block in section.blocks %}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              {% render block %}
+            
+          {%- endcase -%}
+        {% endfor %}
+
+        <div id="cart-errors"></div>
+      </div>
+      <div class="cart__footer-right">
+        <div class="cart__recap">
+          <div class="cart__recap-block">
+            <div class="cart__total-container">
+              <span class="heading h6">{{ 'sections.cart.subtotal' | t }}</span>
+              <span class="heading h6">{{ cart.total_price | money_with_currency }}</span>
+            </div>
+            {%- if cart.cart_level_discount_applications.size > 0 -%}
+              <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+                {%- for discount in cart.cart_level_discount_applications -%}
+                  <li class="discounts__discount discounts__discount--position">
+                    {%- render 'icon-discount' -%}
+                    {{ discount.title }}
+                    (-{{ discount.total_allocated_amount | money }})
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+
+            <small class="tax-note caption-large rte">
+              {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+                {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+              {%- elsif cart.taxes_included -%}
+                {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
+              {%- elsif shop.shipping_policy.body != blank -%}
+                {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+              {%- else -%}
+                {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
+              {%- endif -%}
+            </small>
+            
+            <button id="bt_checkout" type="submit" class="cart__checkout-button checkout-button button button--primary button--full" name="checkout" >
+              Ir a pagar
+            </button>
+          </div>
+          {%- if additional_checkout_buttons -%}
+            <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
+              {{ content_for_additional_checkout_buttons }}
+            </div>
+          {%- endif -%}
+
+        </div>
+        {% if section.settings.enable_payment_methods %}
+          <div class="cart__payment-methods">
+            <span class="cart__payment-methods-label text--xsmall text--subdued">{{ section.settings.payment_methods_label }}</span>
+            <div class="payment-methods-list--center">
+              <img src="{{ section.settings.payment_methods_image | image_url: width: 400 }}" width="auto" height="auto" loading="lazy" >
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('bt_checkout').addEventListener('click', function(event) {
+    document.getElementById('form_cart').submit();
+    console.log('123');
+  });
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.main-cart-footer.name",
+  "class": "cart__footer-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "header",
+      "content": "Payment methods"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_payment_methods",
+      "label": "Enable payment methods",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "payment_methods_label",
+      "label": "Payment methods label"
+    },
+    {
+      "type": "image_picker",
+      "id": "payment_methods_image",
+      "label": "Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
+}
+{% endschema %}

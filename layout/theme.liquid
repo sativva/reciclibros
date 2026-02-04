@@ -1,0 +1,513 @@
+{% if template == 'product.ap-quickbuy' %}
+  {{ content_for_layout }}
+{% else %}
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <meta name="description" content="The best premium Shopify theme">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {%- endunless -%}
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    {% if settings.font_body_google_link != settings.text_font_family %}
+      <link href="{{ settings.font_body_google_link }}" rel="stylesheet">
+    {%- endif -%}
+    
+    {%- if settings.font_header_google_link != settings.heading_font_family -%}
+      <link href="{{ settings.font_header_google_link }}" rel="stylesheet">
+    {%- endif -%}
+
+    {%- if settings.font_more_google_link != settings.more_font_family -%}
+      <link href="{{ settings.font_more_google_link }}" rel="stylesheet">
+    {%- endif -%}
+
+    {%- unless settings.type_header_font.system? -%}
+      <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+    {%- endunless -%}
+
+    {{ 'theme-font.css' | asset_url | stylesheet_tag }}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {% render 'meta-tags' %}
+
+    {{ content_for_header }}
+
+    {%- liquid
+      assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
+      assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
+      assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
+    %}
+
+    {% style %}
+      {{ settings.type_body_font | font_face: font_display: 'swap' }}
+      {{ body_font_bold | font_face: font_display: 'swap' }}
+      {{ body_font_italic | font_face: font_display: 'swap' }}
+      {{ body_font_bold_italic | font_face: font_display: 'swap' }}
+      {{ settings.type_header_font | font_face: font_display: 'swap' }}
+   
+      :root {
+        /* Typography (font family) */
+        {% if settings.enable_font_header_other != true %}
+          --hd-font-family: "{{ settings.heading_font_family }}", sans-serif;
+        {% endif %}
+        {% if settings.enable_font_body_other != true %}
+          --body-font-family: "{{ settings.text_font_family }}", sans-serif;
+        {% endif %}
+        {% if settings.font_more_google_link != blank %}
+          --custom-font-family: "{{ settings.more_font_family }}", cursive;
+        {% endif %}
+        
+        --primary: {{ settings.color_primary }};
+        --primary-2: {{ settings.color_primary_2 }};
+        --primary_hover: {{ settings.color_primary_hover }};
+
+        --sub-heading-color: {{ settings.sub_heading_color }};
+        --sub-background: {{ settings.sub_background }};
+        --heading-color: {{ settings.heading_color.red }}, {{ settings.heading_color.green }}, {{ settings.heading_color.blue }};
+        --color-body: {{ settings.text_color.red }}, {{ settings.text_color.green }}, {{ settings.text_color.blue }};
+        --background: {{ settings.background_color.red }}, {{ settings.background_color.green }}, {{ settings.background_color.blue }};
+        --secondary-background: {{ settings.secondary_bg_color.red }}, {{ settings.secondary_bg_color.green }}, {{ settings.secondary_bg_color.blue }};
+        --border-color: {{ settings.border_color.red }}, {{ settings.border_color.green }}, {{ settings.border_color.blue }};
+        --border-color-darker: {{ settings.border_color_darker.red }}, {{ settings.border_color_darker.green }}, {{ settings.border_color_darker.blue }};
+        --success-color: {{ settings.success_color.red }}, {{ settings.success_color.green }}, {{ settings.success_color.blue }};
+        --success-background: {{ settings.success_bg.red }}, {{ settings.success_bg.green }}, {{ settings.success_bg.blue }};
+        --error-color: {{ settings.error_color.red }}, {{ settings.error_color.green }}, {{ settings.error_color.blue }};
+        --error-background: {{ settings.error_bg.red }}, {{ settings.error_bg.green }}, {{ settings.error_bg.blue }};
+        --primary-button-background: {{ settings.primary_btn_bg.red }}, {{ settings.primary_btn_bg.green }}, {{ settings.primary_btn_bg.blue }};
+        --primary-button-text-color: {{ settings.primary_btn_color.red }}, {{ settings.primary_btn_color.green }}, {{ settings.primary_btn_color.blue }};
+        --secondary-button-background: {{ settings.secondary_btn_bg.red }}, {{ settings.secondary_btn_bg.green }}, {{ settings.secondary_btn_bg.blue }};
+        --secondary-button-text-color: {{ settings.secondary_btn_color.red }}, {{ settings.secondary_btn_color.green }}, {{ settings.secondary_btn_color.blue }};
+        --product-star-rating: {{ settings.product_star_rating.red }}, {{ settings.product_star_rating.green }}, {{ settings.product_star_rating.blue }};
+        --product-star-rating-empty: {{ settings.product_star_rating_empty.red }}, {{ settings.product_star_rating_empty.green }}, {{ settings.product_star_rating_empty.blue }};
+        --price-regular: {{ settings.price_regular.red }}, {{ settings.price_regular.green }}, {{ settings.price_regular.blue }};
+        --product-on-price: {{ settings.product_on_price.red }}, {{ settings.product_on_price.green }}, {{ settings.product_on_price.blue }};
+        --product-on-sale-accent: {{ settings.product_on_sale.red }}, {{ settings.product_on_sale.green }}, {{ settings.product_on_sale.blue }};
+        --product-sold-out-accent: {{ settings.product_on_sold_out.red }}, {{ settings.product_on_sold_out.green }}, {{ settings.product_on_sold_out.blue }};
+        --product-custom-label-background: {{ settings.product_custom_label_bg.red }}, {{ settings.product_custom_label_bg.green }}, {{ settings.product_custom_label_bg.blue }};
+        --product-custom-label-text-color: {{ settings.product_custom_label_color.red }}, {{ settings.product_custom_label_color.green }}, {{ settings.product_custom_label_color.blue }};
+        --product-custom-label-2-background: {{ settings.product_custom_label_bg_2.red }}, {{ settings.product_custom_label_bg_2.green }}, {{ settings.product_custom_label_bg_2.blue }};
+        --product-custom-label-2-text-color: {{ settings.product_custom_label_color_2.red }}, {{ settings.product_custom_label_color_2.green }}, {{ settings.product_custom_label_color_2.blue }};
+        --product-low-stock-text-color: {{ settings.product_low_stock_color.red }}, {{ settings.product_low_stock_color.green }}, {{ settings.product_low_stock_color.blue }};
+        --product-in-stock-text-color: {{ settings.product_in_stock_color.red }}, {{ settings.product_in_stock_color.green }}, {{ settings.product_in_stock_color.blue }};
+        --ap-loadingbar-background: {{ settings.bg_loading.red }}, {{ settings.bg_loading.green }}, {{ settings.bg_loading.blue }};
+
+        --color-cart-count: {{ settings.color_cart_count }};
+        --bg-cart-count: {{ settings.bg_cart_count }};
+        --color-type: {{ settings.color_type_product }};
+        --color-title-product: {{ settings.color_title_product }};
+
+        --color-icon: {{ settings.color_icon }};
+        --color-svg-hover: {{ settings.color_svg_hover }};
+        --background-service: {{ settings.bg_icon }};
+        --background-service-hover: {{ settings.bg_icon_hover }};
+
+        --color-addcart: {{ settings.color_addcart }};
+        --background-product: {{ settings.background_product }};
+
+        --color-accent-1: {{ settings.color_accent_1 }};
+        --color-accent-2: {{ settings.color_accent_2 }};
+        --color-accent-3: {{ settings.color_accent_3 }};
+        --color-accent-4: {{ settings.color_accent_4 }};
+        --color-accent-5: {{ settings.color_accent_5 }};
+        --color-accent-6: {{ settings.color_accent_6 }};
+
+        /* We duplicate some "base" colors as root colors, which is useful to use on drawer elements or popover without. Those should not be overridden to avoid issues */
+        --root-heading-color: {{ settings.root_heading_color.red }}, {{ settings.root_heading_color.green }}, {{ settings.root_heading_color.blue }};
+        --root-text-color: {{ settings.root_text_color.red }}, {{ settings.root_text_color.green }}, {{ settings.root_text_color.blue }};
+        --root-background: {{ settings.root_bg.red }}, {{ settings.root_bg.green }}, {{ settings.root_bg.blue }};
+        --root-border-color: {{ settings.root_border_color.red }}, {{ settings.root_border_color.green }}, {{ settings.root_border_color.blue }};
+        --root-primary-button-background: {{ settings.root_primary_btn_bg.red }}, {{ settings.root_primary_btn_bg.green }}, {{ settings.root_primary_btn_bg.blue }};
+        --root-primary-button-text-color: {{ settings.root_primary_btn_color.red }}, {{ settings.root_primary_btn_color.green }}, {{ settings.root_primary_btn_color.blue }};
+        --root-primary-button-color-hover: {{ settings.root_primary_btn_color_hover.red }}, {{ settings.root_primary_btn_color_hover.green }}, {{ settings.root_primary_btn_color_hover.blue }};
+        --root-primary-button-background-hover: {{ settings.root_primary_btn_background_hover.red }}, {{ settings.root_primary_btn_background_hover.green }}, {{ settings.root_primary_btn_background_hover.blue }};
+
+        /* Video related */
+        --play-button-background: {{ settings.bg_btn_play.red }}, {{ settings.bg_btn_play.green }}, {{ settings.bg_btn_play.blue }}; 
+        --play-button-arrow: {{ settings.color_btn_play.red }}, {{ settings.color_btn_play.green }}, {{ settings.color_btn_play.blue }};
+
+        /* Setting Font */
+        --heading-font-size: {{ settings.heading_font_size }}px;
+        --heading-font-weight: {{ settings.heading_font_weight }};
+        --heading-font-style: {{ settings.heading_font_style }};
+        --heading-text-transform: {{ settings.heading_text_transform }};
+
+        --base-font-size: {{ settings.base_font_size }}px;
+        --text-font-weight: {{ settings.text_font_weight }};
+        --text-font-style: {{ settings.text_font_style }};
+        --text-font-bold-weight: {{ settings.text_font_weight_bold }};
+
+        --xxsmall-font-size: {{ settings.heading_xxsmall_font_size }}px;
+        --xsmall-font-size: {{ settings.heading_xsmall_font_size }}px;
+        --heading-small-font-size: {{ settings.heading_small_font_size }}px;
+        --large-font-size: {{ settings.heading_large_font_size }}px;
+        --h1-font-size: {{ settings.heading_h1_font_size }}px;
+        --h2-font-size: {{ settings.heading_h2_font_size }}px;
+        --h3-font-size: {{ settings.heading_h3_font_size }}px;
+        --h4-font-size: {{ settings.heading_h4_font_size }}px;
+        --h5-font-size: {{ settings.heading_h5_font_size }}px;
+        --h6-font-size: {{ settings.heading_h6_font_size }}px;
+
+        /* Control the look and feel of the theme by changing radius of various elements */
+        --button-border-radius: {{ settings.btn_border_radius }}px;
+        --block-border-radius: {{ settings.block_border_radius }}px;
+        --block-border-radius-reduced: {{ settings.block_border_radius_reduced }}px;
+        --color-swatch-border-radius: {{ settings.border_radius_swatch }}px;
+
+        /* Button size */
+        --font-family_btn : var({{ settings.font_family_button }});
+        --font-weight-btn : {{ settings.font_weight_button }};
+        --font-size-btn : {{ settings.base_size_button }}px;
+        --font-spacing-btn : {{ settings.letter_spacing_button }}em;
+        --text-transform-btn : {{ settings.text_transform_btn }};
+        --g-padding-hoz-btn : {{ settings.padding_hoz_btn }}px;
+
+        --cta-button: {{ settings.color_cta }};
+        --cta-text:{{ settings.color_button_text }};
+        --cta-button-hover: {{ settings.color_cta_hover }};
+        --cta-text-hover:{{ settings.color_button_text_hover }};
+
+        --color-line:{{ settings.color_line }};
+        --color-border-line:{{ settings.color_border_line }};
+
+        --button-height: {{ settings.btn_height }}px;
+        --button-medium-height: {{ settings.btn_medium_height }}px;
+        --button-small-height: {{ settings.btn_small_height }}px;
+
+        /* Form related */
+        --form-input-field-height: {{ settings.form_input_field_height }}px;
+        --form-input-gap: {{ settings.form_input_gap }};
+        --form-submit-margin: {{ settings.form_submit_margin }};
+
+        /* Product listing related variables */
+        --ap-productlist-block-spacing: {{ settings.product_list_block_spacing }}px;
+        --ap-productlist-column-gap: {{ settings.product_list_col_gap }}px;
+
+        /* RTL support */
+        --transform-logical-flip: 1;
+        --transform-origin-start: left;
+        --transform-origin-end: right;
+
+        /* Other */
+        --zoom-cursor-svg-url: url({{ settings.zoom_cursor_svg_url }});
+        --arrow-right-svg-url: url({{ settings.arrow_right_svg_url }});
+        --arrow-left-svg-url: url({{ settings.arrow_left_svg_url }});
+
+        /* Some useful variables that we can reuse in our CSS. Some explanation are needed for some of them:
+          - container-max-width-minus-gutters: represents the container max width without the edge gutters
+          - container-outer-width: considering the screen width, represent all the space outside the container
+          - container-outer-margin: same as container-outer-width but get set to 0 inside a container
+          - container-inner-width: the effective space inside the container (minus gutters)
+          - grid-column-width: represents the width of a single column of the grid
+          - vertical-breather: this is a variable that defines the global "spacing" between sections, and inside the section
+                              to create some "breath" and minimum spacing
+        */
+
+        /* Container */
+        --container-max-width: {{ settings.container_max_width }}px;
+        --container-distance: {{ settings.container_gutter }}px;
+        --container-max-width-minus-gutters: calc(var(--container-max-width) - (var(--container-distance)) * 2);
+        --container-outer-width: max(calc((100vw - var(--container-max-width-minus-gutters)) / 2), var(--container-distance));
+        --container-outer-margin: var(--container-outer-width);
+        --container-inner-width: calc(100vw - var(--container-outer-width) * 2);
+
+        --grid-column-count: 20;
+        --grid-gap: 0px;
+        --grid-column-width: calc((100vw - var(--container-outer-width) * 2 - var(--grid-gap) * (var(--grid-column-count) - 1)) / var(--grid-column-count));
+
+        --vertical-breather: {{ settings.vertical_beather }}px;
+        --vertical-breather-tight: {{ settings.vertical_beather_tight }}px;
+
+        /* Shopify related variables */
+        --payment-terms-background-color: {{ settings.bg_payment.red }}, {{ settings.bg_payment.green }}, {{ settings.bg_payment.blue }};
+      }
+
+      @media screen and (max-width: 1199px) {
+        :root {
+          /* Typography */
+          --large-font-size: {{ settings.heading_large_size_1199 }}px;
+          --h1-font-size: {{ settings.heading_h1_size_1199 }}px;
+          --h2-font-size: {{ settings.heading_h2_size_1199 }}px;
+          --h3-font-size: {{ settings.heading_h3_size_1199 }}px;
+          --h4-font-size: {{ settings.heading_h4_size_1199 }}px;
+          --h5-font-size: {{ settings.heading_h5_size_1199 }}px;
+          --h6-font-size: {{ settings.heading_h6_size_1199 }}px;
+        }
+      }
+      
+      @media screen and (max-width: 767px) {
+      :root {
+          --container-distance: {{ settings.container_gutter_media_767 }}px;
+
+          /* Typography (font size) */
+          --xsmall-font-size: {{ settings.heading_xsmall_size_767 }}px;
+          --heading-small-font-size: {{ settings.heading_small_size_767 }}px;
+          --large-font-size: {{ settings.heading_large_size_767 }}px;
+          --h1-font-size: {{ settings.heading_h1_size_767 }}px;
+          --h2-font-size: {{ settings.heading_h2_size_767 }}px;
+          --h3-font-size: {{ settings.heading_h3_size_767 }}px;
+          --h4-font-size: {{ settings.heading_h4_size_767 }}px;
+          --h5-font-size: {{ settings.heading_h5_size_767 }}px;
+          --h6-font-size: {{ settings.heading_h6_size_767 }}px;
+
+          /* Form related */
+          --form-input-field-height: {{ settings.form_input_field_height_767 }}px;
+        }
+      }
+    {% endstyle %}
+
+<script>
+  // This allows to expose several variables to the global scope, to be used in scripts
+  window.themeVariables = {
+    settings: {
+      direction: "ltr",
+      pageType: "{{ template }}",
+      cartCount: 2,
+      moneyFormat: "{{ shop.money_format }}",
+      moneyWithCurrencyFormat: "{{ shop.money_with_currency_format }}",
+      showVendor: false,
+      discountMode: "saving",
+      currencyCodeEnabled: false,
+      searchMode: "product,article,page,collection",
+      searchProductsUnavailable: "last",
+      cartType: "drawer",
+      cartCurrency: "{{ shop.currency }}",
+      mobileZoomFactor: 2.5
+    },
+
+    routes: {
+      host: "{{ shop.permanent_domain }}",
+      rootUrl: "/",
+      rootUrlWithoutSlash: '',
+      cartUrl: "/cart",
+      cartAddUrl: "/cart/add",
+      cartChangeUrl: "/cart/change",
+      searchUrl: "/search",
+      apDrawerSearchUrl: "/search/suggest",
+      productUrlRecommendations: "/recommendations/products"
+    },
+
+    strings: {
+      accessibilityDelete: "Delete",
+      accessibilityClose: "Close",
+      collectionSoldOut: "Sold out",
+      collectionDiscount: "Save @savings@",
+      productSalePrice: "Sale price",
+      productRegularPrice: "Regular price",
+      productFormUnavailable: "Unavailable",
+      productFormSoldOut: "{{ 'products.product.sold_out' | t }}",
+      productFormPreOrder: "Pre-order",
+      productFormAddToCart: "{{ 'products.product.add_to_cart' | t }}",
+      searchNoResults: "No results could be found.",
+      searchNewSearch: "New search",
+      searchProducts: "Products",
+      searchArticles: "Journal",
+      searchPages: "Pages",
+      searchCollections: "Collections",
+      cartViewCart: "View cart",
+      cartItemAdded: "Item added to your cart!",
+      cartItemAddedShort: "Added to your cart!",
+      cartAddOrderNote: "Add order note",
+      cartEditOrderNote: "Edit order note",
+      shippingEstimatorNoResults: "Sorry, we do not ship to your address.",
+      shippingEstimatorOneResult: "There is one shipping rate for your address:",
+      shippingEstimatorMultipleResults: "There are several shipping rates for your address:",
+      shippingEstimatorError: "One or more error occurred while retrieving shipping rates:"
+    },
+
+    libs: {
+      flickity: "{{ 'flickity.js' | asset_url }}",
+      photoswipe: "{{ 'photoswipe.js' | asset_url }}",
+      modelViewerUiStyles: "https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css"
+    },
+
+    breakpoints: {
+      phone: 'screen and (max-width: 740px)',
+      tablet: 'screen and (min-width: 741px) and (max-width: 999px)',
+      tabletAndUp: 'screen and (min-width: 741px)',
+      pocket: 'screen and (max-width: 999px)',
+      lap: 'screen and (min-width: 1000px) and (max-width: 1199px)',
+      lapAndUp: 'screen and (min-width: 1000px)',
+      desktop: 'screen and (min-width: 1200px)',
+      wide: 'screen and (min-width: 1400px)'
+    }
+  };
+
+  if ('noModule' in HTMLScriptElement.prototype) {
+    // Old browsers (like IE) that does not support module will be considered as if not executing JS at all
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+    requestAnimationFrame(() => {
+      const viewportHeight = (window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight);
+      document.documentElement.style.setProperty('--window-height',viewportHeight + 'px');
+    });
+  }</script>
+
+    {{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}   
+    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}   
+    {{ 'ap-theme.css' | asset_url | stylesheet_tag }}   
+    {{ 'ap-theme-custom.css' | asset_url | stylesheet_tag }}   
+    {{ 'ap-theme-liquid.css' | asset_url | stylesheet_tag: preload: true }}
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    <script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ap-theme.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ap-theme-custom.js' | asset_url }}" defer="defer"></script>    
+
+    {%- unless settings.type_body_font.system? -%}
+      <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
+    {%- endunless -%}
+    {%- unless settings.type_header_font.system? -%}
+      <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+    {%- endunless -%}
+
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    if (Shopify.designMode) {
+      document.documentElement.classList.add('shopify-design-mode');
+    }
+    </script>
+  </head>
+
+  <body class="no-focus-outline  features--image-zoom {{ template }}" data-instant-allow-query-string="">
+  <style>
+      body {
+        {% if settings.background_body != blank %}
+        background-color: {{ settings.background_body }};
+        {% endif %}
+        {% if settings.background_image != blank %}
+        background-image: url({{ settings.background_image | image_url: width: 2000 }});
+        {% endif %}
+      }
+      main#main {
+        overflow-x: hidden;
+      }
+    </style>
+    <a class="skip-to-content-link button visually-hidden" href="#MainContent">
+      {{ "accessibility.skip_to_text" | t }}
+    </a>
+
+    {%- if settings.cart_type == 'drawer' -%}
+      {%- render 'ap-cartdrawer' -%}
+    {%- endif -%}
+    
+    <ap-loadingbar class="ap-loadingbar is-visible"></ap-loadingbar>
+    {% sections 'header-group-top' %}
+    {% render 'header' %}
+
+    <main id="main" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {%- if template contains 'collection' or template contains 'search' -%}
+        <div id="mobile-facet-toolbar" class="mobile-toolbar  hd-lap-and-up {% if template contains 'list-collections' %} d-none{% endif %}">
+          <button is="toggle-button" class="mobile-toolbar__item mobile-toolbar__item--filters " ap-expanded-aria="false" ap-controlsaria="ap-facetfilters"><svg focusable="false" width="16" height="16" class="icon icon--filters   " viewBox="0 0 16 16">
+        <path d="M0 4h16M0 12h16" fill="none" stroke="currentColor" stroke-width="2"></path>
+        <circle cx="5" cy="4" r="2" fill="rgb(var(--background))" stroke="currentColor" stroke-width="2"></circle>
+        <circle cx="11" cy="12" r="2" fill="rgb(var(--background))" stroke="currentColor" stroke-width="2"></circle>
+      </svg><span class="mobile-toolbar__item-label">Filters</span>
+          </button>
+
+          <button is="toggle-button" class="mobile-toolbar__item mobile-toolbar__item--sort" ap-expanded-aria="false" ap-controlsaria="ap-sortbypopover">
+            <span class="mobile-toolbar__item-label">Sort by</span><svg focusable="false" width="12" height="8" class="icon icon--chevron   " viewBox="0 0 12 8">
+        <path fill="none" d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="2"></path>
+      </svg></button>
+        </div>
+      {%- endif -%}
+
+      {{ content_for_layout }}
+
+      {% for product in section.settings.collection.products %}
+        <ap-quickbuy id="product-{{ section.id }}-{{ product.id }}-drawer" href="/products/{{ product.handle }}?view=quick-buy-drawer" class="drawer drawer--large drawer--quick-buy hd-phone"></ap-quickbuy>
+      {% endfor %}
+
+      {% liquid 
+      
+        if template =='page.wishlist'
+          section 'page-wishlistdisplay'
+        endif
+        if template =='page.compare'
+          section 'page-comparedisplay'
+        endif
+
+        if settings.show_backtotop
+          render 'back-to-top'
+        endif
+      %}
+    </main>
+
+    {%- sections 'footer-group' -%}
+
+    {% liquid
+
+      if template contains 'collection'
+        section "main-coupon_code"
+      endif
+      
+      section 'cookie-bar'
+      section 'mini-cart'
+      render 'product-search'
+      if template != 'index'     
+        section 'loadmoreproduct'
+      endif
+      section 'popup'
+      section 'recently-viewed-products-popup'
+    %}   
+
+    <ul hidden>
+      <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
+      <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
+    </ul>
+
+    <script>
+      window.shopUrl = '{{ request.origin }}';
+      window.routes = {
+        cart_add_url: '{{ routes.cart_add_url }}',
+        cart_change_url: '{{ routes.cart_change_url }}',
+        cart_update_url: '{{ routes.cart_update_url }}',
+        cart_url: '{{ routes.cart_url }}',
+        predictive_search_url: '{{ routes.predictive_search_url }}'
+      };
+
+      window.cartStrings = {
+        error: `{{ 'sections.cart.cart_error' | t }}`,
+        quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' }}`
+      }
+
+      window.variantStrings = {
+        addToCart: `{{ 'products.product.add_to_cart' | t }}`,
+        soldOut: `{{ 'products.product.sold_out' | t }}`,
+        unavailable: `{{ 'products.product.unavailable' | t }}`,
+      }
+
+      window.accessibilityStrings = {
+        imageAvailable: `{{ 'products.product.media.image_available' | t: index: '[index]' }}`,
+        shareSuccess: `{{ 'general.share.success_message' | t }}`,
+        pauseSlideshow: `{{ 'sections.slideshow.pause_slideshow' | t }}`,
+        playSlideshow: `{{ 'sections.slideshow.play_slideshow' | t }}`,
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer="defer"></script>
+
+  </body>
+</html>
+{% endif %}

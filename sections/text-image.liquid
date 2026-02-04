@@ -1,0 +1,180 @@
+{{ 'text-image.css' | asset_url | stylesheet_tag }}
+{% render 'section-style' %}
+
+<style>
+    #shopify-section-{{ section.id }} {
+        --color-text: {{ section.settings.color_text }};
+        --btn-color: {{ section.settings.color_button }};
+        --btn-color-hover: {{ section.settings.color_button_hover }};
+        --bg-color-btn: {{ section.settings.background_color_button }};
+        --bg-color-btn-hover: {{ section.settings.background_color_button_hover }};
+    }
+</style>
+
+<section class="text-image">
+    <div class="{%- if section.settings.fullwidth -%}container-fluid{%- else -%}container{%- endif -%}">
+        <div class="row">
+            {% for block in section.blocks %}
+                <div class="text-image-content">
+                    {% if block.settings.content_text != blank %}
+                    <div class="content-left">{{ block.settings.content_text }}</div>
+                    {% endif %}
+                    <div class="content-image">
+                    {% if block.settings.image != blank %}
+                        <a href="{{ block.settings.link }}">
+                            <img class="image-text" loading="lazy" 
+                            sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                            alt="" 
+                            src="{{ block.settings.image | image_url: width: block.settings.image.width }}" 
+                            data-srcset="{%- if block.settings.image.width >= 195 -%}{{ block.settings.image | image_url: width: 195, crop: 'center' }} 195w,{%- endif -%}
+                                {%- if block.settings.image.width >= 330 -%}{{ block.settings.image | image_url: width: 330, crop: 'center' }} 330w,{%- endif -%}
+                                {%- if block.settings.image.width >= 535 -%}{{ block.settings.image | image_url: width: 535, crop: 'center' }} 535w,{%- endif -%}
+                                {%- if block.settings.image.width >= 750 -%}{{ block.settings.image | image_url: width: 750, crop: 'center' }} 750w,{%- endif -%}
+                                {%- if block.settings.image.width >= 1000 -%}{{ block.settings.image | image_url: width: 1000, crop: 'center' }} 1000w,{%- endif -%}
+                                {%- if block.settings.image.width >= 1500 -%}{{ block.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                                {%- if block.settings.image.width >= 3000 -%}{{ block.settings.image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                                {{ block.settings.image | image_url }} {{ block.settings.image.width }}w"
+                            src="{{ block.settings.image | image_url: width: 1500 }}"
+                            height="{{ block.settings.image.height }}"
+                            width="{{ block.settings.image.width }}">
+                        </a>
+                    {% else %}
+                        <div class="image-text">
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                        </div>
+                    {% endif %}
+                    </div>
+                    {% if block.settings.content_text2 != blank %}
+                    <div class="content-right">{{ block.settings.content_text2 }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            {% if section.settings.button1_label != blank %}
+            <a href="{{ section.settings.link1 }}" class="button btn-base">
+                {{ section.settings.button1_label }}
+                {% render 'icon-arrow-2' %}
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Text Image",
+  "tag": "section",
+  "class": "section shopify-section--text-image",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "fullwidth",
+      "label": "Full width",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_tablet",
+      "label": "t:sections.all.margin_tablet.label",
+      "info": "t:sections.all.margin_tablet.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "button1_label",
+      "default": "Button label",
+      "label": "Button"
+    },
+    {
+      "type": "url",
+      "id": "link1",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Advanced Settings color"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Color text"
+    },
+    {
+      "type": "color",
+      "id": "color_button",
+      "label": "Color button"
+    },
+    {
+      "type": "color",
+      "id": "color_button_hover",
+      "label": "Color button hover"
+    },
+    {
+      "type": "color",
+      "id": "background_color_button",
+      "label": "Background color button"
+    },
+    {
+      "type": "color",
+      "id": "background_color_button_hover",
+      "label": "Background color button hover"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text-image",
+      "name": "Text Image item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "content_text",
+          "label": "Text Left",
+          "default": "content"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link image"
+        },
+        {
+          "type": "text",
+          "id": "content_text2",
+          "label": "Text Right",
+          "default": "content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ap Text Image",
+      "blocks": [
+        {
+          "type": "text-image"
+        },
+        {
+          "type": "text-image"
+        },
+        {
+          "type": "text-image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

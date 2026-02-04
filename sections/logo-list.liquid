@@ -1,0 +1,541 @@
+{{ 'ap-logolist.css' | asset_url | stylesheet_tag }}
+{% render 'section-style' %}
+
+<style>
+    #shopify-section-{{ section.id }} {
+      --heading-color: {{ section.settings.heading_color | color_extract: 'red' }}, {{ section.settings.heading_color | color_extract: 'green' }}, {{ section.settings.heading_color | color_extract: 'blue' }};
+      --color-body: {{ section.settings.text_color | color_extract: 'red' }}, {{ section.settings.text_color | color_extract: 'green' }}, {{ section.settings.text_color | color_extract: 'blue' }};
+      --primary-button-background: 244, 165, 28;
+      --primary-button-text-color: 255, 255, 255;
+  
+      --ap-nextap-buttonprev-background: 255, 255, 255;
+      --ap-nextap-buttonprev-color: 40, 40, 40;
+
+      --section-logo-background: 0 0 0 / 0.0;
+
+      background-size:{{ section.settings.e_size }} !important;
+
+      --background-color-gradient: {{ section.settings.bg_gradient }};
+    }
+
+    #shopify-section-{{ section.id }} {
+      position: relative;
+    }
+
+    #shopify-section-{{ section.id }}::before {
+      content: '';
+      background-image: linear-gradient(180deg,var(--background-color-gradient) 0%,#00000000 100%);
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.2;
+    }
+
+    .ap-logolist--carousel .ap-logolist__list {
+      display: inline-block;
+      column-count: 1;
+      column-gap: 0;
+      width: 100%;
+    }
+    .ap-logolist--carousel .ap-logolist__item {
+      margin: 0 0 30px;
+    }
+
+    @media (min-width: 360px) {
+      .ap-logolist--carousel .ap-logolist__list {
+        column-count: 2;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .ap-logolist--carousel .ap-logolist__list {
+        column-count: 5;
+      }
+    }
+
+    @media screen and (min-width: 1200px) {
+      #shopify-section-{{ section.id }} .ap-logolist--carousel .ap-logolist__list {
+        {% if section.settings.product_line == '1' %}
+          grid-template-rows: 1fr;
+          gap: 0;
+        {% elsif section.settings.product_line == '2' %}
+          grid-template-rows: 1fr 1fr;
+          gap: 30px 0;
+        {% elsif section.settings.product_line == '3' %}
+          grid-template-rows: 1fr 1fr 1fr;
+          gap: 30px 0;
+        {% elsif section.settings.product_line == '4' %}
+          grid-template-rows: 1fr 1fr 1fr 1fr;
+          gap: 30px 0;
+        {% endif %}
+      }
+
+      #shopify-section-{{ section.id }} .ap-logolist--carousel .ap-logolist__list {
+        display: grid;
+        grid-auto-columns: calc( 100% / var(--section-items-per-row, 4) - ( var(--grid-gap) / var(--section-items-per-row, 4) * (var(--section-items-per-row, 4) - 1)));
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        justify-content: start;
+        overflow-x: auto;
+        overflow: hidden;
+      }
+      #shopify-section-{{ section.id }} .ap-logolist__item {
+        margin: 0;
+      }
+      #shopify-section-{{ section.id }} {
+        --section-items-per-row: calc({{ section.settings.items_per_row_desktop }});
+      }
+
+      #shopify-section-{{ section.id }} .section__header {
+        width: 33%;
+        margin: 0 !important;
+      }
+      .logolist-wp {
+        width: 66%;
+      }
+    }    
+
+    .ap-logolist__item {
+      background-color: {{ section.settings.background_color_item }};
+    }
+    .ap-logolist__item path {
+      fill: {{ section.settings.color_icon }};
+      transition: all .4s;
+    }
+    .ap-logolist__item:hover path {
+      fill: {{ section.settings.color_icon_hover }};
+    }
+    .border-logo .ap-logolist__item:not(:last-child) {
+      border-right: 1px solid rgb(var(--border-color));
+    }
+
+    .text-bottom {
+      position: relative;
+      text-align: right;
+      margin-top: 50px;
+    }
+    .text-bottom:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      width: 100%;
+      background-color: rgb(var(--border-color));
+      display: inline-block;
+    }
+    .text-bottom .btn-line {
+      background-color: #fff;
+      padding-left: 32px!important;
+    }
+
+    #shopify-section-{{ section.id }} .sp-heading {
+      margin-bottom: 9px;
+    }
+
+  </style>
+  
+<section class="section section-logo {% if section.settings.show_newsletter %}{{ 'email-with-logo' | prepend: ' ' }}{% endif %}">
+  <div class="{{ section.settings.setwidthout }}">
+
+      <div class="row justify-content-between">
+
+        {% render 'section-heading' %}
+        
+        <div class="logolist-wp scroller">
+          <div class="scroller__inner">
+              <ap-logolist reveal-on-scroll="" class="ap-logolist ap-logolist--carousel ap-object-loaded row {% if section.settings.hover_img %}hover-logo-img{% endif %} {% if section.settings.border_logo %}border-logo{% endif %}" style="opacity: 1;">
+                  <div id="ap-scroll" class="ap-logolist__list p-0">
+                    {% for block in section.blocks %}
+                      {% case block.type %}
+                      {%- when 'logo' -%}
+                        {% if block.settings.image != blank or block.settings.logo_svg != blank %}
+        
+                              <div class="ap-logolist__item">
+                                {% if section.settings.show_image %}
+                                  <img loading="lazy" sizes="200px" class="ap-logolist__image"
+                                    alt="" 
+                                    src="{{ block.settings.image | image_url: block.settings.image.width }}" 
+                                    data-srcset="{{ block.settings.image | image_url: width: 200 }} 200w, {{ block.settings.image | image_url: width: 300 }} 300w, {{ block.settings.image | image_url: width: 400 }} 400w" 
+                                    width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}">
+                                {% else %}
+        
+                                {% if block.settings.logo_svg != blank %}
+                                <span>
+                                  {{ block.settings.logo_svg }}
+                                </span>
+                                {% endif %}
+        
+                                {% endif %}
+        
+                              </div>
+        
+                        {% else %}
+                          <div class="ap-logolist__image">
+                            {{ 'image' | placeholder_svg_tag }}
+                          </div>
+                        {% endif %}
+                      {% endcase %}
+                    {% endfor %}
+                  </div>
+                  <ap-button-nextprev class="ap-productlist__ap-nextprev d-none" style="--smallest-image-aspect-ratio: 1.0">
+                      <button class="ap-productlist__arrow ap-nextap-buttonprev ap-nextap-buttonprev--prev" disabled="">
+                      <span class="visually-hidden">Previous</span>
+                      <i class="fa fa-chevron-left"></i>
+                      </button>
+                      <button class="ap-productlist__arrow ap-nextap-buttonprev ap-nextap-buttonprev--next">
+                      <span class="visually-hidden">Next</span>
+                      <i class="fa fa-chevron-right"></i>
+                      </button>
+                  </ap-button-nextprev>
+              </ap-logolist>
+          </div>
+        </div>
+
+      </div>
+
+      {% if section.settings.btn_text != blank %}
+      <bottom class="text-bottom d-block">
+        <div class="btn-more">
+          <a href="{{ section.settings.btn_link }}" class="button {{ section.settings.style_btn }}">
+            {{ section.settings.btn_text }}
+          </a>
+        </div>
+        </bottom>
+      {% endif %}
+
+  </div>
+
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {%- when 'html' -%}
+        <div>
+          {{ block.settings.code }}
+        </div>
+    {% endcase %}
+  {% endfor %}
+
+</section>
+  
+{% schema %}
+{
+  "name": "Logo List",
+  "tag": "section",
+  "class": "shopify-section--ap-logolist",
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Set Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_tablet_large",
+      "label": "Margin tablet large",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_tablet_lager",
+      "label": "Padding tablet larger",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "t:sections.all.padding_mobile.label",
+      "info": "t:sections.all.padding_mobile.info"
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "default": "#ffffff",
+      "label": "Background color"
+    },
+    {
+      "type": "color",
+      "id": "bg_gradient",
+      "default": "#050505",
+      "label": "Background gradient"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:sections.all.background_image.label"
+    },
+    {
+      "type": "select",
+      "id": "e_size",
+      "label": "Background Size",
+      "default": "auto",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Auto"
+        },
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "color_subtitle",
+      "default": "#FE7232",
+      "label": "Color Sub title"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.all.heading_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.all.text_color.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "border_logo",
+      "default": true,
+      "label": "Border Logo"
+    },
+    {
+      "type": "checkbox",
+      "id": "hover_img",
+      "default": false,
+      "label": "Hover Logo Image"
+    },
+    {
+      "type": "header",
+      "content": "Settings Color Item"
+    },
+    {
+      "type": "color",
+      "id": "background_color_item",
+      "default": "#fff",
+      "label": "Background item"
+    },
+    {
+      "type": "color",
+      "id": "color_icon",
+      "default": "#282828",
+      "label": "Color logo"
+    },
+    {
+      "type": "color",
+      "id": "color_icon_hover",
+      "default": "#000",
+      "label": "Color icon hover"
+    },
+    {
+      "type": "range",
+      "id": "items_per_row_desktop",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.all.items_per_row_desktop.label"
+    },
+    {
+      "type": "select",
+      "id": "product_line",
+      "options": [
+        {
+          "value": "1",
+          "label": "Row 1"
+        },
+        {
+          "value": "2",
+          "label": "Row 2"
+        },
+        {
+          "value": "3",
+          "label": "Row 3"
+        },
+        {
+          "value": "4",
+          "label": "Row 4"
+        }
+      ],
+      "default": "1",
+      "label": "Line number"
+    },
+    {
+      "type": "liquid",
+      "id": "sub_heading",
+      "default": "Sub heading",
+      "label": "Sub Heading"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.advanced-content.settings.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.advanced-content.settings.tab_heading_size.label"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_description",
+      "label": "t:sections.advanced-content.settings.tab_description.label"
+    },
+    {
+      "type": "liquid",
+      "id": "btn_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "style_btn",
+      "label": "Style Button",
+      "default": "btn-base",
+      "options": [
+        {
+          "value": "btn-base",
+          "label": "Button Base"
+        },
+        {
+          "value": "btn-outline",
+          "label": "Button Out Line"
+        },
+        {
+          "value": "btn-line",
+          "label": "Button Line"
+        },
+        {
+          "value": "btn-line-black",
+          "label": "Button Line Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "label": "Show image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.all.image.label"
+        },
+        {
+          "type": "liquid",
+          "id": "logo_svg",
+          "label": "Logo Svg"
+        }
+      ]
+    },
+    {
+      "type": "html",
+      "name": "Custom Html",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "code",
+          "label": "HTML",
+          "default": "<h2>Heading</h2>This text can be used to share information about your brand with customers."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo list",
+      "blocks": [
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,891 @@
+{%- if template contains 'article' -%}
+  {{ 'main-article.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
+<style>
+  {%- if template contains 'article' -%}
+    #shopify-section-{{ section.id }} {
+      margin: 0
+    }
+  {% endif %}
+  #shopify-section-{{ section.id }} .recent-posts-thumbnail {
+    max-width: 80px;
+    min-height: 80px;
+    display: block;
+    width: 100%;
+  }
+</style>   
+
+<div class="breadcrumb-article">   
+</div>
+
+<section>
+  <div class="article">
+    <div class="article__main-part">
+      <ap-blogpostnavigation class="article__nav" style="--transform: 0.01">
+        <div class="container">
+          <div class="article__nav-wrapper">
+            {% if blog.previous_article %}
+              <a href="{{ blog.previous_article }}" class="article__nav-item article__nav-item--prev hd-phone">
+                <span class="article__nav-arrow">
+                  <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-left  icon--direction-aware " viewBox="0 0 17 14">
+                    <path d="M17 7H2M8 1L2 7l6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+                  </svg>
+                </span>
+                <span class="article__nav-item-title hd-tablet">{{ blog.previous_article.title }}</span>
+              </a>
+            {% endif %}
+            <span class="article__nav-item article__nav-item--current">
+              <span class="article__nav-item-label text--strong hd-pocket hd-lap">Reading</span>
+              <span class="article__nav-item-title">{{ article.title | escape }}</span>
+            </span>
+            {% if blog.next_article %}
+              <a href="{{ blog.next_article }}" class="article__nav-item article__nav-item--next">
+                <span class="article__nav-item-label text--strong hd-tablet-and-up">Siguiente</span>
+                <span class="article__nav-item-title hd-tablet">{{ blog.next_article.title }}</span>
+                <span class="article__nav-arrow tap-area">
+                  <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-right  icon--direction-aware " viewBox="0 0 17 14">
+                    <path d="M0 7h15M9 1l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+                  </svg>
+                </span>
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </ap-blogpostnavigation>
+      
+      <div class="container">
+        <div class="article__inner">
+          <div class="article__info">
+
+            {%- if section.settings.show_mail -%}
+              <div class="article__meta">
+                <div class="article_contact">
+                  <h2 class="heading heading--mail">{{ section.settings.heading }}</h2>
+                  <div class="description-mail">
+                    {{ section.settings.description }}
+                  </div>
+                  <div class="article_mail">
+                    {% form 'customer', class: 'newsletter-form' %}
+                      <input type="hidden" name="form_type" value="customer">
+                      <input type="hidden" name="utf8" value="✓">
+                      <input type="hidden" name="contact[tags]" value="newsletter">
+                      <input type="hidden" name="contact[context]" value="newsletter-{{ section.id }}">
+    
+                      <div class="wp-newsletter-input">
+                        <div class="input-row">
+                          <div class="input">
+                            <input type="email" id="newsletter[{{ section.id }}][contact][email]" name="contact[email]" class="input__field" required="">
+                            <label for="newsletter[{{ section.id }}][contact][email]" class="input__label">{{ 'newsletter.label' | t }}</label>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <button type="submit" is="loader-button" class="button button--primary">
+                            <span class="ap-text-loaderbutton">{{ 'newsletter.button_label' | t }}</span>
+                            <span class="ap-loader-loaderbutton" hidden="">
+                              <div class="spinner">
+                                <svg focusable="false" width="24" height="24" class="icon icon--spinner" viewBox="25 25 50 50">
+                                  <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="5"></circle>
+                                </svg>
+                              </div>
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+    
+                      {%- if form.errors -%}
+                        <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</small>
+                      {%- endif -%}
+                      {%- if form.posted_successfully? -%}
+                        <div class="form__banner banner banner--success">
+                          <span class="banner__ribbon">
+                            <svg focusable="false" width="18" height="26" class="icon icon--form-success   " viewBox="0 0 18 26">
+                              <circle fill="none" cx="9" cy="13" r="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                              <path fill="none" d="M5 13l3 3 5-6" stroke="currentColor" stroke-width="1.5"></path>
+                            </svg>
+                          </span>
+                          <p class="banner__content">{{ 'newsletter.success' | t }}</p>
+                        </div>
+                      {%- endif -%}
+    
+                    {% endform %}
+                  </div>
+                </div>
+                {%- if section.settings.blog_show_author -%}
+                  <span class="article__meta-item article__author">By {{ article.author }}</span>
+                {%- endif -%}
+                {%- if section.settings.blog_show_date -%}
+                  <time class="article__meta-item article__date">{{ article.published_at | time_tag: format: 'date' }}</time>
+                {%- endif -%}
+                {%- if section.settings.blog_show_comment -%}
+                <a href="#blog-post-{{ article.id }}-comments" data-smooth-scroll="" class="article__meta-item article__comments-count text--subdued link icon-text">
+                  <svg fill="none" focusable="false" width="18" height="17" class="icon icon--comment   " viewBox="0 0 18 17">
+                    <path d="M5 5.5H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M6 8.5H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M13 13V16L9 13H4C3 13 1 12 1 10V4C1 2 3 1 5 1H13C15 1 17 2 17 4V10C17 12 14.3333 12.8333 13 13Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>{{ article.comments_count }} comments </a>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+
+                {%- when 'search' -%}
+                  <div class="block-search">
+                    <div class="blog__search-bar predictive-search">
+                      <form class="predictive-search__form_blog" action="/search" method="get" role="search">
+                        <input type="hidden" name="type" value="product">
+                        <input type="hidden" name="options[prefix]" value="last">
+                        <input type="hidden" name="options[unavailable_products]" value="last">
+                        <input class="predictive-search__input_blog" is="ap-predictivesearchinput" type="text" name="q"
+                          autocomplete="off" autocorrect="off" ap-controlsaria="search-drawer" ap-expanded-aria="false"
+                          aria-label="Search" placeholder="Search...">
+                        <button class="btn-search-blog">
+                          <svg focusable="false" width="18" height="18" class="icon icon--blog-search   "
+                            viewBox="0 0 18 18">
+                            <path
+                              d="M12.336 12.336c2.634-2.635 2.682-6.859.106-9.435-2.576-2.576-6.8-2.528-9.435.106C.373 5.642.325 9.866 2.901 12.442c2.576 2.576 6.8 2.528 9.435-.106zm0 0L17 17"
+                              fill="none" stroke="currentColor" stroke-width="1.2"></path>
+                          </svg>
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+
+                {%- when 'blog-list' -%}
+                  <div class="block-list-blog">
+                    <h4 class="title_block-blog">{{ 'blogs.article.title_blog' | t }}</h4>
+                    <ul class="list-block">
+                      {% for article in blog.articles limit: 4 %}
+                      <li>
+                        <a href="{{ article.url }}" class="recent-posts-thumbnail">
+                          <img class="article-item__image"
+                            data-srcset="{%- if article.image.src.width >= 1500 -%}{{ article.image.src | image_url: width: 1500 }} 1500w,{%- endif -%}
+                            {{ article.image.src | image_url }} {{ article.image.src.width }}w"
+                            src="{{ article.image.src | image_url: width: 533 }}"
+                            sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                            alt="{{ article.image.src.alt | escape }}"
+                            class="motion-reduce"
+                            width="{{ article.image.width }}"
+                            height="{{ article.image.height }}"
+                            loading="lazy"
+                          >
+                        </a>
+                        <div class="recent-posts-info">
+                          <a href="{{ article.url}}">{{ article.title | truncatewords: 5 }}</a>
+                          {{- article.published_at | time_tag: format: 'abbreviated_date' -}}
+                        </div>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+
+                {%- when 'categories' -%}
+                  <div class="article_categories">
+                    <h4 class="title_block-blog">{{ 'blogs.article.title_blog_categories' | t }}</h4>
+                    <ul>
+                        <li>
+                          <a href="{{ block.settings.article_link }}">
+                            {{ block.settings.article_text }}
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ block.settings.article_link_2 }}">
+                            {{ block.settings.article_text_2 }}
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ block.settings.article_link_3 }}">
+                            {{ block.settings.article_text_3 }}
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ block.settings.article_link_4 }}">
+                            {{ block.settings.article_text_4 }}
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ block.settings.article_link_5 }}">
+                            {{ block.settings.article_text_5 }}
+                          </a>
+                        </li>
+                    </ul>
+                  </div>
+
+                {%- when 'banner' -%}
+                  <div class="article-banner-img-text">
+                    <div class="article-banner-image">
+                      {% if block.settings.featured_image != blank %}
+                      <img class="c-list-image" loading="lazy"
+                        sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px" alt=""
+                        src="{{ block.settings.featured_image | image_url: width: block.settings.featured_image.width }}"
+                        data-srcset="{%- if block.settings.featured_image.width >= 3000 -%}{{ block.settings.featured_image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                                            {{ block.settings.featured_image | image_url }} {{ block.settings.featured_image.width }}w"
+                        src="{{ block.settings.featured_image | image_url: width: 1500 }}"
+                        height="{{ block.settings.featured_image.height }}"
+                        width="{{ block.settings.featured_image.width }}">
+                      {% else %}
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {% endif %}
+                    </div>
+                    <div class="article-banner-text">
+                      <h3 style="color: {{ block.settings.color_title }}" class="article-banner-text-title">{{
+                        block.settings.title }}</h3>
+                      <p style="color: {{ block.settings.color_description }}" class="article-banner-text-description">{{
+                        block.settings.description }}</p>
+                      {% if block.settings.button1_label != blank %}
+                      <a href="{{ block.settings.link1 }}" class="button btn-base">
+                        {{ block.settings.button1_label }}
+                        {% render 'icon-arrow-2' %}
+                      </a>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                {%- when 'tags' -%}
+                  <div class="article__tags">
+                    <span class="article__tags-label heading heading--small title_block-blog">{{ 'blogs.article.tags' | t }}</span>
+                    <ul class="article__tags-list list--unstyled" role="list">
+                      {%- for tag in article.tags -%} 
+                      <li class="article__tags-item" role="listitem">
+                        {{ tag | link_to_tag: tag }}
+                      </li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+
+                {%- when 'blog-aboutus' -%}
+                  <div class="blog-aboutus">
+                    <h4 class="title_block-blog">{{ 'blogs.article.title_blog_about' | t }}</h4>
+                    <div class="blog-aboutus-img mb-20">
+                      {% if block.settings.featured_image != blank %}
+                        <img class="c-list-image" loading="lazy"
+                          sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px" alt=""
+                          src="{{ block.settings.featured_image | image_url: width: block.settings.featured_image.width }}"
+                          data-srcset="{%- if block.settings.featured_image.width >= 3000 -%}{{ block.settings.featured_image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                                              {{ block.settings.featured_image | image_url }} {{ block.settings.featured_image.width }}w"
+                          src="{{ block.settings.featured_image | image_url: width: 1500 }}"
+                          height="{{ block.settings.featured_image.height }}"
+                          width="{{ block.settings.featured_image.width }}">
+                      {% else %}
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {% endif %}
+                    </div>
+                    <div class="blog-aboutus-description">
+                      {{ block.settings.description }}
+                    </div>
+                  </div>
+
+              {%- endcase -%}
+            {%- endfor -%}
+
+            <button type="button" is="ap-sharetogglebutton" share-url="" share-title="Native Union x Maison Kitsuné" class="article__share text--subdued link hd-tablet-and-up" ap-controlsaria="mobile-share-buttons-template--14993172365520__main" ap-expanded-aria="false">Share</button>
+            {%- if section.settings.blog_show_share -%}
+              <popover-content id="mobile-share-buttons-template--14993172365520__main" class="popover hd-tablet-and-up">
+                <span class="popover__overlay"></span>
+                <header class="popover__header">
+                  {%- if section.settings.share_label != blank -%}
+                    <span class="popover__title heading h6">{{ section.settings.share_label }}</span>
+                  {%- endif -%}
+                  <button type="button" class="popover__close-button tap-area tap-area--large" data-action="close" title="Close">
+                    <svg focusable="false" width="14" height="14" class="icon icon--close   " viewBox="0 0 14 14">
+                      <path d="M13 13L1 1M13 1L1 13" stroke="currentColor" stroke-width="2" fill="none"></path>
+                    </svg>
+                  </button>
+                </header>
+                <div class="mobile-share-buttons">
+                  <a class="mobile-share-buttons__item mobile-share-buttons__item--facebook" href="https://www.facebook.com/sharer.php?u=https://{{ shop.domain }}/products/{{ product.handle }}" target="_blank" rel="noopener" aria-label="Share on Facebook">
+                    <svg fill="none" focusable="false" width="24" height="24" class="icon icon--facebook-share-mobile   " viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M10.1834 21.85L10.1834 12.982H7.2002L7.2002 9.52604H10.1834V6.98204C10.062 5.75969 10.4857 4.54599 11.3415 3.66478C12.1972 2.78357 13.398 2.32449 14.6234 2.41004C15.5143 2.40481 16.4047 2.45289 17.2898 2.55404V5.63804L15.4598 5.63804C14.9879 5.53818 14.4974 5.68116 14.1532 6.01892C13.8089 6.35669 13.6566 6.84437 13.7474 7.31804L13.7474 9.52604L17.1698 9.52604L16.7234 12.982H13.7522V21.85H10.1834Z" fill="#3B5998"></path>
+                    </svg>Facebook </a>
+                  <a class="mobile-share-buttons__item mobile-share-buttons__item--pinterest" href="https://pinterest.com/pin/create/button/?url={{ shop.domain }}/products/{{ product.handle }}&media={{ product.featured_media | image_url: width: 1920 }}" target="_blank" rel="noopener" aria-label="Pin on Pinterest">
+                    <svg fill="none" focusable="false" width="24" height="24" class="icon icon--pinterest-share-mobile   " viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7648 2.40138C15.3543 2.34682 17.602 3.80113 18.6595 6.35148C19.0087 7.1931 19.3817 8.74117 19.1015 10.0256C18.9898 10.5384 18.9581 11.0736 18.8069 11.5569C18.4993 12.5394 18.0993 13.4092 17.5694 14.1592C16.8499 15.1782 15.7582 15.8653 14.3872 16.2109C13.1746 16.5164 12.0593 16.059 11.4113 15.5678C11.2048 15.4115 10.9279 15.2073 10.8515 14.9251C10.8417 14.9251 10.8318 14.9251 10.822 14.9251C10.7755 15.4401 10.5782 15.9868 10.4389 16.4561C10.2461 17.1053 10.2086 17.7774 9.96749 18.3849C9.69999 19.0592 9.37509 19.6772 9.02467 20.253C8.84068 20.5549 8.33293 21.5884 7.9639 21.5999C7.92354 21.5224 7.90737 21.4925 7.90493 21.3551C7.7861 21.1659 7.86888 20.8468 7.81652 20.5893C7.73505 20.1883 7.67161 19.466 7.75769 19.0588C7.75769 18.8444 7.75769 18.6296 7.75769 18.4157C7.85257 17.9742 7.84882 17.5217 7.9639 17.0991C8.21425 16.1787 8.35354 15.2038 8.61211 14.2512C8.86057 13.3361 9.08856 12.3352 9.28987 11.4038C9.33529 11.1934 9.07963 10.5886 9.02467 10.3628C8.85134 9.65014 8.9833 8.66239 9.20146 8.12713C9.47618 7.45323 10.2804 6.4241 11.3229 6.68821C12.1607 6.90037 12.694 7.80624 12.413 8.95421C12.1181 10.159 11.7356 11.2383 11.4702 12.4443C11.4019 12.7551 11.5194 13.0852 11.588 13.2714C11.8361 13.9431 12.5882 14.5955 13.5916 14.3432C15.1126 13.9603 15.785 12.5834 16.2435 11.0974C16.3676 10.6955 16.3527 10.3157 16.4498 9.87241C16.6545 8.93705 16.5676 7.54083 16.273 6.81057C15.8008 5.64018 14.9198 4.89011 13.7095 4.48339C13.3756 4.42221 13.0416 4.36103 12.7077 4.29985C12.1486 4.17176 11.0822 4.36412 10.7041 4.48339C9.01386 5.01777 7.96723 5.91043 7.3157 7.51486C7.09393 8.06111 6.97235 8.61484 6.9327 9.38251C6.92276 9.47451 6.91294 9.5665 6.90314 9.6585C7.03364 10.3447 7.04691 10.7994 7.3157 11.3118C7.44838 11.5644 7.76346 11.7634 7.81652 12.0772C7.84781 12.2621 7.71227 12.5412 7.66931 12.6895C7.60427 12.9136 7.62792 13.1702 7.52193 13.3634C7.33028 13.712 6.8084 13.4501 6.57911 13.3018C5.38697 12.5324 4.40437 10.3073 4.95855 8.15795C5.04391 7.82607 5.0481 7.53731 5.16476 7.23932C5.8878 5.39455 6.96659 4.26111 8.5237 3.28922C9.10717 2.9252 9.89394 2.74473 10.6157 2.55456C10.9987 2.50352 11.3818 2.45245 11.7648 2.40138Z" fill="#BD081C"></path>
+                    </svg>Pinterest </a>
+                  <a class="mobile-share-buttons__item mobile-share-buttons__item--twitter" href="https://twitter.com/share?text={{ product.title }}&url=https://{{ shop.domain }}/products/{{ product.handle }}" target="_blank" rel="noopener" aria-label="Tweet on Twitter">
+                    <svg fill="none" focusable="false" width="24" height="24" class="icon icon--twitter-share-mobile   " viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.414 4.96068C16.9196 4.93626 17.7211 5.43865 18.4864 6.07724C19.1362 6.02649 19.9806 5.69424 20.478 5.46269C20.6391 5.38182 20.8004 5.30133 20.9616 5.22046C20.6775 5.92312 20.2923 6.47359 19.7004 6.89092C19.5689 6.98361 19.4384 7.10911 19.2736 7.16824C19.2736 7.17091 19.2736 7.17396 19.2736 7.17663C20.1171 7.16863 20.8129 6.82034 21.4737 6.63114C21.4737 6.63417 21.4737 6.63723 21.4737 6.64028C21.1266 7.14535 20.6568 7.65767 20.1556 8.02502C19.9532 8.17227 19.7509 8.31951 19.5486 8.46676C19.5597 9.28425 19.5354 10.0643 19.3684 10.7518C18.3977 14.7465 15.8254 17.4588 11.7534 18.6203C10.2913 19.0377 7.92842 19.2089 6.25322 18.8282C5.42246 18.6394 4.67201 18.4262 3.96773 18.1443C3.57662 17.9875 3.21425 17.8181 2.86766 17.6251C2.75395 17.5614 2.64012 17.4981 2.52626 17.4343C2.90422 17.445 3.34615 17.54 3.76862 17.4778C4.15075 17.4214 4.52554 17.4359 4.87817 17.3653C5.75753 17.1887 6.53832 16.9552 7.21099 16.5947C7.53708 16.42 8.03189 16.2148 8.26361 15.963C7.82698 15.9699 7.43107 15.8772 7.10676 15.7727C5.84923 15.366 5.11723 14.6187 4.64102 13.4961C5.02212 13.5338 6.11978 13.6246 6.37642 13.4266C5.89678 13.4026 5.43547 13.1482 5.10574 12.9589C4.09421 12.3795 3.26926 11.4075 3.27545 9.91215C3.40826 9.96975 3.54108 10.0277 3.67378 10.0853C3.92789 10.1834 4.18618 10.2356 4.48934 10.2932C4.61736 10.3173 4.87337 10.3863 5.02034 10.3363C5.01403 10.3363 5.0077 10.3363 5.00138 10.3363C4.80571 10.1277 4.48682 9.98884 4.29014 9.76491C3.64126 9.02638 3.0331 7.88999 3.41774 6.53614C3.51528 6.19282 3.6701 5.88956 3.83503 5.60993C3.84137 5.61298 3.84768 5.61565 3.85402 5.61871C3.92952 5.76328 4.098 5.86973 4.2049 5.99065C4.53629 6.36678 4.94508 6.70514 5.36174 7.00345C6.7813 8.02007 8.0597 8.64453 10.1129 9.10725C10.6336 9.22437 11.2357 9.31401 11.8578 9.31476C11.6829 8.84899 11.7391 8.09522 11.8767 7.64432C12.2227 6.51058 12.9743 5.69272 14.0768 5.25479C14.3404 5.15026 14.6329 5.07396 14.9397 5.01256C15.0978 4.9954 15.256 4.97823 15.414 4.96068Z" fill="#1DA1F2"></path>
+                    </svg>Twitter </a>
+                  <a class="mobile-share-buttons__item mobile-share-buttons__item--mail" href="mailto:?&amp;body=https://{{ shop.domain }}/{{ article.url }}" aria-label="Share by e-mail">
+                    <svg fill="none" focusable="false" width="24" height="24" class="icon icon--email-share-mobile   " viewBox="0 0 24 24">
+                      <path d="M21.9135 2.08691L15.3396 20.8695L11.583 12.4173M21.9135 2.08691L3.13086 8.66083L11.583 12.4173M21.9135 2.08691L11.583 12.4173" stroke="currentColor" stroke-width="2"></path>
+                    </svg>E-mail </a>
+                </div>
+              </popover-content>
+              <div class="article__share hd-phone">
+                {%- if section.settings.share_label != blank -%}
+                  <span class="article__share-label">Share</span>
+                {%- endif -%}
+                <div class="article__share-button-list" role="list">
+                  <a class="article__share-button-item article__share-button-item--facebook tap-area" href="https://www.facebook.com/sharer.php?u=https://{{ shop.domain }}/products/{{ product.handle }}" target="_blank" rel="noopener" role="listitem" aria-label="Share on Facebook">
+                    <svg focusable="false" width="9" height="17" class="icon icon--facebook   " viewBox="0 0 9 17">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M2.486 16.2084L2.486 8.81845H0L0 5.93845L2.486 5.93845L2.486 3.81845C2.38483 2.79982 2.73793 1.78841 3.45107 1.05407C4.16421 0.319722 5.16485 -0.0628415 6.186 0.00844868C6.9284 0.00408689 7.67039 0.0441585 8.408 0.128449V2.69845L6.883 2.69845C6.4898 2.61523 6.08104 2.73438 5.79414 3.01585C5.50724 3.29732 5.3803 3.70373 5.456 4.09845L5.456 5.93845H8.308L7.936 8.81845H5.46L5.46 16.2084H2.486Z" fill="currentColor"></path>
+                    </svg>
+                  </a>
+                  <a class="article__share-button-item article__share-button-item--pinterest tap-area" href="https://pinterest.com/pin/create/button/?url={{ shop.domain }}/products/{{ product.handle }}&media={{ product.featured_media | image_url: width: 1920 }}" target="_blank" rel="noopener" role="listitem" aria-label="Pin on Pinterest">
+                    <svg focusable="false" width="12" height="16" class="icon icon--pinterest   " viewBox="0 0 12 16">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M5.8042 0.00123531C8.79537 -0.0442356 10.6685 1.16769 11.5498 3.29299C11.8407 3.99433 12.1516 5.28439 11.9181 6.35474C11.825 6.78208 11.7985 7.22812 11.6726 7.63086C11.4163 8.4496 11.0829 9.17441 10.6413 9.79945C10.0418 10.6486 9.13196 11.2212 7.98951 11.5091C6.97899 11.7637 6.04959 11.3826 5.50954 10.9732C5.33747 10.843 5.10674 10.6728 5.04304 10.4377C5.03488 10.4377 5.0267 10.4377 5.01853 10.4377C4.97972 10.8669 4.81532 11.3224 4.69924 11.7135C4.53858 12.2545 4.50733 12.8146 4.3064 13.3208C4.08349 13.8828 3.81274 14.3978 3.52072 14.8776C3.36739 15.1292 2.94427 15.9904 2.63675 16C2.60311 15.9354 2.58964 15.9105 2.58761 15.796C2.48858 15.6383 2.55757 15.3724 2.51393 15.1578C2.44604 14.8236 2.39317 14.2217 2.46491 13.8824C2.46491 13.7038 2.46491 13.5248 2.46491 13.3465C2.54397 12.9786 2.54085 12.6015 2.63675 12.2494C2.84537 11.4824 2.96145 10.6699 3.17692 9.87611C3.38398 9.11352 3.57396 8.27939 3.74172 7.50321C3.77957 7.32789 3.56652 6.82389 3.52072 6.63572C3.37628 6.04186 3.48624 5.21874 3.66805 4.77269C3.89698 4.21111 4.56717 3.3535 5.43589 3.57359C6.13407 3.75039 6.57846 4.50528 6.34437 5.46192C6.09862 6.46589 5.7798 7.3653 5.5587 8.37035C5.50173 8.62933 5.59968 8.90442 5.65687 9.05958C5.86357 9.61934 6.49037 10.163 7.32652 9.95278C8.59396 9.63365 9.15431 8.48627 9.53645 7.24791C9.63981 6.91302 9.62743 6.59647 9.70831 6.22709C9.87894 5.44763 9.80648 4.28411 9.56098 3.67556C9.16753 2.70023 8.43329 2.07518 7.42471 1.73624C7.1465 1.68526 6.86819 1.63427 6.58988 1.58329C6.12397 1.47655 5.23532 1.63685 4.92023 1.73624C3.51171 2.18156 2.63952 2.92544 2.09658 4.26247C1.91177 4.71767 1.81046 5.17911 1.77741 5.81884C1.76913 5.8955 1.76094 5.97217 1.75278 6.04883C1.86153 6.62068 1.87259 6.99959 2.09658 7.42657C2.20715 7.63711 2.46971 7.8029 2.51393 8.06444C2.54001 8.2185 2.42705 8.45105 2.39125 8.57467C2.33705 8.76137 2.35676 8.97522 2.26844 9.13625C2.10873 9.42678 1.67383 9.20852 1.48275 9.08491C0.489307 8.44373 -0.329526 6.5895 0.132284 4.79837C0.20342 4.5218 0.206915 4.28118 0.304126 4.03285C0.906661 2.49554 1.80565 1.55101 3.10325 0.741098C3.58947 0.437749 4.24511 0.287354 4.84657 0.128885C5.16574 0.0863481 5.48503 0.0437917 5.8042 0.00123531Z" fill="currentColor"></path>
+                    </svg>
+                  </a>
+                  <a class="article__share-button-item article__share-button-item--twitter tap-area" href="https://twitter.com/share?text={{ product.title }}&url=https://{{ shop.domain }}/products/{{ product.handle }}" target="_blank" rel="noopener" role="listitem" aria-label="Tweet on Twitter">
+                    <svg focusable="false" width="20" height="16" class="icon icon--twitter   " viewBox="0 0 20 16">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M12.845 2.13398C14.0997 2.11363 14.7676 2.53229 15.4054 3.06445C15.9468 3.02216 16.6505 2.74528 17.065 2.55232C17.1993 2.48493 17.3337 2.41786 17.468 2.35046C17.2312 2.93602 16.9103 3.39474 16.417 3.74251C16.3074 3.81976 16.1987 3.92434 16.0613 3.97362C16.0613 3.97584 16.0613 3.97838 16.0613 3.98061C16.7643 3.97394 17.3441 3.6837 17.8947 3.52603C17.8947 3.52856 17.8947 3.5311 17.8947 3.53365C17.6055 3.95454 17.214 4.38147 16.7963 4.6876C16.6277 4.8103 16.4591 4.93301 16.2905 5.05571C16.2997 5.73696 16.2795 6.38704 16.1404 6.95989C15.3314 10.2888 13.1878 12.5491 9.7945 13.517C8.5761 13.8648 6.60702 14.0075 5.21102 13.6903C4.51872 13.5329 3.89334 13.3552 3.30644 13.1203C2.98052 12.9896 2.67854 12.8485 2.38972 12.6876C2.29496 12.6346 2.2001 12.5818 2.10522 12.5287C2.42018 12.5376 2.78846 12.6168 3.14052 12.5649C3.45896 12.5179 3.77128 12.53 4.06514 12.4712C4.79794 12.324 5.4486 12.1294 6.00916 11.829C6.2809 11.6834 6.69324 11.5124 6.88634 11.3026C6.52248 11.3083 6.19256 11.2311 5.9223 11.144C4.87436 10.8051 4.26436 10.1824 3.86752 9.2468C4.1851 9.27827 5.09982 9.35394 5.31368 9.18894C4.91398 9.16891 4.52956 8.95688 4.25478 8.7992C3.41184 8.31634 2.72438 7.50634 2.72954 6.26021C2.84022 6.30821 2.9509 6.35653 3.06148 6.40453C3.27324 6.48622 3.48848 6.52978 3.74112 6.57778C3.8478 6.59781 4.06114 6.65534 4.18362 6.6137C4.17836 6.6137 4.17308 6.6137 4.16782 6.6137C4.00476 6.43982 3.73902 6.32411 3.57512 6.1375C3.03438 5.52206 2.52758 4.57507 2.84812 3.44686C2.9294 3.16077 3.05842 2.90805 3.19586 2.67502C3.20114 2.67757 3.2064 2.67979 3.21168 2.68234C3.2746 2.80282 3.415 2.89152 3.50408 2.99229C3.78024 3.30573 4.1209 3.5877 4.46812 3.83629C5.65108 4.68347 6.71642 5.20386 8.42738 5.58946C8.86134 5.68706 9.36308 5.76176 9.88146 5.76238C9.73578 5.37424 9.78258 4.7461 9.89726 4.37035C10.1856 3.42557 10.8119 2.74402 11.7307 2.37907C11.9504 2.29197 12.1941 2.22838 12.4498 2.17722C12.5815 2.16291 12.7133 2.14861 12.845 2.13398Z" fill="currentColor"></path>
+                    </svg>
+                  </a>
+                  <a class="article__share-button-item article__share-button-item--mail tap-area" href="mailto:?&amp;body=https://{{ shop.domain }}/{{ article.url }}" role="listitem" aria-label="Share by e-mail">
+                    <svg focusable="false" width="18" height="18" class="icon icon--share   " viewBox="0 0 18 18">
+                      <path d="M17 1l-5.6 16-3.2-7.2M17 1L1 6.6l7.2 3.2M17 1L8.2 9.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            {%- endif -%}
+
+          </div>
+          <div class="article__content">
+            <div class="rte">
+              {%- for block in section.blocks -%}
+                {%- case block.type -%}
+                  {%- when '@app' -%}
+                    <div class="page-width page-width--narrow">
+                      {% render block %}
+                    </div>
+                {%- endcase -%}
+              {%- endfor -%}                             
+
+              <div class="entry-meta">
+                {% if section.settings.blog_show_tags != blank %}
+                  {%- for tag in article.tags limit: 1 -%}
+                  <span class="article__meta-item article__tags-item" role="listitem">
+                    {{ tag | link_to_tag: tag }}
+                  </span>
+                  {%- endfor -%}
+                {%- endif -%}
+                {%- if section.settings.blog_show_author -%}
+                  <span class="article__meta-item article__author">By <b>{{ article.author }}</b></span>
+                {%- endif -%}
+                {%- if section.settings.blog_show_date -%}
+                  <span class="article__meta-item article__date">{{ article.published_at | time_tag: format: 'date' }}</span>
+                {%- endif -%}
+              </div>
+              <h1 class="article-template__title" itemprop="headline">{{ article.title | escape }}</h1>
+
+              {%- if article.image -%}
+                <div>
+                  <img
+                    data-srcset="{% if article.image.width >= 350 %}{{ article.image | image_url: width: 350 }} 350w,{% endif %}
+                      {% if article.image.width >= 750 %}{{ article.image | image_url: width: 750 }} 750w,{% endif %}
+                      {% if article.image.width >= 1100 %}{{ article.image | image_url: width: 1100 }} 1100w,{% endif %}
+                      {% if article.image.width >= 1500 %}{{ article.image | image_url: width: 1500 }} 1500w,{% endif %}
+                      {% if article.image.width >= 2200 %}{{ article.image | image_url: width: 2200 }} 2200w,{% endif %}
+                      {% if article.image.width >= 3000 %}{{ article.image | image_url: width: 3000 }} 3000w,{% endif %}
+                      {{ article.image | image_url }} {{ article.image.width }}w"
+                    sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+                    src="{{ article.image | image_url: width: 1100 }}"
+                    loading="eager"
+                    width="{{ article.image.width }}"
+                    height="{{ article.image.height }}"
+                    alt="{{ article.image.alt | escape }}">
+                </div>
+              {%- endif -%}
+
+              <div>
+                {{ article.content }}
+              </div>
+
+              {% if section.settings.blog_show_tags != blank %}
+                <ul class="article__tags-list list--unstyled" role="list">
+                  <span style="color: #000;">
+                    {{ 'blogs.article.tags_2' | t }}
+                  </span>
+                  {%- for tag in article.tags -%}
+                  <li class="article__tags-item" role="listitem">
+                    {{ tag | link_to_tag: tag | append: "," }}
+                  </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+
+              <div class="share-article">
+                <p style="color: #000;" class="title-share">
+                  {{ section.settings.share_label }}
+                </p>
+                <div class="article-template__social-sharing page-width page-width--narrow" {{ block.shopify_attributes }}>
+                  <a class="mobile-share-buttons__item mobile-share-buttons__item--facebook" href="https://www.facebook.com/sharer.php?u=https://{{ shop.domain }}/products/{{ product.handle }}" target="_blank" rel="noopener" aria-label="Share on Facebook">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" viewBox="0 0 10 16" fill="none"
+                    style="&#10;">
+                    <path
+                      d="M8.71875 9H6.375V16H3.25V9H0.6875V6.125H3.25V3.90625C3.25 1.40625 4.75 0 7.03125 0C8.125 0 9.28125 0.21875 9.28125 0.21875V2.6875H8C6.75 2.6875 6.375 3.4375 6.375 4.25V6.125H9.15625L8.71875 9Z"
+                      fill="white" />
+                  </svg>
+                    Facebook </a>
+                  <a class="mobile-share-buttons__item mobile-share-buttons__item--twitter" href="https://twitter.com/share?text={{ product.title }}&url=https://{{ shop.domain }}/products/{{ product.handle }}" target="_blank" rel="noopener" aria-label="Tweet on Twitter">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="none">
+                        <path
+                          d="M14.3438 3.75C14.9688 3.28125 15.5312 2.71875 15.9688 2.0625C15.4062 2.3125 14.75 2.5 14.0938 2.5625C14.7812 2.15625 15.2812 1.53125 15.5312 0.75C14.9062 1.125 14.1875 1.40625 13.4688 1.5625C12.8438 0.90625 12 0.53125 11.0625 0.53125C9.25 0.53125 7.78125 2 7.78125 3.8125C7.78125 4.0625 7.8125 4.3125 7.875 4.5625C5.15625 4.40625 2.71875 3.09375 1.09375 1.125C0.8125 1.59375 0.65625 2.15625 0.65625 2.78125C0.65625 3.90625 1.21875 4.90625 2.125 5.5C1.59375 5.46875 1.0625 5.34375 0.625 5.09375V5.125C0.625 6.71875 1.75 8.03125 3.25 8.34375C3 8.40625 2.6875 8.46875 2.40625 8.46875C2.1875 8.46875 2 8.4375 1.78125 8.40625C2.1875 9.71875 3.40625 10.6562 4.84375 10.6875C3.71875 11.5625 2.3125 12.0938 0.78125 12.0938C0.5 12.0938 0.25 12.0625 0 12.0312C1.4375 12.9688 3.15625 13.5 5.03125 13.5C11.0625 13.5 14.3438 8.53125 14.3438 4.1875C14.3438 4.03125 14.3438 3.90625 14.3438 3.75Z"
+                          fill="white" />
+                      </svg>
+                      Twitter 
+                  </a>
+                  <a class="mobile-share-buttons__item mobile-share-buttons__item--pinterest" href="https://pinterest.com/pin/create/button/?url={{ shop.domain }}/products/{{ product.handle }}&media={{ product.featured_media | image_url: width: 1920 }}" target="_blank" rel="noopener" aria-label="Pin on Pinterest">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path
+                        d="M15.75 8C15.75 3.71875 12.2812 0.25 8 0.25C3.71875 0.25 0.25 3.71875 0.25 8C0.25 11.3125 2.28125 14.0938 5.15625 15.2188C5.09375 14.625 5.03125 13.6875 5.1875 13C5.34375 12.4062 6.09375 9.15625 6.09375 9.15625C6.09375 9.15625 5.875 8.6875 5.875 8C5.875 6.9375 6.5 6.125 7.28125 6.125C7.9375 6.125 8.25 6.625 8.25 7.21875C8.25 7.875 7.8125 8.875 7.59375 9.8125C7.4375 10.5625 8 11.1875 8.75 11.1875C10.125 11.1875 11.1875 9.75 11.1875 7.65625C11.1875 5.78125 9.84375 4.5 7.96875 4.5C5.75 4.5 4.46875 6.15625 4.46875 7.84375C4.46875 8.53125 4.71875 9.25 5.03125 9.625C5.09375 9.6875 5.09375 9.78125 5.09375 9.84375C5.03125 10.0938 4.875 10.625 4.875 10.7188C4.84375 10.875 4.75 10.9062 4.59375 10.8438C3.625 10.375 3.03125 8.96875 3.03125 7.8125C3.03125 5.375 4.8125 3.125 8.15625 3.125C10.8438 3.125 12.9375 5.0625 12.9375 7.625C12.9375 10.2812 11.25 12.4375 8.90625 12.4375C8.125 12.4375 7.375 12.0312 7.125 11.5312C7.125 11.5312 6.75 13.0312 6.65625 13.375C6.46875 14.0625 6 14.9062 5.6875 15.4062C6.40625 15.6562 7.1875 15.75 8 15.75C12.2812 15.75 15.75 12.2812 15.75 8Z"
+                        fill="white" />
+                    </svg>
+                      Pinterest </a>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="post-navigation">
+              <div class="nav-links">
+                {% if blog.previous_article %}
+                <div class="nav-previous">
+                  <a href="{{ blog.previous_article }}" rel="prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M7.35 13.7246V17.0996H34.5V18.4496H7.35V22.2746L1.5 17.8496L7.35 13.7246Z" fill="#E0E0E0" />
+                    </svg>
+                    <span class="nav-content">
+                      <span class="reader-text">
+                        Previous article 
+                      </span>
+                      <span class="title">
+                        {{ blog.previous_article.title }}
+                      </span>
+                    </span> 
+                  </a>
+                </div>
+                {% endif %}
+                {% if blog.next_article %}
+                <div class="nav-next">
+                  <a href="{{ blog.next_article }}" rel="next">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M28.65 13.7246V17.0996H1.5V18.4496H28.65V22.2746L34.5 17.8496L28.65 13.7246Z"
+                        fill="#E0E0E0" />
+                    </svg>
+                    <span class="nav-content">
+                      <span class="reader-text">Next article </span>
+                      <span class="title">{{ blog.next_article.title }}</span>
+                    </span>
+                  </a>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+
+            {%- if section.settings.blog_show_comment -%}
+              <div id="blog-post-{{ article.id }}-comments">
+              <div class="article-template__comment-wrapper background-secondary">
+                <div id="comments" class="page-width page-width--narrow">
+                  {%- if article.comments_count > 0 -%}
+                    {%- assign anchorId = '#Comments-' | append: article.id -%}
+          
+                    <h2 id="Comments-{{ article.id }}" class="title-comment" tabindex="-1">{{ 'blogs.article.comments' | t: count: article.comments_count }}</h2>
+                    {% paginate article.comments by 5 %}
+                      <div class="article-template__comments">
+                        {%- if comment.status == 'pending' and comment.content -%}
+                          <article id="{{ comment.id }}" class="article-template__comments-comment">
+                            <footer class="right">
+                              <span class="circle-divider caption-with-letter-spacing">{{ comment.author }}</span>
+                            </footer>
+                            {{ comment.content }}
+                          </article>
+                        {%- endif -%}
+          
+                        {%- for comment in article.comments -%}
+                          <article id="{{ comment.id }}" class="article-template__comments-comment">
+                            <div class="comment-author">
+                              <img alt="" src="https://cdn.shopify.com/s/files/1/0764/4046/9787/files/64e1b8d34f425d19e1ee2ea7236d3028.jpg?v=1691574035" data-srcset="https://cdn.shopify.com/s/files/1/0764/4046/9787/files/64e1b8d34f425d19e1ee2ea7236d3028.jpg?v=1691574035" class="avatar avatar-50 photo" height="50" width="50" loading="lazy" decoding="async">
+                            </div>
+                            <div class="div-comment">
+                              <footer class="right">
+                                <span style="color: #000;" class="circle-divider caption-with-letter-spacing">{{ comment.author }}</span><span class="caption-with-letter-spacing">{{ comment.created_at | time_tag: format: 'date' }}</span>
+                              </footer>
+                              {{ comment.content }}
+                            </div>
+                          </article>
+                        {%- endfor -%}
+                        {% render 'pagination', paginate: paginate, anchor: anchorId %}
+                      </div>
+                    {% endpaginate %}
+                  {%- endif -%}
+                  {% form 'new_comment', article %}
+                    {%- liquid
+                      assign post_message = 'blogs.article.success'
+                      if blog.moderated? and comment.status == 'unapproved'
+                        assign post_message = 'blogs.article.success_moderated'
+                      endif
+                    -%}
+                    <h2 class="title-comment">{{ 'blogs.article.comment_form_title' | t }}</h2>
+                    <p class="description-comment">{{ 'blogs.article.comment_des' | t }}</p>
+                    {%- if form.errors -%}
+                      <div class="form__message" role="alert">
+                        <h3 class="form-status caption-large text-body" tabindex="-1" autofocus>
+                          {% render 'icon-error' %} {{ 'templates.contact.form.error_heading' | t }}
+                        </h3>
+                      </div>
+                      <ul class="form-status-list caption-large">
+                        {%- for field in form.errors -%}
+                          <li>
+                            <a href="#CommentForm-{{ field }}" class="link">
+                              {%- if form.errors.translated_fields[field] contains 'author' -%}
+                                {{ 'blogs.article.name' | t }}
+                              {%- elsif form.errors.translated_fields[field] contains 'body'-%}
+                               {{ 'blogs.article.message' | t }}
+                              {%- else -%}
+                                {{ form.errors.translated_fields[field] }}
+                              {%- endif -%}
+                              {{ form.errors.messages[field] }}
+                            </a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    {%- elsif form.posted_successfully? -%}
+                      <div class="form-status-list form__message" role="status">
+                        <h3 class="form-status" tabindex="-1" autofocus>{% render 'icon-success' %} {{ post_message | t }}</h3>
+                      </div>
+                    {%- endif -%}
+          
+                    <div{% if blog.moderated? == false %} class="article-template__comments-fields"{% endif %}>
+                      <div class="field field--with-error">
+                        <textarea
+                          rows="5"
+                          name="comment[body]"
+                          id="CommentForm-body"
+                          class="text-area field__input"
+                          aria-required="true"
+                          required
+                          {% if form.errors contains 'body' %}
+                            aria-invalid="true"
+                            aria-describedby="CommentForm-body-error"
+                          {% endif %}
+                          placeholder="{{ 'blogs.article.message' | t }}"
+                        >{{ form.body }}</textarea>
+                          <label class="form__label field__label" for="CommentForm-body">{{ 'blogs.article.message' | t }} <span aria-hidden="true">*</span></label>
+                      </div>
+                      <div class="article-template__comment-fields">
+                        <div class="field field--with-error">
+                          <input
+                            type="text"
+                            name="comment[author]"
+                            id="CommentForm-author"
+                            class="field__input"
+                            autocomplete="name"
+                            value="{{ form.author }}"
+                            aria-required="true"
+                            required
+                            {% if form.errors contains 'author' %}
+                              aria-invalid="true"
+                              aria-describedby="CommentForm-author-error"
+                            {% endif %}
+                            placeholder="{{ 'blogs.article.name' | t }}"
+                          >
+                          <label class="field__label" for="CommentForm-author">{{ 'blogs.article.name' | t }} <span aria-hidden="true">*</span></label>
+                          {%- if form.errors contains 'author' -%}
+                            <small id="CommentForm-author-error">
+                              <span class="form__message">{% render 'icon-error' %}{{ 'blogs.article.name' | t }} {{ form.errors.messages['author'] }}.</span>
+                            </small>
+                          {%- endif -%}
+                        </div>
+                        <div class="field field--with-error">
+                          <input
+                            type="email"
+                            name="comment[email]"
+                            id="CommentForm-email"
+                            autocomplete="email"
+                            class="field__input"
+                            value="{{ form.email }}"
+                            autocorrect="off"
+                            autocapitalize="off"
+                            aria-required="true"
+                            required
+                            {% if form.errors contains 'email' %}
+                              aria-invalid="true"
+                              aria-describedby="CommentForm-email-error"
+                            {% endif %}
+                            placeholder="{{ 'blogs.article.email' | t }}"
+                          >
+                          <label class="field__label" for="CommentForm-email">{{ 'blogs.article.email' | t }} <span aria-hidden="true">*</span></label>
+                          {%- if form.errors contains 'email' -%}
+                            <small id="CommentForm-email-error">
+                              <span class="form__message">{% render 'icon-error' %}{{ 'blogs.article.email' | t }} {{ form.errors.messages['email'] }}.</span>
+                            </small>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                      {%- if form.errors contains 'body' -%}
+                        <small id="CommentForm-body-error">
+                          <span class="form__message">{% render 'icon-error' %}{{ 'blogs.article.message' | t }} {{ form.errors.messages['body'] }}.</span>
+                        </small>
+                      {%- endif -%}
+                    </div>
+                    {%- if blog.moderated? -%}
+                      <p class="article-template__comment-warning caption">{{ 'blogs.article.moderated' | t }}</p>
+                    {%- endif -%}
+                    <input type="submit" class="button" value="{{ 'blogs.article.post' | t }}">
+                  {% endform %}
+                </div>
+              </div>
+            </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "articleBody": {{ article.content | strip_html | json }},
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ request.origin | append: page.url | json }}
+    },
+    "headline": {{ article.title | json }},
+    {% if article.excerpt != blank %}
+      "description": {{ article.excerpt | strip_html | json }},
+    {% endif %}
+    {% if article.image %}
+      "image": [
+        {{ article | image_url: width: article.image.width | prepend: "https:" | json }}
+      ],
+    {% endif %}
+    "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+    "dateCreated": {{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+    "author": {
+      "@type": "Person",
+      "name": {{ article.author | json }}
+    },
+    "publisher": {
+      "@type": "Organization",
+      {% if settings.share_image %}
+        "logo": {
+          "@type": "ImageObject",
+          "height": {{ settings.share_image.height | json }},
+          "url": {{ settings.share_image | image_url: width: settings.share_image.width | prepend: "https:" | json }},
+          "width": {{ settings.share_image.width | json }}
+        },
+      {% endif %}
+      "name": {{ shop.name | json }}
+    }
+  }
+  </script>
+
+
+{% schema %}
+{
+  "name": "t:sections.main-article.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "blog_show_tags",
+      "default": true,
+      "label": "Show Tags"
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_date",
+      "default": true,
+      "label": "t:sections.main-article.blocks.title.settings.blog_show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_author",
+      "default": false,
+      "label": "t:sections.main-article.blocks.title.settings.blog_show_author.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_share",
+      "default": true,
+      "label": "Share"
+    },
+    {
+      "type": "text",
+      "id": "share_label",
+      "label": "t:sections.main-article.blocks.share.settings.text.label",
+      "default": "Share"
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_comment",
+      "default": true,
+      "label": "Show comment"
+    },
+    {
+      "type": "header",
+      "content": "Advanced Setting Mail"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mail",
+      "default": true,
+      "label": "Show Mail"
+    },
+    {
+      "type": "liquid",
+      "id": "heading",
+      "default": "Subscribe to our emails",
+      "label": "Heading"
+    },
+    {
+      "type": "liquid",
+      "id": "description",
+      "default": "Content emails",
+      "label": "Description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "categories",
+      "name": "Categories",
+      "limit": 1,
+      "settings": [
+        {
+          "id": "article_text",
+          "type": "text",
+          "label": "Content"    
+        },
+        {
+          "id": "article_link",
+          "type": "url",
+          "label": "Link"
+        },
+        {
+          "id": "article_text_2",
+          "type": "text",
+          "label": "Content 2"
+        },
+        {
+          "id": "article_link_2",
+          "type": "url",
+          "label": "Link 2"
+        },
+        {
+          "id": "article_text_3",
+          "type": "text",
+          "label": "Content 3"
+        },
+        {
+          "id": "article_link_3",
+          "type": "url",
+          "label": "Link 3"
+        },
+        {
+          "id": "article_text_4",
+          "type": "text",
+          "label": "Content 4"
+        },
+        {
+          "id": "article_link_4",
+          "type": "url",
+          "label": "Link 4"
+        },
+        {
+          "id": "article_text_5",
+          "type": "text",
+          "label": "Content 5"
+        },
+        {
+          "id": "article_link_5",
+          "type": "url",
+          "label": "Link 5"
+        }
+      ]
+    },
+    {
+      "type": "banner",
+      "name": "Banner",
+      "limit": 1,
+      "settings": [
+        {
+          "id": "featured_image",
+          "type": "image_picker",
+          "label": "Image banner"
+        },
+        {
+          "id": "title",
+          "type": "liquid",
+          "label": "Title banner",
+          "default": "Title banner"
+        },
+        {
+          "id": "color_title",
+          "type": "color",
+          "label": "Color Title banner",
+          "default": "#000"
+        },
+        {
+          "id": "description",
+          "type": "liquid",
+          "label": "Description banner",
+          "default": "Description banner"
+        },
+        {
+          "id": "color_description",
+          "type": "color",
+          "label": "Color Description banner",
+          "default": "#978F8B"
+        },
+        {
+          "id": "button1_label",
+          "type": "text",
+          "label": "Button",
+          "default": "Top selling teas"
+        },
+        {
+          "id": "link1",
+          "type": "url",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "blog-aboutus",
+      "name": "About us",
+      "limit": 1,
+      "settings": [
+        {
+          "id": "featured_image",
+          "type": "image_picker",
+          "label": "Image banner"
+        },
+        {
+          "id": "description",
+          "type": "liquid",
+          "label": "Description banner",
+          "default": "To be the industry leader, globally recognized for effective & efficient solutions. To provide innovative solutions delivering quality, excellence and speed."
+        }
+      ]
+    },
+    {
+      "type": "tags",
+      "name": "Tags",
+      "limit": 1
+    },
+    {
+      "type": "blog-list",
+      "name": "Blog-list",
+      "limit": 1
+    },
+    {
+      "type": "search",
+      "name": "Search",
+      "limit": 1
+    }
+  ]
+}
+{% endschema %}

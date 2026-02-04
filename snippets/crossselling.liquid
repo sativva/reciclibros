@@ -1,0 +1,49 @@
+{% liquid
+    assign ids = ''
+    if product.metafields.custom.recommend_products_to_buy_together
+        assign ids = product.metafields.custom.recommend_products_to_buy_together
+    else
+        assign count = 0
+        paginate product.collections[0].products by 50
+            for crosssell_product in product.collections[0].products
+                if crosssell_product.price < product.price
+                    assign count = count | plus: 1
+                    if count < 5
+                        if ids == ''
+                            assign ids = crosssell_product.id
+                        else
+                            assign ids = ids | append: ',' | append: crosssell_product.id
+                        endif
+                    endif
+                endif
+            endfor   
+        endpaginate     
+    endif
+%}
+{% if ids %}
+    <style>
+        ap-crossselling .jdgm-widget.jdgm-widget {
+            display: none;
+        }
+        ap-crossselling .product-price {
+            overflow: unset;
+        } 
+    </style>     
+	<ap-crossselling class="crollselling" id="modal-productsell" data-id="{{ ids }}" section-id="{{ section.id }}">
+        <div class="modal_bg"></div>
+        <div class="modal-product">
+            <button id="close">X</button>
+            <div class="modal-produt-content"> 
+                <p class="sell-promotion">
+                    <b>CrossSelling</b> is by far one of the best ways to boost sales in your ecommerce store. It doesn’t even
+                    require a lot of additional work! On average, <b>CrossSelling is considered to be 20 times more effective</b>
+                </p>
+                <div class="modal-product-list">
+                    {%- for crosssell in predictive_search.resources.products limit : section.settings.crossell_limit -%}
+                        {% render 'product-grid', product: crosssell %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+	</ap-crossselling>
+{% endif %}

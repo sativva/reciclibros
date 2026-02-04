@@ -1,0 +1,205 @@
+{% render 'section-style' %}
+
+<style>
+  #shopify-section-{{ section.id }} .ap-productlist {
+    overflow: hidden;
+  }
+
+  @media screen and (max-width: 740px) {
+    #shopify-section-{{ section.id }} {
+      --section-products-per-row: {{ section.settings.products_per_row_mobile_sm }};
+    }
+    #shopify-section-{{ section.id }} .ap-productlist__inner--scroller{
+      grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+    }
+    .recently-wp-content {
+      padding: 1px;
+    }
+  } 
+
+  @media screen and (min-width: 741px) {
+    #shopify-section-{{ section.id }} {
+      --section-products-per-row: 3;
+    }
+    #shopify-section-{{ section.id }} .ap-productlist__inner--scroller{
+      grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+      padding: 1px;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    #shopify-section-{{ section.id }} {
+      --section-products-per-row: 3;
+    }
+    #shopify-section-{{ section.id }} .ap-productlist__inner--scroller{
+      grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+      padding: 1px;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    #shopify-section-{{ section.id }} {
+      --section-products-per-row: {{ section.settings.products_per_row_desktop }};
+    }
+    #shopify-section-{{ section.id }} .ap-productlist__inner--scroller{
+      grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+      padding: 1px;
+      padding-bottom: 55px;
+    }
+  }
+  @media screen and (max-width: 740px) {
+  #shopify-section-{{ section.id }} .ap-productlist__inner--scroller {
+    gap: clamp(12px, 4vw, 20px);
+  }
+}
+
+
+</style>
+
+<ap-recentlyproductsviewed section-id="{{ section.id }}" products-count="{{ section.settings.products_to_show }}" class="section section--flush">
+    <div class="container vertical-breather vertical-breather--tight vertical-breather--margin">
+      {% if section.settings.heading != blank %}
+        <header class="section__header text-{{ section.settings.text_align }} mb-5">
+          <h2 class="heading h{{ section.settings.heading_size }}">{{ section.settings.heading
+            }}</h2>
+          {% if section.settings.tab_description != blank %}
+          <div class="heading-description">
+            {{ section.settings.tab_description }}
+          </div>
+          {% endif %}
+        </header>
+      {% endif %}
+        <ap-productlist stagger-apparition="" class="ap-productlist ap-object-loaded">
+          <div class="scroller">
+              <div class="recently-wp-content">
+
+                <div class="ap-productlist__inner ap-productlist__inner--scroller ap-productlist__inner--desktop-no-scroller hide-scrollbar">
+                {%- for product in predictive_search.resources.products -%}
+                    {% render 'product-grid', product: product %}
+                {% endfor %}
+                </div>
+                
+              </div>
+            </div>     
+        </ap-productlist>
+    </div>
+</ap-recentlyproductsviewed>
+       
+{% schema %}
+{
+  "name": "Recently viewed products",
+  "tag": "section",
+  "class": "section recenty-section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Setting Recently viewed products"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Recently viewed products",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "Heading size"
+    },
+    {
+      "type": "text",
+      "id": "tab_description",
+      "label": "t:sections.advanced-content.settings.tab_description.label"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",  
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+      "type": "header",
+      "content": "Product Settings"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 10,
+      "label": "Show product"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_mobile_sm",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 3,
+      "label": "Product Mobile Sm"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_desktop",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.all.products_per_row_desktop.label"
+    },
+    {
+      "type": "header",
+      "content": "Margin & Padding"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "t:sections.all.padding_mobile.label",
+      "info": "t:sections.all.padding_mobile.info"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Recently viewed products"
+    }
+  ]
+}
+{% endschema %}
+  

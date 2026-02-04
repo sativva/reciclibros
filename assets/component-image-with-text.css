@@ -1,0 +1,329 @@
+.ap-imagewithtext .grid {
+  margin-bottom: 0;
+}
+
+.ap-imagewithtext .grid__item {
+  position: relative;
+}
+
+@media screen and (min-width: 750px) {
+  .ap-imagewithtext__grid--reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.ap-imagewithtext__media {
+  min-height: 100%;
+  overflow: visible;
+}
+
+.ap-imagewithtext__media--small {
+  height: 19.4rem;
+}
+
+.ap-imagewithtext__media--large {
+  height: 43.5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .ap-imagewithtext__media--small {
+    height: 31.4rem;
+  }
+   
+  .ap-imagewithtext__media--large {
+    height: 69.5rem;
+  }
+}
+
+.ap-imagewithtext__media--placeholder {
+  position: relative;
+  overflow: hidden;
+}
+
+.ap-imagewithtext__media--placeholder:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(var(--color-foreground), 0.04);
+}
+
+.ap-imagewithtext__media--placeholder.ap-imagewithtext__media--adapt {
+  height: 20rem;
+}
+
+@media screen and (min-width: 750px) {
+  .ap-imagewithtext__media--placeholder.ap-imagewithtext__media--adapt {
+    height: 30rem;
+  }
+}
+
+.ap-imagewithtext__media--placeholder > svg {
+  position: absolute;
+  left: 50%;
+  max-width: 80rem;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  fill: currentColor;
+}
+
+.ap-imagewithtext__content {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-self: center;
+  padding: 4rem calc(4rem / var(--font-body-scale)) 5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.ap-imagewithtext .grid__item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.ap-imagewithtext:not(.ap-imagewithtext--overlap) .ap-imagewithtext__media-item:after {
+  border-radius: var(--media-radius);
+  box-shadow: var(--media-shadow-horizontal-offset)
+    var(--media-shadow-vertical-offset)
+    var(--media-shadow-blur-radius)
+    rgba(var(--color-shadow), var(--media-shadow-opacity));
+}
+
+.ap-imagewithtext:not(.ap-imagewithtext--overlap) .ap-imagewithtext__text-item:after {
+  border-radius: var(--text-boxes-radius);
+  box-shadow: var(--text-boxes-shadow-horizontal-offset)
+    var(--text-boxes-shadow-vertical-offset)
+    var(--text-boxes-shadow-blur-radius)
+    rgba(var(--color-shadow), var(--text-boxes-shadow-opacity));
+}
+
+.ap-imagewithtext .ap-imagewithtext__media-item > * {
+  border-radius: var(--media-radius);
+  overflow: hidden;
+  box-shadow: var(--media-shadow-horizontal-offset)
+    var(--media-shadow-vertical-offset)
+    var(--media-shadow-blur-radius)
+    rgba(var(--color-shadow), var(--media-shadow-opacity));
+}
+
+.ap-imagewithtext .global-media-settings {
+  overflow: hidden !important;
+}
+
+.ap-imagewithtext .ap-imagewithtext__text-item > * {
+  border-radius: var(--text-boxes-radius);
+  overflow: hidden;
+  box-shadow: var(--text-boxes-shadow-horizontal-offset)
+    var(--text-boxes-shadow-vertical-offset)
+    var(--text-boxes-shadow-blur-radius)
+    rgba(var(--color-shadow), var(--text-boxes-shadow-opacity));
+}
+
+.ap-imagewithtext:not(.ap-imagewithtext--overlap) .ap-imagewithtext__media-item > *,
+.ap-imagewithtext:not(.ap-imagewithtext--overlap) .ap-imagewithtext__text-item > * {
+  box-shadow: none;
+}
+
+@media screen and (max-width: 749px) {
+  .ap-imagewithtext.collapse-corners:not(.ap-imagewithtext--overlap) .ap-imagewithtext__media-item:after,
+  .ap-imagewithtext.collapse-corners:not(.ap-imagewithtext--overlap) .grid__item .ap-imagewithtext__media,
+  .ap-imagewithtext.collapse-corners:not(.ap-imagewithtext--overlap) .ap-imagewithtext__media img {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .ap-imagewithtext.collapse-corners:not(.ap-imagewithtext--overlap) .ap-imagewithtext__text-item:after,
+  .ap-imagewithtext.collapse-corners:not(.ap-imagewithtext--overlap) .grid__item .ap-imagewithtext__content {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .ap-imagewithtext.collapse-borders:not(.ap-imagewithtext--overlap) .ap-imagewithtext__content {
+    border-top: 0;
+  }
+}
+
+.ap-imagewithtext__content--mobile-right > * {
+  align-self: flex-end;
+  text-align: right;
+}
+
+.ap-imagewithtext__content--mobile-center > * {
+  align-self: center;
+  text-align: center;
+}
+
+.ap-imagewithtext--overlap .ap-imagewithtext__content {
+  width: 90%;
+  margin: -3rem auto 0;
+}
+
+@media screen and (min-width: 750px) {
+  .ap-imagewithtext__grid--reverse .ap-imagewithtext__content {
+    margin-left: auto;
+  }
+
+  .ap-imagewithtext__content--bottom {
+    justify-content: flex-end;
+    align-self: flex-end;
+  }
+
+  .ap-imagewithtext__content--top {
+    justify-content: flex-start;
+    align-self: flex-start;
+  }
+
+  .ap-imagewithtext__content--desktop-right > * {
+    align-self: flex-end;
+    text-align: right;
+  }
+
+  .ap-imagewithtext__content--desktop-left > * {
+    align-self: flex-start;
+    text-align: left;
+  }
+
+  .ap-imagewithtext__content--desktop-center > * {
+    align-self: center;
+    text-align: center;
+  }
+
+  .ap-imagewithtext--overlap .ap-imagewithtext__text-item {
+    display: flex;
+    padding: 3rem 0;
+  }
+
+  .ap-imagewithtext--overlap .ap-imagewithtext__content {
+    height: auto;
+    width: calc(100% + 4rem);
+    min-width: calc(100% + 4rem);
+    margin-top: 0;
+    margin-left: -4rem;
+  }
+
+  .ap-imagewithtext--overlap .ap-imagewithtext__grid--reverse .ap-imagewithtext__content {
+    margin-left: 0;
+    margin-right: -4rem;
+  }
+
+  .ap-imagewithtext--overlap .ap-imagewithtext__grid--reverse .ap-imagewithtext__text-item {
+    justify-content: flex-end;
+  }
+
+  .ap-imagewithtext--overlap .ap-imagewithtext__media-item--top {
+    align-self: flex-start;
+  }
+
+  .ap-imagewithtext--overlap .ap-imagewithtext__media-item--middle {
+    align-self: center;
+  }
+
+  .ap-imagewithtext--overlap .ap-imagewithtext__media-item--bottom {
+    align-self: flex-end;
+  }
+
+  .ap-imagewithtext__media-item--small,
+  .ap-imagewithtext__media-item--large + .ap-imagewithtext__text-item {
+    flex-grow: 0;
+  }
+
+  .ap-imagewithtext.collapse-corners:not(.ap-imagewithtext--overlap) .grid:not(.ap-imagewithtext__grid--reverse) .ap-imagewithtext__media-item:after,
+  .ap-imagewithtext.collapse-corners:not(.ap-imagewithtext--overlap) .grid:not(.ap-imagewithtext__grid--reverse) .ap-imagewithtext__media,
+  .ap-imagewithtext.collapse-corners:not(.ap-imagewithtext--overlap) .grid:not(.ap-imagewithtext__grid--reverse) .ap-imagewithtext__media img,
+  .ap-imagewithtext.collapse-corners:not(.ap-imagewithtext--overlap) .ap-imagewithtext__grid--reverse .ap-imagewithtext__text-item:after,
+  .ap-imagewithtext.collapse-corners:not(.ap-imagewithtext--overlap) .ap-imagewithtext__grid--reverse .ap-imagewithtext__content,
+  .ap-imagewithtext.collapse-corners:not(.ap-imagewithtext--overlap) .ap-imagewithtext__grid--reverse .ap-imagewithtext__content:after {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .ap-imagewithtext.collapse-corners:not(.ap-imagewithtext--overlap) .grid:not(.ap-imagewithtext__grid--reverse) .ap-imagewithtext__text-item:after,
+  .ap-imagewithtext.collapse-corners:not(.ap-imagewithtext--overlap) .grid:not(.ap-imagewithtext__grid--reverse) .ap-imagewithtext__content,
+  .ap-imagewithtext.collapse-corners:not(.ap-imagewithtext--overlap) .grid:not(.ap-imagewithtext__grid--reverse) .ap-imagewithtext__content:after,
+  .ap-imagewithtext.collapse-corners:not(.ap-imagewithtext--overlap) .ap-imagewithtext__grid--reverse .ap-imagewithtext__media-item:after,
+  .ap-imagewithtext.collapse-corners:not(.ap-imagewithtext--overlap) .ap-imagewithtext__grid--reverse .ap-imagewithtext__media,
+  .ap-imagewithtext.collapse-corners:not(.ap-imagewithtext--overlap) .ap-imagewithtext__grid--reverse .ap-imagewithtext__media img {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .ap-imagewithtext.collapse-borders:not(.ap-imagewithtext--overlap) .grid:not(.ap-imagewithtext__grid--reverse) .ap-imagewithtext__content {
+    border-left: 0;
+  }
+
+  .ap-imagewithtext.collapse-borders:not(.ap-imagewithtext--overlap) .ap-imagewithtext__grid--reverse .ap-imagewithtext__content {
+    border-right: 0;
+  }
+}
+
+.ap-imagewithtext:not(.collapse-corners, .ap-imagewithtext--overlap) .ap-imagewithtext__media-item {
+  z-index: 2;
+}
+
+.ap-imagewithtext__content {
+  border-radius: var(--text-boxes-radius);
+  box-shadow: var(--text-boxes-shadow-horizontal-offset)
+    var(--text-boxes-shadow-vertical-offset)
+    var(--text-boxes-shadow-blur-radius)
+    rgba(var(--color-shadow), var(--text-boxes-shadow-opacity));
+}
+
+@media screen and (min-width: 990px) {
+  .ap-imagewithtext__content {
+    padding: 6rem 7rem 7rem;
+  }
+}
+
+.ap-imagewithtext__content > * + * {
+  margin-top: 2rem;
+}
+
+.ap-imagewithtext__content > .ap-imagewithtext__text:empty ~ a {
+  margin-top: 2rem;
+}
+
+.ap-imagewithtext__content > :first-child:is(.ap-imagewithtext__heading),
+.ap-imagewithtext__text--caption + .ap-imagewithtext__heading,
+.ap-imagewithtext__text--caption:first-child {
+  margin-top: 0;
+}
+
+.ap-imagewithtext__content :last-child:is(.ap-imagewithtext__heading),
+.ap-imagewithtext__text--caption {
+  margin-bottom: 0;
+}
+
+.ap-imagewithtext__content .button + .ap-imagewithtext__text {
+  margin-top: 2rem;
+}
+
+.ap-imagewithtext__content .ap-imagewithtext__text + .button {
+  margin-top: 3rem;
+}
+
+.ap-imagewithtext__heading {
+  word-break: break-word;
+  margin-bottom: 0;
+}
+
+.ap-imagewithtext__text p {
+  word-break: break-word;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* check for flexbox gap in older Safari versions */
+@supports not (inset: 10px) {
+  .ap-imagewithtext .grid {
+    margin-left: 0;
+  }
+}

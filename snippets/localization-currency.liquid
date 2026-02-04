@@ -1,0 +1,65 @@
+<style>
+    form#HeaderCountryForm {
+        position: relative;
+    }
+    ul.disclosure__list {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 150px;
+        background-color: #fff;
+        padding: 15px;
+        box-shadow: 0 0 30px #0000000d;
+    }
+    .disclosure__list a.disclosure__link--active {
+        color: var(--primary);
+    }
+</style>
+
+<noscript>
+    {%- form 'localization', id: 'FooterCountryFormNoScript', class: 'localization-form' -%}
+        <div class="localization-form__select">
+        <select class="localization-selector link" name="country_code" aria-labelledby="FooterCountryLabelNoScript">
+            {%- for country in localization.available_countries -%}
+            <option value="{{ country.iso_code }}" {%- if country.iso_code == localization.country.iso_code %} selected{% endif %}>
+                {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})
+            </option>
+            {%- endfor -%}
+        </select>
+        {% render 'icon-caret' %}
+        </div>
+        <button class="button button--tertiary">{{ 'localization.update_country' | t }}</button>
+    {%- endform -%}
+</noscript>
+<localization-form class="currency d-block">
+    {%- liquid
+        if margin == 'topbar'
+            assign class_localization = 'localization-form'
+        else
+            assign class_localization = 'localization-form'
+        endif
+    -%}
+    {%- form 'localization', id: id, class: class_localization -%}
+
+        <div class="no-js-hidden">
+        <div class="disclosure">
+            <button type="button" class="disclosure__button localization-form__select localization-selector" aria-expanded="false" aria-controls="FooterCountryList" aria-describedby="FooterCountryLabel">
+                {{ localization.country.currency.iso_code }} {{ localization.country.currency.symbol }}
+            {% render 'icon-caret' %}
+            </button>
+            <div class="disclosure__list-wrapper {{ header-left }}">
+            <ul id="idCountryList" role="list" class="disclosure__list list-unstyled {% unless enable_name %} disable_name {% endunless %}" hidden="true" >
+                {%- for country in localization.available_countries -%}
+                <li class="disclosure__item" tabindex="-1">
+                    <a class="disclosure__link caption-large{% if country.iso_code == localization.country.iso_code %} link disclosure__link--active{% endif %} focus-inset" href="#"{% if country.iso_code == localization.country.iso_code %} aria-current="true"{% endif %} data-value="{{ country.iso_code }}">
+                        <span class="localization-form__currency"> {{ country.currency.iso_code }} {{ country.currency.symbol }}</span>
+                    </a>
+                </li>
+                {%- endfor -%}
+            </ul>
+            </div>
+        </div>
+        <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}">
+        </div>
+    {%- endform -%}
+</localization-form>

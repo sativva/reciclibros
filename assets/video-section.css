@@ -1,0 +1,28 @@
+.video-section h3.heading.h2 {
+  font-size: 14px;
+  line-height: 23px;
+  text-shadow: none;
+  font-weight: 700;
+}
+.video-content-container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-distance);
+  padding-right: var(--container-distance);
+  position: absolute;
+}
+.video-title {
+  font-size: 50px;
+  line-height: 1.2;
+  margin: 0 0 70px;
+  font-weight: 700;
+}
+
+@media (max-width: 767px) {
+  .video-title {
+    font-size: 30px;
+    margin: 0 0 15px;
+  }
+}

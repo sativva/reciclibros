@@ -1,0 +1,30 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "setwidthout": "full",
+        "padding_top": 100,
+        "padding_bottom": 80,
+        "height": 300,
+        "margin_desktop": "0 0 60px",
+        "bg_img": "shopify://shop_images/Mask_group_6_1_354d40a1-79a3-4446-ada8-0951b665ccea.jpg",
+        "background_color": "#000000",
+        "color_title": "#ffffff",
+        "color_breadcrumb": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

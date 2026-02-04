@@ -1,0 +1,45 @@
+<style>
+  #no-wishlistdisplay{
+    display: none;
+  }
+  #no-wishlistdisplay.active{
+    display: block;
+    text-align: center;
+  }
+  #ap-wishlistdisplay .ap-productlist__inner {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-flow: row;
+    gap: 30px 0;
+  }
+  #ap-wishlistdisplay .ap-productlist__inner {
+    padding-top: 60px;
+    padding-bottom: 80px;
+  }
+  @media (max-width: 991px) {
+    #ap-wishlistdisplay .ap-productlist__inner {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 576px) {
+    #ap-wishlistdisplay .ap-productlist__inner {
+      grid-template-columns: repeat(1, 1fr);
+      padding: 40px 0;
+    }
+  }
+</style>
+
+<div class="wishlist">
+  <div class="container">
+    <ap-wishlistdisplay id="ap-wishlistdisplay" section-id="{{ section.id }}" class="section section--flush">
+      <div class="ap-productlist__inner ap-productlist__inner--scroller ap-productlist__inner--desktop-no-scroller hide-scrollbar">
+        {%- for product in predictive_search.resources.products -%}
+            {% render 'product-grid', product: product %}
+        {% endfor %}
+      </div>
+    </ap-wishlistdisplay>
+    
+    <div id="no-wishlistdisplay">
+      Don't have product in Wishlist
+    </div>
+  </div>
+</div>

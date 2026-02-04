@@ -1,0 +1,36 @@
+<ul class="header__list-social" role="list">
+  
+  {%- if settings.social_facebook_link != blank -%}
+    <li class="list-social__item">
+      <a href="{{ settings.social_facebook_link }}" class="link--text list-social__link" aria-describedby="a11y-external-message" title="facebook">
+        {%- render 'icon-facebook' -%}
+        <span>{{ 'general.social.links.facebook' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_twitter_link != blank -%}
+    <li class="list-social__item">
+      <a href="{{ settings.social_twitter_link }}" class="link--text list-social__link" aria-describedby="a11y-external-message" title="twitter">
+        {%- render 'icon-twitter' -%}
+        <span>{{ 'general.social.links.twitter' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_pinterest_link != blank -%}
+    <li class="list-social__item">
+      <a href="{{ settings.social_pinterest_link }}" class="link--text list-social__link" aria-describedby="a11y-external-message" title="pinterest">
+        {%- render 'icon-pinterest' -%}     
+        <span>{{ 'general.social.links.pinterest' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_instagram_link != blank -%}
+    <li class="list-social__item">
+      <a href="{{ settings.social_instagram_link }}" class="link--text list-social__link" aria-describedby="a11y-external-message" title="instagram">
+        {%- render 'icon-instagram' -%}
+        <span>{{ 'general.social.links.instagram' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+  
+</ul>   

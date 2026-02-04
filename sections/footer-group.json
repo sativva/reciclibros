@@ -1,0 +1,432 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "line_section_rDbPi4": {
+      "type": "line-section",
+      "settings": {
+        "bgsection": "#ffffff",
+        "setwidth": "full",
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingtablet": "0px 0px 0px 0px",
+        "paddingmobile": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "margintablet": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px",
+        "bgborder": "#e2e2e2",
+        "wborder": "1px 0px 0px 0px"
+      }
+    },
+    "newsletter_gF8hEw": {
+      "type": "newsletter",
+      "blocks": {
+        "heading_N7TVQ7": {
+          "type": "heading",
+          "settings": {
+            "width": "25%",
+            "heading": "Recibe nuestra newsletter",
+            "tab_heading_size": 4,
+            "description": ""
+          }
+        },
+        "html_zLMkbp": {
+          "type": "html",
+          "settings": {
+            "width": "col",
+            "code": "Recibe inspiración literaria, ofertas a precios reducidos y noticias para democratizar el libro de ocasión."
+          }
+        },
+        "email_form_6eUyqz": {
+          "type": "email_form",
+          "settings": {
+            "width": "33%",
+            "bg_newsletter": "#f6f6f6",
+            "bg_input": "rgba(0,0,0,0)",
+            "border_color": "#f6f6f6",
+            "color_input": "#9a9a9a",
+            "color_heading": "#000000",
+            "color_des": "#999999",
+            "sub_heading": "",
+            "heading": "",
+            "tab_heading_size": 5,
+            "description": "",
+            "text_input": "Correo electrónico",
+            "text_button": "Suscribirme\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n<path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"#027A36\"/>\n</svg>",
+            "text_align": "left"
+          }
+        },
+        "social_8f3NGB": {
+          "type": "social",
+          "disabled": true,
+          "settings": {
+            "width": "16%",
+            "social_facebook": "#",
+            "social_twitter": "#",
+            "social_instagram": "#",
+            "social_pinterest": "",
+            "social_youtube": "",
+            "social_linkedin": "",
+            "text_align": "right",
+            "color_social": "#ffffff",
+            "bg_fa": "#15a7fd",
+            "bg_x": "#242424",
+            "bg_ins": "#8944fa",
+            "bg_pin": "",
+            "bg_you": "",
+            "bg_link": "",
+            "bg_tik": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_N7TVQ7",
+        "html_zLMkbp",
+        "email_form_6eUyqz",
+        "social_8f3NGB"
+      ],
+      "settings": {
+        "setwidthout": "container",
+        "background-color": "#ffffff",
+        "background_image": "shopify://shop_images/FF6400.png",
+        "heading_color": "#ffffff",
+        "text_color": "#ffffff",
+        "button_background": "rgba(0,0,0,0)",
+        "button_color": "#ff6400",
+        "background_button_hover": "#ffffff",
+        "margin_desktop": "75px 0 75px",
+        "margin_tablet": "",
+        "margin_mobile": "40px 0",
+        "padding_desktop": "30px 30px 30px 30px",
+        "padding_tablet": "0px 0px 0px 0px",
+        "padding_mobile": "0px 0px 0px 0px",
+        "border_width": ""
+      }
+    },
+    "footer_top_X7tjrJ": {
+      "type": "footer-top",
+      "blocks": {
+        "footer_logo_89JKKD": {
+          "type": "footer-logo",
+          "settings": {
+            "width": "25%",
+            "text_align": "left",
+            "bottom_logo_width": 195
+          }
+        },
+        "footer_top_V7Djy4": {
+          "type": "footer-top",
+          "settings": {
+            "width": "25%",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"56\" height=\"56\" viewBox=\"0 0 56 56\" fill=\"none\">\n<circle cx=\"28\" cy=\"28\" r=\"28\" fill=\"white\"/>\n<g>\n<path d=\"M32.8018 37.9997C26.026 38.2288 13.8193 26.1205 19.4868 19.5555L20.4452 18.7222C20.9303 18.2532 21.5805 17.9941 22.2552 18.001C22.9299 18.0079 23.5747 18.2801 24.0502 18.7588C24.0759 18.785 24.0998 18.8128 24.1218 18.8422L25.6218 20.7913C26.0777 21.2737 26.331 21.9126 26.3294 22.5763C26.3279 23.24 26.0716 23.8778 25.6135 24.358L24.6485 25.5713C25.1828 26.8689 25.968 28.0482 26.9592 29.0415C27.9503 30.0348 29.1279 30.8226 30.4243 31.3597L31.6443 30.3888C32.1308 29.942 32.767 29.6937 33.4275 29.6928C34.088 29.6919 34.7249 29.9384 35.2127 30.3838L37.1626 31.8838C37.1918 31.9058 37.2196 31.9295 37.246 31.9547C37.7269 32.44 37.9967 33.0956 37.9967 33.7788C37.9967 34.4621 37.7269 35.1177 37.246 35.603L36.4868 36.478C36.0053 36.9648 35.4311 37.3502 34.7982 37.6116C34.1653 37.8729 33.4865 38.0049 32.8018 37.9997ZM22.226 19.6663C22.1062 19.6662 21.9876 19.6897 21.877 19.7355C21.7663 19.7813 21.6657 19.8484 21.581 19.933L20.6218 20.7663C15.9168 26.423 30.3143 40.0188 35.2668 35.3397L36.0268 34.4638C36.1172 34.3834 36.1907 34.2859 36.2432 34.177C36.2957 34.068 36.3261 33.9498 36.3327 33.829C36.3393 33.7082 36.3219 33.5874 36.2816 33.4733C36.2412 33.3593 36.1787 33.2544 36.0976 33.1647L34.1585 31.6755C34.1288 31.6536 34.1009 31.6294 34.0752 31.603C33.9013 31.4373 33.6703 31.3449 33.4302 31.3449C33.19 31.3449 32.959 31.4373 32.7852 31.603C32.763 31.6254 32.7397 31.6465 32.7152 31.6663L31.0835 32.9663C30.9702 33.0565 30.8354 33.1156 30.6924 33.1378C30.5493 33.16 30.4029 33.1446 30.2677 33.093C28.5878 32.4672 27.062 31.4876 25.7937 30.2206C24.5255 28.9537 23.5444 27.4289 22.9168 25.7497C22.8613 25.6125 22.8433 25.463 22.8646 25.3165C22.886 25.17 22.946 25.0319 23.0385 24.9163L24.3335 23.2863C24.3528 23.2616 24.3736 23.2383 24.396 23.2163C24.5662 23.0447 24.6617 22.8127 24.6617 22.5709C24.6617 22.3292 24.5662 22.0972 24.396 21.9255C24.37 21.8996 24.3461 21.8717 24.3243 21.8422L22.8385 19.9055C22.6706 19.7538 22.4523 19.67 22.226 19.6705V19.6663ZM36.8035 28.4797C40.9618 22.3588 33.6368 15.0413 27.5227 19.1988C27.4305 19.2604 27.3515 19.3397 27.2903 19.4322C27.2292 19.5247 27.1871 19.6284 27.1665 19.7374C27.1459 19.8463 27.1473 19.9583 27.1706 20.0667C27.1938 20.1751 27.2385 20.2777 27.3019 20.3687C27.3653 20.4596 27.4463 20.5369 27.54 20.5962C27.6337 20.6555 27.7383 20.6954 27.8476 20.7138C27.9569 20.7321 28.0688 20.7284 28.1767 20.703C28.2846 20.6775 28.3864 20.6308 28.476 20.5655C33.0377 17.433 38.5676 22.9688 35.4368 27.5272C35.3701 27.6167 35.3221 27.7187 35.2956 27.8272C35.2691 27.9356 35.2647 28.0483 35.2826 28.1585C35.3005 28.2687 35.3404 28.3742 35.3998 28.4687C35.4593 28.5632 35.5371 28.6447 35.6287 28.7086C35.7203 28.7724 35.8238 28.8172 35.933 28.8403C36.0422 28.8633 36.155 28.8642 36.2645 28.8429C36.3741 28.8215 36.4783 28.7783 36.5709 28.716C36.6635 28.6536 36.7426 28.5732 36.8035 28.4797ZM33.5885 26.9255C33.7447 26.7692 33.8325 26.5573 33.8325 26.3363C33.8325 26.1154 33.7447 25.9034 33.5885 25.7472L32.1668 24.3247V22.1663C32.1668 21.9453 32.079 21.7334 31.9227 21.5771C31.7665 21.4208 31.5545 21.333 31.3335 21.333C31.1125 21.333 30.9005 21.4208 30.7442 21.5771C30.588 21.7334 30.5002 21.9453 30.5002 22.1663V24.6663C30.5002 24.8873 30.588 25.0993 30.7443 25.2555L32.411 26.9222C32.5673 27.0784 32.7792 27.1662 33.0002 27.1662C33.2211 27.1662 33.433 27.0784 33.5893 26.9222L33.5885 26.9255Z\" fill=\"#D32300\"/>\n</g>\n<defs>\n<clipPath id=\"clip0_251_1105\">\n<rect width=\"20\" height=\"20\" fill=\"white\" transform=\"translate(18 18)\"/>\n</clipPath>\n</defs>\n</svg>",
+            "info_title": "Hotline Order",
+            "info_heading": "<h6 class=\"fw-bold h6\">\n(877) 123 456 789\n<h6>",
+            "text_align": "left",
+            "social_heading": "",
+            "social_facebook": "",
+            "social_tw": "",
+            "social_instagram": "",
+            "social_pinterest": "",
+            "social_youtube": "",
+            "social_linkedin": ""
+          }
+        },
+        "footer_top_C8JFQw": {
+          "type": "footer-top",
+          "settings": {
+            "width": "25%",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"56\" height=\"56\" viewBox=\"0 0 56 56\" fill=\"none\">\n<circle cx=\"28\" cy=\"28\" r=\"28\" fill=\"white\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M23.6325 20.5H32.368C33.0388 20.5 33.5924 20.5 34.0434 20.5368C34.5118 20.5751 34.9424 20.6572 35.3469 20.8633C35.9741 21.1829 36.484 21.6928 36.8036 22.32C37.0025 22.7103 37.0859 23.1249 37.1259 23.5744C37.1704 23.7106 37.1783 23.8542 37.1518 23.9913C37.1669 24.3664 37.1669 24.8003 37.1669 25.2989V30.7011C37.1669 31.3719 37.1669 31.9255 37.1301 32.3765C37.0918 32.8449 37.0097 33.2755 36.8036 33.68C36.484 34.3072 35.9741 34.8171 35.3469 35.1367C34.9424 35.3428 34.5118 35.4249 34.0434 35.4632C33.5924 35.5 33.0388 35.5 32.368 35.5H23.6325C22.9617 35.5 22.408 35.5 21.957 35.4632C21.4886 35.4249 21.058 35.3428 20.6536 35.1367C20.0264 34.8171 19.5165 34.3072 19.1969 33.68C18.9908 33.2755 18.9087 32.8449 18.8704 32.3765C18.8335 31.9255 18.8336 31.3719 18.8336 30.7011V25.2989C18.8336 24.8003 18.8336 24.3664 18.8487 23.9913C18.8222 23.8542 18.83 23.7106 18.8746 23.5744C18.9146 23.1249 18.998 22.7103 19.1969 22.32C19.5165 21.6928 20.0264 21.1829 20.6536 20.8633C21.058 20.6572 21.4886 20.5751 21.957 20.5368C22.408 20.5 22.9617 20.5 23.6325 20.5ZM20.5002 25.4339V30.6667C20.5002 30.986 20.5004 31.2596 20.5033 31.498L24.2844 28.0828L20.5002 25.4339ZM26.0823 27.3069L20.5692 23.4477C20.599 23.2751 20.6377 23.1634 20.6819 23.0767C20.8417 22.7631 21.0966 22.5081 21.4103 22.3483C21.5406 22.2819 21.7274 22.2278 22.0928 22.198C22.4678 22.1673 22.9531 22.1667 23.6669 22.1667H32.3336C33.0474 22.1667 33.5326 22.1673 33.9077 22.198C34.273 22.2278 34.4599 22.2819 34.5902 22.3483C34.9038 22.5081 35.1588 22.7631 35.3186 23.0767C35.3628 23.1634 35.4015 23.2751 35.4313 23.4477L29.9182 27.3069C29.9086 27.3133 29.899 27.32 29.8896 27.3269L29.0516 27.9135C28.4441 28.3387 28.3154 28.4125 28.2018 28.4408C28.0694 28.4738 27.931 28.4738 27.7987 28.4408C27.685 28.4125 27.5563 28.3387 26.9489 27.9135L26.1108 27.3269C26.1014 27.32 26.0919 27.3133 26.0823 27.3069ZM25.6852 29.0634L20.9678 33.3243C21.0954 33.4564 21.2446 33.5673 21.4103 33.6517C21.5406 33.7181 21.7274 33.7722 22.0928 33.802C22.4678 33.8327 22.9531 33.8333 23.6669 33.8333H32.3336C33.0474 33.8333 33.5326 33.8327 33.9077 33.802C34.273 33.7722 34.4599 33.7181 34.5902 33.6517C34.7558 33.5673 34.9051 33.4564 35.0326 33.3243L30.3152 29.0634L30.0074 29.2789C29.975 29.3015 29.943 29.324 29.9112 29.3463C29.4574 29.665 29.0588 29.9449 28.6049 30.058C28.2079 30.157 27.7926 30.157 27.3956 30.058C26.9417 29.9449 26.5431 29.665 26.0892 29.3463C26.0575 29.324 26.0255 29.3015 25.9931 29.2789L25.6852 29.0634ZM31.7161 28.0828L35.4972 31.498C35.5001 31.2596 35.5002 30.986 35.5002 30.6667V25.4339L31.7161 28.0828Z\" fill=\"#D32300\"/>\n</svg>",
+            "info_title": "Email us",
+            "info_heading": "<h6 class=\"fw-bold h6\">\nsupport@example.com\n<h6>",
+            "text_align": "left",
+            "social_heading": "",
+            "social_facebook": "",
+            "social_tw": "",
+            "social_instagram": "",
+            "social_pinterest": "",
+            "social_youtube": "",
+            "social_linkedin": ""
+          }
+        },
+        "footer_top_Cc6qAW": {
+          "type": "footer-top",
+          "settings": {
+            "width": "25%",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"56\" height=\"56\" viewBox=\"0 0 56 56\" fill=\"none\">\n<circle cx=\"28\" cy=\"28\" r=\"28\" fill=\"white\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M28.0004 20.9293C29.953 18.9767 33.1188 18.9767 35.0714 20.9293C37.0241 22.8819 37.0241 26.0478 35.0714 28.0004L33.8929 29.1789C33.5675 29.5043 33.0399 29.5043 32.7144 29.1789C32.389 28.8535 32.389 28.3258 32.7144 28.0004L33.8929 26.8219C35.1947 25.5201 35.1947 23.4096 33.8929 22.1078C32.5912 20.8061 30.4806 20.8061 29.1789 22.1078L28.0004 23.2863C27.6749 23.6118 27.1473 23.6118 26.8219 23.2863C26.4964 22.9609 26.4964 22.4333 26.8219 22.1078L28.0004 20.9293ZM31.5063 24.4944C31.8317 24.8199 31.8317 25.3475 31.5063 25.6729L25.673 31.5063C25.3475 31.8317 24.8199 31.8317 24.4945 31.5063C24.169 31.1808 24.169 30.6532 24.4945 30.3278L30.3278 24.4944C30.6532 24.169 31.1809 24.169 31.5063 24.4944ZM23.2863 26.8219C23.6118 27.1473 23.6118 27.6749 23.2863 28.0004L22.1078 29.1789C20.8061 30.4806 20.8061 32.5912 22.1078 33.8929C23.4096 35.1947 25.5201 35.1947 26.8219 33.8929L28.0004 32.7144C28.3258 32.389 28.8535 32.389 29.1789 32.7144C29.5043 33.0399 29.5043 33.5675 29.1789 33.8929L28.0004 35.0714C26.0478 37.0241 22.8819 37.0241 20.9293 35.0714C18.9767 33.1188 18.9767 29.953 20.9293 28.0004L22.1078 26.8219C22.4333 26.4964 22.9609 26.4964 23.2863 26.8219Z\" fill=\"#D32300\"/>\n</svg>",
+            "info_title": "Follow us",
+            "info_heading": "",
+            "text_align": "left",
+            "social_heading": "",
+            "social_facebook": "#",
+            "social_tw": "#",
+            "social_instagram": "#",
+            "social_pinterest": "",
+            "social_youtube": "#",
+            "social_linkedin": ""
+          }
+        }
+      },
+      "block_order": [
+        "footer_logo_89JKKD",
+        "footer_top_V7Djy4",
+        "footer_top_C8JFQw",
+        "footer_top_Cc6qAW"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".footer-top .border-footer {height: 60px;}",
+        ".footer-top .col-1 {margin: 0 20px;}"
+      ],
+      "settings": {
+        "setwidthout": "container",
+        "background": "#ffffff",
+        "bg_align": "top",
+        "color_title": "#ffffff",
+        "color_heading": "#ffffff",
+        "color_des": "#ffffff",
+        "color_border": "#e7e7e7",
+        "heading_size": "sub-heading",
+        "padding_desktop": "142px 0 66px",
+        "padding_mobile": "80px 0 50px",
+        "border_width": "0"
+      }
+    },
+    "line_section_YznULt": {
+      "type": "line-section",
+      "settings": {
+        "bgsection": "#ffffff",
+        "setwidth": "full",
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingtablet": "0px 0px 0px 0px",
+        "paddingmobile": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "margintablet": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px",
+        "bgborder": "#e2e2e2",
+        "wborder": "1px 0px 0px 0px"
+      }
+    },
+    "footer_7fRrte": {
+      "type": "footer",
+      "blocks": {
+        "footer_text_4KekTm": {
+          "type": "footer_text",
+          "disabled": true,
+          "settings": {
+            "width": "33%",
+            "padding_desktop": "",
+            "text_align": "left",
+            "bottom_logo_width": 145,
+            "heading": "",
+            "heading_size": "h6",
+            "footer_description": "Bokifa draws book lovers of all ages into a community, \n<br>\nengage with booklovers and meet their favourite \n<br>\nliterary personalities.\n\n<span class=\"d-block mt-3 pt-1 mb-2 pb-1 fw-semibold\" style=\" font-size: 30px; line-height: 32px; color: var(--color-accent-6);\">\n+(84) - 1800 - 4635\n</span>\n\n<span class=\"d-block\">\ncontact@example.com\n</span>",
+            "content_icon": "",
+            "content": "",
+            "content_icon_2": "",
+            "content_2": "",
+            "content_icon_3": "",
+            "content_3": "",
+            "social_heading": "",
+            "social_facebook": "",
+            "social_tw": "",
+            "social_instagram": "",
+            "social_pinterest": "",
+            "social_youtube": "",
+            "social_linkedin": ""
+          }
+        },
+        "footer_item_tiytCG": {
+          "type": "footer_item",
+          "settings": {
+            "width": "16%",
+            "padding_desktop": "",
+            "text_align": "left",
+            "heading": "Reciclibros",
+            "menu": "",
+            "heading_2": "",
+            "menu_2": "",
+            "heading_size": "h6"
+          }
+        },
+        "footer_item_PbFEd9": {
+          "type": "footer_item",
+          "settings": {
+            "width": "16%",
+            "padding_desktop": "",
+            "text_align": "left",
+            "heading": "Ayuda",
+            "menu": "footer",
+            "heading_2": "",
+            "menu_2": "",
+            "heading_size": "h6"
+          }
+        },
+        "footer_item_QUjcY7": {
+          "type": "footer_item",
+          "settings": {
+            "width": "16%",
+            "padding_desktop": "",
+            "text_align": "left",
+            "heading": "Servicios",
+            "menu": "",
+            "heading_2": "",
+            "menu_2": "",
+            "heading_size": "h6"
+          }
+        },
+        "footer_item_ECAcJz": {
+          "type": "footer_item",
+          "settings": {
+            "width": "16%",
+            "padding_desktop": "",
+            "text_align": "left",
+            "heading": "Información legal",
+            "menu": "",
+            "heading_2": "",
+            "menu_2": "",
+            "heading_size": "h6"
+          }
+        }
+      },
+      "block_order": [
+        "footer_text_4KekTm",
+        "footer_item_tiytCG",
+        "footer_item_PbFEd9",
+        "footer_item_QUjcY7",
+        "footer_item_ECAcJz"
+      ],
+      "settings": {
+        "fullwidth": false,
+        "background": "#ffffff",
+        "heading_color": "#000000",
+        "text_color": "#404040",
+        "color_content_list": "#000000",
+        "text_link": "#404040",
+        "color_border": "#e2e2e2",
+        "overlay_opacity": 10,
+        "padding_desktop": "60px 0 90px",
+        "padding_desktop_xl": "60px 0 90px",
+        "padding_mobile": "50px 0 30px",
+        "show_newsletter": false,
+        "heading": "<img class=\"d-none mr-md-auto ml-md-0 m-auto mb-40\" src=\"https://cdn.shopify.com/s/files/1/0644/4731/6013/files/Rectangle_1.png?v=1727083928\" loading=\"lazy\" style=\"\">\n<svg class=\"mr-2\" style=\"     vertical-align: -2px;xmlns=\"http://www.w3.org/2000/svg\" width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\">\n<g>\n<path d=\"M13.125 26.418V33.375C13.125 33.861 13.437 34.2915 13.899 34.4445C14.0145 34.482 14.133 34.5 14.25 34.5C14.601 34.5 14.94 34.335 15.156 34.041L19.2255 28.503L13.125 26.418Z\" fill=\"#D32300\"/>\n<path d=\"M35.5276 0.208633C35.1826 -0.0358671 34.7296 -0.0688671 34.3546 0.127633L0.604567 17.7526C0.205567 17.9611 -0.0299333 18.3871 0.00306672 18.8356C0.0375667 19.2856 0.336067 19.6696 0.760567 19.8151L10.1431 23.0221L30.1246 5.93713L14.6626 24.5656L30.3871 29.9401C30.5041 29.9791 30.6271 30.0001 30.7501 30.0001C30.9541 30.0001 31.1566 29.9446 31.3351 29.8366C31.6201 29.6626 31.8136 29.3701 31.8631 29.0416L35.9881 1.29163C36.0496 0.871633 35.8726 0.454633 35.5276 0.208633Z\" fill=\"#D32300\"/>\n</g>\n<defs>\n<clipPath id=\"clip0_299_1728\">\n<rect width=\"36\" height=\"36\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>\nSubscribe newsletter",
+        "description": "Sign up for auto delivery and never run out of food, treats or supplements \n<br>\nagain. Pause, reschedule or cancel anytime.",
+        "description_bottom": "You agree to FootPaw's terms and conditions, privacy policy.",
+        "text_button": "subscribe\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\">\n<g>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M6.30008 0.465384C7.85854 0.11904 9.74916 0 12 0C14.2508 0 16.1414 0.11904 17.6999 0.465384C19.272 0.814764 20.5786 1.4112 21.5837 2.4163C22.5888 3.42139 23.1852 4.72802 23.5346 6.30008C23.881 7.85854 24 9.74916 24 12C24 14.2508 23.881 16.1414 23.5346 17.6999C23.1852 19.272 22.5888 20.5786 21.5837 21.5837C20.5786 22.5888 19.272 23.1852 17.6999 23.5346C16.1414 23.881 14.2508 24 12 24C9.74916 24 7.85854 23.881 6.30008 23.5346C4.72802 23.1852 3.42139 22.5888 2.4163 21.5837C1.4112 20.5786 0.814764 19.272 0.465384 17.6999C0.11904 16.1414 0 14.2508 0 12C0 9.74916 0.11904 7.85854 0.465384 6.30008C0.814764 4.72802 1.4112 3.42139 2.4163 2.4163C3.42139 1.4112 4.72802 0.814764 6.30008 0.465384Z\" fill=\"white\"/>\n<path d=\"M11.8284 12.2427L9 9.41422L10.4142 8L14.6568 12.2427L10.4142 16.4853L9 15.0711L11.8284 12.2427Z\" fill=\"#222222\"/>\n</g>\n<defs>\n<clipPath id=\"clip0_3032_1138\">\n<rect width=\"24\" height=\"24\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>",
+        "heading_size": "h3",
+        "color_input": "#666666",
+        "bg_input": "#ffffff",
+        "bg_color": "#ffffff",
+        "color_button": "#d32300",
+        "bg_btn": "#ffffff",
+        "color_button_hover": "#ffffff",
+        "bg_btn_hover": "#0a4253",
+        "border_color_input": "#ffffff"
+      }
+    },
+    "footer_bot_3TBfWH": {
+      "type": "footer-bot",
+      "blocks": {
+        "footer_bot_gyUQdG": {
+          "type": "footer-bot",
+          "settings": {
+            "info_title": "",
+            "icon": "",
+            "info_heading": "",
+            "info_heading_2": "Email: \n<span style=\"color: var(--primary);\">\nsupport@bazzaco.com\n</span>\nOpening hours: \n<span style=\"color: #fff\">\nMonday–Friday, 8:15 a.m. – 9:00 p.m. ET \n</span>\n(except holidays)",
+            "text_align": "center"
+          }
+        }
+      },
+      "block_order": [
+        "footer_bot_gyUQdG"
+      ],
+      "disabled": true,
+      "settings": {
+        "show_footer_info": true,
+        "setwidthout": "full",
+        "background": "#ffffff",
+        "color_title": "#939393",
+        "color_heading": "#86888e",
+        "color_des": "#ebebeb",
+        "padding_desktop": "28px 0",
+        "padding_mobile": "28px 15px"
+      }
+    },
+    "line_section_GpqdnW": {
+      "type": "line-section",
+      "settings": {
+        "bgsection": "#ffffff",
+        "setwidth": "container",
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingtablet": "0px 0px 0px 0px",
+        "paddingmobile": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "margintablet": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px",
+        "bgborder": "#e2e2e2",
+        "wborder": "1px 0px 0px 0px"
+      }
+    },
+    "copyright_jmfN8T": {
+      "type": "copyright",
+      "blocks": {
+        "copyright_text_i69p7z": {
+          "type": "copyright-text",
+          "settings": {
+            "width": "50%",
+            "label": "",
+            "content": "<p>Copyright © 2025 <a href=\"https://ap-bokifa.myshopify.com/\" title=\"https://ap-bokifa.myshopify.com/\">Bokifa</a>. All rights reserved</p>",
+            "text_align": "left"
+          }
+        },
+        "payment_methods_aVwGxY": {
+          "type": "payment_methods",
+          "settings": {
+            "width": "50%",
+            "bg_payment_methods": "rgba(0,0,0,0)",
+            "label": "",
+            "text_align": "right"
+          }
+        }
+      },
+      "block_order": [
+        "copyright_text_i69p7z",
+        "payment_methods_aVwGxY"
+      ],
+      "disabled": true,
+      "settings": {
+        "fullwidth": false,
+        "padding_desktop": "37px 0 37px",
+        "padding_mobile": "",
+        "background": "#ffffff",
+        "heading_color": "#027a36",
+        "text_color": "#555555",
+        "text_color_2": "#a8a8a8",
+        "border_color": "#e7e7e7",
+        "link_color": "#839297",
+        "color_social": "#666666",
+        "bg_link": "#ffffff",
+        "border_width": "0 0 0 0",
+        "overlay_opacity": 10
+      }
+    }
+  },
+  "order": [
+    "line_section_rDbPi4",
+    "newsletter_gF8hEw",
+    "footer_top_X7tjrJ",
+    "line_section_YznULt",
+    "footer_7fRrte",
+    "footer_bot_3TBfWH",
+    "line_section_GpqdnW",
+    "copyright_jmfN8T"
+  ]
+}

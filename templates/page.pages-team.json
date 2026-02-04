@@ -1,0 +1,162 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "setwidthout": "full",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "height": 300,
+        "margin_desktop": "",
+        "background_color": "#222222",
+        "color_title": "#ffffff",
+        "color_breadcrumb": "#ffffff"
+      }
+    },
+    "078ec760-4528-48ba-816d-622106dced07": {
+      "type": "team-work",
+      "blocks": {
+        "template--20855321461040__078ec760-4528-48ba-816d-622106dced07-teamwork-1": {
+          "type": "teamwork",
+          "settings": {
+            "width": "25%",
+            "team_avatar": "shopify://shop_images/book_team_1.jpg",
+            "title_person": "Harley Russle",
+            "subtitle_person": "Co Founder",
+            "team_des": "+(123) 1800-567-8990\n<br>\nyourname@example.com",
+            "team_fb": "#",
+            "team_tw": "#",
+            "team_insta": "#",
+            "team_pin": "#",
+            "team_youtube": ""
+          }
+        },
+        "template--20855321461040__078ec760-4528-48ba-816d-622106dced07-teamwork-2": {
+          "type": "teamwork",
+          "settings": {
+            "width": "25%",
+            "team_avatar": "shopify://shop_images/book_team_2.jpg",
+            "title_person": "Mary Simens",
+            "subtitle_person": "Manager",
+            "team_des": "+(123) 1800-567-8990\n<br>\nyourname@example.com",
+            "team_fb": "#",
+            "team_tw": "#",
+            "team_insta": "#",
+            "team_pin": "#",
+            "team_youtube": ""
+          }
+        },
+        "template--20855321461040__078ec760-4528-48ba-816d-622106dced07-teamwork-3": {
+          "type": "teamwork",
+          "settings": {
+            "width": "25%",
+            "team_avatar": "shopify://shop_images/book_team_7.jpg",
+            "title_person": "Joel Yamaha",
+            "subtitle_person": "Logistics Staff",
+            "team_des": "+(123) 1800-567-8990\n<br>\nyourname@example.com",
+            "team_fb": "#",
+            "team_tw": "#",
+            "team_insta": "#",
+            "team_pin": "#",
+            "team_youtube": ""
+          }
+        },
+        "template--20855321461040__078ec760-4528-48ba-816d-622106dced07-teamwork-4": {
+          "type": "teamwork",
+          "settings": {
+            "width": "25%",
+            "team_avatar": "shopify://shop_images/book_team_4.jpg",
+            "title_person": "Pavel Gvaniya",
+            "subtitle_person": "Logistics Staff",
+            "team_des": "+(123) 1800-567-8990\n<br>\nyourname@example.com",
+            "team_fb": "#",
+            "team_tw": "#",
+            "team_insta": "#",
+            "team_pin": "#",
+            "team_youtube": ""
+          }
+        },
+        "teamwork_PtV6Wj": {
+          "type": "teamwork",
+          "settings": {
+            "width": "25%",
+            "team_avatar": "shopify://shop_images/book_team_3.jpg",
+            "title_person": "Maria Nazarova",
+            "subtitle_person": "Logistics Staff",
+            "team_des": "+(123) 1800-567-8990\n<br>\nyourname@example.com",
+            "team_fb": "#",
+            "team_tw": "#",
+            "team_insta": "#",
+            "team_pin": "#",
+            "team_youtube": ""
+          }
+        },
+        "teamwork_qagANV": {
+          "type": "teamwork",
+          "settings": {
+            "width": "25%",
+            "team_avatar": "shopify://shop_images/book_team_5.jpg",
+            "title_person": "Emma Watson",
+            "subtitle_person": "Logistics Staff",
+            "team_des": "+(123) 1800-567-8990\n<br>\nyourname@example.com",
+            "team_fb": "#",
+            "team_tw": "#",
+            "team_insta": "#",
+            "team_pin": "#",
+            "team_youtube": ""
+          }
+        },
+        "teamwork_77g7x4": {
+          "type": "teamwork",
+          "settings": {
+            "width": "25%",
+            "team_avatar": "shopify://shop_images/book_team_6.jpg",
+            "title_person": "Emma Watson",
+            "subtitle_person": "Logistics Staff",
+            "team_des": "+(123) 1800-567-8990\n<br>\nyourname@example.com",
+            "team_fb": "#",
+            "team_tw": "#",
+            "team_insta": "#",
+            "team_pin": "#",
+            "team_youtube": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--20855321461040__078ec760-4528-48ba-816d-622106dced07-teamwork-1",
+        "template--20855321461040__078ec760-4528-48ba-816d-622106dced07-teamwork-2",
+        "template--20855321461040__078ec760-4528-48ba-816d-622106dced07-teamwork-3",
+        "template--20855321461040__078ec760-4528-48ba-816d-622106dced07-teamwork-4",
+        "teamwork_PtV6Wj",
+        "teamwork_qagANV",
+        "teamwork_77g7x4"
+      ],
+      "settings": {
+        "margin_desktop": "120px 0",
+        "margin_mobile": "50px 0",
+        "padding_desktop": "",
+        "padding_mobile": "",
+        "sub_heading": "Creative team",
+        "tab_heading": "We are a professional \n<br>\n<span class='font-custom'>\ncreative team\n<span>",
+        "tab_heading_size": 2,
+        "tab_description": "",
+        "text_align": "center",
+        "heading_color": "#000000",
+        "text_color": "#5b5b5b"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "078ec760-4528-48ba-816d-622106dced07"
+  ]
+}

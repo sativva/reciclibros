@@ -1,0 +1,171 @@
+
+<style>
+    #shopify-section-{{ section.id }} {
+      --heading-color: 12, 27, 84;
+      --color-body: 12, 27, 84;
+      --ap-nextap-buttonprev-background: 255, 255, 255;
+      --ap-nextap-buttonprev-color: 12, 27, 84;
+      --section-background: 255, 255, 255;
+    }
+  </style>
+  <section class="section ">
+    <div class="section__color-wrapper">
+      <div class="container ">
+        <header class="section__header section__header--tight section__header--center">
+          <div class="text-container">
+            <p>
+              <a href="https://www.instagram.com/apmmonaco/" target="_blank" title="https://www.instagram.com/apmmonaco/">
+                <strong>@apmmonaco</strong>
+              </a>
+            </p>
+          </div>
+        </header>
+        <ap-multicolumn stagger-apparition class="ap-multicolumn ap-multicolumn--pocket-medium ap-multicolumn--medium ap-multicolumn--spacing-normal">
+          <div class="scroller">
+            <ap-scrollablecontent id="instafeed" class="ap-multicolumn__inner ap-multicolumn__inner--center ap-multicolumn__inner--scroller" data-token="{{ section.settings.accesstoken }}" data-limit="{{ section.settings.limit }}">
+              <div class="ap-multicolumn__item ap-multicolumn__item--align-start " reveal>
+                <div class="ap-multicolumn__image-wrapper">
+                  <img src="{{ product.featured_image | image_url: width: 2000 }}" width="auto" height="auto" loading="lazy" />
+                </div>
+              </div>
+              
+            </ap-scrollablecontent>
+            <ap-button-nextprev id="buttons_instafeed" class="ap-multicolumn__ap-nextprev  hd-pocket" style="--smallest-image-aspect-ratio: 1.0">
+              <button class="ap-multicolumn__arrow ap-nextap-buttonprev ap-nextap-buttonprev--prev" disabled>
+                <span class="visually-hidden">Previous</span>
+                <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-left  icon--direction-aware " viewBox="0 0 17 14">
+                  <path d="M17 7H2M8 1L2 7l6 6" stroke="currentColor" stroke-width="1.2" fill="none"></path>
+                </svg>
+              </button>
+              <button class="ap-multicolumn__arrow ap-nextap-buttonprev ap-nextap-buttonprev--next">
+                <span class="visually-hidden">Next</span>
+                <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-right  icon--direction-aware " viewBox="0 0 17 14">
+                  <path d="M0 7h15M9 1l6 6-6 6" stroke="currentColor" stroke-width="1.2" fill="none"></path>
+                </svg>
+              </button>
+            </ap-button-nextprev>
+          </div>
+        </ap-multicolumn>
+      </div>
+    </div>
+  </section>
+
+{% schema %}
+{
+  "name": "Instagram",
+  "tag": "section",
+  "class": "shopify-section--ap-multicolumn",
+  "settings": [
+    {
+      "type": "color",
+      "id": "section_background",
+      "default": "#ffffff",
+      "label": "t:sections.all.section_background.label"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.all.heading_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.all.text_color.label"
+    },
+    {
+      "type": "range",
+      "id": "number_column",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.all.number_column.label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_range",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.all.heading_size_range.label"
+    },
+    {
+      "type": "text",
+      "id": "heading_2",
+      "label": "t:sections.all.heading_2.label"
+    },
+    {
+      "type": "range",
+      "id": "heading_2_size_range",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.all.heading_2_size_range.label"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "t:sections.all.description.label"
+    },
+    {
+      "type": "select",
+      "id": "description_size",
+      "options": [
+        {
+          "value": "heading--xxsmall",
+          "label": "t:sections.all.description_size.options__1.label"
+        },
+        {
+          "value": "heading--xsmall",
+          "label": "t:sections.all.description_size.options__2.label"
+        },
+        {
+          "value": "heading--small",
+          "label": "t:sections.all.description_size.options__3.label"
+        },
+        {
+          "value": "",
+          "label": "t:sections.all.description_size.options__4.label"
+        },
+        {
+          "value": "heading--large",
+          "label": "t:sections.all.description_size.options__5.label"
+        }
+      ],
+      "default": "heading--xsmall",
+      "label": "t:sections.all.description_size.label"
+    },
+    {
+      "type": "text",
+      "id": "accesstoken",
+      "label": "t:sections.all.accesstoken.label",
+      "default": "IGQVJWVmNzQktZAOVFNQWVIZAi1STmF6a1R6dUtNWTFiREFLaER6Y05saGdWZAGNJS1RjQXhPSl8xYkZA0am1tTFhBU1kyc05Vdm5qRHRJdWlFNHkyQ3hXZADFZAa3ZAsVDVTME9tckFkTHJqdm5xT3ZAHR2ZA6UgZDZD",
+      "info": "t:sections.all.accesstoken.info"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "label": "t:sections.all.limit.label",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram"
+    }
+  ]
+}
+{% endschema %}
+

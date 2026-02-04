@@ -1,0 +1,21 @@
+{% liquid
+    assign icon = svg_icon
+    case icon
+        when 'icon-worldwide'
+            render 'icon-worldwide'
+        when 'icon-customer-support'
+            render 'icon-customer-support'
+        when 'icon-wrapper'
+            render 'icon-wrapper'
+        when 'icon-chat'
+            render 'icon-chat'
+        when 'icon-love'
+            render 'icon-love'
+        when 'icon-email'
+            render 'icon-email'
+        when 'icon-plane'
+            render 'icon-plane'
+        when 'icon-warranty'
+            render 'icon-warranty'
+    endcase
+%}

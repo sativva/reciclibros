@@ -1,0 +1,13 @@
+.list-collections--carousel .list-collections__item-list {
+  padding: 0;
+}
+.ap-collectionlist .container-fluid {
+  padding: 0 80px;
+}
+.list-collections--carousel .list-collections__item-list {
+  grid-auto-columns: 21.5vw;
+}
+.list-collections_social svg {
+    width: 20px;
+    height: 20px;
+}

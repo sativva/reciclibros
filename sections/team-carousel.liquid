@@ -1,0 +1,553 @@
+<style>
+.team-img {
+  max-width: 240px;
+}
+.team-img img {
+  height: 100%;
+  object-fit: cover;
+}
+.team-{{ section.id }} .section__header ,
+.team-{{ section.id }} .team-carousel {
+  width: 100%;
+  padding-left: var(--container-distance);
+  padding-right: var(--container-distance);
+}
+@media (min-width: 768px) {
+  .team-{{ section.id }} .section__header ,
+  .team-{{ section.id }} .team-carousel {
+    width: 50%;
+  }
+}
+@media (min-width: 1300px) {
+  .team-{{ section.id }} .section__header {
+    padding-right: 150px;
+  }
+  .team-{{ section.id }} .team-carousel {
+    padding-left: 30px;
+  }
+}
+{% if section.settings.sw_direction == "vertical" %}
+.team-{{ section.id }} .swiper-autoheight {
+  height: 660px;
+}
+{% endif %}
+.team-wp {
+  display: flex;
+  flex-direction: row-reverse;
+  background-color: {{ section.settings.bg_item }};
+  border-radius: 8px;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .1);
+}
+.team-detail {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.team-job {
+    font-size: calc(var(--base-font-size) - 2px);
+    margin: 0 0 6px;
+}
+.team-name.h6 {
+    font-weight: 500;
+    margin: 0 0 20px;
+}
+.team-social svg {
+    width: 16px;
+    height: 16px;
+}
+.team-social .social-media {
+  gap: 16px;
+}
+.team-description {
+    margin: 0 0 16px;
+}
+.team-description p {
+    margin: 0; 
+}
+.social-media__item:hover:before {
+  display: none;
+}
+@media (max-width: 1199px) {
+  .team-detail {
+    padding: 15px;
+  }
+}
+</style>
+
+{% render 'section-style' %}
+
+<section class="team-{{ section.id }}">
+    <div class="{{ section.settings.setwidthout }}">
+        <div class="row {% if section.settings.no_gutter %}no-gutters{% endif %} align-items-{{ section.settings.align_items }}">
+            {% if section.settings.tab_heading != blank %}
+                <header class="section__header text-{{ section.settings.text_align }} mb-60">
+                    {% if section.settings.sub_heading != blank %}
+                      <p class="heading sub-heading mb-20">{{ section.settings.sub_heading }}</p>
+                    {% endif %}
+                    <h3 class="heading h{{ section.settings.tab_heading_size }} mb-20">{{ section.settings.tab_heading }}</h3>
+                    {% if section.settings.tab_description != blank %}
+                      <div class="heading-description">
+                        {{ section.settings.tab_description }}
+                      </div>
+                    {% endif %}
+                    {% if section.settings.tab_description_2 != blank %}
+                      <div class="heading-description-2">
+                        {{ section.settings.tab_description_2 }}
+                      </div>
+                    {% endif %}
+                    {% if section.settings.btn_text != blank %}
+                    <div class="btn-more">
+                      <a href="{{ section.settings.btn_link }}" class="button {{ section.settings.style_btn }}">
+                        {{ section.settings.btn_text }}
+                        {% render 'icon-arrow-2' %}
+                      </a>
+                      </div>
+                    {% endif %}
+                </header>
+            {% endif %}
+            <div class="team-carousel">
+                <div data-swiper-id="{{ section.id }}" class="ap-swiper mySwiper swiper-container" data-swiper='{
+                    "spaceBetween": 15,
+                    "slidesPerView": 1,
+                    "loop": "true",
+                    "direction": "{{ section.settings.sw_direction }}",
+                    "breakpoints":{
+                      "360": {
+                        "slidesPerView": 2,
+                        "spaceBetween": 15
+                      },
+                      "768":{
+                        "slidesPerView": 3,
+                        "spaceBetween": {{ section.settings.spaceBetween }}
+                      },
+                      "1200":{
+                        "slidesPerView": {{ section.settings.perviewDesktop }},
+                        "spaceBetween": {{ section.settings.spaceBetween }}
+                      }
+                    }
+                  }'>
+                    <div class="swiper-wrapper">
+                        {% for block in section.blocks %}
+                            <div class="swiper-slide">
+                                <div class="team-wp">
+                                    <div class="team-img">
+                                        {% if block.settings.team_img != blank %}
+                                            <img class="banner-list-image" loading="lazy" 
+                                            sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                                            alt="" 
+                                            src="{{ block.settings.team_img | image_url: width: block.settings.team_img.width }}" 
+                                            data-srcset="{%- if block.settings.team_img.width >= 3000 -%}{{ block.settings.team_img | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                                                {{ block.settings.team_img | image_url }} {{ block.settings.team_img.width }}w"
+                                            src="{{ block.settings.team_img | image_url: width: 1500 }}"
+                                            height="{{ block.settings.team_img.height }}"
+                                            width="{{ block.settings.team_img.width }}">
+                                        {% else %}
+                                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                                        {% endif %}
+                                    </div>
+                                    <div class="team-detail">
+                                        <div style="color: {{ section.settings.color_1 }}" class="team-job">{{ block.settings.team_job }}</div>
+                                        <div style="color: {{ section.settings.color_2 }}" class="team-name h6">{{ block.settings.team_name }}</div>
+                                        {% if block.settings.team_des != blank %}
+                                        <div style="color: {{ section.settings.color_3 }}" class="team-description">{{ block.settings.team_des }}</div>
+                                        {% endif %}
+                                        <div class="team-social">
+                                            {% liquid
+                                            assign _show_social = false
+                                            if block.settings.social_facebook != blank
+                                              assign _show_social = true
+                                            endif
+                                            if section.settings.social_tw != blank
+                                              assign _show_social = true
+                                            endif
+                                            if block.settings.social_instagram != blank
+                                              assign _show_social = true
+                                            endif
+                                            if block.settings.social_pinterest != blank
+                                              assign _show_social = true
+                                            endif
+                                            if block.settings.social_youtube != blank
+                                              assign _show_social = true
+                                            endif
+                                            if block.settings.social_linkedin != blank
+                                              assign _show_social = true
+                                            endif
+                                          %}
+                                          {%- if _show_social == true -%}
+                                            <div style="color: {{ section.settings.color_3 }}" class="team__item-content">
+                                              <ul class="social-media social-media--no-radius list--unstyled" role="list">
+                                                {%- if block.settings.social_facebook != blank -%}
+                                                  <li class="social-media__item social-media__item--facebook">
+                                                    <a href="{{ block.settings.social_facebook }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on Facebook"><svg focusable="false" width="9" height="17" class="icon icon--facebook   " viewBox="0 0 9 17">
+                                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M2.486 16.2084L2.486 8.81845H0L0 5.93845L2.486 5.93845L2.486 3.81845C2.38483 2.79982 2.73793 1.78841 3.45107 1.05407C4.16421 0.319722 5.16485 -0.0628415 6.186 0.00844868C6.9284 0.00408689 7.67039 0.0441585 8.408 0.128449V2.69845L6.883 2.69845C6.4898 2.61523 6.08104 2.73438 5.79414 3.01585C5.50724 3.29732 5.3803 3.70373 5.456 4.09845L5.456 5.93845H8.308L7.936 8.81845H5.46L5.46 16.2084H2.486Z" fill="currentColor"></path>
+                                                    </svg>
+                                                    <span class="text-social d-none">{{ 'general.social.links.facebook' | t }}</span>
+                                                    </a>
+                                                  </li>
+                                                {%- endif -%}
+                                                {%- if block.settings.social_tw != blank -%}
+                                                  <li class="social-media__item social-media__item--tw">
+                                                    <a href="{{ block.settings.social_tw }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on tw">
+                                                      <svg class="icon icon--tw" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                        <g>
+                                                        <path d="M9.4893 6.77491L15.3176 0H13.9365L8.87577 5.88256L4.8338 0H0.171875L6.28412 8.89547L0.171875 16H1.55307L6.8973 9.78782L11.1659 16H15.8278L9.48896 6.77491H9.4893ZM7.59756 8.97384L6.97826 8.08805L2.05073 1.03974H4.17217L8.14874 6.72795L8.76804 7.61374L13.9371 15.0075H11.8157L7.59756 8.97418V8.97384Z" fill="currentColor"/>
+                                                        </g>
+                                                        <defs>
+                                                          <clipPath id="clip0_872_3267">
+                                                            <rect width="16" height="16" fill="white"/>
+                                                          </clipPath>
+                                                        </defs>
+                                                      </svg>
+                                                      <span class="text-social d-none">{{ 'general.social.links.twitter' | t }}</span>
+                                                    </a>
+                                                  </li>
+                                                {%- endif -%}
+                                                {%- if block.settings.social_instagram != blank -%}
+                                                  <li class="social-media__item social-media__item--instagram">
+                                                    <a href="{{ block.settings.social_instagram }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on Instagram"><svg focusable="false" width="16" height="16" class="icon icon--instagram   " viewBox="0 0 16 16">
+                                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C5.827 0 5.555.01 4.702.048 3.85.087 3.269.222 2.76.42a3.921 3.921 0 00-1.417.923c-.445.444-.719.89-.923 1.417-.198.509-.333 1.09-.372 1.942C.01 5.555 0 5.827 0 8s.01 2.445.048 3.298c.039.852.174 1.433.372 1.942.204.526.478.973.923 1.417.444.445.89.719 1.417.923.509.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.445-.01 3.298-.048c.852-.039 1.433-.174 1.942-.372a3.922 3.922 0 001.417-.923c.445-.444.719-.89.923-1.417.198-.509.333-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.298c-.039-.852-.174-1.433-.372-1.942a3.922 3.922 0 00-.923-1.417A3.921 3.921 0 0013.24.42c-.509-.198-1.09-.333-1.942-.372C10.445.01 10.173 0 8 0zm0 1.441c2.136 0 2.39.009 3.233.047.78.036 1.203.166 1.485.276.374.145.64.318.92.598.28.28.453.546.598.92.11.282.24.705.276 1.485.038.844.047 1.097.047 3.233s-.009 2.39-.047 3.233c-.036.78-.166 1.203-.276 1.485-.145.374-.318.64-.598.92-.28.28-.546.453-.92.598-.282.11-.705.24-1.485.276-.844.038-1.097.047-3.233.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.479 2.479 0 01-.92-.598 2.478 2.478 0 01-.598-.92c-.11-.282-.24-.705-.276-1.485-.038-.844-.047-1.097-.047-3.233s.009-2.39.047-3.233c.036-.78.166-1.203.276-1.485.145-.374.318-.64.598-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.844-.038 1.097-.047 3.233-.047zm0 9.226a2.667 2.667 0 110-5.334 2.667 2.667 0 010 5.334zm0-6.775a4.108 4.108 0 100 8.216 4.108 4.108 0 000-8.216zm5.23-.162a.96.96 0 11-1.92 0 .96.96 0 011.92 0z" fill="currentColor"></path>
+                                                    </svg>
+                                                      <span class="text-social d-none">{{ 'general.social.links.instagram' | t }}</span>
+                                                    </a>
+                                                  </li>
+                                                {%- endif -%}
+                                                {%- if block.settings.social_pinterest != blank -%}
+                                                  <li class="social-media__item social-media__item--pinterest">
+                                                    <a href="{{ block.settings.social_pinterest }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on Pinterest"><svg focusable="false" width="12" height="16" class="icon icon--pinterest   " viewBox="0 0 12 16">
+                                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M5.8042 0.00123531C8.79537 -0.0442356 10.6685 1.16769 11.5498 3.29299C11.8407 3.99433 12.1516 5.28439 11.9181 6.35474C11.825 6.78208 11.7985 7.22812 11.6726 7.63086C11.4163 8.4496 11.0829 9.17441 10.6413 9.79945C10.0418 10.6486 9.13196 11.2212 7.98951 11.5091C6.97899 11.7637 6.04959 11.3826 5.50954 10.9732C5.33747 10.843 5.10674 10.6728 5.04304 10.4377C5.03488 10.4377 5.0267 10.4377 5.01853 10.4377C4.97972 10.8669 4.81532 11.3224 4.69924 11.7135C4.53858 12.2545 4.50733 12.8146 4.3064 13.3208C4.08349 13.8828 3.81274 14.3978 3.52072 14.8776C3.36739 15.1292 2.94427 15.9904 2.63675 16C2.60311 15.9354 2.58964 15.9105 2.58761 15.796C2.48858 15.6383 2.55757 15.3724 2.51393 15.1578C2.44604 14.8236 2.39317 14.2217 2.46491 13.8824C2.46491 13.7038 2.46491 13.5248 2.46491 13.3465C2.54397 12.9786 2.54085 12.6015 2.63675 12.2494C2.84537 11.4824 2.96145 10.6699 3.17692 9.87611C3.38398 9.11352 3.57396 8.27939 3.74172 7.50321C3.77957 7.32789 3.56652 6.82389 3.52072 6.63572C3.37628 6.04186 3.48624 5.21874 3.66805 4.77269C3.89698 4.21111 4.56717 3.3535 5.43589 3.57359C6.13407 3.75039 6.57846 4.50528 6.34437 5.46192C6.09862 6.46589 5.7798 7.3653 5.5587 8.37035C5.50173 8.62933 5.59968 8.90442 5.65687 9.05958C5.86357 9.61934 6.49037 10.163 7.32652 9.95278C8.59396 9.63365 9.15431 8.48627 9.53645 7.24791C9.63981 6.91302 9.62743 6.59647 9.70831 6.22709C9.87894 5.44763 9.80648 4.28411 9.56098 3.67556C9.16753 2.70023 8.43329 2.07518 7.42471 1.73624C7.1465 1.68526 6.86819 1.63427 6.58988 1.58329C6.12397 1.47655 5.23532 1.63685 4.92023 1.73624C3.51171 2.18156 2.63952 2.92544 2.09658 4.26247C1.91177 4.71767 1.81046 5.17911 1.77741 5.81884C1.76913 5.8955 1.76094 5.97217 1.75278 6.04883C1.86153 6.62068 1.87259 6.99959 2.09658 7.42657C2.20715 7.63711 2.46971 7.8029 2.51393 8.06444C2.54001 8.2185 2.42705 8.45105 2.39125 8.57467C2.33705 8.76137 2.35676 8.97522 2.26844 9.13625C2.10873 9.42678 1.67383 9.20852 1.48275 9.08491C0.489307 8.44373 -0.329526 6.5895 0.132284 4.79837C0.20342 4.5218 0.206915 4.28118 0.304126 4.03285C0.906661 2.49554 1.80565 1.55101 3.10325 0.741098C3.58947 0.437749 4.24511 0.287354 4.84657 0.128885C5.16574 0.0863481 5.48503 0.0437917 5.8042 0.00123531Z" fill="currentColor"></path>
+                                                    </svg>
+                                                      <span class="text-social d-none">{{ 'general.social.links.pinterest' | t }}</span>
+                                                    </a>
+                                                  </li>
+                                                {%- endif -%}
+                                              </ul>
+                                            </div>
+                                          {%- endif -%}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    {% if section.settings.dots %}
+                    <div class="swiper-pagination"></div>
+                    {% endif %}
+
+                    {% if section.settings.arrows %}
+                      <button class="swiper-button-prev" data-swiper-id="{{ section.id }}-prev">
+                        {% render 'icon-arrow-prev' %}
+                      </button>
+                      <button class="swiper-button-next" data-swiper-id="{{ section.id }}-next">
+                        {% render 'icon-arrow-next' %}
+                      </button>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Team Carousel",
+  "class": "shopify-section--team-carousel",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "t:sections.all.padding_mobile.label",
+      "info": "t:sections.all.padding_mobile.info"
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "default": "#ffffff",
+      "label": "t:sections.all.background-color.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:sections.all.background_image.label"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.all.heading_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.all.text_color.label"
+    },
+    {
+      "type": "liquid",
+      "id": "sub_heading",
+      "default": "Sub heading",
+      "label": "Sub heading"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.advanced-content.settings.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.advanced-content.settings.tab_heading_size.label"
+    },
+    {
+      "type": "text",
+      "id": "tab_description",
+      "label": "t:sections.advanced-content.settings.tab_description.label"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_description_2",
+      "label": "Description 2"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "style_btn",
+      "label": "Style Button",
+      "default": "btn-base",
+      "options": [
+        {
+          "value": "btn-base",
+          "label": "Button Base"
+        },
+        {
+          "value": "btn-outline",
+          "label": "Button Out Line"
+        },
+        {
+          "value": "btn-outline-white",
+          "label": "Button Out Line White"
+        },
+        {
+          "value": "btn-line",
+          "label": "Button Line"
+        },
+        {
+          "value": "btn-line-black",
+          "label": "Button Line Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+      "type": "header",
+      "content": "Settings Carousel"
+    },
+    {
+      "type": "range",
+      "id": "perviewDesktop",
+      "label": "Per View Desktop",
+      "max": 6,
+      "min": 1,
+      "step": 1,
+      "unit": " c",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "spaceBetween",
+      "label": "Space Between",
+      "max": 40,
+      "min": 0,
+      "step": 1,
+      "unit": " sp",
+      "default": 30
+    },
+    {
+      "type": "checkbox",
+      "id": "arrows",
+      "label": "Arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "dots",
+      "label": "Dots",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "sw_direction",
+      "options": [
+        {
+          "value": "horizontal",
+          "label": "Horizontal"
+        },
+        {
+          "value": "vertical",
+          "label": "Vertical"
+        }
+      ],
+      "default": "vertical",
+      "label": "Direction"
+    },
+    {
+      "type": "header",
+      "content": "Settings Item"
+    },
+    {
+      "type": "color",
+      "id": "bg_item",
+      "label": "Background Color",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "color_1",
+      "label": "Color job"
+    },
+    {
+      "type": "color",
+      "id": "color_2",
+      "label": "Color name"
+    },
+    {
+      "type": "color",
+      "id": "color_3",
+      "label": "Color description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "team",
+      "name": "Team item",
+      "settings": [
+        {
+            "type": "image_picker",
+            "id": "team_img",
+            "label": "Image"
+        },
+        {
+            "type": "text",
+            "id": "team_job",
+            "label": "Job"
+        },
+        {
+            "type": "text",
+            "id": "team_name",
+            "label": "Name"
+        },
+        {
+            "type": "richtext",
+            "id": "team_des",
+            "label": "Description"
+        },
+        {
+            "type": "header",
+            "content": "Settings Social"
+        },
+        {
+            "type": "url",
+            "id": "social_facebook",
+            "label": "Facebook"
+        },
+        {
+            "type": "url",
+            "id": "social_tw",
+            "label": "X"
+        },
+        {
+            "type": "url",
+            "id": "social_instagram",
+            "label": "Instagram"
+        },
+        {
+            "type": "url",
+            "id": "social_pinterest",
+            "label": "Pinterest"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Team Carousel"
+    }
+  ]
+}
+{% endschema %}

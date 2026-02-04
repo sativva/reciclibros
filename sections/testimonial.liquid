@@ -1,0 +1,544 @@
+{{ 'testimonial.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --heading-color: {{ section.settings.heading_color | color_extract: 'red' }}, {{ section.settings.heading_color | color_extract: 'green' }}, {{ section.settings.heading_color | color_extract: 'blue' }};
+    --color-body: {{ section.settings.text_color | color_extract: 'red' }}, {{ section.settings.text_color | color_extract: 'green' }}, {{ section.settings.text_color | color_extract: 'blue' }};
+    --ap-nextap-buttonprev-background: {{ section.settings.prev_next_button_background | color_extract: 'red' }}, {{ section.settings.prev_next_button_background | color_extract: 'green' }}, {{ section.settings.prev_next_button_background | color_extract: 'blue' }};
+    --ap-nextap-buttonprev-color: {{ section.settings.prev_next_button_color | color_extract: 'red' }}, {{ section.settings.prev_next_button_color | color_extract: 'green' }}, {{ section.settings.prev_next_button_color | color_extract: 'blue' }};
+  }
+
+  {%- if section.settings.background_image_inner != blank -%}
+  .ap-listtestimonial {
+    background-image: url({{ section.settings.background_image_inner | image_url: width: 2000 }});
+    background-size: cover;
+    background-position: center;
+  }
+  .ap-listtestimonial {
+    padding: 110px 0 160px;
+  }
+  {%- endif -%}
+
+  .quote-rating {
+    display: inline-block;
+    margin: 0 0 4px;
+    line-height: 1;
+  }
+  .quote-rating li {
+    float: left;
+    padding: 0 4px;
+  }
+  .ap-listtestimonial__left {
+    width: 100%;
+    padding: 0 15px;
+    position: relative;
+  }
+
+  {% if section.settings.enable_padding_inner %}
+  .ap-listtestimonial {
+    padding: 110px 0 160px;
+  }
+  {% else %}
+  .ap-listtestimonial {
+    padding: 0;
+  }
+  {% endif %}
+
+  .ap-listtestimonial__wrapper {
+    width: 100%;
+
+    {% if section.settings.enable_padding_inner %}
+    padding: 0 15px;
+    {% else %}
+    padding: 0;
+    {% endif %}
+
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    flex-direction: column;
+  }
+  @media (min-width: 768px) {
+    .ap-listtestimonial__wrapper {
+      width: {{ section.settings.width_content }}%;
+    }
+  }
+
+  #shopify-section-{{ section.id }} img.testimonial__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #shopify-section-{{ section.id }} .ap-blockquote {
+    font-size: 48px;
+    line-height: 64px;
+    padding: 0 0 40px;
+  }
+  .testimonial__info {
+    font-size: 14px;
+    line-height: 26px;
+  }
+
+  @media (max-width: 576px) {
+    #shopify-section-{{ section.id }} .ap-blockquote {
+      font-size: 32px;
+      line-height: 1.4;
+      padding: 0 0 40px;
+    }
+  }
+
+  /* DOTS */
+  #shopify-section-{{ section.id }} .dots-nav__item[ap-currentaria=true] {
+    width: 12px;
+    height: 12px;
+    background-color: transparent;
+    border: 2px solid var(--primary);
+  }
+  #shopify-section-{{ section.id }} .dots-nav__item {
+    width: 6px;
+    height: 6px;
+    margin: 0 20px 0 0;
+    background: {{ section.settings.sub_color }};
+    border-radius: 50%;
+  }
+  .text-center .dots-nav {
+    justify-content: center;
+  }
+  .text-right .dots-nav {
+    justify-content: end;
+  }
+  </style>
+
+{% render 'section-style' %}
+  
+<section class="section testimonials-section">
+    <div class="{{ section.settings.setwidthout }}">
+        <ap-listtestimonial reveal-on-scroll="" class="ap-listtestimonial ap-object-loaded">
+            {% render 'section-heading' %}
+  
+              <div class="ap-listtestimonial__wrapper text-{{ section.settings.text_align_item }}">
+                  {% for block in section.blocks %}
+                    {% case block.type %}
+                      {%- when 'testimonial' -%}
+                      <ap-testimonialitem id="block-{{ block.id }}" class="testimonial" {% if forloop.index != 1 %}hidden=""{% endif %}>
+                          <div class="testimonial-info">
+                            {% if block.settings.info__title != blank %}
+                            <div class="testimonial-info__title sub-heading">
+                              {{ block.settings.info__title }}
+                            </div>
+                            {% endif %}
+                            <ap-blockquote style="color: {{ section.settings.color_content }}" class="testimonial__content ap-blockquote">
+                              <ap-splitlines ap-revealvisibility="">
+                                  {{ block.settings.content }}
+                              </ap-splitlines>
+                            </ap-blockquote>
+                            <div class="testimonial-info-content">
+                              {% if block.settings.rate != 0 %}
+                                <ul class="quote-rating list-unstyled">
+                                    {% for i in (1..5) %}
+                                    {% assign iMax = block.settings.rate %}
+                                    {% if i <= iMax %}
+                                        <li class="rated">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                            <path d="M2.295 12L3.69 7.44L0 4.8H4.56L6 0L7.44 4.8H12L8.31 7.44L9.705 12L6 9.18L2.295 12Z"
+                                              fill="#FE7232" />
+                                          </svg>
+                                        </li>
+                                    {% else %}
+                                        <li>
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                            <path d="M2.295 12L3.69 7.44L0 4.8H4.56L6 0L7.44 4.8H12L8.31 7.44L9.705 12L6 9.18L2.295 12Z"
+                                              fill="#000" />
+                                          </svg>
+                                        </li>
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
+                              {% endif %}
+                              <p style="color: {{ section.settings.color_author }}" ap-revealvisibility="" class="testimonial__author sub-heading my-0 mb-1">
+                                {{ block.settings.author }}
+                              </p>
+                              <p style="color: {{ section.settings.color_info }}" ap-revealvisibility="" class="testimonial__info my-0">{{ block.settings.info }}</p>
+                            </div>
+                          </div>
+                      </ap-testimonialitem>
+
+                    {% endcase %}
+                  {% endfor %}
+                  <div class="ap-listtestimonial__nav mt-40">
+                    {% if section.settings.show_arrow %}
+                    <ap-button-nextprev
+                      class="ap-listtestimonial__ap-button-nextprev ap-button-nextprev ap-button-nextprev--row hd-phone">
+                      <button class="ap-listtestimonial__arrow ap-nextap-buttonprev ap-nextap-buttonprev--prev">
+                        <span class="visually-hidden">Previous</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                          <path
+                            d="M7.40991 10.59L2.82991 6L7.40991 1.41L5.99991 0L-8.7738e-05 6L5.99991 12L7.40991 10.59Z"
+                            fill="black" />
+                        </svg>
+                      </button>
+                  
+                      <button class="ap-listtestimonial__arrow ap-nextap-buttonprev ap-nextap-buttonprev--next">
+                        <span class="visually-hidden">Next</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                          <path
+                            d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
+                            fill="black" />
+                        </svg>
+                      </button>
+                    </ap-button-nextprev>
+                    {% endif %}
+                  
+                    {% if section.settings.show_nav %}
+                    <ap-pagedots class="ap-listtestimonial__dots dots-nav">
+                      {% for block in section.blocks %}
+                        {% case block.type %}
+                        {%- when 'testimonial' -%}
+                          <button class="dots-nav__item tap-area" {% if forloop.first %}ap-currentaria="true"{% else %}ap-currentaria="false"{% endif %}>
+                            {% if block.settings.img_info != blank %}
+                              <img class="testimonial-imgdot" loading="lazy" 
+                                sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                                alt="" 
+                                src="{{ block.settings.img_info | image_url: width: block.settings.img_info.width }}" 
+                                data-srcset="
+                                  {%- if block.settings.img_info.width >= 3000 -%}{{ block.settings.img_info | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                                  {{ block.settings.img_info | image_url }} {{ block.settings.img_info.width }}w"
+                                src="{{ block.settings.img_info | image_url: width: 1500 }}"
+                                height="{{ block.settings.img_info.height }}"
+                                width="{{ block.settings.img_info.width }}">
+                            {% endif %}
+                            <span class="visually-hidden">Go to slide</span>
+                          </button>
+
+                        {% endcase %}
+                      {% endfor %}
+                    </ap-pagedots>
+                    {% endif %}
+                  </div>
+              </div>
+
+        </ap-listtestimonial>
+    </div>
+    
+</section>
+
+{% schema %}
+{
+  "name": "Testimonial",
+  "tag": "section",
+  "class": "shopify-section--testimonials",
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Set Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "t:sections.all.padding_mobile.label",
+      "info": "t:sections.all.padding_mobile.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow",
+      "label": "Show Arrow",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_nav",
+      "label": "t:sections.all.show_nav.label",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_inner",
+      "label": "Background Image Inner"
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "default": "#ffffff",
+      "label": "t:sections.all.background-color.label"
+    },
+    {
+      "type": "color",
+      "id": "sub_color",
+      "default": "#282828",
+      "label": "Sub color"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.advanced-content.settings.heading_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.advanced-content.settings.text_color.label"
+    },
+    {
+      "type": "liquid",
+      "id": "sub_heading",
+      "default": "Sub heading",
+      "label": "Sub Heading"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.advanced-content.settings.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.advanced-content.settings.tab_heading_size.label"
+    },
+    {
+      "type": "text",
+      "id": "tab_description",
+      "label": "t:sections.advanced-content.settings.tab_description.label"
+    },
+    {
+      "type": "liquid",
+      "id": "h_description_2",
+      "label": "Description / HTML"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "style_btn",
+      "label": "Style Button",
+      "default": "btn-base",
+      "options": [
+        {
+          "value": "btn-base",
+          "label": "Button Base"
+        },
+        {
+          "value": "btn-outline",
+          "label": "Button Out Line"
+        },
+        {
+          "value": "btn-line",
+          "label": "Button Line"
+        },
+        {
+          "value": "btn-line-black",
+          "label": "Button Line Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+      "type": "color",
+      "id": "prev_next_button_background",
+      "default": "#FFFFFF",
+      "label": "t:sections.all.prev_next_button_background.label"
+    },
+    {
+      "type": "color",
+      "id": "prev_next_button_color",
+      "default": "#282828",
+      "label": "t:sections.all.prev_next_button_color.label"
+    },
+    {
+      "type": "header",
+      "content": "Item"
+    },
+    {
+      "type": "range",
+      "id": "width_content",
+      "min": 50,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Width of Content",
+      "default": 100
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_padding_inner",
+      "label": "Enable Padding Inner",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "text_align_item",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+      "type": "header",
+      "content": "Color Item"
+    },
+    {
+      "type": "color",
+      "id": "color_content",
+      "default": "#282828",
+      "label": "Color Content"
+    },
+    {
+      "type": "color",
+      "id": "color_author",
+      "default": "#282828",
+      "label": "Color Author"
+    },
+    {
+      "type": "color",
+      "id": "color_info",
+      "default": "#282828",
+      "label": "Color Info"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img_info",
+          "label": "Testimonial image dots"
+        },
+        {
+          "type": "text",
+          "id": "info__title",
+          "default": "Testimonial Title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "default": "Testimonial content",
+          "label": "content"
+        },
+        {
+          "type": "liquid",
+          "id": "author",
+          "default": "Author",
+          "label": "Author"
+        },
+        {
+          "type": "range",
+          "id": "rate",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        },
+        {
+          "type": "liquid",
+          "id": "info",
+          "default": "Info",
+          "label": "Info"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,53 @@
+.banner-carousel-content-item {
+  position: relative;
+}
+.banner-carousel-content {
+  position: relative;
+}
+.banner-carousel .ap-nextap-buttonprev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all.4s;
+  opacity: 0;
+  visibility: hidden;
+}
+.banner-carousel .ap-nextap-buttonprev--prev {
+  left: 0;
+}
+.banner-carousel .ap-nextap-buttonprev--next {
+  right: 0;
+}
+.banner-carousel-content:hover .ap-nextap-buttonprev {
+  opacity: 1;
+  visibility: visible;
+}
+.banner-carousel .mb-123 {
+  margin-bottom: 123px;
+}
+.banner-carousel .mb-105 {
+  margin-bottom: 105px;
+}
+.banner-carousel .mb-115 {
+  margin-bottom: 115px;
+}
+.banner-carousel .mb-105,
+.banner-carousel .mb-115,
+.banner-carousel .description .mb-20,
+.banner-carousel .mb-123 {
+  display: inline-block;
+}
+.banner-carousel-content .scroller {
+  margin: 0;
+}
+img.banner-carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 480px) {
+  .banner-carousel-img {
+    object-fit: cover;
+  }
+}

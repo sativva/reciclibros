@@ -1,0 +1,994 @@
+{{ 'slideshow.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --progress-bar-color: {{ section.settings.progress_bar_color | color_extract: 'red' }}, {{ section.settings.progress_bar_color | color_extract: 'green' }}, {{ section.settings.progress_bar_color | color_extract: 'blue' }};
+    --section-autoplay-duration: {{ section.settings.autoplay_duration }}s;
+    --section-animation-play-state: paused;
+    background-color: {{ section.settings.background_color }};
+
+    position: relative;
+
+    --slide-font-size: {{ section.settings.slide_font_size }}px;
+    --slide-font-weight: {{ section.settings.slide_font_weight }};
+    --slide-font-spacing: {{ section.settings.slide_font_spacing }}em;
+    --slide-font-lineheight: {{ section.settings.slide_font_lineheight }};
+    --slide-font-transform: {{ section.settings.slide_font_transform }};
+  }
+  {% for block in section.blocks %}
+    #block-{{ block.id }} {
+      --heading-color: {{ block.settings.heading_color | color_extract: 'red' }}, {{ block.settings.heading_color | color_extract: 'green' }}, {{ block.settings.heading_color | color_extract: 'blue' }};
+      --color-body: {{ block.settings.text_color | color_extract: 'red' }}, {{ block.settings.text_color | color_extract: 'green' }}, {{ block.settings.text_color | color_extract: 'blue' }};
+      --primary-button-background: {{ block.settings.button_background | color_extract: 'red' }}, {{ block.settings.button_background | color_extract: 'green' }}, {{ block.settings.button_background | color_extract: 'blue' }};
+      --primary-button-text-color: {{ block.settings.button_text_color | color_extract: 'red' }}, {{ block.settings.button_text_color | color_extract: 'green' }}, {{ block.settings.button_text_color | color_extract: 'blue' }};
+      --primary-button-text-hover: {{ block.settings.button_text_color_hover | color_extract: 'red' }}, {{ block.settings.button_text_color_hover | color_extract: 'green' }}, {{ block.settings.button_text_color_hover | color_extract: 'blue' }};
+      --primary-button-bg-hover: {{ block.settings.button_bg_hover | color_extract: 'red' }}, {{ block.settings.button_bg_hover | color_extract: 'green' }}, {{ block.settings.button_bg_hover | color_extract: 'blue' }};
+      --button-overlay-opacity: {{ block.settings.button_opacity | divided_by: 10.0 }};
+
+      --section-blocks-alignment: center;
+      --section-blocks-overlay-color: {{ block.settings.blocks_overlay_color | color_extract: 'red' }}, {{ block.settings.blocks_overlay_color | color_extract: 'green' }}, {{ block.settings.blocks_overlay_color | color_extract: 'blue' }};
+      --section-blocks-overlay-opacity: {{ block.settings.overlay_opacity | divided_by: 10.0 }};
+    }
+
+    #block-{{ block.id }} .slideshow__image {
+      -o-object-position: {{ block.settings.position_image_mb }};
+      object-position: {{ block.settings.position_image_mb }};
+    }
+  {% endfor %}
+
+  #shopify-section-{{ section.id }} .slide__heading {
+    font-weight: var(--slide-font-weight);
+    font-size: var(--slide-font-size);
+    line-height: var(--slide-font-lineheight);
+    letter-spacing:var(--slide-font-spacing);
+    text-transform: var(--slide-font-transform);
+  }
+
+  {% if section.settings.show_bg_content %}
+  #shopify-section-{{ section.id }} .content-box {
+    padding: 70px;
+    background-color: var(--primary);
+    border-radius: 10px;
+    max-width: 490px;
+  }
+  {% endif %}
+
+  #shopify-section-{{ section.id }} .button-group .button {
+    margin: 0;
+  }
+
+  /* ARROW */
+  #shopify-section-{{ section.id }} .ap-listslideshow__arrow {
+    background-color: {{ section.settings.bg_btn_arrow }};
+    color: {{ section.settings.color_btn_arrow }};
+    border: none;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: unset;
+    z-index: 1;
+    transition: all .4s;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 20px;
+  }
+  #shopify-section-{{ section.id }} .slideshow:hover .ap-listslideshow__arrow {
+    opacity: 1;
+    visibility: visible;
+  }
+  #shopify-section-{{ section.id }} .slideshow:hover .ap-listslideshow__arrow:hover {
+    background-color: var(--primary-2);
+    color: {{ section.settings.bg_btn_arrow }};
+  }
+  #shopify-section-{{ section.id }} .ap-listslideshow__arrow i.fa {
+    font-size: 16px;
+  }
+  #shopify-section-{{ section.id }} .sl-btn-prev {
+    left: 90px;
+    right: unset;
+  }
+  #shopify-section-{{ section.id }} .sl-btn-next {
+    right: 90px;
+    left: unset;
+  }
+  #shopify-section-{{ section.id }} .slideshow:hover .sl-btn-prev {
+    left: 50px;
+  }
+  #shopify-section-{{ section.id }} .slideshow:hover .sl-btn-next {
+    right: 50px;
+  }
+  #shopify-section-{{ section.id }} .ap-listslideshow__ap-button-nextprev {
+    display: block;
+  }
+  /* END */
+
+  /* DOT */
+  #shopify-section-{{ section.id }} .slideshow__progress-bar:before, .slideshow__progress-bar:after {
+    height: 8px;
+  }
+  .slideshow__progress-bar[ap-currentaria="true"]:before {
+    background: var(--primary);
+    width: 24px;
+  }
+  #shopify-section-{{ section.id }} .slideshow__nav {
+
+  }
+  /* end */
+
+  @media (max-width: 991px) {
+    {% if section.settings.show_bg_content %}
+      #shopify-section-{{ section.id }} .content-box {
+      padding: 30px;
+      max-width: 400px;
+    }
+    {% endif %}
+    #shopify-section-{{ section.id }} .slide__heading {
+      font-size: 60px;
+    }
+  }
+
+@media only screen and (max-width:749px) {
+  .mobile--slideshow-250{
+    --slideshow-height: 250px !important;
+  }
+  .mobile--slideshow-300{
+    --slideshow-height: 300px !important;
+  }
+  .mobile--slideshow-400{
+    --slideshow-height: 400px !important;
+  }
+  .mobile--slideshow-500{
+    --slideshow-height: 500px !important;
+  }
+  .mobile--slideshow-full{
+    --slideshow-height: 100vh !important;
+  }
+
+  #shopify-section-{{ section.id }} .slide__heading {
+    font-size: 38px;
+  }
+}
+
+@media only screen and (min-width:750px) {
+  .slideshow--desktop-900{
+    --slideshow-height: 900px;
+  }
+  .slideshow--desktop-830{
+    --slideshow-height: 830px;
+  }
+  .slideshow--desktop-750{
+    --slideshow-height: 750px;
+  }
+  .slideshow--desktop-670 {
+    --slideshow-height: 670px;
+  }
+  .slideshow--desktop-550{
+    --slideshow-height: 550px;
+  }
+  .slideshow--desktop-full{
+    --slideshow-height: 100vh;
+  }
+}
+
+.slideshow__slide {
+  height: var(--slideshow-height)
+}
+{%- endstyle -%}
+
+{% render 'section-style' %}
+
+<section class="section section--flush {{ section.settings.class }}">
+  <div class="{{ section.settings.setwidthout }}">
+    <div class="slide-row">
+      <ap-slideshow reveal-on-scroll="" {% if section.settings.auto_play %}auto-play=""{% endif %} transition-type="sweep" class="slideshow {{ section.settings.slideshow_height }} {{ section.settings.slideshow_height_mobile }}  ap-object-loaded" style="">
+        <div class="slideshow__slide-list">
+  
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'slide' -%}
+                <ap-slideshowitem ap-revealvisibility="" id="block-{{ block.id }}" class="slideshow__slide {% if block.settings.image_2 %}slideshow__slide--split{% endif %} slideshow__slide--sweep" {% if forloop.first %}style="visibility: visible;"{% else %}style="visibility: hidden;"{% endif %} {% if forloop.index > 1 %}hidden=""{% endif %}>
+                  <div class="slideshow__slide-inner">
+                    {% if block.settings.image_1 %}
+                      <div class="slideshow__image-wrapper slideshow__image-wrapper--first">
+                        <img src="{{ block.settings.image_1 | image_url: width: 3000 }}" 
+                         data-srcset="{{ block.settings.image_1 | image_url: width: 400 }} 400w, {{ block.settings.image_1 | image_url: width: 500 }} 500w, {{ block.settings.image_1 | image_url: width: 600 }} 600w, {{ block.settings.image_1 | image_url: width: 700 }} 700w, {{ block.settings.image_1 | image_url: width: 800 }} 800w, {{ block.settings.image_1 | image_url: width: 900 }} 900w, {{ block.settings.image_1 | image_url: width: 1000 }} 1000w, {{ block.settings.image_1 | image_url: width: 1200 }} 1200w, {{ block.settings.image_1 | image_url: width: 3000 }} 1400w" 
+                          loading="eager" draggable="false" class="slideshow__image" sizes="100vw" width="{{ block.settings.image_1.width }}" height="{{ block.settings.image_1.height }}" alt="">
+                      </div>
+                    {% endif %}   
+                    {% if block.settings.image_2 %}
+                      <div class="slideshow__image-wrapper slideshow__image-wrapper--secondary">
+                        <img src="{{ block.settings.image_2 | image_url: width: 3000 }}" 
+                         data-srcset="{{ block.settings.image_2 | image_url: width: 400 }} 400w, {{ block.settings.image_2 | image_url: width: 500 }} 500w, {{ block.settings.image_2 | image_url: width: 600 }} 600w, {{ block.settings.image_2 | image_url: width: 700 }} 700w, {{ block.settings.image_2 | image_url: width: 800 }} 800w, {{ block.settings.image_2 | image_url: width: 900 }} 900w, {{ block.settings.image_2 | image_url: width: 1000 }} 1000w, {{ block.settings.image_2 | image_url: width: 1200 }} 1200w, {{ block.settings.image_2 | image_url: width: 3000 }} 1400w" 
+                          loading="eager" draggable="false" class="slideshow__image" sizes="100vw" width="{{ block.settings.image_2.width }}" height="{{ block.settings.image_2.height }}" alt="">
+                      </div>
+                    {% endif %}
+                    {% if block.settings.image_mobile %}
+                      <div class="slideshow__image-wrapper hd-tablet-s">
+                        <img src="{{ block.settings.image_mobile | image_url: width: 3000 }}" 
+                         data-srcset="{{ block.settings.image_mobile | image_url: width: 400 }} 400w, {{ block.settings.image_mobile | image_url: width: 500 }} 500w, {{ block.settings.image_mobile | image_url: width: 600 }} 600w, {{ block.settings.image_mobile | image_url: width: 700 }} 700w, {{ block.settings.image_mobile | image_url: width: 800 }} 800w, {{ block.settings.image_mobile | image_url: width: 900 }} 900w, {{ block.settings.image_mobile | image_url: width: 1000 }} 1000w, {{ block.settings.image_mobile | image_url: width: 1200 }} 1200w, {{ block.settings.image_mobile | image_url: width: 3000 }} 1400w" 
+                          loading="eager" draggable="false" class="slideshow__image" sizes="100vw" width="{{ block.settings.image_mobile.width }}" height="{{ block.settings.image_mobile.height }}" alt="">
+                      </div>
+                    {% endif %}
+  
+                    <div class="{{ section.settings.setwidthout_content }}">
+                      <ap-splitlines class="slideshow__text-wrapper slideshow__text-wrapper--middle vertical-breather content-box--{{ block.settings.box_align }}">
+                        <div reveal="" class="content-box content-box--{{ block.settings.box_size }} content-box--text-{{ block.settings.text_align }} text-container">
+                          {% if block.settings.subheading != blank %}
+                            <h3 style="color: {{ block.settings.color_subheading }}" class="sub-heading mb-10">
+                                {% assign subheading = block.settings.subheading | split: "|" %}
+                                {% for item in subheading %}
+                                  <span style="display: block;">{{ item | strip }}</span>
+                                {% endfor %}
+                            </h3>
+                          {% endif %}
+                          {% if block.settings.heading != blank %}
+                            <h2 class="heading slide__heading my-0 mb-14">
+                                {% assign heading = block.settings.heading | split: "|" %}
+                                {% for item in heading %}
+                                  <span style="display: block;">{{ item | strip }}</span>
+                                {% endfor %}
+                            </h2>
+                          {% endif %}
+                          {% if block.settings.description != blank  %}
+                          <div style="color: {{ block.settings.color_des }}" class="description mb-md-3 pb-1">
+                              {% assign description = block.settings.description | split: "|" %}
+                              {% for item in description %}
+                                <span style="display: block;">{{ item | strip }}</span>
+                              {% endfor %}
+                          </div>
+                          {% endif %}
+                          <div style="{% if block.settings.slide_morecontent != blank %}gap: 20px;{% endif %}" class="button-group {% if block.settings.slide_morecontent != blank %}d-flex flex-wrap{% endif %}">
+                            <style>
+                              #block-{{ block.id }} .btn-outline, 
+                              #block-{{ block.id }} .btn-line ,  
+                              #block-{{ block.id }} .btn-base {
+                                color: {{ block.settings.color_btn }};
+                                background-color: {{ block.settings.bg_btn }};
+                                border-color: {{ block.settings.bg_btn }};
+                              }
+                              #block-{{ block.id }} .btn-outline, 
+                              #block-{{ block.id }} .btn-line {
+                                background-color: transparent;
+                              }
+                              #block-{{ block.id }} .btn-outline {
+                                border-color: {{ block.settings.bg_btn }};
+                              }
+                              #block-{{ block.id }} .btn-outline:hover, 
+                              #block-{{ block.id }} .btn-line:hover ,
+                              #block-{{ block.id }} .btn-base:hover {
+                                color: {{ block.settings.color_btn_hover }};
+                                background-color: {{ block.settings.bg_btn_hover }};
+                                border-color: {{ block.settings.bg_btn_hover }};
+                              }
+                              #block-{{ block.id }} .btn-line:hover {
+                                background-color: transparent;
+                              }
+                            </style>
+                            {% if block.settings.button1_label == blank or block.settings.button2_label == blank %}
+                              <div class="button-wrapper">
+                            {% else %}
+                              <div class="button-group__wrapper">
+                            {% endif %}
+                              {%- if block.settings.button1_label != blank -%}
+                                <a href="{{ block.settings.link1 }}" class="button {{ block.settings.style_btn }}">
+                                  <span>
+                                    {{- block.settings.button1_label -}}
+                                  </span>
+                                </a>
+                              {%- endif -%}
+                              {% if block.settings.button2_label != blank %}
+                                <a href="{{ block.settings.link2 }}" class="button {{ block.settings.style_btn_2 }}">
+                                  <span>
+                                    {{- block.settings.button2_label -}}
+                                  </span>
+                                </a>
+                              {% endif %}
+                              </div>
+                              
+                              {% if block.settings.slide_morecontent != blank %}
+                              <span class="slideshow-morecontent">
+                                {{ block.settings.slide_morecontent }}
+                              </span>
+                              {% endif %}
+
+                            </div>
+                        </div>
+                      </ap-splitlines>
+                      </div>
+                      
+                  </div>
+                </ap-slideshowitem>
+  
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+        {% if section.settings.show_dot %}
+        <ap-pagedots animation-timer="" class="slideshow__nav container">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'slide' -%}
+                <button class="slideshow__progress-bar" ap-controlsaria="block-{{ block.id }}" ap-currentaria="{% if forloop.index == 1 %}true{% else %}false{% endif %}">
+                </button>
+            {%- endcase -%}
+          {%- endfor -%}
+        </ap-pagedots>
+        {% endif %}
+        {% if section.settings.show_btn %}
+          <ap-button-nextprev class="ap-listslideshow__ap-button-nextprev ap-button-nextprev ap-button-nextprev--row">
+              <button class="ap-listslideshow__arrow ap-nextap-buttonprev ap-nextap-buttonprev--prev sl-btn-prev">
+                  <span class="visually-hidden">Previous</span>
+                  <i class="fa fa-light fa-chevron-left"></i>
+              </button>
+    
+              <button class="ap-listslideshow__arrow ap-nextap-buttonprev ap-nextap-buttonprev--next sl-btn-next">
+                  <span class="visually-hidden">Next</span>
+                  <i class="fa fa-light fa-chevron-right"></i>
+              </button>
+          </ap-button-nextprev>
+        {% endif %}
+        <div class="slideshow-social">
+          {% liquid
+            assign _show_social = false
+            if section.settings.social_facebook != blank
+              assign _show_social = true
+            endif
+            if section.settings.social_tw != blank
+              assign _show_social = true
+            endif
+            if section.settings.social_pinterest != blank
+              assign _show_social = true
+            endif
+            if section.settings.social_linkedin != blank
+              assign _show_social = true
+            endif      
+          %}
+          {%- if _show_social == true -%}
+            <div class="slideshow__item-content">
+              <ul class="social-media social-media--no-radius list--unstyled" role="list">
+                {%- if section.settings.social_facebook != blank -%}
+                  <li class="social-media__item social-media__item--facebook">
+                    <a href="{{ section.settings.social_facebook }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on Facebook">
+                    <svg focusable="false" width="9" height="17" class="icon icon--facebook   " viewBox="0 0 9 17">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M2.486 16.2084L2.486 8.81845H0L0 5.93845L2.486 5.93845L2.486 3.81845C2.38483 2.79982 2.73793 1.78841 3.45107 1.05407C4.16421 0.319722 5.16485 -0.0628415 6.186 0.00844868C6.9284 0.00408689 7.67039 0.0441585 8.408 0.128449V2.69845L6.883 2.69845C6.4898 2.61523 6.08104 2.73438 5.79414 3.01585C5.50724 3.29732 5.3803 3.70373 5.456 4.09845L5.456 5.93845H8.308L7.936 8.81845H5.46L5.46 16.2084H2.486Z" fill="currentColor"></path>
+                    </svg>
+                    <span class="text-social">{{ 'general.social.links.facebook' | t }}</span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if section.settings.social_tw != blank -%}
+                  <li class="social-media__item social-media__item--tw">
+                    <a href="{{ section.settings.social_tw }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on tw">
+                      <svg class="icon icon--tw" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 50 50" width="50px" height="50px">
+                        <path d="M 50.0625 10.4375 C 48.214844 11.257813 46.234375 11.808594 44.152344 12.058594 C 46.277344 10.785156 47.910156 8.769531 48.675781 6.371094 C 46.691406 7.546875 44.484375 8.402344 42.144531 8.863281 C 40.269531 6.863281 37.597656 5.617188 34.640625 5.617188 C 28.960938 5.617188 24.355469 10.21875 24.355469 15.898438 C 24.355469 16.703125 24.449219 17.488281 24.625 18.242188 C 16.078125 17.8125 8.503906 13.71875 3.429688 7.496094 C 2.542969 9.019531 2.039063 10.785156 2.039063 12.667969 C 2.039063 16.234375 3.851563 19.382813 6.613281 21.230469 C 4.925781 21.175781 3.339844 20.710938 1.953125 19.941406 C 1.953125 19.984375 1.953125 20.027344 1.953125 20.070313 C 1.953125 25.054688 5.5 29.207031 10.199219 30.15625 C 9.339844 30.390625 8.429688 30.515625 7.492188 30.515625 C 6.828125 30.515625 6.183594 30.453125 5.554688 30.328125 C 6.867188 34.410156 10.664063 37.390625 15.160156 37.472656 C 11.644531 40.230469 7.210938 41.871094 2.390625 41.871094 C 1.558594 41.871094 0.742188 41.824219 -0.0585938 41.726563 C 4.488281 44.648438 9.894531 46.347656 15.703125 46.347656 C 34.617188 46.347656 44.960938 30.679688 44.960938 17.09375 C 44.960938 16.648438 44.949219 16.199219 44.933594 15.761719 C 46.941406 14.3125 48.683594 12.5 50.0625 10.4375 Z"/>
+                      </svg>
+                      <span class="text-social">{{ 'general.social.links.tw' | t }}</span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if section.settings.social_pinterest != blank -%}
+                  <li class="social-media__item social-media__item--pinterest">
+                    <a href="{{ section.settings.social_pinterest }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on Pinterest">
+                      <svg focusable="false" width="12" height="16" class="icon icon--pinterest   " viewBox="0 0 12 16">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.8042 0.00123531C8.79537 -0.0442356 10.6685 1.16769 11.5498 3.29299C11.8407 3.99433 12.1516 5.28439 11.9181 6.35474C11.825 6.78208 11.7985 7.22812 11.6726 7.63086C11.4163 8.4496 11.0829 9.17441 10.6413 9.79945C10.0418 10.6486 9.13196 11.2212 7.98951 11.5091C6.97899 11.7637 6.04959 11.3826 5.50954 10.9732C5.33747 10.843 5.10674 10.6728 5.04304 10.4377C5.03488 10.4377 5.0267 10.4377 5.01853 10.4377C4.97972 10.8669 4.81532 11.3224 4.69924 11.7135C4.53858 12.2545 4.50733 12.8146 4.3064 13.3208C4.08349 13.8828 3.81274 14.3978 3.52072 14.8776C3.36739 15.1292 2.94427 15.9904 2.63675 16C2.60311 15.9354 2.58964 15.9105 2.58761 15.796C2.48858 15.6383 2.55757 15.3724 2.51393 15.1578C2.44604 14.8236 2.39317 14.2217 2.46491 13.8824C2.46491 13.7038 2.46491 13.5248 2.46491 13.3465C2.54397 12.9786 2.54085 12.6015 2.63675 12.2494C2.84537 11.4824 2.96145 10.6699 3.17692 9.87611C3.38398 9.11352 3.57396 8.27939 3.74172 7.50321C3.77957 7.32789 3.56652 6.82389 3.52072 6.63572C3.37628 6.04186 3.48624 5.21874 3.66805 4.77269C3.89698 4.21111 4.56717 3.3535 5.43589 3.57359C6.13407 3.75039 6.57846 4.50528 6.34437 5.46192C6.09862 6.46589 5.7798 7.3653 5.5587 8.37035C5.50173 8.62933 5.59968 8.90442 5.65687 9.05958C5.86357 9.61934 6.49037 10.163 7.32652 9.95278C8.59396 9.63365 9.15431 8.48627 9.53645 7.24791C9.63981 6.91302 9.62743 6.59647 9.70831 6.22709C9.87894 5.44763 9.80648 4.28411 9.56098 3.67556C9.16753 2.70023 8.43329 2.07518 7.42471 1.73624C7.1465 1.68526 6.86819 1.63427 6.58988 1.58329C6.12397 1.47655 5.23532 1.63685 4.92023 1.73624C3.51171 2.18156 2.63952 2.92544 2.09658 4.26247C1.91177 4.71767 1.81046 5.17911 1.77741 5.81884C1.76913 5.8955 1.76094 5.97217 1.75278 6.04883C1.86153 6.62068 1.87259 6.99959 2.09658 7.42657C2.20715 7.63711 2.46971 7.8029 2.51393 8.06444C2.54001 8.2185 2.42705 8.45105 2.39125 8.57467C2.33705 8.76137 2.35676 8.97522 2.26844 9.13625C2.10873 9.42678 1.67383 9.20852 1.48275 9.08491C0.489307 8.44373 -0.329526 6.5895 0.132284 4.79837C0.20342 4.5218 0.206915 4.28118 0.304126 4.03285C0.906661 2.49554 1.80565 1.55101 3.10325 0.741098C3.58947 0.437749 4.24511 0.287354 4.84657 0.128885C5.16574 0.0863481 5.48503 0.0437917 5.8042 0.00123531Z" fill="currentColor"></path>
+                      </svg>
+                      <span class="text-social">{{ 'general.social.links.pinterest' | t }}</span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if section.settings.social_linkedin != blank -%}
+                  <li class="social-media__item social-media__item--linkedin">
+                    <a href="{{ section.settings.social_linkedin }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on LinkedIn">
+                      <svg fill="none" focusable="false" width="13" height="13" class="icon icon--linkedin   " viewBox="0 0 13 13">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.12412 1.56485C3.12412 0.70105 2.42432 0 1.56256 0C0.697275 0 0 0.70105 0 1.56485C0 2.42916 0.697275 3.13021 1.56256 3.13021C2.42432 3.13021 3.12412 2.42916 3.12412 1.56485ZM2.91019 13H0.213925V4.31649H2.91019V13ZM7.18264 4.31648H4.6004V13H7.29112V8.70525C7.29112 7.57205 7.50505 6.47473 8.90666 6.47473C10.2891 6.47473 10.3068 7.77018 10.3068 8.77702V13H13V8.23771C13 5.89903 12.496 4.10117 9.76892 4.10117C8.45812 4.10117 7.57871 4.82092 7.21948 5.50377H7.18264V4.31648Z" fill="currentColor"></path>
+                      </svg>
+                      <span class="text-social">{{ 'general.social.links.linkedin' | t }}</span>
+                    </a>
+                  </li>
+                {%- endif -%}
+              </ul>
+            </div>
+          {%- endif -%}
+        </div>
+      </ap-slideshow>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.slideshow.name",
+  "tag": "section",
+  "class": "shopify-section--slideshow",
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Set Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "setwidthout_content",
+      "label": "Set Width Content",
+      "default": "container",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "progress_bar_color",
+      "default": "#FFFFFF",
+      "label": "t:sections.all.progress_bar_color.label"
+    },
+    {
+      "type": "color",
+      "id": "bg_btn_arrow",
+      "label": "Background Arrow"
+    },
+    {
+      "type": "color",
+      "id": "color_btn_arrow",
+      "default": "#FFFFFF",
+      "label": "Color Arrow"
+    },
+    {
+      "type": "range",
+      "id": "autoplay_duration",
+      "min": 3,
+      "max": 9,
+      "step": 1,
+      "unit": "s",
+      "label": "t:sections.all.autoplay_duration.label",
+      "default": 5
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "default": "#282828",
+      "label": "t:sections.all.background_color.label"
+    },
+    {
+      "type": "select",
+      "id": "slideshow_height",
+      "options": [
+        {
+          "value": "slideshow--desktop-550",
+          "label": "550px"
+        },
+        {
+          "value": "slideshow--desktop-670",
+          "label": "670px"
+        },
+        {
+          "value": "slideshow--desktop-750",
+          "label": "750px"
+        },
+        {
+          "value": "slideshow--desktop-830",
+          "label": "830px"
+        },
+        {
+          "value": "slideshow--desktop-900",
+          "label": "900px"
+        },
+        {
+          "value": "slideshow--fit slideshow--desktop-full",
+          "label": "Full"
+        }
+      ],
+      "default": "slideshow--desktop-670",  
+      "label": "t:sections.all.slideshow_height.label"
+    },
+    {
+      "type": "select",
+      "id": "slideshow_height_mobile",
+      "label": "Mobile Height",
+      "default": "mobile--slideshow-500",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt to first image"     
+        },
+        {
+          "value": "mobile--slideshow-250",
+          "label": "250px"
+        },
+        {
+          "value": "mobile--slideshow-300",
+          "label": "300px"
+        },
+        {
+          "value": "mobile--slideshow-400",
+          "label": "400px"
+        },
+        {
+          "value": "mobile--slideshow-500",
+          "label": "500px"
+        },
+        {
+          "value": "full",
+          "label": "Full Screen"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_play",
+      "default": true,
+      "label": "Enable Auto Play"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dot",
+      "default": true,
+      "label": "t:sections.all.show_dot.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_btn",
+      "default": true,
+      "label": "Show Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bg_content",
+      "default": true,
+      "label": "Show Background text"
+    },
+    {
+      "type": "header",
+      "content": "------------- Title slideshow "
+    },
+    {
+      "type": "range",
+      "id": "slide_font_size",
+      "label": "Title slideshow  Font Size",
+      "max": 120,
+      "min": 12,
+      "step": 2,
+      "unit": " px",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "slide_font_weight",
+      "label": "Title slideshow  Font Weight",
+      "default": "400",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        },
+        {
+          "value": "900",
+          "label": "Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "slide_font_transform",
+      "label": "Slide Font Transform",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "slide_font_lineheight",
+      "label": "Title slideshow  Line Height",
+      "default": "1.2"
+    },
+    {
+      "type": "text",
+      "id": "slide_font_spacing",
+      "label": "Title slideshow  Spacing",
+      "default": "0"
+    },
+    {
+      "type": "header",
+      "content": "Margin slide"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_tablet",
+      "label": "t:sections.all.margin_tablet.label",
+      "info": "t:sections.all.margin_tablet.info"
+    },
+    {
+      "type": "header",
+      "content": "Social"
+    },
+    {
+      "type": "text",
+      "id": "social_facebook",
+      "label": "t:sections.all.social_facebook.label"
+    },
+    {
+      "type": "text",
+      "id": "social_tw",
+      "label": "x"
+    },
+    {
+      "type": "text",
+      "id": "social_pinterest",
+      "label": "t:sections.all.social_pinterest.label"
+    },
+    {
+      "type": "text",
+      "id": "social_linkedin",
+      "label": "t:sections.all.social_linkedin.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "t:sections.slideshow.blocks.slide.name",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Image left"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "t:sections.slideshow.blocks.slide.settings.image.label"
+        },
+        {
+          "type": "header",
+          "content": "Image right"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "t:sections.slideshow.blocks.slide.settings.image.label"
+        },
+        {
+          "type": "header",
+          "content": "Image for mobile"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image mobile"
+        },
+        {
+          "type": "select",
+          "id": "position_image_mb",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center",
+          "label": "Postion image mobile",
+          "info": "t:sections.slideshow.blocks.slide.settings.box_align.info"
+        },
+        {
+          "type": "header",
+          "content": "Sub Heading"
+        },
+        {
+          "type": "color",
+          "id": "color_subheading",
+          "label": "Color sub heading"
+        },
+        {
+          "type": "liquid",
+          "id": "subheading",
+          "default": "Tell your brand's story through images",
+          "label": "t:sections.slideshow.blocks.slide.settings.subheading.label"
+        },
+        {
+          "type": "header",
+          "content": "Heading"
+        },
+        {
+          "type": "liquid",
+          "id": "heading",
+          "default": "Image slide",
+          "label": "t:sections.slideshow.blocks.slide.settings.heading.label"
+        },
+        {
+          "type": "liquid",
+          "id": "description",
+          "default": "Description / HTML",
+          "label": "Description"
+        },
+        {
+          "type": "color",
+          "id": "color_des",
+          "label": "Color Description"
+        },
+        {
+          "type": "header",
+          "content": "Button 1"
+        },
+        {
+          "type": "liquid",
+          "id": "button1_label",
+          "default": "Button label",
+          "label": "t:sections.slideshow.blocks.slide.settings.button_label.label",
+          "info": "t:sections.slideshow.blocks.slide.settings.button_label.info"
+        },
+        {
+          "type": "url",
+          "id": "link1",
+          "label": "t:sections.slideshow.blocks.slide.settings.link.label"
+        },
+        {
+          "type": "select",
+          "id": "style_btn",
+          "label": "Style Button",
+          "default": "btn-base",
+          "options": [
+            {
+              "value": "btn-base",
+              "label": "Button Base"
+            },
+            {
+              "value": "btn-outline",
+              "label": "Button Out Line"
+            },
+            {
+              "value": "btn-line",
+              "label": "Button Line"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Button 2"
+        },
+        {
+          "type": "liquid",
+          "id": "button2_label",
+          "default": "Button label",
+          "label": "t:sections.slideshow.blocks.slide.settings.button_label.label",
+          "info": "t:sections.slideshow.blocks.slide.settings.button_label.info"
+        },
+        {
+          "type": "url",
+          "id": "link2",
+          "label": "t:sections.slideshow.blocks.slide.settings.link.label"
+        },
+        {
+          "type": "select",
+          "id": "style_btn_2",
+          "label": "Style Button",
+          "default": "btn-base",
+          "options": [
+            {
+              "value": "btn-base",
+              "label": "Button Base"
+            },
+            {
+              "value": "btn-outline",
+              "label": "Button Out Line"
+            },
+            {
+              "value": "btn-line",
+              "label": "Button Line"
+            }
+          ]
+        },
+        {
+          "type": "liquid",
+          "id": "slide_morecontent",
+          "label": "Add content custom / HTML"
+        },
+        {
+          "type": "header",
+          "content": "Style"
+        },
+        {
+          "type": "select",
+          "id": "box_size",
+          "options": [
+            {
+              "value": "small",
+              "label": "small"
+            },
+            {
+              "value": "medium",
+              "label": "medium"
+            },
+            {
+              "value": "large",
+              "label": "large"
+            }
+          ],
+          "default": "medium",
+          "label": "Content box size"
+        },
+        {
+          "type": "select",
+          "id": "box_align",
+          "options": [
+            {
+              "value": "left",
+              "label": "t:sections.slideshow.blocks.slide.settings.text_alignment.option_1.label"
+            },
+            {
+              "value": "center",
+              "label": "t:sections.slideshow.blocks.slide.settings.text_alignment.option_2.label"
+            },
+            {
+              "value": "right",
+              "label": "t:sections.slideshow.blocks.slide.settings.text_alignment.option_3.label"
+            }
+          ],
+          "default": "center",
+          "label": "t:sections.slideshow.blocks.slide.settings.box_align.label",
+          "info": "t:sections.slideshow.blocks.slide.settings.box_align.info"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "options": [
+            {
+              "value": "left",
+              "label": "t:sections.slideshow.blocks.slide.settings.text_alignment.option_1.label"
+            },
+            {
+              "value": "center",
+              "label": "t:sections.slideshow.blocks.slide.settings.text_alignment.option_2.label"
+            },
+            {
+              "value": "right",
+              "label": "t:sections.slideshow.blocks.slide.settings.text_alignment.option_3.label"
+            }
+          ],
+          "default": "left",
+          "label": "Text align"
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "default": "#FFFFFF",
+          "label": "Heading color"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "default": "#FFFFFF",
+          "label": "Text color"
+        },
+        {
+          "type": "color",
+          "id": "color_btn",
+          "label": "Color button"
+        },
+        {
+          "type": "color",
+          "id": "bg_btn",
+          "label": "Background button"
+        },
+        {
+          "type": "color",
+          "id": "color_btn_hover",
+          "label": "Color button hover"
+        },
+        {
+          "type": "color",
+          "id": "bg_btn_hover",
+          "label": "Background button hover"
+        },
+        {
+          "type": "range",
+          "id": "button_opacity",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "default": 10,
+          "label": "Button Overlay opacity"
+        },
+        {
+          "type": "color",
+          "id": "blocks_overlay_color",
+          "default": "#000000",
+          "label": "Blocks overlay color"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "default": 1,
+          "label": "Overlay opacity"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.slideshow.presets.name",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

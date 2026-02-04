@@ -1,0 +1,470 @@
+{{ 'gallery-modal.css' | asset_url | stylesheet_tag }}
+{% render 'section-style' %}
+
+<style>
+  
+/* Gallery Styles */
+.gallery-modal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: {{ section.settings.distance_col }}px;
+}
+
+@media (min-width: 768px ) {
+  .gallery-modal {
+    grid-template-columns: repeat({{ section.settings.column_item }}, 1fr);
+  }
+  {% if section.settings.image_large %}
+  .gallery-modal > *:nth-child(-5n+3) {
+    grid-column-end: 2 span;
+    grid-row-end: 2 span;
+  }
+  {% endif %}
+}
+
+.gallery-modal img {
+  cursor: pointer;
+  transition: all .4s;
+  border-radius: 20px;
+}
+
+.gallery-modal .gallery-item:hover img {
+  filter: brightness(0.5);
+}
+
+.gallery-item__icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .4s;
+}
+
+.gallery-item:hover .gallery-item__icon {
+  opacity: 1;
+}
+
+.gallery-item {
+    position: relative;
+}
+
+/* Popup Styles */
+.gallery-popup {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  flex-direction: column;
+  transition: all .4s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.gallery-popup img {
+  transition: transform 0.3s ease;
+  cursor: zoom-in;
+}
+
+.gallery-popup #ap-popup-image {
+  max-width: 80%;
+  max-height: 80%;
+}
+
+/* Buttons and Thumbnail List */
+.gallery-popup .gallery-close-btn, .gallery-popup .gallery-next-btn, .gallery-popup .gallery-prev-btn {
+  position: absolute;
+  background-color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  min-width: 50px;
+  min-height: 50px;
+  border-radius: 20px;
+  text-align: center;
+  z-index: 10;
+}
+
+.gallery-popup .gallery-close-btn:hover, .gallery-popup .gallery-next-btn:hover, .gallery-popup .gallery-prev-btn:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.gallery-popup .gallery-close-btn {
+  top: 20px;
+  right: 20px;
+}
+
+.gallery-popup .gallery-next-btn {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.gallery-popup .gallery-prev-btn {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.gallery-thumbnail-list {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.gallery-thumbnail-list img {
+  width: 80px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.gallery-thumbnail-list img:hover, .gallery-thumbnail-list img.active {
+  opacity: 1;
+}
+
+.gallery-popup img {
+  position: relative;
+  z-index: 9;
+}
+
+@media (min-width: 768px) {
+  .gallery-popup .gallery-next-btn {
+    right: 20px;
+  }
+
+  .gallery-popup .gallery-prev-btn {
+    left: 20px;
+  }
+}
+
+</style>
+
+<section class="section-{{ section.id }} section-gallery-modal">
+  <div class="{{ section.settings.setwidthout }}">
+    {% render 'section-heading' %}
+    <div class="row">
+      <div class="gallery-modal">
+        {% for block in section.blocks %}
+          {% if block.settings.featured_image != blank %}
+            <div class="gallery-item">
+              <img loading="lazy" 
+              sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+              alt="" 
+              src="{{ block.settings.featured_image | image_url: width: block.settings.featured_image.width }}" 
+              data-large="{{ block.settings.featured_image | image_url: width: 900 }}" 
+              data-srcset="{%- if block.settings.featured_image.width >= 3000 -%}{{ block.settings.featured_image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                  {{ block.settings.featured_image | image_url }} {{ block.settings.featured_image.width }}w"
+              height="{{ block.settings.featured_image.height }}"
+              width="{{ block.settings.featured_image.width }}">
+
+              <span class="gallery-item__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <g>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M20 40L20 0L22 8.74224e-08L22 40H20Z" fill="white"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.74846e-07 20L40 20V22L0 22L1.74846e-07 20Z" fill="white"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_833_5593">
+                      <rect width="40" height="40" fill="white"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </span>
+            </div>
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        {% endfor %}
+      </div>
+      
+      <div class="gallery-popup" id="image-popup">
+        <button class="gallery-close-btn">
+          <i class="fa fa-xmark"></i>
+        </button>
+        <button class="gallery-next-btn">
+          <i class="fa fa-chevron-right"></i>
+        </button>
+        <button class="gallery-prev-btn"> 
+          <i class="fa fa-chevron-left"></i>
+        </button>
+        <img src="" alt="Large Image" id="ap-popup-image" height="" width="">
+        
+        <div class="gallery-thumbnail-list" id="thumbnail-list">
+          {% for block in section.blocks %}
+            {% if block.settings.featured_image != blank %}
+              <div class="gallery-item">
+                <img loading="lazy" 
+                sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                alt="" 
+                src="{{ block.settings.featured_image | image_url: width: block.settings.featured_image.width }}" 
+                data-large="{{ block.settings.featured_image | image_url: width: 900 }}" 
+                data-srcset="{%- if block.settings.featured_image.width >= 3000 -%}{{ block.settings.featured_image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                    {{ block.settings.featured_image | image_url }} {{ block.settings.featured_image.width }}w"
+                height="{{ block.settings.featured_image.height }}"
+                width="{{ block.settings.featured_image.width }}">
+              </div>
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Gallery modal",
+  "class": "section-galley-modal",
+  "tag": "section",
+  "max_blocks": 9,
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Set Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "id": "background-color",
+      "type": "color",
+      "label": "Background color"
+    },
+    {
+      "id": "background_image",
+      "type": "image_picker",
+      "label": "Background image"
+    },
+    {
+      "type": "select",
+      "id": "e_size",
+      "label": "Background Size",
+      "default": "auto",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Auto"
+        },
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "default": "Sub heading",
+      "label": "Sub heading"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.all.heading_color.label"
+    },
+    {
+      "type": "text",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.all.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.all.tab_heading_size.label"
+    },
+    {
+      "type": "text",
+      "id": "tab_description",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "style_btn",
+      "label": "Style Button",
+      "default": "btn-base",
+      "options": [
+        {
+          "value": "btn-base",
+          "label": "Button Base"
+        },
+        {
+          "value": "btn-outline",
+          "label": "Button Out Line"
+        },
+        {
+          "value": "btn-line",
+          "label": "Button Line"
+        },
+        {
+          "value": "btn-line-black",
+          "label": "Button Line Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "Padding desktop",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "Padding mobile",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "header",
+      "content": "Settings item"
+    },
+    {
+      "type": "range",
+      "id": "column_item",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "default": 6,
+      "label": "Column item"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_large",
+      "label": "Image Large",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "distance_col",
+      "label": "Distance Column",
+      "default": "12"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "featured_image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gallery modal",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

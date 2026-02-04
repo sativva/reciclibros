@@ -1,0 +1,864 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6fe8fbaa-5a22-4c15-86c6-9ad636d793b6": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_KnnHVM": {
+          "type": "slide",
+          "settings": {
+            "position_image_mb": "right",
+            "color_subheading": "#bc2802",
+            "subheading": "In-store and online.",
+            "heading": "More horror \n<br>\nnovels from \n<br>\nstar authors",
+            "description": "Stay up-to-date with the most exciting new books.\n \n<span class=\"sl-lable\" style=\"position: absolute; top: 50%;     left: -35%; transform: translate(-50%,-50%);\"><span style=\" position: relative; max-width: 200px; max-height: 200px; display: inline-block;\"><span style=\"position: absolute;left: 50%;transform: translate(-50%,-50%);top: 50%;font-size: 36px;line-height: 36px;font-weight: 900;color: #fff;text-transform: uppercase;z-index: 1;\">\n15%<br>off\n</span><img alt=\"\" src=\"https://cdn.shopify.com/s/files/1/0906/6014/3387/files/ap_bo_bgsale_1.png?v=1729500188\" loading=\"lazy\" style=\"margin: 0;animation: spinnerRotate 6s linear infinite;\"></span></span>",
+            "color_des": "#000000",
+            "button1_label": "discover now\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>",
+            "link1": "",
+            "style_btn": "btn-base",
+            "button2_label": "",
+            "link2": "",
+            "style_btn_2": "btn-base",
+            "slide_morecontent": "",
+            "box_size": "medium",
+            "box_align": "right",
+            "text_align": "left",
+            "heading_color": "#000000",
+            "text_color": "#000000",
+            "color_btn": "#000000",
+            "bg_btn": "#ffffff",
+            "color_btn_hover": "#ffffff",
+            "bg_btn_hover": "#027a36",
+            "button_opacity": 10,
+            "blocks_overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "slide_Kp3FtM": {
+          "type": "slide",
+          "settings": {
+            "position_image_mb": "center",
+            "color_subheading": "#ea1755",
+            "subheading": "Fiction addiction.",
+            "heading": "Your ultimate \n<br>\npage-to-screen \n<br>\nreading list",
+            "description": "Save over $24 with the Booker prize shortlist collection",
+            "color_des": "#000000",
+            "button1_label": "discover now\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>",
+            "link1": "",
+            "style_btn": "btn-base",
+            "button2_label": "",
+            "link2": "",
+            "style_btn_2": "btn-base",
+            "slide_morecontent": "",
+            "box_size": "large",
+            "box_align": "left",
+            "text_align": "center",
+            "heading_color": "#000000",
+            "text_color": "#000000",
+            "color_btn": "#000000",
+            "bg_btn": "#ffffff",
+            "color_btn_hover": "#ffffff",
+            "bg_btn_hover": "#027a36",
+            "button_opacity": 10,
+            "blocks_overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "2d9c8ec9-a15c-4f73-b5a4-5ac6bd0598ad": {
+          "type": "slide",
+          "settings": {
+            "position_image_mb": "center",
+            "color_subheading": "#5f9f9f",
+            "subheading": "A brand new series.",
+            "heading": "the world of\n<br>\n young adult \n<br>\nbooks",
+            "description": "Save up to 15% on new releases.\n\n<span class=\"sl-lable\" style=\" position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);\"><span style=\" position: relative; max-width: 200px; max-height: 200px; display: inline-block;\"><span style=\"position: absolute;left: 50%;transform: translate(-50%,-50%);top: 50%;font-size: 36px;line-height: 36px;font-weight: 900;color: #fff;text-transform: uppercase;z-index: 1;\">\n15%<br>off\n</span><img alt=\"\" src=\"https://cdn.shopify.com/s/files/1/0906/6014/3387/files/ap_bo_bgsale_2.png?v=1729500187\" loading=\"lazy\" style=\"margin: 0;animation: spinnerRotate 6s linear infinite;\"></span></span>",
+            "color_des": "#000000",
+            "button1_label": "discover now\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>",
+            "link1": "",
+            "style_btn": "btn-base",
+            "button2_label": "",
+            "link2": "",
+            "style_btn_2": "btn-base",
+            "slide_morecontent": "",
+            "box_size": "large",
+            "box_align": "left",
+            "text_align": "left",
+            "heading_color": "#000000",
+            "text_color": "#000000",
+            "color_btn": "#000000",
+            "bg_btn": "#ffffff",
+            "color_btn_hover": "#ffffff",
+            "bg_btn_hover": "#0a4253",
+            "button_opacity": 10,
+            "blocks_overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "slide_KnnHVM",
+        "slide_Kp3FtM",
+        "2d9c8ec9-a15c-4f73-b5a4-5ac6bd0598ad"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "@media (max-width: 1199px) {.sl-lable {opacity: 0; }}"
+      ],
+      "settings": {
+        "setwidthout": "full",
+        "setwidthout_content": "container",
+        "progress_bar_color": "#ffffff",
+        "bg_btn_arrow": "#ffffff",
+        "color_btn_arrow": "#222222",
+        "autoplay_duration": 9,
+        "background_color": "#000000",
+        "slideshow_height": "slideshow--desktop-670",
+        "slideshow_height_mobile": "mobile--slideshow-500",
+        "auto_play": false,
+        "show_dot": true,
+        "show_btn": false,
+        "show_bg_content": false,
+        "slide_font_size": 60,
+        "slide_font_weight": "600",
+        "slide_font_transform": "uppercase",
+        "slide_font_lineheight": "1.1",
+        "slide_font_spacing": "0",
+        "margin_desktop": "",
+        "margin_tablet": "",
+        "social_facebook": "",
+        "social_tw": "",
+        "social_pinterest": "",
+        "social_linkedin": ""
+      }
+    },
+    "advanced_content_YmFiFW": {
+      "type": "advanced-content",
+      "blocks": {
+        "spacer_rYfATL": {
+          "type": "spacer",
+          "settings": {
+            "width": "20%"
+          }
+        },
+        "image_X9ADg8": {
+          "type": "image",
+          "settings": {
+            "width": "100%",
+            "image_background": "shopify://shop_images/BANNIERE_1.png",
+            "image_mobile": "shopify://shop_images/BANNIERE_1.png",
+            "height_img": "default-img",
+            "height_img_mobile": "default-img",
+            "position_image_mb": "left",
+            "class": "",
+            "margin_inner": "",
+            "padding_inner": "68px 0 0 80px",
+            "position_text": "top-left",
+            "text_align": "left",
+            "color_label": "",
+            "bg_color_label": "",
+            "sub_title": "",
+            "color_sub": "#eef41b",
+            "content_title": "",
+            "heading_size_2": "h2",
+            "color_title": "#ffffff",
+            "content_description": "",
+            "color_des": "#000000",
+            "content_description_2": "",
+            "color_des_2": "#000000",
+            "title_countdown": "",
+            "time_picker": "",
+            "date_picker": "",
+            "button1_label": "",
+            "link1": "",
+            "style_btn_item": "btn-base",
+            "color_btn": "",
+            "bg_btn": "",
+            "color_btn_hover": "",
+            "bg_btn_hover": "",
+            "bg_colorscrolltext": "#ffffff",
+            "code": "",
+            "speed": 10,
+            "size_text": "h3"
+          }
+        }
+      },
+      "block_order": [
+        "spacer_rYfATL",
+        "image_X9ADg8"
+      ],
+      "settings": {
+        "setwidthout": "container-fluid",
+        "background-color": "#ffffff",
+        "bg_align": "center",
+        "primary_bg": "#ffffff",
+        "heading_color": "#282828",
+        "text_color": "#282828",
+        "sub_heading": "",
+        "tab_heading": "",
+        "tab_heading_size": 2,
+        "tab_description": "",
+        "h_description_2": "",
+        "btn_text": "",
+        "btn_link": "",
+        "style_btn": "btn-base",
+        "text_align": "left",
+        "class": "",
+        "no_gutter": false,
+        "align_item": "normal",
+        "border_width": "",
+        "margin_desktop": "0 0 80px",
+        "margin_tablet": "",
+        "margin_mobile": "0 0 40px",
+        "padding_desktop": "30px 0",
+        "padding_mobile": "",
+        "padding_content": ""
+      }
+    },
+    "product_carousel_mJCmn9": {
+      "type": "product-carousel",
+      "settings": {
+        "setwidthout": "container",
+        "background-color": "#ffffff",
+        "text_with_product": false,
+        "heading_color": "#282828",
+        "text_color": "#282828",
+        "sub_heading": "",
+        "tab_heading": "Los más vendidos",
+        "tab_heading_size": 4,
+        "tab_description": "",
+        "btn_text": "Ver todo\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>",
+        "btn_link": "shopify://collections/comic-y-novela-grafica-ciencia-ficcion",
+        "style_btn": "btn-base",
+        "text_align": "left",
+        "title_countdown": "",
+        "time_picker": "",
+        "date_picker": "",
+        "collection": "comic-y-novela-grafica",
+        "limit": 12,
+        "perviewDesktop": 6,
+        "spaceBetween": 20,
+        "arrows": true,
+        "arrow_heading": false,
+        "dots": true,
+        "nowrap": false,
+        "margin_desktop": "0 0 80px",
+        "margin_tablet": "",
+        "margin_mobile": "",
+        "padding_desktop": "",
+        "padding_mobile": ""
+      }
+    },
+    "image_banner_p8qhQF": {
+      "type": "image-banner",
+      "blocks": {
+        "text_Ug9hay": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "setwidthout": "container",
+            "text_align": "left",
+            "position_text": "mid-left",
+            "padding_inner": "0 0 0 100px",
+            "heading_title": "Best Collection.",
+            "color_title": "#5ea671",
+            "heading": "Top favourite \n<br>\nkids stories",
+            "heading_size": "h3",
+            "color_title_center": "#000000",
+            "description": "Find our take on the best books of all time.",
+            "description_2": "",
+            "color_description": "#000000",
+            "title_countdown": "",
+            "time_picker": "",
+            "date_picker": "",
+            "button1_label": "discover now\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>",
+            "color_btn": "",
+            "bg_btn": "",
+            "color_btn_hover": "",
+            "bg_btn_hover": "",
+            "link1": "",
+            "style_btn": "btn-base"
+          }
+        }
+      },
+      "block_order": [
+        "text_Ug9hay"
+      ],
+      "settings": {
+        "setwidthout": "container",
+        "featured_image": "shopify://shop_images/test_banniere_2.jpg",
+        "height_img": "default-img",
+        "height_img_mobile": "default-img",
+        "margin_desktop": "20px 20px 20px 20px",
+        "margin_tablet": "20px 20px 20px 20px",
+        "margin_mobile": "20px 20px 20px 20px",
+        "tab_heading": "",
+        "tab_heading_size": 1,
+        "tab_description": "",
+        "heading_color": "",
+        "text_color": "",
+        "overlay": "#000000",
+        "overlay_opacity": 1
+      }
+    },
+    "collection_carousel_CJwemw": {
+      "type": "collection-carousel",
+      "blocks": {
+        "collection_MjbtiW": {
+          "type": "collection",
+          "settings": {
+            "collection": "novela-romantica",
+            "bg_content": "#ffffff",
+            "image": "shopify://shop_images/Romance.png",
+            "title": "Romance",
+            "button1_label": ""
+          }
+        },
+        "collection_77w6aE": {
+          "type": "collection",
+          "settings": {
+            "collection": "comic-y-novela-grafica",
+            "bg_content": "#ffffff",
+            "image": "shopify://shop_images/Comic_hombre.png",
+            "title": "Comic y novela gráfica",
+            "button1_label": ""
+          }
+        },
+        "collection_qyaVTw": {
+          "type": "collection",
+          "settings": {
+            "collection": "ficcion-fantasia",
+            "bg_content": "#ffffff",
+            "image": "shopify://shop_images/Fantasia_3.png",
+            "title": "Fantasía",
+            "button1_label": ""
+          }
+        },
+        "collection_AfB7LL": {
+          "type": "collection",
+          "settings": {
+            "collection": "ficcion-ciencia-ficcion",
+            "bg_content": "#ffffff",
+            "image": "shopify://shop_images/Ciencia_ficcion.png",
+            "title": "Ciencia Ficción",
+            "button1_label": ""
+          }
+        },
+        "collection_iMtfyD": {
+          "type": "collection",
+          "settings": {
+            "collection": "ficcion-poesia-teatro-teatro",
+            "bg_content": "#ffffff",
+            "image": "shopify://shop_images/Teatro.png",
+            "title": "Teatro",
+            "button1_label": ""
+          }
+        },
+        "collection_tAL3yH": {
+          "type": "collection",
+          "settings": {
+            "collection": "ficcion-novela-negra",
+            "bg_content": "#ffffff",
+            "image": "shopify://shop_images/Novela_negra_2.png",
+            "title": "Novela negra",
+            "button1_label": ""
+          }
+        },
+        "collection_Fme6XU": {
+          "type": "collection",
+          "settings": {
+            "collection": "ficcion-terror",
+            "bg_content": "#ffffff",
+            "image": "shopify://shop_images/Terror.png",
+            "title": "Terror",
+            "button1_label": ""
+          }
+        },
+        "collection_DM4NM3": {
+          "type": "collection",
+          "settings": {
+            "collection": "infantil",
+            "bg_content": "#ffffff",
+            "image": "shopify://shop_images/Pictos_Infantil_v2.png",
+            "title": "Infantil",
+            "button1_label": ""
+          }
+        },
+        "collection_ECEPHx": {
+          "type": "collection",
+          "settings": {
+            "collection": "juvenil",
+            "bg_content": "#ffffff",
+            "image": "shopify://shop_images/Juvenil.png",
+            "title": "Juvenil",
+            "button1_label": ""
+          }
+        },
+        "collection_hA87AM": {
+          "type": "collection",
+          "settings": {
+            "collection": "no-ficcion-cocina-y-vinos",
+            "bg_content": "#ffffff",
+            "image": "shopify://shop_images/Cocina_2.png",
+            "title": "Cocina y vinos",
+            "button1_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_MjbtiW",
+        "collection_77w6aE",
+        "collection_qyaVTw",
+        "collection_AfB7LL",
+        "collection_iMtfyD",
+        "collection_tAL3yH",
+        "collection_Fme6XU",
+        "collection_DM4NM3",
+        "collection_ECEPHx",
+        "collection_hA87AM"
+      ],
+      "name": "Collection carousel",
+      "settings": {
+        "setwidthout": "container",
+        "margin_desktop": "20px 20px 20px 20px",
+        "margin_tablet_large": "0px 0px 0px 0px",
+        "margin_mobile": "",
+        "padding_desktop": "",
+        "padding_tablet_lager": "0px 0px 0px 0px",
+        "padding_mobile": "",
+        "background-color": "#ffffff",
+        "heading_color": "#282828",
+        "text_color": "#282828",
+        "sub_heading": "",
+        "tab_heading": "Categorías destacadas",
+        "tab_heading_size": 4,
+        "tab_description": "",
+        "btn_text": "",
+        "btn_link": "",
+        "style_btn": "btn-base",
+        "text_align": "left",
+        "show_count": false,
+        "perviewDesktop": 6,
+        "spaceBetween": 20,
+        "arrows": true,
+        "arrow_heading": false,
+        "dots": false,
+        "img_size": "200",
+        "padding_inner": "10px 20px 20px 20px",
+        "heading_size_2": "h6",
+        "style_btn_item": "btn-base"
+      }
+    },
+    "advanced_content_m4mgLW": {
+      "type": "advanced-content",
+      "blocks": {
+        "productlist_row_g4CKJY": {
+          "type": "productlist-row",
+          "settings": {
+            "width": "75%",
+            "title": "What's trending",
+            "product_list": [
+              "scattershot-life-music-elton-and-me-5",
+              "a-good-morning-america-book-club-pick-2",
+              "scattershot-life-music-elton-and-me-3",
+              "don-t-forget-the-girl",
+              "scattershot-life-music-elton-and-me-6",
+              "the-city-and-its-uncertain-walls-a-novel-1"
+            ],
+            "column": "3",
+            "limit": 6
+          }
+        },
+        "productlist_MaqT4b": {
+          "type": "productlist",
+          "settings": {
+            "padding_inner": "40px 30px 28px",
+            "mini_collection": "family",
+            "column_product": 1,
+            "title": "Top books of the month",
+            "limit_product": "5",
+            "enable_rating": false,
+            "enable_price": false,
+            "p_border": "#e9e9e9",
+            "width": "25%"
+          }
+        }
+      },
+      "block_order": [
+        "productlist_row_g4CKJY",
+        "productlist_MaqT4b"
+      ],
+      "disabled": true,
+      "settings": {
+        "setwidthout": "container",
+        "background-color": "#ffffff",
+        "bg_align": "center",
+        "primary_bg": "#ffffff",
+        "heading_color": "#282828",
+        "text_color": "#282828",
+        "sub_heading": "",
+        "tab_heading": "",
+        "tab_heading_size": 3,
+        "tab_description": "",
+        "h_description_2": "",
+        "btn_text": "browse all\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>",
+        "btn_link": "shopify://collections/all",
+        "style_btn": "btn-outline",
+        "text_align": "left",
+        "class": "",
+        "no_gutter": false,
+        "align_item": "normal",
+        "border_width": "",
+        "margin_desktop": "0 0 80px",
+        "margin_tablet": "",
+        "margin_mobile": "0 0 40px",
+        "padding_desktop": "",
+        "padding_mobile": "",
+        "padding_content": ""
+      }
+    },
+    "product_carousel_KjqbBT": {
+      "type": "product-carousel",
+      "settings": {
+        "setwidthout": "container",
+        "background-color": "#ffffff",
+        "text_with_product": false,
+        "heading_color": "#282828",
+        "text_color": "#282828",
+        "sub_heading": "",
+        "tab_heading": "Nuevo en Reciclibros",
+        "tab_heading_size": 4,
+        "tab_description": "",
+        "btn_text": "Ver todo\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>",
+        "btn_link": "shopify://collections/all",
+        "style_btn": "btn-base",
+        "text_align": "left",
+        "title_countdown": "",
+        "time_picker": "",
+        "date_picker": "",
+        "collection": "ficcion-novela-negra",
+        "limit": 10,
+        "perviewDesktop": 6,
+        "spaceBetween": 30,
+        "arrows": false,
+        "arrow_heading": false,
+        "dots": true,
+        "nowrap": false,
+        "margin_desktop": "0 0 80px",
+        "margin_tablet": "",
+        "margin_mobile": "0 0 40px",
+        "padding_desktop": "",
+        "padding_mobile": ""
+      }
+    },
+    "service_KNBar8": {
+      "type": "service",
+      "blocks": {
+        "service_CUJ9br": {
+          "type": "service",
+          "settings": {
+            "width": "33%",
+            "bg_color_block": "rgba(0,0,0,0)",
+            "featured_image": "shopify://shop_images/Picto_arbres.png",
+            "service_icon": "",
+            "title_small": "",
+            "title": "Cuidar el medioambiente",
+            "description": "135 000 es el número de árboles que habría sido necesario talar para producir libros nuevos frente a la venta de libros usados que vende Reciclibros.",
+            "button1_label": "",
+            "link1": ""
+          }
+        },
+        "service_MmCP7n": {
+          "type": "service",
+          "settings": {
+            "width": "33%",
+            "bg_color_block": "rgba(0,0,0,0)",
+            "featured_image": "shopify://shop_images/Picto_associations.png",
+            "service_icon": "",
+            "title_small": "",
+            "title": "Social",
+            "description": "Nuestro almacén, situado en Vallecas (Madrid), emplea a personas con discapacidad, a las que se les acompaña en su reinserción laboral duradera a lo largo de toda su carrera.",
+            "button1_label": "",
+            "link1": ""
+          }
+        },
+        "service_697jbn": {
+          "type": "service",
+          "settings": {
+            "width": "33%",
+            "bg_color_block": "rgba(0,0,0,0)",
+            "featured_image": "shopify://shop_images/Picto_assoenvironnementale.png",
+            "service_icon": "",
+            "title_small": "",
+            "title": "Redistribuir",
+            "description": "Desde su creación, Reciclibros ha donado parte de sus ingresos netos a asociaciones culturales y conservación de la naturaleza",
+            "button1_label": "",
+            "link1": ""
+          }
+        }
+      },
+      "block_order": [
+        "service_CUJ9br",
+        "service_MmCP7n",
+        "service_697jbn"
+      ],
+      "settings": {
+        "fullwidth": false,
+        "background-color": "",
+        "margin_desktop": "0 0 80px",
+        "margin_tablet": "",
+        "margin_mobile": "0 0 40px",
+        "padding_desktop": "0px 0px 0px 0px",
+        "padding_mobile": "0px 0px 0px 0px",
+        "sub_heading": "<span class=\"sub-heading-3\">\n¿por qué elgir reciclibros?\n</span>",
+        "tab_heading": "Patri os va a decir que somos una empresa\n<span style=\"color: var(--primary);\">\nfenomenal\n</span>",
+        "tab_heading_size": 3,
+        "tab_description": "",
+        "btn_text": "",
+        "btn_link": "",
+        "style_btn": "btn-base",
+        "text_align": "center",
+        "bottom_description": "",
+        "btn_text_bottom": "",
+        "btn_link_bottom": "",
+        "style_btn_bottom": "btn-base",
+        "layout": "style-1",
+        "no_gutter": false,
+        "padding_inner": "80px 124px 95px",
+        "padding_inner_tablet": "60px 20px",
+        "bg_content": "#f9f5f0",
+        "padding_inner_item": "",
+        "icon_size": "64",
+        "text_align_item": "center",
+        "heading_size": "h5",
+        "color_title_small": "",
+        "color_title": "#000000",
+        "color_des": "#404040",
+        "color_btn": "",
+        "bg_btn": "",
+        "color_btn_hover": "",
+        "bg_btn_hover": "",
+        "style_btn_item": "btn-base"
+      }
+    },
+    "banner_grid_3rgPQD": {
+      "type": "banner-grid",
+      "blocks": {
+        "banner_grid_CLxGNL": {
+          "type": "banner-grid",
+          "settings": {
+            "width": "50%",
+            "background_color": "",
+            "color_title": "#36fa84",
+            "padding_inner": "83px  59px 0 0",
+            "heading_title": "Save over $20.",
+            "heading": "A Girl \n<br>\nCalled Echo",
+            "description": "<span class=\"d-lg-block d-none\" style=\"\n    font-size: 14px;\n    font-weight: 600;\n    line-height: 26px;\n    position: absolute;\n    bottom: 37px;\n    right: 227px;\n\">\nBuy online at \n<a href=\"#\">\nbokifa.com\n</a>\n</span>\n<span class=\"d-lg-none d-block\">\nBuy online at \n<a href=\"#\">\nbokifa.com\n</a>\n</span>",
+            "description_2": "<span class=\"lable-banner d-sm-block d-none\" style=\"\n    position: absolute;\n    top: 87px;\n    left: 35%;\n    transform: translateX(-50%);\n\"><span style=\" position: relative; max-width: 200px; max-height: 200px; display: inline-block;\"><span style=\"position: absolute;left: 50%;transform: translate(-50%,-50%);top: 50%;font-size: 18px;line-height: 1.2;font-weight: bold;color: #000;text-transform: uppercase;z-index: 1;text-align: center;\">\n<span style=\"\n    font-size: 14px;\n    font-weight: 400;\n    text-decoration: line-through;\n\">\n$9.49\n</span>\n<br>\n$7.49\n</span><img alt=\"\" src=\"https://cdn.shopify.com/s/files/1/0906/6014/3387/files/Vector_2.png?v=1730254099\" loading=\"lazy\" style=\"margin: 0;animation: spinnerRotate 6s linear infinite;\"></span></span>",
+            "button1_label": "Shop Now\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>",
+            "link1": "",
+            "button2_label": "",
+            "link2": "",
+            "text_align": "left",
+            "position_text": "top-right"
+          }
+        },
+        "banner_grid_NhDFex": {
+          "type": "banner-grid",
+          "settings": {
+            "width": "50%",
+            "background_color": "",
+            "color_title": "#f5ae66",
+            "padding_inner": "83px  160px 0 0",
+            "heading_title": "Most exciting new books.",
+            "heading": "Bury Me\n<br>\n When I'm \n<br>\nDead",
+            "description": "<span class=\"d-lg-block d-none\" style=\"\n    font-size: 14px;\n    font-weight: 600;\n    line-height: 26px;\n    position: absolute;\n    bottom: 37px;\n    right: 227px;\n\">\nBuy online at \n<a href=\"#\">\nbokifa.com\n</a>\n</span>\n<span class=\"d-lg-none d-block\">\nBuy online at \n<a href=\"#\">\nbokifa.com\n</a>\n</span>",
+            "description_2": "<span class=\"lable-banner d-sm-block d-none\" style=\"\n    position: absolute;\n    top: 87px;\n    left: 35%; \n    transform: translateX(-50%);\n\"><span style=\" position: relative; max-width: 200px; max-height: 200px; display: inline-block;\"><span style=\"position: absolute;left: 50%;transform: translate(-50%,-50%);top: 50%;font-size: 18px;line-height: 1.2;font-weight: bold;color: #000;text-transform: uppercase;z-index: 1;text-align: center;\">\n<span style=\"\n    font-size: 14px;\n    font-weight: 400;\n    text-decoration: line-through;\n\">\n$9.49\n</span>\n<br>\n$7.49\n</span><img alt=\"\" src=\"https://cdn.shopify.com/s/files/1/0906/6014/3387/files/Vector_3.png?v=1730254099\" loading=\"lazy\" style=\"margin: 0;animation: spinnerRotate 6s linear infinite;\"></span></span>",
+            "button1_label": "Shop Now\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>",
+            "link1": "",
+            "button2_label": "",
+            "link2": "",
+            "text_align": "left",
+            "position_text": "top-right"
+          }
+        }
+      },
+      "block_order": [
+        "banner_grid_CLxGNL",
+        "banner_grid_NhDFex"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "@media (max-width: 1500px) {.description > span > .lable-banner {left: 12% !important; }}",
+        "@media (max-width: 991px) {.description > span > .lable-banner {left: 10px !important; transform: none !important; top: 10px !important; }}"
+      ],
+      "settings": {
+        "setwidthout": "container",
+        "background-color": "#ffffff",
+        "margin_desktop": "0 0 80px",
+        "margin_tablet_large": "0 0 80px",
+        "margin_mobile": "0 0 40px",
+        "padding_desktop": "",
+        "padding_tablet_lager": "0px 0px 0px 0px",
+        "padding_mobile": "",
+        "heading_color": "#282828",
+        "text_color": "#282828",
+        "sub_heading": "",
+        "tab_heading": "",
+        "tab_heading_size": 2,
+        "tab_description": "",
+        "btn_text": "",
+        "btn_link": "",
+        "style_btn": "btn-base",
+        "text_align": "left",
+        "distance_col": "15",
+        "color_title_center": "#ffffff",
+        "color_description": "#ffffff",
+        "color_btn": "",
+        "bg_btn": "",
+        "color_btn_hover": "",
+        "bg_btn_hover": "",
+        "heading_size_2": "h3",
+        "position_btn_bottom": true,
+        "style_btn_item": "btn-base btn-sm",
+        "style_btn_2": "btn-base"
+      }
+    },
+    "featured_author_ALP3Fy": {
+      "type": "featured-author",
+      "blocks": {
+        "author_item_gUtz8a": {
+          "type": "author-item",
+          "settings": {
+            "heading": "Camelia Doe",
+            "mini_collection": "family",
+            "limit_product": 3,
+            "button1_label": "view full bio\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>"
+          }
+        },
+        "author_item_6HAMmd": {
+          "type": "author-item",
+          "settings": {
+            "heading": "Melany Rodriguez",
+            "mini_collection": "fantasy",
+            "limit_product": 2,
+            "button1_label": "view full bio\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>"
+          }
+        },
+        "author_item_4axnNi": {
+          "type": "author-item",
+          "settings": {
+            "heading": "Johan Sanford",
+            "mini_collection": "fiction",
+            "limit_product": 3,
+            "button1_label": "view full bio\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>"
+          }
+        },
+        "author_item_WLnkkP": {
+          "type": "author-item",
+          "settings": {
+            "heading": "Joe Knight",
+            "mini_collection": "horror",
+            "limit_product": 2,
+            "button1_label": "view full bio\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>"
+          }
+        }
+      },
+      "block_order": [
+        "author_item_gUtz8a",
+        "author_item_6HAMmd",
+        "author_item_4axnNi",
+        "author_item_WLnkkP"
+      ],
+      "disabled": true,
+      "settings": {
+        "setwidthout": "container",
+        "background-color": "#ffffff",
+        "heading_color": "#000000",
+        "text_color": "#282828",
+        "sub_heading": "",
+        "tab_heading": "Featured authors",
+        "tab_heading_size": 3,
+        "tab_description": "",
+        "btn_text": "",
+        "btn_link": "",
+        "style_btn": "btn-base",
+        "text_align": "center",
+        "heading_size_2": "p",
+        "style_btn_item": "btn-outline",
+        "perviewDesktop": 4,
+        "spaceBetween": 30,
+        "arrows": false,
+        "dots": false,
+        "margin_desktop": "",
+        "margin_mobile": "",
+        "padding_desktop": "",
+        "padding_mobile": ""
+      }
+    },
+    "blog_carousel_ejLGDi": {
+      "type": "blog-carousel",
+      "settings": {
+        "setwidthout": "container",
+        "margin_desktop": "80px 0 90px",
+        "margin_mobile": "40px 0",
+        "padding_desktop": "",
+        "padding_mobile": "",
+        "background-color": "#ffffff",
+        "heading_color": "#282828",
+        "text_color": "",
+        "background_item": "#ffffff",
+        "color_title": "#194a33",
+        "color_info": "#282828",
+        "color_date": "#282828",
+        "color_tag": "#282828",
+        "color_description": "#282828",
+        "color_btn": "#000000",
+        "color_btn_hover": "#282828",
+        "sub_heading": "",
+        "tab_heading": "Blog",
+        "tab_heading_size": 4,
+        "tab_description": "",
+        "btn_text": "Ver todo\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>",
+        "btn_link": "shopify://blogs/news",
+        "style_btn": "btn-base",
+        "text_align": "left",
+        "blog": "news",
+        "limit": 10,
+        "perviewDesktop": 3,
+        "spaceBetween": 30,
+        "arrows": false,
+        "arrow_heading": false,
+        "dots": true,
+        "nowrap": true,
+        "show_date": true,
+        "show_author": true,
+        "show_description": false,
+        "show_tag": true,
+        "btn_blog": "",
+        "show_view_all": false,
+        "style_btn_item": "btn-base"
+      }
+    }
+  },
+  "order": [
+    "6fe8fbaa-5a22-4c15-86c6-9ad636d793b6",
+    "advanced_content_YmFiFW",
+    "product_carousel_mJCmn9",
+    "image_banner_p8qhQF",
+    "collection_carousel_CJwemw",
+    "advanced_content_m4mgLW",
+    "product_carousel_KjqbBT",
+    "service_KNBar8",
+    "banner_grid_3rgPQD",
+    "featured_author_ALP3Fy",
+    "blog_carousel_ejLGDi"
+  ]
+}

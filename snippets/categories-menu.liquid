@@ -1,0 +1,95 @@
+<categories-menu id="categories-menu-drawer" class="drawer drawer--from-right">
+    <span class="drawer__overlay"></span>
+    <div class="drawer__header drawer__header--shadowed">
+      <button type="button" class="drawer__close-button drawer__close-button--block tap-area" data-action="close" title="Close">
+        <svg focusable="false" width="14" height="14" class="icon icon--close   " viewBox="0 0 14 14">
+          <path d="M13 13L1 1M13 1L1 13" stroke="currentColor" stroke-width="2" fill="none"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer__content">
+      <ul class="categories-nav categories-nav-main list--unstyled" role="list">
+        {%- for link in section.settings.menu_categories.links -%}
+            {% liquid
+              assign menu_index = forloop.index
+              assign is_megamenu = false
+            %}
+            <li class="categories-nav__item categories-nav__item-main" data-level="1">
+
+                {%- if link.links != blank -%}
+
+                    <button is="toggle-button" class="categories-nav__link_main mega-existed" ap-controlsaria="categories-menu-{{ menu_index }}" ap-expanded-aria="false">
+                        <div class="categories-nav__link_main-texticon">
+                          {%- render 'processMenuTitle' , itemName: link.title -%}
+                          {%- render 'processMenuLabel' , itemName: link.title -%}
+                        </div>
+                        <span class="animated-plus"></span>
+                    </button>
+                    <ap-contentcollapsible id="categories-menu-{{ menu_index }}" class="collapsible collapsible-mega">
+                      <ul class="categories-nav list--unstyled categories-nav_mega" role="list">
+                          {%- for childlink in link.links -%}
+                            <li class="categories-nav__item drawer__nav-item categories-nav__item_mega mega-existed">
+                              {%- if childlink.links != blank -%}
+
+                                {%- assign grandchild_list_handle = childlink.title | handleize -%}
+                                <button is="toggle-button" class="categories-nav__link_mega" ap-controlsaria="categories-menu-1_1-{{ menu_index }}-{{ forloop.index }}" ap-expanded-aria="false">
+                                  <a href="{{ childlink.url }}" 
+                                    class="categories-meganav__link drawer__nav-link drawer__nav-link--split{% if childlink.active %} meganav__link--active{% endif %}" 
+                                    id="DrawerLabel-{{ grandchild_list_handle }}"
+                                    {% if childlink.active %} aria-current="page"{% endif %}
+                                    >                       
+                                      {%- render 'processMenuTitle' , itemName: childlink.title -%}
+                                      {%- render 'processMenuLabel' , itemName: childlink.title -%}
+                                  </a>
+                                  <span class="animated-plus"></span>
+                                </button>
+
+                                <ap-contentcollapsible id="categories-menu-1_1-{{ menu_index }}-{{ forloop.index }}" class="collapsible collapsible-mega_child">
+                                  <ul class="categories-nav list--unstyled meganav__nav meganav__nav--third-level">
+                                    {%- for grandchildlink in childlink.links -%}
+                                    <li>
+                                      <a href="{{ grandchildlink.url }}" class="categories-meganav__link{% if grandchildlink.active %} meganav__link--active{% endif %}"{% if grandchildlink.active %} aria-current="page"{% endif %}>
+                                        {%- render 'processMenuTitle' , itemName: grandchildlink.title -%}
+                                        {%- render 'processMenuLabel' , itemName: grandchildlink.title -%}
+                                      </a>
+                                    </li>
+                                    {%- endfor -%}
+                                  </ul>
+                                </ap-contentcollapsible>
+
+                              {%- else -%}
+                                <a href="{{ childlink.url }}" 
+                                  class="drawer__nav-link categories-meganav__link{% if childlink.active %} meganav__link--active{% endif %}"
+                                  {% if childlink.active %} aria-current="page"{% endif %}
+                                  >
+                                  {%- render 'processMenuTitle' , itemName: childlink.title -%}
+                                  {%- render 'processMenuLabel' , itemName: childlink.title -%}
+                                </a>
+                              {%- endif -%}
+                            </li>
+                          {%- endfor -%}
+                      </ul>
+                    </ap-contentcollapsible>
+
+                {% else %}
+
+                    <a class="categories-nav__link_main link--animated {% if link.current %}menu-item--active{% endif %}" href="{{ link.url }}">
+                        {%- render 'processMenuTitle' , itemName: link.title -%}
+                        {%- render 'processMenuLabel' , itemName: link.title -%}
+                    </a>
+
+                {% endif %}
+            </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+    <div class="drawer__footer drawer__footer--tight drawer__footer--bordered" style="opacity: 1;">
+      <div class="categories-nav__footer">
+        <a class="icon-text" href="/account/login">
+          <svg focusable="false" width="18" height="17" class="icon icon--header-customer   " viewBox="0 0 18 17">
+            <circle cx="9" cy="5" r="4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></circle>
+            <path d="M1 17v0a4 4 0 014-4h8a4 4 0 014 4v0" fill="none" stroke="currentColor" stroke-width="2"></path>
+          </svg>Account </a>
+      </div>
+    </div>
+</categories-menu>

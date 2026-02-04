@@ -1,0 +1,485 @@
+<style>
+  .colgrid__bg--full.active {
+    opacity: 1 !important;
+  }
+  .colgrid__bg {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .colgrid__bg--full {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0 !important;
+    transition: transform 7.5s cubic-bezier(.37,.31,.2,.85), opacity .5s ease;
+    will-change: opacity, transform;
+    backface-visibility: hidden;
+  }
+  .colgrid {
+    position: relative;
+    min-height: 880px;
+    padding: 86px 0 70px;
+    display: block;
+  }
+  #shopify-section-{{ section.id }} .section__header {
+    position: relative;
+    z-index: 9;
+  }
+  .colgrid__box {
+    position: relative;
+    bottom: 0;
+    display: block;
+    margin: 0 0 30px;
+    z-index: 1;
+  }
+  #shopify-section-{{ section.id }} .button.btn-line ,
+  #shopify-section-{{ section.id }} h4.colgrid__box--tit.heading {
+    color: rgb(var(--color-body),.6);
+  }
+  #shopify-section-{{ section.id }} .colgrid__box-content:hover h4.colgrid__box--tit.heading ,
+  #shopify-section-{{ section.id }} .colgrid__box-content:hover .button.btn-line {
+    color: rgb(var(--color-body));
+  }
+  .colgrid__box-content {
+    padding-left: 30px;
+    border-left: 1px solid rgb(var(--color-body), .6);
+    transition: all .4s;
+  }
+  @media (min-width: 992px) {
+    .colgrid__box {
+      position: absolute;
+      bottom: 70px;
+      margin: 0;
+      max-width: 350px;
+    }
+    .colgrid__box-content:hover {
+      border-color: rgb(var(--color-body));
+      padding-bottom: 98px;
+    }
+    #shopify-section-{{ section.id }} p.description {
+      opacity: 0;
+      visibility: hidden;
+      line-height: 0;
+      transition: all .4s;
+    }
+    #shopify-section-{{ section.id }} .colgrid__box-content:hover p.description {
+      opacity: 1;
+      visibility: visible;
+      line-height: inherit;
+    }
+  }
+  @media (max-width: 1199px) {
+    .colgrid__box {
+      max-width: 230px;
+    }
+  }
+</style>
+
+{% render 'section-style' %}
+
+<section class="collection-list{{ section.id }} banner-imagehover" >
+    <div class="block-section bgcollection-{{ section.id }}" data-section-type="bgcollection" data-section-id="{{ section.id }}">
+    <div class="block_content bgcollection-wrapper">
+        {%- liquid
+          case section.settings.grid
+          when '2'
+              assign grid_item_width = 'col-12 col-md-6 col-sm-6'
+          when '3'
+              assign grid_item_width = 'col-12 col-md-4 col-sm-4'
+          when '4'
+              assign grid_item_width = 'col-12 col-md-3 col-sm-6'
+          when '5'
+              assign grid_item_width = 'col-12 col-md-20 col-sm-4'
+          when '6'
+              assign grid_item_width = 'col-12 col-md-6 col-xl-2'
+          endcase
+        -%}
+        <hover-image class="colgrid" id="Bgcollection-{{ section.id }}">
+            <div class="{{ section.settings.setwidth }} h-100">
+              {% render 'section-heading' %}
+              <div class="row h-100">
+                  {%- for block in section.blocks limit: section.blocks.size -%}
+                  {%- liquid
+                      assign collection = collections[block.settings.collection]
+                      if block.settings.image != blank
+                          assign img_url = block.settings.image | image_url: width: 960
+                      else
+                          assign img_url = ''
+                      endif
+                  -%}
+                  <div class=" {{ grid_item_width }} colgrid-col" >
+                      <a class="colgrid__box lazyload colgrid__box-{{ block.id }} " href="{%- if collection.empty? -%}#{%- else -%}{{ collection.url }}{%- endif -%}" data-index="{{ forloop.index }}" data-sizes="auto" data-src="background-image: url({{ img_url }})" data-index="{{ forloop.index }}" >
+                          <div class="d-flex align-items-start flex-column h-100 colgrid__boxtop">
+                            <div class="colgrid__box-content">
+                                {% if block.settings.sub_title != blank %}
+                                <p style="color: {{ section.settings.color_sub_title }};" class="sub-heading mb-15">{{ block.settings.sub_title }}</p>
+                                {% endif %}
+                                <h4 style="color: {{ section.settings.color_heading }};" class="colgrid__box--tit heading h{{ section.settings.heading_size_range }} my-0 mb-15">
+                                {%- if block.settings.title != blank -%}
+                                  {{- block.settings.title | escape -}}
+                                {%- else -%}
+                                  {{- collection.title | escape -}}
+                                {%- endif -%}
+                                </h4>
+                                {% if block.settings.description != blank %}
+                                  <p style="color: {{ section.settings.color_description }}" class="description my-0">
+                                    {{- block.settings.description -}}
+                                  </p>
+                                {% endif %}
+                                <span class="colgrid__box--number d-none">{{ collection.products_count }} {{ collection.products_count | pluralize: 'Item', 'Items' }}</span>
+                                {% if block.settings.button1_label != blank %}
+                                  <div class="colgrid_box-btn">
+                                      <span class="button {{ section.settings.style_btn_item }}">
+                                          {{ block.settings.button1_label }}
+                                      </span>
+                                  </div>
+                                {% endif %}
+                            </div>
+                          </div>
+                      </a>
+                  </div>    
+                  {%- endfor -%}
+              </div>
+            </div>
+            <div class="colgrid__bg">
+              {%- for block in section.blocks limit: section.blocks.size -%}
+              {%- if block.settings.image != blank -%}
+                      {%- assign img_url = block.settings.image | image_url: width: 960 -%}
+                  {%- else -%}
+                      {%- assign img_url = '' -%}
+                  {%- endif -%}
+              <colgrid class=" d-block colgrid__bg--full" style="background-image: url({{ img_url }})" data-index="{{ forloop.index }}"></colgrid>
+              {%- endfor -%}
+            </div>
+        </hover-image>
+    </div>
+    </div>
+</section>
+<style>
+  {%- for block in section.blocks limit: section.blocks.size -%}
+  .colgrid  .colgrid__box-{{ block.id }}:hover{
+    background-color:{{ block.settings.bgcol }};
+    border-color:{{ block.settings.bgcol }};
+  }
+  {%- endfor -%}
+</style>
+
+{% schema %}
+{
+  "name": "Banner Image hover",
+  "class": "index-section",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidth",
+      "label": "Full Width",
+      "default": "container",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "t:sections.all.padding_mobile.label",
+      "info": "t:sections.all.padding_mobile.info"
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "default": "#ffffff",
+      "label": "t:sections.all.background-color.label"
+    },
+    {
+      "type": "color",
+      "id": "sub_color",
+      "default": "#282828",
+      "label": "Sub color"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.all.heading_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.all.text_color.label"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "default": "Sub heading",
+      "label": "Sub heading"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.advanced-content.settings.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.advanced-content.settings.tab_heading_size.label"
+    },
+    {
+      "type": "text",
+      "id": "tab_description",
+      "label": "t:sections.advanced-content.settings.tab_description.label"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "style_btn",
+      "label": "Style Button",
+      "default": "btn-base",
+      "options": [
+        {
+          "value": "btn-base",
+          "label": "Button Base"
+        },
+        {
+          "value": "btn-outline",
+          "label": "Button Out Line"
+        },
+        {
+          "value": "btn-outline-white",
+          "label": "Button Out Line White"
+        },
+        {
+          "value": "btn-line",
+          "label": "Button Line"
+        },
+        {
+          "value": "btn-line-black",
+          "label": "Button Line Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+      "type": "select",
+      "id": "grid",
+      "label": "Collections per row",
+      "default": "3",
+      "options": [
+        {
+          "value": "2",
+          "label": "2"
+        },
+        {
+          "value": "3",
+          "label": "3"
+        },
+        {
+          "value": "4",
+          "label": "4"
+        },
+        {
+          "value": "5",
+          "label": "5"
+        },
+        {
+          "value": "6",
+          "label": "6"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Settings item"
+    },
+    {
+      "type": "color",
+      "id": "color_sub_title",
+      "label": "Color sub title",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "color_heading",
+      "label": "Color Heading",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "color_description",
+      "label": "Color Description",
+      "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_range",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 1,
+      "label": "t:sections.all.heading_size_range.label"
+    },
+    {
+      "type": "select",
+      "id": "style_btn_item",
+      "label": "Style Button",
+      "default": "btn-base",
+      "options": [
+        {
+          "value": "btn-base",
+          "label": "Button Base"
+        },
+        {
+          "value": "btn-outline",
+          "label": "Button Out Line"
+        },
+        {
+          "value": "btn-line",
+          "label": "Button Line"
+        },
+        {
+          "value": "btn-line-black",
+          "label": "Button Line Black"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "featured_collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "label": "Collection",
+          "id": "collection",
+          "type": "collection"
+        },
+        {
+          "type": "text",
+          "id": "sub_title",
+          "label": "Sub title"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title Collection"
+        },
+        {
+          "type": "liquid",
+          "id": "description",
+          "label": "Description Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "button1_label",
+          "label": "Button",
+          "default": "View All"
+        },
+        {
+          "type": "color",
+          "id": "bgcol",
+          "label": "Background Collection",   
+          "default": "#82c4c3"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner Image hover",
+      "category": "Collection",
+      "settings": {
+        "grid": "3"
+      },
+      "blocks": [
+        {
+          "type": "featured_collection"
+        },
+        {
+          "type": "featured_collection"
+        },
+        {
+          "type": "featured_collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,45 @@
+.ap-productlist-section {
+  margin: 0;
+}
+
+[dir="ltr"] .ap-productlist--center .ap-productlist__inner {
+  gap: 20px 0;
+}
+
+.ap-productlist-section .ap-productlist {
+  overflow: unset;
+}
+
+.ap-productlist .ap-nextap-buttonprev--prev,
+.ap-productlist .ap-nextap-buttonprev--next {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+.ap-productlist-section h3.heading.h2 {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.ap-productlist__ap-nextprev {
+  top: 50%;
+}
+
+.btn-viewall a.button.btn-base-2 {
+  margin: 60px auto 0;
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.btn-viewall a.button.btn-base-2 path {
+  fill: var(--primary);
+}
+
+.btn-viewall a.button.btn-base-2:hover {
+  color: var(--primary_hover);
+}
+
+.btn-viewall a.button.btn-base-2 path {
+  fill: var(--primary_hover);
+}

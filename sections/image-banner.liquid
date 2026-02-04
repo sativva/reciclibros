@@ -1,0 +1,638 @@
+{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+{% render 'section-style' %}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --section-block-overlay: {{ section.settings.overlay | color_extract: 'red' }}, {{ section.settings.overlay | color_extract: 'green' }}, {{ section.settings.overlay | color_extract: 'blue' }};
+    --section-block-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 10.0 }};
+
+    --heading-color: {{ section.settings.heading_color | color_extract: 'red' }}, {{ section.settings.heading_color | color_extract: 'green' }}, {{ section.settings.heading_color | color_extract: 'blue' }};
+    --color-body: {{ section.settings.text_color | color_extract: 'red' }}, {{ section.settings.text_color | color_extract: 'green' }}, {{ section.settings.text_color | color_extract: 'blue' }};
+
+    --img-height : {%- if section.settings.height_img == 'default-img' -%} auto {%- else -%}{{ section.settings.height_img }}px {%- endif -%};
+    --img-height-mb : {%- if section.settings.height_img_mobile == 'default-img' -%} auto {%- else -%}{{ section.settings.height_img_mobile }}px {%- endif -%};
+  }
+  #shopify-section-{{ section.id }} .banner-image:before {
+    background: rgba(var(--section-block-overlay, 0, 0, 0),var(--section-block-overlay-opacity, .2));
+  }
+
+  #shopify-section-{{ section.id }} .banner-content {
+    position: relative;
+  }
+
+  .img-banner-text {
+    position: absolute;
+  }
+
+  #shopify-section-{{ section.id }} .banner-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    padding: 15px;
+  }
+
+  #shopify-section-{{ section.id }} .banner-list-image {
+    min-height: var(--img-height);
+  }
+  #shopify-section-{{ section.id }} .container .banner-list-image {
+    border-radius: 10px;
+  }
+  @media (max-width: 767px) {
+    #shopify-section-{{ section.id }} .banner-list-image ,
+    #shopify-section-{{ section.id }} .imagebanner__img {
+      min-height: var(--img-height-mb);
+    }
+  }
+
+  .imagebanner__img {
+    object-fit: cover;
+  }
+</style>
+
+<section class="image-banner">
+  <div class="{{ section.settings.setwidthout }}">
+    {% if section.settings.tab_heading != blank %}
+    <header class="section__header ">
+      <div class="text-container">
+        <h3 class="heading h{{ section.settings.tab_heading_size }}">{{ section.settings.tab_heading }}
+        </h3>
+        {% if section.settings.tab_description %}
+        <div class="heading-description">
+          {{ section.settings.tab_description }}
+        </div>
+        {% endif %}
+      </div>
+    </header>
+    {% endif %}
+    <banner-content reveal-on-scroll="" class="wrapper-banner-content">
+      <div class="banner-content has-overlay">
+        <div class="banner-image">
+            {% if section.settings.featured_image != blank %}
+                <img class="banner-list-image object-fit-cover" reveal="" loading="lazy" 
+                sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                alt="" 
+                src="{{ section.settings.featured_image | image_url: width: section.settings.featured_image.width }}" 
+                data-srcset="{%- if section.settings.featured_image.width >= 3000 -%}{{ section.settings.featured_image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                    {{ section.settings.featured_image | image_url }} {{ section.settings.featured_image.width }}w"
+                src="{{ section.settings.featured_image | image_url: width: 1500 }}"
+                height="{{ section.settings.featured_image.height }}"
+                width="{{ section.settings.featured_image.width }}">
+
+              {% if section.settings.image_mobile %}
+                  <img src="{{ section.settings.image_mobile | image_url: width: 3000 }}"
+                    data-srcset="{{ section.settings.image_mobile | image_url: width: 400 }} 400w, {{ section.settings.image_mobile | image_url: width: 500 }} 500w, {{ section.settings.image_mobile | image_url: width: 600 }} 600w, {{ section.settings.image_mobile | image_url: width: 700 }} 700w, {{ section.settings.image_mobile | image_url: width: 800 }} 800w, {{ section.settings.image_mobile | image_url: width: 900 }} 900w, {{ section.settings.image_mobile | image_url: width: 1000 }} 1000w, {{ section.settings.image_mobile | image_url: width: 1200 }} 1200w, {{ section.settings.image_mobile | image_url: width: 3000 }} 1400w" 
+                    loading="lazy" draggable="false" class="imagebanner__img object-fit-cover hd-desk" sizes="100vw" width="3000" height="4204">
+              {% endif %}
+            {% else %}
+                <div class="banner-list-image">
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+            {% endif %}
+        </div>  
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {%- when 'text' -%}
+
+            {%-liquid
+              assign position_text = block.settings.position_text
+
+              case position_text
+                when 'top-left'
+                assign positiontxt = 'align-items-start justify-content-start'
+                when 'top-center'
+                assign positiontxt = 'align-items-center justify-content-start'
+                when 'top-right'
+                assign positiontxt = 'align-items-end justify-content-start'
+                when 'mid-left'
+                assign positiontxt = 'align-items-start justify-content-center'
+                when 'mid-center'
+                assign positiontxt = 'align-items-center justify-content-center'
+                when 'mid-right'
+                assign positiontxt = 'align-items-end justify-content-center'
+                when 'bot-left'
+                assign positiontxt = 'align-items-start justify-content-end'
+                when 'bot-center'
+                assign positiontxt = 'align-items-center justify-content-end'
+                when 'bot-right'
+                assign positiontxt = 'align-items-end justify-content-end'
+                else 
+                assign positiontxt = 'align-items-end justify-content-start'
+              endcase
+            -%}
+
+            <style>
+                @media (min-width: 1200px) {
+                  #shopify-section-{{ section.id }} #text-{{ block.id }}.banner-text {
+                    padding: {{ block.settings.padding_inner }};
+                  }
+                }  
+            </style>
+
+            <div id="text-{{ block.id }}" class="{{ block.settings.setwidthout }} banner-text d-flex flex-column {{ positiontxt }}">
+
+                <div class="text-{{ block.settings.text_align }}">
+
+                  {% if block.settings.heading_title != blank %}
+                  <h3 style="color: {{ block.settings.color_title }};" class="heading sub-heading-2 mb-12" reveal="">
+                    {{- block.settings.heading_title -}}
+                  </h3>
+                  {% endif %}
+                  {% if block.settings.heading != blank %}
+                  <h2 style="color: {{ block.settings.color_title_center }};"
+                    class="heading {{ block.settings.heading_size }} image-banner-title_center my-0 fw-semibold text-uppercase {% if block.settings.date_picker != blank and block.settings.time_picker != blank %}mb-30{% else %}mb-12{% endif %}" reveal="">
+                    {{- block.settings.heading -}}
+                  </h2>
+                  {% endif %}
+                  
+                  {% if block.settings.description != blank %}
+                  <p style="color: {{ block.settings.color_description }};" class="image-banner-description mb-md-3 mb-2 pb-1">{{- block.settings.description -}}</p>
+                  {% endif %}
+  
+                  {% if block.settings.description_2 != blank %}
+                  <p style="color: {{ block.settings.color_description }};" class="image-banner-description-2">{{- block.settings.description_2 -}}</p>
+                  {% endif %}
+
+                  {% if block.settings.date_picker != blank and block.settings.time_picker != blank %}
+                    <div class="header-box-center countdown-header text-{{ block.settings.text_align }} {% if block.settings.button1_label != blank %}mb-4{% endif %}"> 
+                      <div class="header-countdown-title">
+                        {{ block.settings.title_countdown }}
+                      </div>
+                      {% render 'collection-countdown' , settings: block.settings %}
+                    </div>
+                  {% endif %}
+  
+                  {% if block.settings.button1_label != blank %}
+                  <style>
+                    #text-{{ block.id }} a.button.btn-base, 
+                    #text-{{ block.id }} .btn-outline, 
+                    #text-{{ block.id }} .btn-line ,
+                    #text-{{ block.id }} .btn-line-black ,
+                    #text-{{ block.id }} .btn-base {
+                      color: {{ block.settings.color_btn }};
+                      background-color: {{ block.settings.bg_btn }};
+                      border-color: {{ block.settings.color_btn }};
+                    }
+                    #text-{{ block.id }} a.button.btn-base path , 
+                    #text-{{ block.id }} .btn-outline path , 
+                    #text-{{ block.id }} .btn-base path {
+                      fill: {{ block.settings.color_btn }};
+                    }
+                    #text-{{ block.id }} .btn-outline:hover, 
+                    #text-{{ block.id }} a.button.btn-base:hover,
+                    #text-{{ block.id }} .btn-line:hover ,
+                    #text-{{ block.id }} .btn-line-black:hover ,
+                    #text-{{ block.id }} .btn-base:hover {
+                      color: {{ block.settings.color_btn_hover }};
+                      background-color: {{ block.settings.bg_btn_hover }};
+                      border-color: {{ block.settings.color_btn_hover }};
+                    }
+                    #text-{{ block.id }} .btn-outline:hover path , 
+                    #text-{{ block.id }} a.button.btn-base:hover path , 
+                    #text-{{ block.id }} .btn-base:hover path {
+                      fill: {{ block.settings.color_btn_hover }};
+                    }
+                  </style>
+                  <a href="{{ block.settings.link1 }}" class="button {{ block.settings.style_btn }}">
+                    {{ block.settings.button1_label }}
+                  </a>
+                  {% endif %}
+                
+                </div>
+            </div>
+  
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </banner-content>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image banner",
+  "tag": "section",
+  "class": "section section-image-banner",
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Set Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image mobile"
+    },
+    {
+      "type": "select",
+      "id": "height_img",
+      "label": "Height Image",
+      "default": "550",
+      "options": [
+        {
+          "label": "300px",
+          "value": "300"
+        },
+        {
+          "label": "450px",
+          "value": "450"
+        },
+        {
+          "label": "550px",
+          "value": "550"
+        },
+        {
+          "label": "650px",
+          "value": "650"
+        },
+        {
+          "label": "750px",
+          "value": "750"
+        },
+        {
+          "label": "820px",
+          "value": "820"
+        },
+        {
+          "label": "Default image",
+          "value": "default-img"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "height_img_mobile",
+      "label": "Height Image Mobile",
+      "default": "450",
+      "options": [
+        {
+          "label": "350px",
+          "value": "350"
+        },
+        {
+          "label": "450px",
+          "value": "450"
+        },
+        {
+          "label": "550px",
+          "value": "550"
+        },
+        {
+          "label": "650px",
+          "value": "650"
+        },
+        {
+          "label": "Default image",
+          "value": "default-img"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_tablet",
+      "label": "t:sections.all.margin_tablet.label",
+      "info": "t:sections.all.margin_tablet.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "header",
+      "content": "Advanced Settings"
+    },
+    {
+      "type": "text",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.all.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.all.tab_heading_size.label"
+    },
+    {
+      "type": "text",
+      "id": "tab_description",
+      "label": "t:sections.all.tab_description.label"
+    },
+    {
+      "id": "heading_color",
+      "type": "color",
+      "label": "Color heading"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Color description"
+    },
+    {
+      "type": "color",
+      "id": "overlay",
+      "default": "#000000",
+      "label": "Overlay background"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 1,
+      "label": "Overlay opacity"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "setwidthout",
+          "label": "Set Width Text",
+          "default": "full",
+          "options": [
+            {
+              "value": "container",
+              "label": "Box"
+            },
+            {
+              "value": "container-fluid",
+              "label": "Container Fluid"
+            },
+            {
+              "value": "full",
+              "label": "Full"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left",
+          "label": "Text align"
+        },
+        {
+          "type": "select",
+          "id": "position_text",
+          "options": [
+            {
+              "value": "top-left",
+              "label": "Top Left"
+            },
+            {
+              "value": "top-center",
+              "label": "Top Center"
+            },
+            {
+              "value": "top-right",
+              "label": "Top Right"
+            },
+            {
+              "value": "mid-left",
+              "label": "Midle Left "
+            },
+            {
+              "value": "mid-center",
+              "label": "Midle Center "
+            },
+            {
+              "value": "mid-right",
+              "label": "Midle Right "
+            },
+            {
+              "value": "bot-left",
+              "label": "Bottom Left "
+            },
+            {
+              "value": "bot-center",
+              "label": "Bottom Center "
+            },
+            {
+              "value": "bot-right",
+              "label": "Bottom Right "
+            }
+          ],
+          "default": "mid-center",
+          "label": "Text Position"
+        },
+        {
+          "type": "text",
+          "id": "padding_inner",
+          "label": "Padding inner",
+          "info": "Eg: 20px 20px 20px 20px (corresponds to the positions 'Top' 'Right' 'Bottom' 'Left')"
+        },
+        {
+          "type": "liquid",
+          "id": "heading_title",
+          "label": "Heading title",
+          "default": "Heading title"
+        },
+        {
+          "type": "color",
+          "id": "color_title",
+          "label": "Color title"
+        },
+        {
+          "type": "liquid",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },   
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            },
+            {
+              "value": "p",
+              "label": "P"
+            }
+          ],
+          "default": "h2",
+          "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "color",
+          "id": "color_title_center",
+          "label": "Color title center"
+        },
+        {
+          "type": "liquid",
+          "id": "description",
+          "label": "HTML / Description"
+        },
+        {
+          "type": "liquid",
+          "id": "description_2",
+          "label": "HTML / Description 2"
+        },
+        {
+          "type": "color",
+          "id": "color_description",
+          "label": "Color Description"
+        },
+        {
+          "type": "text",
+          "id": "title_countdown",
+          "label": "Title Count Down",
+          "default": "Title Count Down"
+        },
+        {
+          "type": "text",
+          "id": "time_picker",
+          "label": "Choose time",
+          "default": "23:00",
+          "info": "00:00"
+        },
+        {
+          "type": "text",
+          "id": "date_picker",
+          "label": "Choose date",
+          "default": "30-12-2225",
+          "info": "e.g. dd-mm-yyyy"
+        },
+        {
+          "type": "liquid",
+          "id": "button1_label",
+          "label": "Button"
+        },
+        {
+          "type": "color",
+          "id": "color_btn",
+          "label": "Color button"
+        },
+        {
+          "type": "color",
+          "id": "bg_btn",
+          "label": "Background button"
+        },
+        {
+          "type": "color",
+          "id": "color_btn_hover",
+          "label": "Color button hover"
+        },
+        {
+          "type": "color",
+          "id": "bg_btn_hover",
+          "label": "Background button hover"
+        },
+        {
+          "type": "url",
+          "id": "link1",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "style_btn",
+          "label": "Style Button",
+          "default": "btn-base",
+          "options": [
+            {
+              "value": "btn-base",
+              "label": "Button Base"
+            },
+            {
+              "value": "btn-outline",
+              "label": "Button Out Line"
+            },
+            {
+              "value": "btn-line",
+              "label": "Button Line"
+            },
+            {
+              "value": "btn-line-black",
+              "label": "Button Line Black"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image banner",
+      "blocks": [
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

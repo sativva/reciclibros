@@ -1,0 +1,86 @@
+.arrow-lookbook {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%);
+  color: var(--color-dot);
+  -webkit-transform: translate(-50%);
+  -moz-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  -o-transform: translate(-50%);
+}
+
+.ap-lookbookshop__arrow {
+  border: none !important;
+  border-radius: 0;
+  background-color: transparent;
+  border: none;
+  color: var(--color-dot);
+}
+
+.ap-lookbookshop__ap-button-nextprev {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.look-book .product-action {
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+.ap-product-carousel__nav {
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -50px;
+}
+
+.product-carousel-content {
+  position: relative;
+}
+
+.look-book .shopify-payment-button__button--unbranded {
+  width: 100%;
+}
+
+.block-lookbook-content {
+  position: relative;
+}
+
+.ap-lookbookshop__image-wrapper {
+  height: 100%;
+}
+
+.ap-lookbookshop__dot:before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #fff;
+  left: 50%;
+  top: 50%;
+  bottom: unset;
+  transform: translate(-50%, -50%);
+}
+
+.ap-lookbookshop__dot:after {
+  content: "";
+  position: absolute;
+  left: -24px;
+  top: 6px;
+  width: 36px;
+  height: 36px;
+  /* border: 2px solid rgba(var(--section-dot-background), .6); */
+  border-radius: 100%;
+  animation: shopTheLookDotKeyframe 2s ease-in-out infinite;
+  background-color: #ffffff40;
+}
+
+@media (min-width: 1200px) {
+  .featured-collections.lookbook-product {
+    padding: 0 0 0 100px;
+  }
+}

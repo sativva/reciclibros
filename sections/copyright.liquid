@@ -1,0 +1,799 @@
+{{ 'copyright.css' | asset_url | stylesheet_tag }}
+{% render 'section-style' %}
+
+<style>
+    #shopify-section-{{ section.id }} {
+        --background: {{ section.settings.background | color_extract: 'red' }}, {{ section.settings.background | color_extract: 'green' }}, {{ section.settings.background | color_extract: 'blue' }};
+        --heading-color: {{ section.settings.heading_color | color_extract: 'red' }}, {{ section.settings.heading_color | color_extract: 'green' }}, {{ section.settings.heading_color | color_extract: 'blue' }};
+        --color-body: {{ section.settings.text_color | color_extract: 'red' }}, {{ section.settings.text_color | color_extract: 'green' }}, {{ section.settings.text_color | color_extract: 'blue' }};
+        --color-body-2: {{ section.settings.text_color_2 }};
+        --border-color: {{ section.settings.border_color }};
+        --color-link : {{ section.settings.link_color | color_extract: 'red' }}, {{ section.settings.link_color | color_extract: 'green' }}, {{ section.settings.link_color | color_extract: 'blue' }};
+        --color-social : {{ section.settings.color_social | color_extract: 'red' }}, {{ section.settings.color_social | color_extract: 'green' }}, {{ section.settings.color_social | color_extract: 'blue' }};
+        --bg-link : {{ section.settings.bg_link | color_extract: 'red' }}, {{ section.settings.bg_link | color_extract: 'green' }}, {{ section.settings.bg_link | color_extract: 'blue' }};
+
+        background-size: unset;
+        --section-blocks-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 10.0 }};
+    }
+
+    #shopify-section-{{ section.id }} {
+      background-color: rgb(var(--background), var(--section-blocks-overlay-opacity));
+    }
+    .copyright-item-content a svg {
+      width: 20px;
+      height: 20px;
+    }
+    .copyright-item-content p {
+      font-size: 14px;
+    }
+
+    /* LANGUAGE & CURRENCY */
+    .copyright localization-form {
+      padding: 3px 12px;
+      border: 1px solid #E2E2E2;
+      position: relative;
+    }
+    .copyright #LanguageList , 
+    .copyright #idCountryList {
+      bottom: 100%;
+      top: unset;
+      left: 0;
+    }
+    .copyright svg.icon.icon-caret {
+      width: 10px;
+      height: 10px;
+    } 
+    .copyright .disclosure__button {
+      font-size: 12px;
+      line-height: 24px;
+      color: var(--color-body-2);
+    }
+    .copyright__payment-methods-label {
+      color: var(--color-body-2);
+    }
+</style>
+  
+<section class="copyright">
+    <div class="{%- if section.settings.fullwidth -%}container-fluid{%- else -%}container{%- endif -%}">
+      <div class="copyright__inner">
+        <div class="copyright__aside row">
+
+            {%- for block in section.blocks -%}
+                {%- case block.settings.width -%}
+                {%- when '12%' -%}
+                {%- assign block_width = 'col-xl-12 col-lg-12 col-md-12 col-12' -%}
+                {%- when '33%' -%}
+                {%- assign block_width = 'col-xl-4 col-lg-4 col-md-4 col-12' -%}
+                {%- when '40%' -%}
+                {%- assign block_width = 'col-xl-40 col-md-6 col-12' -%}
+                {%- when '50%' -%}
+                {%- assign block_width = 'col-xl-40 col-md-6 col-12' -%}
+                {%- when '54%' -%}
+                {%- assign block_width = 'col-xl-54 col-lg-54 col-md-6 col-12' -%}
+                {%- when '100%' -%}
+                {%- assign block_width = 'col-12' -%}
+                {%- endcase -%}
+                <div id="block-{{ block.id }}" class="{{ block_width }} copyright-col-{{ forloop.index }}">
+                  {%- case block.type -%}
+  
+                      {%- when "logo" -%}
+                        <style>
+                          .logo-copyright.text-center {
+                            margin: auto;
+                          }
+                          .logo-copyright.text-right {
+                            margin-left: auto;
+                          }
+                        </style>
+                      {%- if block.settings.logo != blank -%}
+                      <div class="logo-copyright copyright-item-{{ forloop.index }} text-{{ block.settings.text_align }}">
+                        <img style="width: {{ block.settings.logo }}px" loading="lazy"
+                          sizes="{{ block.settings.logo }}px" class="footer__image" alt=""
+                          src="{{ block.settings.logo | image_url: width: block.settings.logo.width }}"
+                          data-srcset="{{ block.settings.logo | image_url: width: 100 }} 100w, {{ block.settings.logo | image_url: width: 200 }} 200w, {{ block.settings.logo | image_url: width: 300 }} 300w, {{ block.settings.logo | image_url: width: 400 }} 400w, {{ block.settings.logo | image_url: width: 500 }} 500w"
+                          width="{{ block.settings.logo.width }}" height="{{ block.settings.logo.height }}">
+                      </div>
+                      {% endif %}
+  
+                      {%- when "copyright-text" -%}
+                          <div class="copyright-item-{{ forloop.index }} text-{{ block.settings.text_align }}">
+                              {%- if block.settings.label != blank -%}
+                                  <span class="copyright-label">{{ block.settings.label }}</span>
+                              {%- endif -%}
+                              {%- if block.settings.content != blank -%}
+                                  <div class="copyright-item-content">
+                                      {{ block.settings.content }}
+                                  </div>
+                              {%- endif -%}
+                          </div>
+
+                      {%- when "copyright-lc" -%}
+                          <div style="gap: 8px;" class="copyright-lc-{{ forloop.index }} d-flex text-{{ block.settings.text_align }}">
+                            {% if block.settings.enable_localization_currency %}
+                              <div>
+                                {% render 'localization-currency', id: 'HeaderCountryForm' %}
+                              </div>
+                            {% endif %}
+                
+                            {% if block.settings.enable_localization %}
+                              <div>
+                                {% render 'localization' %}
+                              </div>
+                            {% endif %}
+                          </div>
+                      
+                      {%- when "menu" -%}
+                          <style>
+                            .text-center .linklist {
+                              justify-content: center;
+                            }
+                            .text-right .linklist {
+                              justify-content: end;
+                            }
+                          </style>
+                          <div class="copyright-item-{{ forloop.index }} copyright-menu text-{{ block.settings.text_align }}">
+                              {%- if block.settings.label != blank -%}
+                                  <span class="copyright-label">{{ block.settings.label }}</span>
+                              {%- endif -%}
+                              {%- if block.settings.menu != blank -%}
+                                  <div class="copyright-item-content">
+                                      <ul class="linklist list--unstyled" role="list">
+                                      {%- for link in block.settings.menu.links -%}
+                                      <li class="linklist__item">
+                                          <a href="{{ link.url }}" class="link--faded">{{ link.title | escape }}</a>
+                                      </li>
+                                      {% endfor %}
+                                      </ul>
+                                  </div>
+                              {% endif %}
+                          </div>
+                      
+                      {%- when "social" -%}
+                          {% liquid
+                              assign _show_social = false
+                              if block.settings.social_facebook != blank
+                                assign _show_social = true
+                              endif
+                              if block.settings.social_instagram != blank
+                                assign _show_social = true
+                              endif
+                              if block.settings.social_pinterest != blank
+                                assign _show_social = true
+                              endif
+                              if block.settings.social_youtube != blank
+                                assign _show_social = true
+                              endif
+                              if block.settings.social_linkedin != blank
+                                assign _show_social = true
+                              endif
+                          %}
+                          <style>
+                            .text-center .copyright-social {
+                              justify-content: center;
+                            }
+                            .text-right .copyright-social {
+                              justify-content: end;
+                            }
+                          </style>
+                          <div class="copyright-social-wp copyright-item-{{ forloop.index }} text-{{ block.settings.text_align }}">
+                              <div class="copyright-social">
+                                {%- if block.settings.label != blank -%}
+                                    <span class="copyright-label mr-2 pr-1">{{ block.settings.label }}</span>
+                                {%- endif -%}
+  
+                                {%- if _show_social -%}
+                                  <div class="copyright-item-content">
+                                    <ul class="social-copyright social-media social-media--no-radius list--unstyled" role="list">
+                                        {%- if block.settings.social_facebook != blank -%}
+                                          <li class="social-media__item social-media__item--facebook">
+                                            <a href="{{ block.settings.social_facebook }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on Facebook">
+                                              <svg focusable="false" width="9" height="17" class="icon icon--facebook   " viewBox="0 0 9 17">
+                                              <path fill-rule="evenodd" clip-rule="evenodd" d="M2.486 16.2084L2.486 8.81845H0L0 5.93845L2.486 5.93845L2.486 3.81845C2.38483 2.79982 2.73793 1.78841 3.45107 1.05407C4.16421 0.319722 5.16485 -0.0628415 6.186 0.00844868C6.9284 0.00408689 7.67039 0.0441585 8.408 0.128449V2.69845L6.883 2.69845C6.4898 2.61523 6.08104 2.73438 5.79414 3.01585C5.50724 3.29732 5.3803 3.70373 5.456 4.09845L5.456 5.93845H8.308L7.936 8.81845H5.46L5.46 16.2084H2.486Z" fill="currentColor"></path>
+                                              </svg>
+                                              <span class="d-none">{{ 'general.social.links.facebook' | t }}</span>
+                                            </a>
+                                          </li>
+                                        {%- endif -%}
+                                        {%- if block.settings.social_instagram != blank -%}
+                                          <li class="social-media__item social-media__item--instagram">
+                                            <a href="{{ block.settings.social_instagram }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on Instagram">
+                                              <svg focusable="false" width="16" height="16" class="icon icon--instagram   " viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C5.827 0 5.555.01 4.702.048 3.85.087 3.269.222 2.76.42a3.921 3.921 0 00-1.417.923c-.445.444-.719.89-.923 1.417-.198.509-.333 1.09-.372 1.942C.01 5.555 0 5.827 0 8s.01 2.445.048 3.298c.039.852.174 1.433.372 1.942.204.526.478.973.923 1.417.444.445.89.719 1.417.923.509.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.445-.01 3.298-.048c.852-.039 1.433-.174 1.942-.372a3.922 3.922 0 001.417-.923c.445-.444.719-.89.923-1.417.198-.509.333-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.298c-.039-.852-.174-1.433-.372-1.942a3.922 3.922 0 00-.923-1.417A3.921 3.921 0 0013.24.42c-.509-.198-1.09-.333-1.942-.372C10.445.01 10.173 0 8 0zm0 1.441c2.136 0 2.39.009 3.233.047.78.036 1.203.166 1.485.276.374.145.64.318.92.598.28.28.453.546.598.92.11.282.24.705.276 1.485.038.844.047 1.097.047 3.233s-.009 2.39-.047 3.233c-.036.78-.166 1.203-.276 1.485-.145.374-.318.64-.598.92-.28.28-.546.453-.92.598-.282.11-.705.24-1.485.276-.844.038-1.097.047-3.233.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.479 2.479 0 01-.92-.598 2.478 2.478 0 01-.598-.92c-.11-.282-.24-.705-.276-1.485-.038-.844-.047-1.097-.047-3.233s.009-2.39.047-3.233c.036-.78.166-1.203.276-1.485.145-.374.318-.64.598-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.844-.038 1.097-.047 3.233-.047zm0 9.226a2.667 2.667 0 110-5.334 2.667 2.667 0 010 5.334zm0-6.775a4.108 4.108 0 100 8.216 4.108 4.108 0 000-8.216zm5.23-.162a.96.96 0 11-1.92 0 .96.96 0 011.92 0z" fill="currentColor"></path>
+                                              </svg>
+                                              <span class="d-none">{{ 'general.social.links.instagram' | t }}</span>
+                                            </a>
+                                          </li>
+                                        {%- endif -%}
+                                        {%- if block.settings.social_pinterest != blank -%}
+                                          <li class="social-media__item social-media__item--pinterest">
+                                            <a href="{{ block.settings.social_pinterest }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on Pinterest">
+                                              <svg focusable="false" width="12" height="16" class="icon icon--pinterest   " viewBox="0 0 12 16">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.8042 0.00123531C8.79537 -0.0442356 10.6685 1.16769 11.5498 3.29299C11.8407 3.99433 12.1516 5.28439 11.9181 6.35474C11.825 6.78208 11.7985 7.22812 11.6726 7.63086C11.4163 8.4496 11.0829 9.17441 10.6413 9.79945C10.0418 10.6486 9.13196 11.2212 7.98951 11.5091C6.97899 11.7637 6.04959 11.3826 5.50954 10.9732C5.33747 10.843 5.10674 10.6728 5.04304 10.4377C5.03488 10.4377 5.0267 10.4377 5.01853 10.4377C4.97972 10.8669 4.81532 11.3224 4.69924 11.7135C4.53858 12.2545 4.50733 12.8146 4.3064 13.3208C4.08349 13.8828 3.81274 14.3978 3.52072 14.8776C3.36739 15.1292 2.94427 15.9904 2.63675 16C2.60311 15.9354 2.58964 15.9105 2.58761 15.796C2.48858 15.6383 2.55757 15.3724 2.51393 15.1578C2.44604 14.8236 2.39317 14.2217 2.46491 13.8824C2.46491 13.7038 2.46491 13.5248 2.46491 13.3465C2.54397 12.9786 2.54085 12.6015 2.63675 12.2494C2.84537 11.4824 2.96145 10.6699 3.17692 9.87611C3.38398 9.11352 3.57396 8.27939 3.74172 7.50321C3.77957 7.32789 3.56652 6.82389 3.52072 6.63572C3.37628 6.04186 3.48624 5.21874 3.66805 4.77269C3.89698 4.21111 4.56717 3.3535 5.43589 3.57359C6.13407 3.75039 6.57846 4.50528 6.34437 5.46192C6.09862 6.46589 5.7798 7.3653 5.5587 8.37035C5.50173 8.62933 5.59968 8.90442 5.65687 9.05958C5.86357 9.61934 6.49037 10.163 7.32652 9.95278C8.59396 9.63365 9.15431 8.48627 9.53645 7.24791C9.63981 6.91302 9.62743 6.59647 9.70831 6.22709C9.87894 5.44763 9.80648 4.28411 9.56098 3.67556C9.16753 2.70023 8.43329 2.07518 7.42471 1.73624C7.1465 1.68526 6.86819 1.63427 6.58988 1.58329C6.12397 1.47655 5.23532 1.63685 4.92023 1.73624C3.51171 2.18156 2.63952 2.92544 2.09658 4.26247C1.91177 4.71767 1.81046 5.17911 1.77741 5.81884C1.76913 5.8955 1.76094 5.97217 1.75278 6.04883C1.86153 6.62068 1.87259 6.99959 2.09658 7.42657C2.20715 7.63711 2.46971 7.8029 2.51393 8.06444C2.54001 8.2185 2.42705 8.45105 2.39125 8.57467C2.33705 8.76137 2.35676 8.97522 2.26844 9.13625C2.10873 9.42678 1.67383 9.20852 1.48275 9.08491C0.489307 8.44373 -0.329526 6.5895 0.132284 4.79837C0.20342 4.5218 0.206915 4.28118 0.304126 4.03285C0.906661 2.49554 1.80565 1.55101 3.10325 0.741098C3.58947 0.437749 4.24511 0.287354 4.84657 0.128885C5.16574 0.0863481 5.48503 0.0437917 5.8042 0.00123531Z" fill="currentColor"></path>
+                                              </svg>
+                                              <span class="d-none">{{ 'general.social.links.pinterest' | t }}</span>
+                                            </a>
+                                          </li>
+                                        {%- endif -%}
+                                        {%- if block.settings.social_youtube != blank -%}
+                                          <li class="social-media__item social-media__item--youtube">
+                                            <a href="{{ block.settings.social_youtube }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on YouTube">
+                                              <svg fill="none" focusable="false" width="18" height="13" class="icon icon--youtube   " viewBox="0 0 18 13">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.0325 0.369454C16.807 0.572743 17.4168 1.17173 17.6238 1.9324C18 3.31101 18 6.1875 18 6.1875C18 6.1875 18 9.06389 17.6238 10.4427C17.4168 11.2033 16.807 11.8023 16.0325 12.0056C14.6288 12.375 9 12.375 9 12.375C9 12.375 3.37122 12.375 1.96752 12.0056C1.19311 11.8023 0.583159 11.2033 0.376159 10.4427C0 9.06389 0 6.1875 0 6.1875C0 6.1875 0 3.31101 0.376159 1.9324C0.583159 1.17173 1.19311 0.572743 1.96752 0.369454C3.37122 0 9 0 9 0C9 0 14.6288 0 16.0325 0.369454ZM11.8636 6.1876L7.1591 8.79913V3.57588L11.8636 6.1876Z" fill="currentColor"></path>
+                                              </svg>
+                                              <span class="d-none">{{ 'general.social.links.youtube' | t }}</span>
+                                            </a>
+                                          </li>
+                                        {%- endif -%}
+                                        {%- if block.settings.social_linkedin != blank -%}
+                                          <li class="social-media__item social-media__item--linkedin">
+                                            <a href="{{ block.settings.social_linkedin }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on LinkedIn">
+                                              <svg fill="none" focusable="false" width="13" height="13" class="icon icon--linkedin   " viewBox="0 0 13 13">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.12412 1.56485C3.12412 0.70105 2.42432 0 1.56256 0C0.697275 0 0 0.70105 0 1.56485C0 2.42916 0.697275 3.13021 1.56256 3.13021C2.42432 3.13021 3.12412 2.42916 3.12412 1.56485ZM2.91019 13H0.213925V4.31649H2.91019V13ZM7.18264 4.31648H4.6004V13H7.29112V8.70525C7.29112 7.57205 7.50505 6.47473 8.90666 6.47473C10.2891 6.47473 10.3068 7.77018 10.3068 8.77702V13H13V8.23771C13 5.89903 12.496 4.10117 9.76892 4.10117C8.45812 4.10117 7.57871 4.82092 7.21948 5.50377H7.18264V4.31648Z" fill="currentColor"></path>
+                                              </svg>
+                                              <span class="d-none">{{ 'general.social.links.linkedin' | t }}</span>
+                                            </a>
+                                          </li>
+                                        {%- endif -%}
+                                    </ul>
+                                </div>
+                                {%- endif -%}
+                              </div>
+                              
+                              {% if block.settings.backtotop_text != blank %}
+                              <div class="back-to-top">
+                                <button onclick="scrollToTop()" class="back-to-top-copyright transition">
+                                  {{ block.settings.backtotop_text }}
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <g clip-path="url(#clip0_29_10)">
+                                    <path d="M12.5324 6.21767C12.4611 6.14939 12.377 6.09586 12.2849 6.06017C12.1023 5.98515 11.8975 5.98515 11.7149 6.06017C11.6228 6.09586 11.5387 6.14939 11.4674 6.21767L8.46739 9.21767C8.32617 9.35889 8.24683 9.55044 8.24683 9.75017C8.24683 9.94989 8.32617 10.1414 8.46739 10.2827C8.60862 10.4239 8.80017 10.5032 8.99989 10.5032C9.19962 10.5032 9.39117 10.4239 9.53239 10.2827L11.2499 8.55767V17.2502C11.2499 17.4491 11.3289 17.6398 11.4696 17.7805C11.6102 17.9211 11.801 18.0002 11.9999 18.0002C12.1988 18.0002 12.3896 17.9211 12.5302 17.7805C12.6709 17.6398 12.7499 17.4491 12.7499 17.2502V8.55767L14.4674 10.2827C14.5371 10.353 14.6201 10.4088 14.7115 10.4468C14.8029 10.4849 14.9009 10.5045 14.9999 10.5045C15.0989 10.5045 15.1969 10.4849 15.2883 10.4468C15.3797 10.4088 15.4627 10.353 15.5324 10.2827C15.6027 10.2129 15.6585 10.13 15.6966 10.0386C15.7346 9.9472 15.7542 9.84918 15.7542 9.75017C15.7542 9.65116 15.7346 9.55313 15.6966 9.46173C15.6585 9.37034 15.6027 9.28739 15.5324 9.21767L12.5324 6.21767Z" fill="black"/>
+                                    <path d="M12 0.75C9.77497 0.75 7.59989 1.4098 5.74984 2.64597C3.89979 3.88213 2.45785 5.63914 1.60636 7.69481C0.754875 9.75048 0.532087 12.0125 0.966171 14.1948C1.40025 16.3771 2.47171 18.3816 4.04505 19.955C5.61839 21.5283 7.62295 22.5998 9.80524 23.0338C11.9875 23.4679 14.2495 23.2451 16.3052 22.3936C18.3609 21.5422 20.1179 20.1002 21.354 18.2502C22.5902 16.4001 23.25 14.225 23.25 12C23.25 9.01631 22.0647 6.15483 19.955 4.04505C17.8452 1.93526 14.9837 0.75 12 0.75ZM12 21.75C10.0716 21.75 8.18657 21.1782 6.5832 20.1068C4.97982 19.0355 3.73013 17.5127 2.99218 15.7312C2.25423 13.9496 2.06114 11.9892 2.43735 10.0979C2.81355 8.20655 3.74215 6.46927 5.10571 5.10571C6.46928 3.74215 8.20656 2.81355 10.0979 2.43734C11.9892 2.06114 13.9496 2.25422 15.7312 2.99217C17.5127 3.73013 19.0355 4.97981 20.1068 6.58319C21.1782 8.18657 21.75 10.0716 21.75 12C21.75 14.5859 20.7228 17.0658 18.8943 18.8943C17.0658 20.7228 14.5859 21.75 12 21.75Z" fill="black"/>
+                                    </g>
+                                    <defs>
+                                    <clipPath id="clip0_29_10">
+                                    <rect width="24" height="24" fill="white"/>
+                                    </clipPath>
+                                    </defs>
+                                  </svg>
+                                </button>
+                              </div>
+                              {% endif %}
+                          </div>
+  
+                          {%- when "payment_methods" -%}
+                            <style>
+                              .copyright__payment-methods.text-left {
+                                justify-content: start;
+                                flex-direction: column;
+                                align-items: start;
+                              }
+                              .copyright__payment-methods.text-center {
+                                justify-content: center;
+                                flex-direction: column;
+                                align-items: center;
+                              }
+                              .copyright__payment-methods.text-right {
+                                justify-content: end;
+                                flex-direction: column;
+                                align-items: end;
+                              }
+                            </style>
+                            <div style="background-color: {{ block.settings.bg_payment_methods }};" class="copyright__payment-methods copyright-item-{{ forloop.index }} text-{{ block.settings.text_align }}">
+                              {% if block.settings.label != blank %}
+                              <span class="copyright__payment-methods-label sub-heading mb-11">{{ block.settings.label }}</span>
+                              {% endif %}
+                              <img class="copyright__content-image" loading="lazy" sizes="50vw" alt="" loading="lazy" 
+                                src="{{ block.settings.payment_methods_image | image_url: width: 1000 }}" 
+                                width="{{ block.settings.payment_methods_image.width }}" height="{{ block.settings.payment_methods_image.height }}">
+                            </div>
+                      
+                  {%- endcase -%}
+                </div>
+            {%- endfor -%}
+           
+          </div>
+      </div>
+    </div>
+</section>
+  
+{% schema %}
+{
+  "name": "Copyright",
+  "class": "shopify-section--copyright",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "fullwidth",
+      "label": "t:sections.all.fullwidth.label",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "t:sections.all.padding_mobile.label",
+      "info": "t:sections.all.padding_mobile.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:sections.all.background_image.label"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "default": "#282828",
+      "label": "t:sections.all.background.label"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#ffffff",
+      "label": "t:sections.all.heading_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#ffffff",
+      "label": "t:sections.all.text_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color_2",
+      "default": "#000",
+      "label": "Text color 2"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "default": "#484848",
+      "label": "t:sections.all.border_color.label"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "default": "#484848",
+      "label": "Link Color"
+    },
+    {
+      "type": "color",
+      "id": "color_social",
+      "default": "#86938D",
+      "label": "Color social"
+    },
+    {
+      "type": "color",
+      "id": "bg_link",
+      "default": "#F6F6F6",
+      "label": "Background color social"
+    },
+    {
+      "type": "text",
+      "id": "border_width",
+      "label": "Border width",
+      "info": "Ex: 1px 1px 1px 1px"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 1,
+      "label": "Overlay opacity"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "copyright-text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width",
+          "default": "33%",
+          "options": [
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "40%",
+              "label": "40%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "54%",
+              "label": "54%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:sections.all.label.label"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:sections.all.content.label"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left",
+          "label": "Text align"
+        }
+      ]
+    },
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width",
+          "default": "33%",
+          "options": [
+            {
+              "value": "12%",
+              "label": "12%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "40%",
+              "label": "40%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left",
+          "label": "Text align"
+        }
+      ]
+    },
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width",
+          "default": "33%",
+          "options": [
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "40%",
+              "label": "40%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:sections.all.label.label"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "t:sections.all.menu.label"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left",
+          "label": "Text align"
+        }
+      ]
+    },
+    {
+      "type": "payment_methods",
+      "name": "Payment methods",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width",
+          "default": "33%",
+          "options": [
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "40%",
+              "label": "40%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "color",
+          "id": "bg_payment_methods",
+          "label": "Background payment",
+          "default": "#F6F6F6"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:sections.all.label.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "payment_methods_image",
+          "label": "t:sections.all.payment_methods_image.label"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left",
+          "label": "Text align"
+        }
+      ]
+    },
+    {
+      "type": "social",
+      "name": "Social",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width",
+          "default": "33%",
+          "options": [
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "40%",
+              "label": "40%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "backtotop_text",
+          "label": "Back to top content",
+          "default": "Back to top"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:sections.all.label.label"
+        },
+        {
+          "type": "text",
+          "id": "social_facebook",
+          "label": "t:sections.all.social_facebook.label"
+        },
+        {
+          "type": "text",
+          "id": "social_instagram",
+          "label": "t:sections.all.social_instagram.label"
+        },
+        {
+          "type": "text",
+          "id": "social_pinterest",
+          "label": "t:sections.all.social_pinterest.label"
+        },
+        {
+          "type": "text",
+          "id": "social_youtube",
+          "label": "t:sections.all.social_youtube.label"
+        },
+        {
+          "type": "text",
+          "id": "social_linkedin",
+          "label": "t:sections.all.social_linkedin.label"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left",
+          "label": "Text align"
+        }
+      ]
+    },
+    {
+      "type": "copyright-lc",
+      "name": "Language currency",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width",
+          "default": "33%",
+          "options": [
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "40%",
+              "label": "40%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "t:sections.header.settings.localization_settings.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_localization",
+          "default": true,
+          "label": "t:sections.header.settings.enable_localization.label"
+        },
+        {
+          "type": "header",
+          "content": "Currency",
+          "info": "To add a currency, go to your [currency settings.](/admin/settings/payments)"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_localization_currency",
+          "default": true,
+          "label": "Enable Currency"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left",
+          "label": "Text align"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}  

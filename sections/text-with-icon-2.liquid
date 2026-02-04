@@ -1,0 +1,453 @@
+{% render 'section-style' %}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --heading-color: {{ section.settings.heading_color | color_extract: 'red' }}, {{ section.settings.heading_color | color_extract: 'green' }}, {{ section.settings.heading_color | color_extract: 'blue' }};
+    --color-body: {{ section.settings.text_color | color_extract: 'red' }}, {{ section.settings.text_color | color_extract: 'green' }}, {{ section.settings.text_color | color_extract: 'blue' }};
+    --vertical-breather: 40px; /* Inner spacing is smaller on this section */;
+
+    position: relative;
+  }
+
+.h6.title-icon {
+    margin: 0 0 20px;
+}
+.text-with-icons__icon-wrapper {
+    margin: 0 0 30px;
+    line-height: 1;
+}
+.description-icon span {
+    font-weight: 500;
+    color: var(--primary-2);
+    display: inline-block;
+    margin: 6px 0 0;
+}
+</style>
+
+<section class="section section--flush text-width-icon">
+    <div class="text-with-icon">
+        <div class="{{ section.settings.setwidthout }}">
+            {% if section.settings.tab_heading != blank %}
+            <header class="section__header text-{{ section.settings.text_align }} mb-60">
+              {% if section.settings.sub_heading != blank %}
+                <p class="heading sub-heading mb-20">{{ section.settings.sub_heading }}</p>
+              {% endif %}
+              <h3 class="heading h{{ section.settings.tab_heading_size }}">{{ section.settings.tab_heading }}
+              </h3>
+              {% if section.settings.tab_description != blank %}
+              <div class="heading-description">
+                {{ section.settings.tab_description }}
+              </div>
+              {% endif %}
+            </header>
+            {% endif %}
+            <div style="gap: 30px 0;" class="row">
+                {% for block in section.blocks %}
+                    {%- case block.settings.width -%}
+                    {%- when '20%' -%}
+                    {%- assign block_width = 'col-xl-20 col-md-6 col-12' -%}
+                    {%- when '25%' -%}
+                    {%- assign block_width = 'col-xl-3 col-md-6 col-12' -%}
+                    {%- when '33%' -%}
+                    {%- assign block_width = 'col-xl-4 col-md-6 col-12' -%}
+                    {%- when '50%' -%}
+                    {%- assign block_width = 'col-xl-6 col-md-6 col-12' -%}
+                    {%- when '75%' -%}
+                    {%- assign block_width = 'col-xl-9 col-md-6 col-12' -%}
+                    {%- when '100%' -%}
+                    {%- assign block_width = 'col-12' -%}
+                    {%- endcase -%}
+                    <div id="block-{{ block.id }}" class="{{ block_width }} {{ block.settings.class }}">
+                    <div id="block-{{ block.id }}" class="text-with-icons__item text-{{ section.settings.text_align_item }} {%- if section.settings.text_icon_top -%}{{ 'icon-top' | prepend: ' ' }}{%- endif -%}">
+                        <service-item reveal-on-scroll="">
+                            <div class="service-item icon-item">
+                                <div reveal="" class="text-with-icons__icon-wrapper"> 
+                                    {% if block.settings.custom_icon != blank %}
+                                        {{ block.settings.custom_icon }}
+                                    {% else %}
+                                        {% render 'icons', svg_icon: block.settings.svg_icon %}
+                                    {% endif %}
+                                </div>
+                                <div reveal="" class="text-with-icons__content-wrapper">
+                                    {% if block.settings.heading != blank %}
+                                        <h4 style="color: {{ section.settings.title_color }};" class="heading h{{ block.settings.heading_size }} title-icon ">{{ block.settings.heading }}</h4>
+                                    {% endif %}
+                                    {% if block.settings.content != blank %}
+                                        <p class="description-icon">{{ block.settings.content }}</p>
+                                    {% endif %}
+                                    {% if block.settings.button1_label != blank %}    
+                                    <style>  
+                                        #block-{{ block.id }} a.button.btn-base, 
+                                        #block-{{ block.id }} .btn-outline, 
+                                        #block-{{ block.id }} .btn-line ,
+                                        #block-{{ block.id }} .btn-line-black ,
+                                        #block-{{ block.id }} .btn-base {
+                                        color: {{ block.settings.color_btn }};
+                                        background-color: {{ block.settings.bg_btn }};
+                                        text-decoration: none;
+                                        border-color: {{ block.settings.color_btn }};
+                                        }
+                                        #block-{{ block.id }} .text-with-icons__item.icon-top:hover .btn-line {
+                                        color: #fff;
+                                        }
+                                        #block-{{ block.id }} a.button.btn-base path , 
+                                        #block-{{ block.id }} .btn-outline path , 
+                                        #block-{{ block.id }} .btn-base path {
+                                        fill: {{ block.settings.color_btn }};
+                                        }
+                                        #block-{{ block.id }} a.button.btn-base:hover,
+                                        #block-{{ block.id }} .btn-outline:hover, 
+                                        #block-{{ block.id }} .btn-line:hover ,
+                                        #block-{{ block.id }} .btn-line-black:hover ,
+                                        #block-{{ block.id }} .btn-base:hover {
+                                        color: {{ block.settings.color_btn_hover }};
+                                        background-color: {{ block.settings.bg_btn_hover }};
+                                        border-color: {{ block.settings.color_btn_hover }};
+                                        }
+                                        #block-{{ block.id }} .text-with-icons__item.icon-top .btn-line:hover {
+                                        color: {{ block.settings.color_btn_hover }};
+                                        }
+                                        #block-{{ block.id }} a.button.btn-base:hover path , 
+                                        #block-{{ block.id }} .btn-outline:hover path , 
+                                        #block-{{ block.id }} .btn-base:hover path {
+                                        fill: {{ block.settings.color_btn_hover }};
+                                        }
+                                    </style>
+                                    <a href="{{ block.settings.link1 }}" class="button {{ block.settings.style_btn }} btn-sm">
+                                        {{ block.settings.button1_label }}
+                                        {% render 'icon-arrow-2' %}
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </service-item>
+                    </div>   
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Text with icons 2",
+  "tag": "section",
+  "class": "shopify-section--text-with-icons",
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Set Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "default": "#ffffff",
+      "label": "t:sections.all.background-color.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:sections.all.background_image.label"
+    },
+    {
+      "type": "liquid",
+      "id": "sub_heading",
+      "default": "Sub heading",
+      "label": "Sub heading"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.all.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.all.tab_heading_size.label"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_description",
+      "label": "t:sections.all.tab_description.label"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Text align"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.all.heading_color.label"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "default": "#ffffff",
+      "label": "t:sections.all.title_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.all.text_color.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "text_icon_top",
+      "label": "Text icon top"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "t:sections.all.padding_mobile.label",
+      "info": "t:sections.all.padding_mobile.info"
+    },
+    {
+      "type": "header",
+      "content": "Settings content item"
+    },
+    {
+      "type": "select",
+      "id": "text_align_item",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Text align"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text-with-icon",
+      "name": "Text with icons",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width",
+          "default": "33%",
+          "options": [
+            {
+              "value": "20%",
+              "label": "20%"
+            },
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "75%",
+              "label": "75%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "svg_icon",
+          "options": [
+            {
+              "value": "",
+              "label": "None"
+            },
+            {
+              "value": "icon-worldwide",
+              "label": "Worldwide"
+            },
+            {
+              "value": "icon-customer-support",
+              "label": "Customer support"
+            },
+            {
+              "value": "icon-wrapper",
+              "label": "Wrapper"
+            },
+            {
+              "value": "icon-chat",
+              "label": "Chat"
+            },
+            {
+              "value": "icon-love",
+              "label": "Love"
+            },
+            {
+              "value": "icon-email",
+              "label": "Email"
+            },
+            {
+              "value": "icon-plane",
+              "label": "Plane"
+            },
+            {
+              "value": "icon-warranty",
+              "label": "Warranty"
+            }
+          ],
+          "default": "",
+          "label": "Select icon"
+        },
+        {
+          "type": "textarea",
+          "id": "custom_icon",
+          "label": "t:sections.all.custom_icon.label"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Text sample",
+          "label": "t:sections.all.heading.label"
+        },
+        {
+          "type": "range",
+          "id": "heading_size",
+          "min": 1,
+          "max": 6,
+          "step": 1,
+          "default": 2,
+          "label": "Heading Size"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "default": "Testimonial content",
+          "label": "t:sections.all.content.label"
+        },
+        {
+          "type": "text",
+          "id": "button1_label",
+          "label": "Button",
+          "default": "Read More"
+        },
+        {
+          "type": "url",
+          "id": "link1",
+          "label": "Link"
+        },
+        {
+          "type": "color",
+          "id": "color_btn",
+          "label": "Color button"
+        },
+        {
+          "type": "color",
+          "id": "bg_btn",
+          "label": "Background button"
+        },
+        {
+          "type": "color",
+          "id": "color_btn_hover",
+          "label": "Color button hover"
+        },
+        {
+          "type": "color",
+          "id": "bg_btn_hover",
+          "label": "Background button hover"
+        },
+        {
+          "type": "select",
+          "id": "style_btn",
+          "label": "Style Button",
+          "default": "btn-base",
+          "options": [
+            {
+              "value": "btn-base",
+              "label": "Button Base"
+            },
+            {
+              "value": "btn-outline",
+              "label": "Button Out Line"
+            },
+            {
+              "value": "btn-line",
+              "label": "Button Line"
+            },
+            {
+              "value": "btn-line-black",
+              "label": "Button Line Black"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

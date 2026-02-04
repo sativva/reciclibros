@@ -1,0 +1,186 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "{{ product.vendor }}"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "1393b77e-a8c0-433b-89a8-43bc490e6816": {
+          "type": "product_sku",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "375e1ccb-99cc-41e5-813c-45a1a57566be": {
+          "type": "product_description",
+          "settings": {}
+        },
+        "b8da14d9-fa65-4645-913b-4e91ff632b94": {
+          "type": "product_variants",
+          "settings": {
+            "variant_type": "grid",
+            "color_variant": "default"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "c271457c-77aa-4525-a0ae-3d16f8aa2d18": {
+          "type": "wishlist-compare",
+          "settings": {}
+        },
+        "457532d6-4c43-4150-aef0-c4eab3d86aa7": {
+          "type": "product_policy",
+          "settings": {
+            "content_1": "Delivery time: 1-2 business days",
+            "content_2": "Free delivery from €79,95",
+            "content_3": "Free 90 days return"
+          }
+        },
+        "298312ac-f43d-47b9-9a1f-e613ef7a3ef7": {
+          "type": "payment",
+          "settings": {
+            "bg_color": "#f6f6f6"
+          }
+        },
+        "541e1406-ee2f-41b1-98b6-c7f294dc68de": {
+          "type": "categories",
+          "settings": {}
+        },
+        "4b6f40be-f309-4fb6-8959-f58dc9e84141": {
+          "type": "tags",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "1393b77e-a8c0-433b-89a8-43bc490e6816",
+        "price",
+        "375e1ccb-99cc-41e5-813c-45a1a57566be",
+        "b8da14d9-fa65-4645-913b-4e91ff632b94",
+        "quantity_selector",
+        "c271457c-77aa-4525-a0ae-3d16f8aa2d18",
+        "457532d6-4c43-4150-aef0-c4eab3d86aa7",
+        "298312ac-f43d-47b9-9a1f-e613ef7a3ef7",
+        "541e1406-ee2f-41b1-98b6-c7f294dc68de",
+        "4b6f40be-f309-4fb6-8959-f58dc9e84141",
+        "share"
+      ],
+      "settings": {
+        "media_type": "carousel",
+        "thumbnails_position": "bottom",
+        "carousel_page_dots": false,
+        "carousel_prevnextbuttons": false,
+        "enable_video_looping": true,
+        "show_cosselling": false,
+        "crossell_limit": 4,
+        "show_upsell": true,
+        "upsell_limit": 2,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "b4b2e57a-b15e-4f11-b27e-b0500d52dc70": {
+      "type": "product-content",
+      "blocks": {
+        "7cca183b-2a77-4cb3-a100-ae76a5e24b66": {
+          "type": "product_description",
+          "settings": {
+            "tab_name": "Description"
+          }
+        },
+        "5d25217f-c0a7-454c-9bdf-2e9b6e9cfd03": {
+          "type": "tab_custom",
+          "settings": {
+            "tab_name": "Additional information",
+            "tab_custom_content": "<p>By changing our most important processes and <br/>products, we have already made a big leap forward. This ranges from the <br/>increased use of more sustainable fibers to the use of more <br/>environmentally friendly printing processes to the development of <br/>efficient waste management in our value chain.</p><p><br/><a href=\"https://ap-leotheme.myshopify.com/pages/sustainability\" title=\"Sustainability\">Learn more about sustainability</a><br/>                  </p>"
+          }
+        }
+      },
+      "block_order": [
+        "7cca183b-2a77-4cb3-a100-ae76a5e24b66",
+        "5d25217f-c0a7-454c-9bdf-2e9b6e9cfd03"
+      ],
+      "settings": {
+        "enable_featured_products": false,
+        "featured_product_title": "You May Also Like",
+        "limit": 6,
+        "product": "",
+        "enable_guide": true,
+        "guide1_label": "Shipping & Returns",
+        "guide1_icon": "<svg fill=\"none\" focusable=\"false\" width=\"29\" height=\"24\" class=\"icon icon--picto-fast-delivery   product-tabs__trust-icon\" viewbox=\"0 0 29 24\">\n        <path d=\"M4 3H20V8M20 17H11.68C11.68 17 11 16 10 16M20 17V8M20 17H22.32M20 8H26.5L28 12.5V17H25.68C25.68 17 25 16 24 16M24 16C25 16 26 17 26 18C26 19 25 20 24 20C23 20 22 19 22 18C22 17.6527 22.1206 17.3054 22.32 17M24 16C23.3473 16 22.6946 16.426 22.32 17M10 16C11 16 12 17 12 18C12 19 11 20 10 20C9 20 8 19 8 18C8 17.6527 8.12061 17.3054 8.31996 17M10 16C9.3473 16 8.69459 16.426 8.31996 17M8.31996 17H4M10 12H3M10 8H1\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n      </svg>",
+        "guide1_returns_content": "<p><strong>Shipping<br/></strong>We deliver your parcel within 2–3 working days. As soon as your package has left our warehouse, you will receive a confirmation by email. This confirmation contains a tracking number that you can use to find out where your package is.</p><p><strong>Returns<br/></strong>We offer free returns within 30 days. All you have to do is fill out the return slip that you received in your package and stick the prepaid label on the package.Please note that it can take 2 weeks for us to process your return. We will do our best to complete this process as soon as possible.</p>",
+        "guide2_label": "Warranty",
+        "guide2_icon": "<svg fill=\"none\" focusable=\"false\" width=\"24\" height=\"24\" class=\"icon icon--picto-warranty   product-tabs__trust-icon\" viewbox=\"0 0 24 24\">\n        <path d=\"M5.25463 14C4.15672 12.6304 3.5 10.8919 3.5 9C3.5 4.58172 7.08172 1 11.5 1C15.9183 1 19.5 4.58172 19.5 9C19.5 10.8919 18.8433 12.6304 17.7454 14M5.25463 14L1.5 20L4.5 19L5.5 22L8.5 16.4185M5.25463 14C6.15126 15.1185 7.13226 15.9095 8.5 16.4185M8.5 16.4185C9.36872 16.7418 10.5187 17 11.5 17C12.5609 17 13.5736 16.7935 14.5 16.4185M17.7454 14L21.5 20L18.5 19L17.5 22L14.5 16.4185M17.7454 14C16.8949 15.0609 15.7797 15.9005 14.5 16.4185\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n        <path d=\"M8 9.72727L10.1473 12L14.5 7\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n      </svg>",
+        "guide2_returns_content": "<p>We provide a 2-year limited warranty, from the date of purchase for all our products.</p><p>If you believe you have received a defective product, or are experiencing any problems with your product, please <a href=\"https://focal-theme-carbon.myshopify.com/pages/contact\" title=\"Contact\">contact us</a>.</p><p>This warranty strictly does not cover damages that arose from negligence, misuse, wear and tear, or not in accordance with product instructions (dropping the product, etc.).</p>",
+        "guide3_label": "Secure Payment",
+        "guide3_icon": "<svg fill=\"none\" focusable=\"false\" width=\"24\" height=\"24\" class=\"icon icon--picto-secure-payment   product-tabs__trust-icon\" viewbox=\"0 0 24 24\">\n        <path d=\"M4 18H1V6M4 18V16H6M4 18V22H11V18M6 16C6 15.6667 6 15.3 6 14.5C6 13.5 6.73438 13 7.5 13C8.26562 13 9 13.5 9 14.5C9 15.3 9 15.6667 9 16M6 16H9M9 16H11V18M11 18H23V6M1 6V2H23V6M1 6H23M9 10H5M19 10V14H13V10H19Z\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n      </svg>",
+        "guide3_returns_content": "<p>Your payment information is processed securely. We do not store credit card details nor have access to your credit card information.</p><p>We accept payments with :<br/>Visa, MasterCard, American Express, Paypal, Diners Club, Discover and more.</p>"
+      }
+    },
+    "7f59f038-f024-4094-9ff4-3fb2cc033feb": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "heading": "Related Products",
+        "heading_size": 3,
+        "tab_description": "",
+        "text_align": "center",
+        "products_to_show": 10,
+        "products_per_row_mobile_sm": 1,
+        "products_per_row_desktop": 4,
+        "margin_desktop": "60px 0",
+        "margin_mobile": "40px 0",
+        "padding_desktop": "",
+        "padding_mobile": ""
+      }
+    },
+    "product_recommendations_MzRp9E": {
+      "type": "product-recommendations",
+      "settings": {
+        "setwidthout": "container",
+        "heading": "You may also like",
+        "heading_size": 3,
+        "tab_description": "",
+        "text_align": "center",
+        "products_per_row_desktop": 4,
+        "products_to_show": 10,
+        "margin_desktop": "0 0 60px",
+        "margin_mobile": "0 0 40px",
+        "padding_desktop": "",
+        "padding_mobile": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "b4b2e57a-b15e-4f11-b27e-b0500d52dc70",
+    "7f59f038-f024-4094-9ff4-3fb2cc033feb",
+    "product_recommendations_MzRp9E"
+  ]
+}

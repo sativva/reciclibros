@@ -1,0 +1,823 @@
+{% render 'section-style' %}
+
+<style>
+    #shopify-section-{{ section.id }} .ap-productlist__inner--scroller {
+        gap: 0;
+    }
+    #shopify-section-{{ section.id }} .ap-lookbookshop__dot {
+        background: {{ section.settings.dot_inner_background }};
+        border-width: 2px;
+        border-style: solid;
+        border-color: transparent;
+    }
+    #shopify-section-{{ section.id }} .ap-lookbookshop__dot:hover {
+        background-color: #000;
+        color: #fff;
+        border-color: #fff;
+    }
+    [dir=ltr] #shopify-section-{{ section.id }} .ap-lookbookshop__product--reverse {
+      left: 50%;
+      top: calc(100% + 5px);
+    }
+    #shopify-section-{{ section.id }} .ap-lookbookshop__product:before {
+        display: none;
+    }
+    #shopify-section-{{ section.id }} .ap-lookbookshop__product {
+      min-width: 280px;
+      width: 100%;
+    }
+    [dir=ltr] #shopify-section-{{ section.id }} .ap-lookbookshop__product-image {
+        margin-right: 14px;
+    }
+    [dir=ltr] #shopify-section-{{ section.id }} .ap-lookbookshop__product {
+      padding: 12px;
+    }
+    #shopify-section-{{ section.id }} .ap-lookbookshop__product-image {
+        flex: none;
+        width: 60px;
+    }
+    #shopify-section-{{ section.id }} .ap-lookbookshop__product[open] {
+      transform: scale(1) translateX(-50%);
+    }
+    #shopify-section-{{ section.id }} .ap-lookbookshop__product-info > .ap-lookbookshop__product-title {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-bottom: 10px;
+        font-weight: 400;
+        line-height: 1.2;
+        font-size: 14px;
+        font-family: var(--hd-font-family);
+        color: var(--color-accent-5);
+        margin-bottom: 10px;
+    }
+    #shopify-section-{{ section.id }} .product-item-meta__title {
+        margin-bottom: 10px;
+        font-size: calc(var(--base-font-size) + 2px);
+    }
+    #shopify-section-{{ section.id }} .ap-lookbookshop__product-info > .price {
+      font-size: 12px;
+    }
+    #shopify-section-{{ section.id }} .ap-lookbookshop__product-wrapper {
+        z-index: unset;
+    }
+    #shopify-section-{{ section.id }} .ap-text-loaderbutton {
+        justify-content: center;
+    }
+    #shopify-section-{{ section.id }} .ap-text-loaderbutton svg {
+        display: none;
+    }
+    #shopify-section-{{ section.id }} .ap-lookbookshop__dot {
+      width: 29px;
+      height: 29px;
+      line-height: 26px;
+      font-weight: 600;
+      font-size: 10px;
+    }
+    .banner-cart {
+      position: absolute;
+      bottom: 16px;
+      right: 19px;
+      width: 39px;
+      height: 39px;
+      text-align: center;
+      line-height: 46px;
+      background-color: #0000003b;
+      border-radius: 50%;
+      color: #fff;
+    }
+    .banner-cart:hover {
+      background-color: var(--primary);
+    }
+    .banner-cart a:hover {
+      color: #fff;
+    }
+
+    #shopify-section-{{ section.id }} .banner-carousel {
+      position: relative;
+    }
+    #shopify-section-{{ section.id }} .ap-nextap-buttonprev {
+      position: absolute;
+      top: 50%;
+    }
+    #shopify-section-{{ section.id }} .ap-nextap-buttonprev--prev {
+      left: 0;
+    }
+    #shopify-section-{{ section.id }} .ap-nextap-buttonprev--next {
+      right: 0;
+    }
+    #shopify-section-{{ section.id }} .banner-carousel-content-item > img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+    @media (max-width: 1500px) {
+      [dir=ltr] #shopify-section-template--21686505603383__e18d94d5-1d8c-43de-b7c6-51f8685639b4 .ap-lookbookshop__product--reverse {
+        left: 50%;
+        transform: translateX(-50%);
+        top: 110%;
+      }
+    }
+    @media (max-width: 767px) {
+      #shopify-section-{{ section.id }} .shopify-payment-button__button--unbranded {
+        width: 100%;
+      }
+    }
+
+    #shopify-section-{{ section.id }} .banner-carousel-item {
+      padding: 0 calc(10px / 2);
+    }
+    #shopify-section-{{ section.id }} .scroller {
+      margin: 0 calc(-10px / 2);   
+    }
+    #shopify-section-{{ section.id }} .banner-carousel-box {
+      position: relative;
+    }
+    #shopify-section-{{ section.id }} .ap-productlist__inner--scroller {
+      grid-template-columns: unset;
+    }
+    #shopify-section-{{ section.id }} .ap-productlist__inner--scroller {
+      margin:0;
+      padding:0;
+    }
+
+    {% for block in section.blocks %}
+        @media screen and (max-width: 575px) {
+          #shopify-section-{{ section.id }} {
+                --section-products-per-row: {{ section.settings.products_per_row_mobile }};
+            }
+            #shopify-section-{{ section.id }} .ap-productlist__inner--scroller {
+                grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+            }
+        }
+  
+        @media (min-width:576px) and (max-width: 767px) {
+            #shopify-section-{{ section.id }} {
+                --section-products-per-row: {{ section.settings.products_per_row_ipad }};
+            }
+            #shopify-section-{{ section.id }} .ap-productlist__inner--scroller{
+                grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+            }
+        }
+    
+        @media (min-width: 768px) and (max-width: 1199px) {
+            #shopify-section-{{ section.id }} {
+                --section-products-per-row: {{ section.settings.products_per_row_tablet }}
+            }
+            #shopify-section-{{ section.id }} .ap-productlist__inner--scroller{
+                grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+            }
+        }
+        
+        @media screen and (min-width: 1200px) {
+            #shopify-section-{{ section.id }} {
+                --section-products-per-row: {{ section.settings.products_per_row_desktop }};
+            }
+            #shopify-section-{{ section.id }} .ap-productlist__inner--scroller{
+                grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+            }
+        }
+
+        {% if block.settings.product_1 %}
+            #block-{{ block.id }}-1 {
+                top: {{ block.settings.product_1_top }}%;
+                left: {{ block.settings.product_1_left }}%;
+            }
+            @media screen and (max-width: 740px) {
+                #block-{{ block.id }}-1 {
+                    top: {{ block.settings.product_1_top_tablet }}%;
+                    left: {{ block.settings.product_1_left_tablet }}%;
+                }
+            }
+        {% endif %}
+        {% if block.settings.product_2 %}
+            #block-{{ block.id }}-2 {
+                top: {{ block.settings.product_2_top }}%;
+                left: {{ block.settings.product_2_left }}%;
+            }
+            @media screen and (max-width: 740px) {
+                #block-{{ block.id }}-2 {
+                    top: {{ block.settings.product_2_top_tablet }}%;
+                    left: {{ block.settings.product_2_left_tablet }}%;
+                }
+            }
+        {% endif %}
+        {% if block.settings.product_3 %}
+            #block-{{ block.id }}-3 {
+                top: {{ block.settings.product_3_top }}%;
+                left: {{ block.settings.product_3_left }}%;
+            }
+            @media screen and (max-width: 740px) {
+                #block-{{ block.id }}-3 {
+                    top: {{ block.settings.product_3_top_tablet }}%;
+                    left: {{ block.settings.product_3_left_tablet }}%;
+                }
+            }
+        {% endif %}
+    {% endfor %}
+</style>
+
+<section class="look-book-list">
+  <div class="{{ section.settings.setwidthout }}">
+    {% if section.settings.tab_heading != blank %}
+      <header class="section__header text-{{ section.settings.text_align }} mb-60">
+        {% if section.settings.sub_heading != blank %}
+          <p class="heading sub-heading mb-35">{{ section.settings.sub_heading }}</p>
+        {% endif %}
+        <h3 class="heading h{{ section.settings.tab_heading_size }} mb-20">{{ section.settings.tab_heading
+          }}</h3>
+        {% if section.settings.tab_description != blank %}
+        <div class="heading-description">
+          {{ section.settings.tab_description }}
+        </div>
+        {% endif %}
+        {% if section.settings.btn_text != blank %}
+        <div class="btn-more">
+          <a href="{{ section.settings.btn_link }}" class="button {{ section.settings.style_btn }}">
+            {{ section.settings.btn_text }}
+            {% render 'icon-arrow-2' %}
+          </a>
+        </div>
+        {% endif %}
+      </header>
+    {% endif %}
+    <banner-carousel stagger-apparition="" class="banner-carousel banner-carousel--center ap-object-loaded">
+        <div class="banner-carousel-content">
+            <div class="scroller">
+                <div id="ap-scroll" class="ap-productlist__inner ap-productlist__inner--scroller hide-scrollbar">
+                    {% for block in section.blocks %}
+                        {% case block.type %}
+                            {% when 'banner_item' %}
+                                <banner-carousel-item id="block-{{ block.id }}" style="opacity: 1;" reveal="" class="banner-carousel-item has-overlay">
+                                    <div class="banner-carousel-box">
+                                        <div class="banner-carousel-infor">
+                                            <div class="banner-carousel-content-item">
+                                                {% if block.settings.image != blank %}
+                                                <img src="{{ block.settings.image | image_url: width: 1920 }}" width="auto" height="auto" loading="lazy" alt="">
+                                                {% else %}
+                                                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                                                {% endif %}
+                                                <div class="banner-cart">
+                                                  <a href="/cart" is="ap-togglelink" ap-controlsaria="mini-cart" ap-expanded-aria="false" class="banner-cart__link" aria-label="Cart" data-no-instant="">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="19" viewBox="0 0 16 19">
+                                                      <path style="fill: currentColor;" d="M501.124,1790.75h-3.1v-0.79a3.98,3.98,0,0,0-7.96,0v3.96h1.592v-1.59h3.184v-1.58h-3.184v-0.79a2.388,2.388,0,0,1,4.776,0v3.96h1.592v-1.59h1.672l0.716,11.09H487.751l0.637-11.09h0.08v-1.58h-1.513L486,1805h16Z" transform="translate(-486 -1786)"/>
+                                                    </svg>
+                                                  </a>
+                                                </div>
+                                                {% if block.settings.product_1 != null %}
+                                                <div class="banner-product">
+                                                    {% if block.settings.product_1 != null %}
+                                                        <div id="block-{{ block.id }}-1" class="ap-lookbookshop__product-wrapper">
+                                                            <button type="button" is="toggle-button" reveal="" class="ap-lookbookshop__dot tap-area hd-phone" ap-controlsaria="block-{{ block.id }}-1-product" ap-expanded-aria="{% if block.settings.product_1.product_1_show %}true{% else %}false{% endif %}" style="opacity: 1;">                                                              
+                                                                <span>1</span>
+                                                            </button>
+                                        
+                                                            <button type="button" is="toggle-button" reveal="" class="ap-lookbookshop__dot tap-area hd-tablet-and-up" ap-controlsaria="block-{{ block.id }}-1-popover" ap-expanded-aria="{% if block.settings.product_1.product_1_show %}true{% else %}false{% endif %}" style="opacity: 1;">                                                              
+                                                                <span>1</span>
+                                                            </button>
+                                        
+                                                            <ap-elementopen id="block-{{ block.id }}-1-product" class="ap-lookbookshop__product ap-lookbookshop__product--reverse hd-phone" {% if block.settings.product_1.product_1_show %}open=""{% endif %}>
+                                                                <img class="ap-lookbookshop__product-image" loading="lazy" sizes="72px" alt="{{ block.settings.product_1.title }}" 
+                                                                    src="{{ block.settings.product_1.featured_media | image_url: width: product.featured_media.width }}" 
+                                                                    data-srcset="
+                                                                        {%- if block.settings.product_1.featured_media >= 72 -%}{{ block.settings.product_1.featured_media | image_url: width: 72 }} 72w,{%- endif -%}
+                                                                        {%- if block.settings.product_1.featured_media >= 144 -%}{{ block.settings.product_1.featured_media | image_url: width: 144 }} 144w,{%- endif -%}
+                                                                        {%- if block.settings.product_1.featured_media >= 216 -%}{{ block.settings.product_1.featured_media | image_url: width: 216 }} 216w,{%- endif -%}
+                                                                        {%- if block.settings.product_1.featured_media >= 288 -%}{{ block.settings.product_1.featured_media | image_url: width: 288 }} 288w,{%- endif -%}
+                                                                    "
+                                                                    width="{{ block.settings.product_1.featured_media.width }}" height="{{ block.settings.product_1.featured_media.width }}">
+                                                                <div class="ap-lookbookshop__product-info">
+                                                                    <a href="/products/{{ block.settings.product_1.handle }}" class="ap-lookbookshop__product-title">{{ block.settings.product_1.title }}</a>
+                                        
+                                                                    <div class="ap-lookbookshop__product-bottom-wrapper">
+                                                                        <span class="price">
+                                                                            <span class="visually-hidden">Sale price</span>{{ block.settings.product_1.price | money }}
+                                                                        </span>
+                                                                        <button is="toggle-button" class="ap-lookbookshop__product-link link text--subdued" ap-controlsaria="block-{{ block.id }}-1-drawer" ap-expanded-aria="{% if block.settings.product_1.product_1_show %}true{% else %}false{% endif %}">Quick view</button>
+                                                                    </div>
+                                                                </div>
+                                                            </ap-elementopen>
+
+                                                        </div>
+                                                    {% endif %}
+                                                    {% if block.settings.product_2 != null %}
+                                                        <div id="block-{{ block.id }}-2" class="ap-lookbookshop__product-wrapper">
+                                                            <button type="button" is="toggle-button" reveal="" class="ap-lookbookshop__dot tap-area hd-phone" ap-controlsaria="block-{{ block.id }}-2-product" ap-expanded-aria="{% if block.settings.product_2.product_2_show %}true{% else %}false{% endif %}" style="opacity: 1;">                                                            
+                                                                <span>2</span>
+                                                            </button>
+                                                    
+                                                            <button type="button" is="toggle-button" reveal="" class="ap-lookbookshop__dot tap-area hd-tablet-and-up" ap-controlsaria="block-{{ block.id }}-2-popover" ap-expanded-aria="{% if block.settings.product_2.product_2_show %}true{% else %}false{% endif %}" style="opacity: 1;">                                                            
+                                                                <span>2</span>
+                                                            </button>
+                                                    
+                                                            <ap-elementopen id="block-{{ block.id }}-2-product" class="ap-lookbookshop__product ap-lookbookshop__product--reverse hd-phone" {% if block.settings.product_2.product_2_show %}open=""{% endif %}>
+                                                                <img class="ap-lookbookshop__product-image" loading="lazy" sizes="72px" alt="{{ block.settings.product_2.title }}" 
+                                                                    src="{{ block.settings.product_2.featured_media | image_url: width: product.featured_media.width }}" 
+                                                                    data-srcset="
+                                                                        {%- if block.settings.product_2.featured_media >= 72 -%}{{ block.settings.product_2.featured_media | image_url: width: 72 }} 72w,{%- endif -%}
+                                                                        {%- if block.settings.product_2.featured_media >= 144 -%}{{ block.settings.product_2.featured_media | image_url: width: 144 }} 144w,{%- endif -%}
+                                                                        {%- if block.settings.product_2.featured_media >= 216 -%}{{ block.settings.product_2.featured_media | image_url: width: 216 }} 216w,{%- endif -%}
+                                                                        {%- if block.settings.product_2.featured_media >= 288 -%}{{ block.settings.product_2.featured_media | image_url: width: 288 }} 288w,{%- endif -%}
+                                                                    "
+                                                                    width="{{ block.settings.product_2.featured_media.width }}" height="{{ block.settings.product_2.featured_media.width }}">
+                                                                <div class="ap-lookbookshop__product-info">
+                                                                    <a href="/products/{{ block.settings.product_2.handle }}" class="ap-lookbookshop__product-title">{{ block.settings.product_2.title }}</a>
+                                                    
+                                                                    <div class="ap-lookbookshop__product-bottom-wrapper">
+                                                                        <span class="price">
+                                                                            <span class="visually-hidden">Sale price</span>{{ block.settings.product_2.price | money }}
+                                                                        </span>
+                                                                        <button is="toggle-button" class="ap-lookbookshop__product-link link text--subdued" ap-controlsaria="block-{{ block.id }}-2-drawer" ap-expanded-aria="{% if block.settings.product_2.product_2_show %}true{% else %}false{% endif %}">Quick view</button>
+                                                                    </div>
+                                                                </div>
+                                                            </ap-elementopen>
+                                                    
+                                                        </div>
+                                                    {% endif %}
+                                                    {% if block.settings.product_3 != null %}
+                                                        <div id="block-{{ block.id }}-3" class="ap-lookbookshop__product-wrapper">
+                                                            <button type="button" is="toggle-button" reveal="" class="ap-lookbookshop__dot tap-area hd-phone" ap-controlsaria="block-{{ block.id }}-3-product" ap-expanded-aria="{% if block.settings.product_3.product_3_show %}true{% else %}false{% endif %}" style="opacity: 1;">                                                           
+                                                                <span>3</span>
+                                                            </button>
+                                                    
+                                                            <button type="button" is="toggle-button" reveal="" class="ap-lookbookshop__dot tap-area hd-tablet-and-up" ap-controlsaria="block-{{ block.id }}-3-popover" ap-expanded-aria="{% if block.settings.product_3.product_3_show %}true{% else %}false{% endif %}" style="opacity: 1;">     
+                                                                <span>3</span>
+                                                            </button>
+                                                    
+                                                            <ap-elementopen id="block-{{ block.id }}-3-product" class="ap-lookbookshop__product ap-lookbookshop__product--reverse hd-phone" {% if block.settings.product_3.product_3_show %}open=""{% endif %}>
+                                                                <img class="ap-lookbookshop__product-image" loading="lazy" sizes="72px" alt="{{ block.settings.product_3.title }}" 
+                                                                    src="{{ block.settings.product_3.featured_media | image_url: width: product.featured_media.width }}" 
+                                                                    data-srcset="
+                                                                        {%- if block.settings.product_3.featured_media >= 72 -%}{{ block.settings.product_3.featured_media | image_url: width: 72 }} 72w,{%- endif -%}
+                                                                        {%- if block.settings.product_3.featured_media >= 144 -%}{{ block.settings.product_3.featured_media | image_url: width: 144 }} 144w,{%- endif -%}
+                                                                        {%- if block.settings.product_3.featured_media >= 216 -%}{{ block.settings.product_3.featured_media | image_url: width: 216 }} 216w,{%- endif -%}
+                                                                        {%- if block.settings.product_3.featured_media >= 288 -%}{{ block.settings.product_3.featured_media | image_url: width: 288 }} 288w,{%- endif -%}
+                                                                    "
+                                                                    width="{{ block.settings.product_3.featured_media.width }}" height="{{ block.settings.product_3.featured_media.width }}">
+                                                                <div class="ap-lookbookshop__product-info">
+                                                                    <a href="/products/{{ block.settings.product_3.handle }}" class="ap-lookbookshop__product-title">{{ block.settings.product_3.title }}</a>
+                                                    
+                                                                    <div class="ap-lookbookshop__product-bottom-wrapper">
+                                                                        <span class="price">
+                                                                            <span class="visually-hidden">Sale price</span>{{ block.settings.product_3.price | money }}
+                                                                        </span>
+                                                                        <button is="toggle-button" class="ap-lookbookshop__product-link link text--subdued" ap-controlsaria="block-{{ block.id }}-3-drawer" ap-expanded-aria="{% if block.settings.product_3.product_3_show %}true{% else %}false{% endif %}">Quick view</button>
+                                                                    </div>
+                                                                </div>
+                                                            </ap-elementopen>
+                                                    
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% if block.settings.product_1 != null %}
+                                      <ap-popoverquickbuy href="/products/{{ block.settings.product_1.handle }}?view=quick-buy-popover" id="block-{{ block.id }}-1-popover" class="popover popover--quick-buy"></ap-popoverquickbuy>
+                                      <ap-quickbuy href="/products/{{ block.settings.product_1.handle }}?view=quick-buy-drawer" id="block-{{ block.id }}-1-drawer" class="drawer drawer--large drawer--quick-buy"></ap-quickbuy>
+                                    {% endif %}
+                                    {% if block.settings.product_2 != null %}
+                                      <ap-popoverquickbuy href="/products/{{ block.settings.product_2.handle }}?view=quick-buy-popover" id="block-{{ block.id }}-1-popover" class="popover popover--quick-buy"></ap-popoverquickbuy>
+                                      <ap-quickbuy href="/products/{{ block.settings.product_2.handle }}?view=quick-buy-drawer" id="block-{{ block.id }}-1-drawer" class="drawer drawer--large drawer--quick-buy"></ap-quickbuy>
+                                    {% endif %}
+                                    {% if block.settings.product_3 != null %}
+                                      <ap-popoverquickbuy href="/products/{{ block.settings.product_3.handle }}?view=quick-buy-popover" id="block-{{ block.id }}-1-popover" class="popover popover--quick-buy"></ap-popoverquickbuy>
+                                      <ap-quickbuy href="/products/{{ block.settings.product_3.handle }}?view=quick-buy-drawer" id="block-{{ block.id }}-1-drawer" class="drawer drawer--large drawer--quick-buy"></ap-quickbuy>
+                                    {% endif %}
+                                    
+                                </banner-carousel-item>
+                        {% endcase %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% if section.settings.show_arrow %}
+                <div class="carousel-arrow">
+                    <ap-button-nextprev class="carousel__ap-nextprev hd-lg-none" style="--smallest-image-aspect-ratio: 1.0">
+                        <button class="carousel__arrow ap-nextap-buttonprev ap-nextap-buttonprev--prev" disabled="">
+                        <span class="visually-hidden">Previous</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                            <path d="M7.40991 10.59L2.82991 6L7.40991 1.41L5.99991 0L-8.7738e-05 6L5.99991 12L7.40991 10.59Z"
+                                fill="black" />
+                            </svg>
+                        </button>
+                        <button class="carousel__arrow ap-nextap-buttonprev ap-nextap-buttonprev--next">
+                        <span class="visually-hidden">Next</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                            <path d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z" fill="black"/>
+                            </svg>
+                        </button>
+                    </ap-button-nextprev>   
+                </div>
+            {% endif %}
+        </div>
+    </banner-carousel>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Look Book List",
+  "class": "shopify-section--ap-lookbook-list",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Width Slideshow",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "id": "background-color",
+      "type": "color",
+      "label": "Background color"
+    },
+    {
+      "type": "header",
+      "content": "Margin section"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "Margin desktop",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "Margin mobile",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "header",
+      "content": "Padding section"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "Padding desktop",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "Padding mobile",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "header",
+      "content": "Color item"
+    },
+    {
+      "type": "color",
+      "id": "dot_inner_background",
+      "default": "#fff",
+      "label": "t:sections.all.dot_inner_background.label"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_item",
+      "default": "#fff",
+      "label": "Background color item"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.advanced-content.settings.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.advanced-content.settings.tab_heading_size.label"
+    },
+    {
+      "type": "text",
+      "id": "tab_description",
+      "label": "t:sections.advanced-content.settings.tab_description.label"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "style_btn",
+      "label": "Style Button",
+      "default": "btn-base",
+      "options": [
+        {
+          "value": "btn-base",
+          "label": "Button Base"
+        },
+        {
+          "value": "btn-outline",
+          "label": "Button Out Line"
+        },
+        {
+          "value": "btn-line",
+          "label": "Button Line"
+        },
+        {
+          "value": "btn-line-black",
+          "label": "Button Line Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+      "type": "header",
+      "content": "Setting item"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow",
+      "label": "Show arrow",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_mobile",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 1,
+      "label": "Products per row Mobile"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_ipad",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 2,
+      "label": "Products per row Ipad"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_tablet",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.all.products_per_row_tablet.label"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_desktop",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.all.products_per_row_desktop.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner_item",
+      "name": "banner Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+          {
+          "type": "header",
+          "content": "Product 1 settings"
+        },
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "t:sections.all.product_1.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "product_1_show",
+          "default": false,
+          "label": "t:sections.all.product_1_show.label"
+        },
+        {
+          "type": "range",
+          "id": "product_1_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_1_top.label"
+        },
+        {
+          "type": "range",
+          "id": "product_1_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_1_left.label"
+        },
+        {
+          "type": "range",
+          "id": "product_1_top_tablet",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_1_top_tablet.label"
+        },
+        {
+          "type": "range",
+          "id": "product_1_left_tablet",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_1_left_tablet.label"
+        },
+        {
+          "type": "header",
+          "content": "Product 2 settings"
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "t:sections.all.product_2.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "product_2_show",
+          "default": false,
+          "label": "t:sections.all.product_2_show.label"
+        },
+        {
+          "type": "range",
+          "id": "product_2_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_2_top.label"
+        },
+        {
+          "type": "range",
+          "id": "product_2_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_2_left.label"
+        },
+        {
+          "type": "range",
+          "id": "product_2_top_tablet",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_2_top_tablet.label"
+        },
+        {
+          "type": "range",
+          "id": "product_2_left_tablet",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_2_left_tablet.label"
+        },
+         {
+          "type": "header",
+          "content": "Product 3 settings"
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "t:sections.all.product_3.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "product_3_show",
+          "default": false,
+          "label": "t:sections.all.product_3_show.label"
+        },
+        {
+          "type": "range",
+          "id": "product_3_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_3_top.label"
+        },
+        {
+          "type": "range",
+          "id": "product_3_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_3_left.label"
+        },
+        {
+          "type": "range",
+          "id": "product_3_top_tablet",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_3_top_tablet.label"
+        },
+        {
+          "type": "range",
+          "id": "product_3_left_tablet",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_3_left_tablet.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Look Book List",
+      "blocks": [
+        {
+          "type": "banner_item"
+        },
+        {
+          "type": "banner_item"
+        },
+        {
+          "type": "banner_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

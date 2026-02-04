@@ -1,0 +1,19 @@
+{% assign product_form_id = 'ap-productform-' | append: section.id | append: "-" | append: product.id %}
+<div class="ap-productform__quantity">
+    <span class="ap-productform__quantity-label">{{ 'products.product.quantity.label' | t }}</span>
+    <ap-quantityselector class="ap-quantityselector">
+      <button type="button" class="ap-quantityselector__button">
+        <span class="visually-hidden">{{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}</span>
+        <svg focusable="false" width="10" height="2" class="icon icon--minus-big   " viewBox="0 0 10 2">
+          <path fill="currentColor" d="M0 0h10v2H0z"></path>
+        </svg>
+      </button>
+      <input type="text" form="{{ product_form_id }}" is="ap-inputnumber" class="ap-quantityselector__input" inputmode="numeric" name="quantity" autocomplete="off" min="1" value="1" size="2" aria-label="Quantity">
+      <button type="button" class="ap-quantityselector__button">
+        <span class="visually-hidden">{{- 'products.product.quantity.increase' | t: product: product.title | escape -}}</span>
+        <svg focusable="false" width="10" height="10" class="icon icon--plus-big   " viewBox="0 0 10 10">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M4 6v4h2V6h4V4H6V0H4v4H0v2h4z" fill="currentColor"></path>
+        </svg>
+      </button>
+    </ap-quantityselector>
+</div>

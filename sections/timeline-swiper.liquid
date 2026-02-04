@@ -1,0 +1,400 @@
+<style>
+    {% if section.settings.nowrap %}
+        @media (min-width: 1200px) {
+            #shopify-section-{{ section.id }} .swiper-container {
+                margin: 0 221px 0 0;
+            }
+        }
+        #shopify-section-{{ section.id }} .swiper-container {
+            clip-path: unset;
+            position: unset;
+        }
+        .timeline-{{ section.id }} .swiper-horizontal>.swiper-scrollbar, .swiper-scrollbar.swiper-scrollbar-horizontal {
+            left: 0;
+            bottom: -50px;
+            width: 100%;
+        }
+    {% endif %}
+    .timeline-{{ section.id }} .container {
+        max-width: 1361px;
+    }
+    .timeline-carousel {
+        overflow: hidden;
+    }
+    @media (min-width: 1500px) {
+        .timeline-{{ section.id }} .swiper-button-prev {
+            left: -107px;
+        }
+        .timeline-{{ section.id }} .swiper-button-next {
+            right: -107px;
+        }
+    } 
+    .timeline-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 40px;
+        transition: all .4s;
+    }
+</style>
+
+{% render 'section-style' %}
+
+<section class="timeline-{{ section.id }}">
+    <div class="{{ section.settings.setwidthout }}">
+        {% render 'section-heading' %}
+
+        <div class="position-relative">
+            <div class="timeline-carousel">
+                <div data-swiper-id="{{ section.id }}" class="ap-swiper mySwiper swiper-container" data-swiper='{
+                    "spaceBetween": 15,
+                    "slidesPerView": 1,
+                    "loop": "true",
+                    "breakpoints":{
+                      "360": {
+                        "slidesPerView": 2,
+                        "spaceBetween": 15
+                      },
+                      "768":{
+                        "slidesPerView": 2,
+                        "spaceBetween": {{ section.settings.spaceBetween }}
+                      },
+                      "1200":{
+                        "slidesPerView": {{ section.settings.perviewDesktop }},
+                        "spaceBetween": {{ section.settings.spaceBetween }}
+                      }
+                    }
+                  }'>
+                    <div class="swiper-wrapper">
+                        {% for block in section.blocks %}
+                            <div class="swiper-slide">
+                                <div class="timeline-box position-relative">
+                                    <div class="timeline-img">
+                                        {% if block.settings.timeline_img != blank %}
+                                            <img class="w-100 h-100 object-fix-cover" loading="lazy" 
+                                            sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                                            alt="" 
+                                            src="{{ block.settings.timeline_img | image_url: width: block.settings.timeline_img.width }}" 
+                                            data-srcset="{%- if block.settings.timeline_img.width >= 3000 -%}{{ block.settings.timeline_img | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                                                {{ block.settings.timeline_img | image_url }} {{ block.settings.timeline_img.width }}w"
+                                            src="{{ block.settings.timeline_img | image_url: width: 1500 }}"
+                                            height="{{ block.settings.timeline_img.height }}"
+                                            width="{{ block.settings.timeline_img.width }}">
+                                        {% else %}
+                                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                                        {% endif %}
+                                    </div>
+                                    <div class="timeline-content">
+                                        <div style="color: {{ section.settings.color_1 }}" class="timeline-title {{ section.settings.heading_size }} fw-bold">{{ block.settings.timeline_title }}</div>
+                                        {% if block.settings.timeline_des != blank %}
+                                        <div style="color: {{ section.settings.color_2 }}" class="timeline-description">{{ block.settings.timeline_des }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+    
+                    {% if section.settings.dots %}
+                        <div class="swiper-scrollbar"></div>
+                    {% endif %}
+    
+                </div>
+            </div>
+            {% if section.settings.arrows %}
+                <button class="swiper-button-prev" data-swiper-id="{{ section.id }}-prev">
+                    {% render 'icon-arrow-prev' %}
+                </button>
+                <button class="swiper-button-next" data-swiper-id="{{ section.id }}-next">
+                    {% render 'icon-arrow-next' %}
+                </button>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Timeline Carousel",
+  "class": "shopify-section--timeline-carousel",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "t:sections.all.padding_mobile.label",
+      "info": "t:sections.all.padding_mobile.info"
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "default": "#ffffff",
+      "label": "t:sections.all.background-color.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:sections.all.background_image.label"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.all.heading_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.all.text_color.label"
+    },
+    {
+      "type": "liquid",
+      "id": "sub_heading",
+      "default": "Sub heading",
+      "label": "Sub heading"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.advanced-content.settings.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.advanced-content.settings.tab_heading_size.label"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_description",
+      "label": "t:sections.advanced-content.settings.tab_description.label"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_description_2",
+      "label": "Description 2"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "style_btn",
+      "label": "Style Button",
+      "default": "btn-base",
+      "options": [
+        {
+          "value": "btn-base",
+          "label": "Button Base"
+        },
+        {
+          "value": "btn-outline",
+          "label": "Button Out Line"
+        },
+        {
+          "value": "btn-outline-white",
+          "label": "Button Out Line White"
+        },
+        {
+          "value": "btn-line",
+          "label": "Button Line"
+        },
+        {
+          "value": "btn-line-black",
+          "label": "Button Line Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+      "type": "header",
+      "content": "Settings Carousel"
+    },
+    {
+      "type": "range",
+      "id": "perviewDesktop",
+      "label": "Per View Desktop",
+      "max": 6,
+      "min": 1,
+      "step": 1,
+      "unit": " c",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "spaceBetween",
+      "label": "Space Between",
+      "max": 40,
+      "min": 0,
+      "step": 1,
+      "unit": " sp",
+      "default": 30
+    },
+    {
+      "type": "checkbox",
+      "id": "nowrap",
+      "label": "Wrap Box",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "arrows",
+      "label": "Arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "dots",
+      "label": "Dots",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Settings Item"
+    },
+    {
+        "type": "select",
+        "id": "heading_size",
+        "options": [
+            {
+                "value": "h1",
+                "label": "H1"
+            },
+            {
+                "value": "h2",
+                "label": "H2"
+            },
+            {
+                "value": "h3",
+                "label": "H3"
+            },
+            {
+                "value": "h4",
+                "label": "H4"
+            },
+            {
+                "value": "h5",
+                "label": "H5"
+            },
+            {
+                "value": "h6",
+                "label": "H6"
+            },
+            {
+                "value": "p",
+                "label": "P"
+            }
+        ],
+        "default": "h6",
+        "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "color",
+      "id": "color_1",
+      "label": "Color title"
+    },
+    {
+      "type": "color",
+      "id": "color_2",
+      "label": "Color description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline",
+      "name": "Timeline item",
+      "settings": [
+        {
+            "type": "image_picker",
+            "id": "timeline_img",
+            "label": "Image"
+        },
+        {
+            "type": "liquid",
+            "id": "timeline_title",
+            "label": "Ttile"
+        },
+        {
+            "type": "liquid",
+            "id": "timeline_des",
+            "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Timeline Carousel"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,71 @@
+<blog-item class="blog-item blog-grid" reveal="" style="opacity: 1;">
+        <div class="article-item article-item--horizontal image-zoom">
+            <div class="article-card__image">
+                <a href="{{ article.url }}" class="article-item__image-container">
+                    <img data-srcset="{%- if article.image.src.width >= 165 -%}{{ article.image.src | image_url: width: 165 }} 165w,{%- endif -%}
+                      {%- if article.image.src.width >= 360 -%}{{ article.image.src | image_url: width: 360 }} 360w,{%- endif -%}
+                      {%- if article.image.src.width >= 533 -%}{{ article.image.src | image_url: width: 533 }} 533w,{%- endif -%}
+                      {%- if article.image.src.width >= 720 -%}{{ article.image.src | image_url: width: 720 }} 720w,{%- endif -%}
+                      {%- if article.image.src.width >= 1000 -%}{{ article.image.src | image_url: width: 1000 }} 1000w,{%- endif -%}
+                      {%- if article.image.src.width >= 1500 -%}{{ article.image.src | image_url: width: 1500 }} 1500w,{%- endif -%}
+                      {{ article.image.src | image_url }} {{ article.image.src.width }}w"
+                        src="{{ article.image.src | image_url: width: 533 }}"
+                        sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                        alt="{{ article.image.src.alt | escape }}" class="article-item__image"
+                        loading="lazy" width="{{ article.image.width }}"
+                        height="{{ article.image.height }}">
+                </a>
+            </div>
+
+            <div class="article-item__content text-container">
+
+                <div class="article-item__detail">
+                    <div class="article">
+
+                        {%- if section.settings.show_tag -%}
+                            {%- if article.tags.size > 0 -%}
+                            {% assign tag = article.tags[0] %}
+                            <span class="blog-tag">
+                                <span class="title-blog">IN</span>
+                                <a class="article-item__category tag-content fw-bold"
+                                    href="{{ blog.url }}/tagged/{{ tag | handle }}">
+                                    {{ tag }}
+                                </a>
+                            </span>
+                            {%- endif -%}
+                        {%- endif -%}
+
+                        {%- if section.settings.show_date -%}
+                            <span class="blog-date">
+                                {{ article.published_at | date: "%b %d, %Y" }}
+                            </span>
+                        {%- endif -%}
+
+                        {%- if section.settings.show_author -%}   
+                            <span class="blog-author">
+                                <span class="title-blog">By</span>
+                                <span class="author fw-bold">{{ article.author }}</span>
+                            </span>
+                        {%- endif -%}
+                                            
+                    </div>
+
+                    <h3 class="article-item__title heading h5">
+                        <a href="{{ article.url }}">{{ article.title | truncate: 50 | escape }}</a>
+                    </h3>
+    
+                    {%- if section.settings.show_description -%}
+                        <div class="article-item-description mb-4">{{ article.content | strip_html | truncatewords: 15 }}</div>
+                    {%- endif -%}
+    
+    
+                    {% if section.settings.btn_blog != blank %}
+                    <a class="btn-blog button {{ section.settings.style_btn_item }}" href="{{ article.url }}">
+                        {{ section.settings.btn_blog }}
+                    </a>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+</blog-item>

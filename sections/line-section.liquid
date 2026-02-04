@@ -1,0 +1,139 @@
+<!-- line.liquid -->
+<style>
+    .customstyle{{ section.id }}{
+      background:{{ section.settings.bgsection }};
+      padding: {{ section.settings.paddingsection }};
+      margin: {{ section.settings.marginsection }}
+    }
+    @media (max-width: 1199px){
+      .customstyle{{ section.id }}{
+        padding: {{ section.settings.paddingtablet }};
+        margin: {{ section.settings.margintablet }}
+      }
+    }
+    @media (max-width:767px){
+      .customstyle{{ section.id }}{
+        padding: {{ section.settings.paddingmobile }};
+        margin: {{ section.settings.marginmobile }}
+      }
+    }
+    .customstyle{{ section.id }} .border-custom{
+        border-width: {{ section.settings.wborder }} !important;
+        border-color: {{ section.settings.bgborder }} !important;
+        border-style: solid;
+        z-index: 1;
+        position: relative;
+    }
+</style>
+
+<section class="customstyle{{ section.id }}">
+  <div class="{{ section.settings.setwidth }}">
+    <div class="border-top border-custom">
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Line",
+  "class": "line-section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bgsection",
+      "label": "Background Section",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "setwidth",
+      "label": "Full Width",
+      "default": "container",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Section Padding "
+    },
+    {
+      "type": "text",
+      "id": "paddingsection",
+      "label": "Padding Section",
+      "default": "0px 0px 0px 0px",
+      "info": "Padding: Top Right Bottom Left"
+    },
+    {
+      "type": "text",
+      "id": "paddingtablet",     
+      "label": "Padding tablet",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "text",
+      "id": "paddingmobile",
+      "label": "Padding Section Mobile",
+      "default": "40px 0px 40px 0px",
+      "info": "Padding: Top Right Bottom Left"
+    },
+    {
+      "type": "header",    
+      "content": "Section Margin "
+    },
+    {
+      "type": "text",
+      "id": "marginsection",     
+      "label": "Margin Section",
+      "default": "0px 0px 0px 0px",
+      "info": "Margin: Top Right Bottom Left"
+    },
+    {
+      "type": "text",
+      "id": "margintablet",
+      "label": "Margin tablet",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "text",
+      "id": "marginmobile",
+      "label": "Margin Mobile",
+      "default": "0px 0px 0px 0px",
+      "info": "Margin: Top Right Bottom Left"
+    },
+    {
+      "type": "color",
+      "id": "bgborder",
+      "label": "Border Line",
+      "default": "#dddddd"
+    },
+    {
+      "type": "text",
+      "id": "wborder",
+      "label": "Width Border",
+      "default": "1px 0px 0px 0px",
+      "info": "Ex: 1px 1px 1px 1px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Line",
+      "category": "Advanced layout"
+    }
+  ]
+}
+{% endschema %}
+  

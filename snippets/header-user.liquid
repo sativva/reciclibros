@@ -1,0 +1,48 @@
+{% if customer %}
+    <div class="show_login">
+        <a href="#" class="login-icon" aria-label="My Account">
+            {% render 'icon-user' %}
+        </a>
+        <ul class="user-block">
+            <li>
+                <a href="/account" title="My Account">{{ 'general.users.hello' | t }} {{ customer.first_name }}</a>
+            </li>
+            <li>
+                <a href="/account/register" title="{{ 'general.users.register' | t }}">{{ 'general.users.register' | t }}</a>
+            </li>
+            <li>
+                <a href="/account/logout" title="{{ 'general.users.logout' | t }}">{{ 'general.users.logout' | t }}</a>
+            </li>
+            <li>
+                <a href="/cart" title="{{ 'general.users.check_out' | t }}">{{ 'general.users.check_out' | t }}</a>
+            </li>
+            <li>
+                <a href="/pages/wishlist" class="compare-link">
+                    {{ 'general.users.wishlist' | t }} (<ap-wishlistcount id="wishlistcount"></ap-wishlistcount>)
+                </a>
+            </li>
+        </ul>
+    </div>
+{% else %}
+    <div class="show_login">
+        <a class="login-icon" href="#" aria-label="Login">
+            {% render 'icon-user' %}
+        </a>
+        <ul class="user-block">
+            <li>
+                <a href="/account/login" class="header__icon-wrapper tap-area" aria-label="{{ 'general.users.login' | t }}">{{ 'general.users.login' | t }}</a>
+            </li>
+            <li>
+                <a href="/account/register" title="{{ 'general.users.register' | t }}">{{ 'general.users.register' | t }}</a>
+            </li>
+            <li>
+                <a href="/cart" title="{{ 'general.users.check_out' | t }}">{{ 'general.users.check_out' | t }}</a>
+            </li>
+            <li>
+                <a href="/pages/wishlist" class="compare-link">
+                    {{ 'general.users.wishlist' | t }} (<ap-wishlistcount id="wishlistcount"></ap-wishlistcount>)
+                </a>
+            </li>
+        </ul>
+    </div>
+{% endif %} 

@@ -1,0 +1,40 @@
+{% liquid
+    assign rating_decimal = 0
+    assign decimal = product.metafields.reviews.rating.value.rating | modulo: 1
+    assign rate = product.metafields.reviews.rating.value.rating | floor
+    assign rate_empty = 5 | minus: rate
+    if decimal > 0
+        assign rate_empty = rate_empty | minus: 1
+    endif
+    if decimal >= 0.3 and decimal <= 0.7
+      assign rating_decimal = 0.5
+    elsif decimal > 0.7
+      assign rating_decimal = 1
+    endif
+%}
+<div class="ap-productmeta__reference">
+    <a href="#product-{{ product.id }}-tabs" is="ap-reviewlink" data-smooth-scroll="" class="ap-productmeta__reviews-badge">
+      <div class="rating">
+        <div class="rating__stars" role="img" aria-label="{{ product.metafields.reviews.rating.value.rating }} out of 5.0 stars">
+            {%- for i in (1..rate) -%}
+                <i class="spr-icon spr-icon-star"></i>
+            {%- endfor -%}
+            {%- if rating_decimal > 0 -%}
+                {%- if rating_decimal == 1 -%}
+                    <i class="spr-icon spr-icon-star"></i>
+                {%- else -%}
+                    <i class="spr-icon spr-icon-star spr-icon-half"></i>
+                {%- endif -%}
+            {%- endif -%}
+            {%- for i in (1..rate_empty) -%}
+                <i class="spr-icon spr-icon-star spr-icon-star-empty"></i>
+            {%- endfor -%}
+        </div>
+        {%- if product.metafields.reviews.rating_count > 0 -%}
+            <span class="rating__caption show d-none">({{ product.metafields.reviews.rating_count }})</span>
+        {%- else -%}
+            <span class="rating__caption d-none">({{ product.reviews_count | pluralize: '0', '0' }})</span>
+        {%- endif -%}
+      </div>
+    </a>
+</div>

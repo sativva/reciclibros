@@ -1,0 +1,98 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "setwidthout": "container",
+        "content_box_size": "fill",
+        "content_box_position": "center",
+        "content_text_align": "center",
+        "height": 10,
+        "show_collection_image": false,
+        "show_description": false,
+        "default_background_color": "#ffffff",
+        "heading_color": "#ffffff",
+        "heading_text_size": 6,
+        "text_color": "#000000",
+        "breadcrumb_position": "2",
+        "show_shop_bar": false,
+        "shop_bar_label": "",
+        "menu_shop": ""
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "blocks": {
+        "516dfcf0-85da-490b-8622-444719f7972f": {
+          "type": "banner",
+          "disabled": true,
+          "settings": {
+            "title_description": "Karpart is your one-stop-shop for all things automotive. Be it brakes or exhaust systems, seat covers or trailer hitches, ball bearings, or air/fuel filters, you can trust us for all your automotive needs.",
+            "color_title_top": "#194a33",
+            "sub_title": "Get Up To\n<br>\n<span class=\"primary\">\n20% off\n<span>",
+            "color_subtitle": "#ffffff",
+            "title": "Brakes and \n<br>\nRotors for Sale",
+            "color_title": "#ffffff",
+            "description": "",
+            "color_description": "#ffffff",
+            "button1_label": "shop now",
+            "link1": "",
+            "color_btn": "#000000",
+            "bg_btn": "#ffffff",
+            "color_btn_hover": "#ffffff",
+            "bg_btn_hover": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "516dfcf0-85da-490b-8622-444719f7972f"
+      ],
+      "settings": {
+        "type_collection": "default",
+        "setwidthout": "container",
+        "margin_desktop": "",
+        "padding_desktop": "0 30px 0",
+        "title_categories": "",
+        "collection": "",
+        "collection2": "",
+        "collection3": "",
+        "collection4": "",
+        "collection5": "",
+        "collection6": "",
+        "products_per_page": 48,
+        "columns_desktop": 4,
+        "show_load_product": false
+      }
+    },
+    "3cf928a0-4ae7-4dbd-b666-3715ab87ee96": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "heading": "Productos que recién has visto",
+        "heading_size": 4,
+        "tab_description": "",
+        "text_align": "left",
+        "products_to_show": 8,
+        "products_per_row_mobile_sm": 1,
+        "products_per_row_desktop": 6,
+        "margin_desktop": "20px 20px 20px 20px",
+        "margin_mobile": "",
+        "padding_desktop": "",
+        "padding_mobile": ""
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "3cf928a0-4ae7-4dbd-b666-3715ab87ee96"
+  ]
+}

@@ -1,0 +1,51 @@
+.text-with-icons .text-with-icons__content-wrapper .description-icon {
+  color: var(--color-body);
+}
+
+.text-with-icons .heading--xsmall.title-icon {
+  color: var(--title-color);
+  letter-spacing: 3px;
+  font-weight: 600;
+  font-family: var(--hd-font-family);
+}
+
+.text-with-icon .dots-nav__item {
+  background-color: var(--color-body);
+}
+
+.text-with-icons__item {
+  display: flex !important;
+  padding: 0;
+  gap: 24px;
+  flex: none;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+
+  z-index: 1;
+  position: relative;
+}
+
+.text-with-icons__icon-wrapper {
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.text-with-icons__list {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.text-with-icons__icon-wrapper svg {
+  width: 65px;
+  height: 65px;
+}
+
+@media (max-width: 767px) {
+  .text-with-icons__list {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+/* Icon top */

@@ -1,0 +1,231 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "setwidthout": "full",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "height": 160,
+        "margin_desktop": "",
+        "background_color": "#ffffff",
+        "color_title": "#000000",
+        "color_breadcrumb": "#999999"
+      }
+    },
+    "image_banner_xNQEjU": {
+      "type": "image-banner",
+      "blocks": {
+        "text_aPBDc4": {
+          "type": "text",
+          "settings": {
+            "setwidthout": "full",
+            "text_align": "left",
+            "position_text": "bot-left",
+            "padding_inner": "",
+            "heading_title": "",
+            "color_title": "",
+            "heading": "",
+            "heading_size": "h2",
+            "color_title_center": "",
+            "description": "",
+            "description_2": "",
+            "color_description": "",
+            "title_countdown": "",
+            "time_picker": "",
+            "date_picker": "",
+            "button1_label": "",
+            "color_btn": "",
+            "bg_btn": "",
+            "color_btn_hover": "",
+            "bg_btn_hover": "",
+            "link1": "",
+            "style_btn": "btn-base"
+          }
+        }
+      },
+      "block_order": [
+        "text_aPBDc4"
+      ],
+      "custom_css": [],
+      "name": "Image banner",
+      "settings": {
+        "setwidthout": "container",
+        "featured_image": "shopify://shop_images/banniere_donar_vender.png",
+        "height_img": "300",
+        "height_img_mobile": "350",
+        "margin_desktop": "",
+        "margin_tablet": "",
+        "margin_mobile": "",
+        "tab_heading": "",
+        "tab_heading_size": 2,
+        "tab_description": "",
+        "heading_color": "",
+        "text_color": "",
+        "overlay": "#ffffff",
+        "overlay_opacity": 1
+      }
+    },
+    "logo_swip_MGzb9J": {
+      "type": "logo-swip",
+      "blocks": {
+        "logo_xFfdrY": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Capture_d_ecran_2025-12-16_18-07-48_0c81b186-4bb0-4f2b-95c4-ea8a07b65250.png",
+            "link_logo": ""
+          }
+        },
+        "logo_MnFRgg": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Capture_d_ecran_2025-12-16_18-08-38.png",
+            "link_logo": ""
+          }
+        },
+        "logo_yqNztV": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Capture_d_ecran_2025-12-16_18-08-51.png",
+            "link_logo": ""
+          }
+        },
+        "logo_kcwXHQ": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Capture_d_ecran_2025-12-16_18-09-05.png",
+            "link_logo": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_xFfdrY",
+        "logo_MnFRgg",
+        "logo_yqNztV",
+        "logo_kcwXHQ"
+      ],
+      "custom_css": [
+        "/* Désactiver l'effet hover sur les logos */.logoswip-item:hover img {transform: none !important; /* pas de zoom ou transformation */ opacity: 1 !important; /* logos restent toujours visibles */}"
+      ],
+      "name": "Logo Carousel",
+      "settings": {
+        "setwidthout": "container",
+        "margin_desktop": "",
+        "margin_mobile": "",
+        "padding_desktop": "40px 20px 20px 20px",
+        "padding_mobile": "",
+        "background-color": "#ffffff",
+        "color_subtitle": "#fe7232",
+        "heading_color": "#282828",
+        "text_color": "#282828",
+        "sub_heading": "",
+        "tab_heading": "Vende tus libros de forma rápida y sencilla con la app Reciclibros",
+        "tab_heading_size": 4,
+        "tab_description": "",
+        "btn_text": "",
+        "btn_link": "",
+        "style_btn": "btn-base",
+        "text_align": "left",
+        "width_image": 100,
+        "padding_inner": "",
+        "perviewDesktop": 4,
+        "spaceBetween": 15,
+        "arrows": false,
+        "arrow_heading": false
+      }
+    },
+    "image_banner_cNFWxn": {
+      "type": "image-banner",
+      "blocks": {
+        "text_KLThjC": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "setwidthout": "full",
+            "text_align": "left",
+            "position_text": "mid-center",
+            "padding_inner": "",
+            "heading_title": "Heading title",
+            "color_title": "",
+            "heading": "Heading",
+            "heading_size": "h2",
+            "color_title_center": "",
+            "description": "",
+            "description_2": "",
+            "color_description": "",
+            "title_countdown": "Title Count Down",
+            "time_picker": "23:00",
+            "date_picker": "30-12-2225",
+            "button1_label": "",
+            "color_btn": "",
+            "bg_btn": "",
+            "color_btn_hover": "",
+            "bg_btn_hover": "",
+            "link1": "",
+            "style_btn": "btn-base"
+          }
+        }
+      },
+      "block_order": [
+        "text_KLThjC"
+      ],
+      "name": "Image banner",
+      "settings": {
+        "setwidthout": "container",
+        "featured_image": "shopify://shop_images/mockup-app_820fe282-6e2b-4da6-a9ce-d54d8b3e9b98.png",
+        "height_img": "550",
+        "height_img_mobile": "450",
+        "margin_desktop": "20px 20px 20px 20px",
+        "margin_tablet": "",
+        "margin_mobile": "",
+        "tab_heading": "",
+        "tab_heading_size": 2,
+        "tab_description": "",
+        "heading_color": "",
+        "text_color": "",
+        "overlay": "#000000",
+        "overlay_opacity": 1
+      }
+    },
+    "contact_form_section_E4VBwF": {
+      "type": "contact-form-section",
+      "name": "Contact form section",
+      "settings": {
+        "setwidthout": "container",
+        "background-color": "#ff6400",
+        "margin_desktop": "",
+        "margin_mobile": "",
+        "padding_desktop": "",
+        "padding_mobile": "",
+        "color_text": "#ffffff",
+        "heading": "",
+        "heading_size": "h4",
+        "description": "",
+        "icon": "",
+        "info_text": "",
+        "icon_2": "",
+        "info_text_2": "",
+        "icon_3": "",
+        "info_text_3": "",
+        "contact_form_title": "Solicita una recogida",
+        "contact_form_des": "Luego te llamaremos para organizar una cita"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_banner_xNQEjU",
+    "logo_swip_MGzb9J",
+    "image_banner_cNFWxn",
+    "contact_form_section_E4VBwF"
+  ]
+}

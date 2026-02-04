@@ -1,0 +1,554 @@
+<!-- team-work.liquid -->
+{% render 'section-style' %}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --heading-color: {{ section.settings.heading_color | color_extract: 'red' }}, {{ section.settings.heading_color | color_extract: 'green' }}, {{ section.settings.heading_color | color_extract: 'blue' }};
+    --color-body: {{ section.settings.text_color }};
+  }
+  .person__social svg {
+    width: 16px;
+    height: 16px;
+  }
+  .col-person {
+    position: relative;
+    margin: 0 0 30px;
+}
+.person__info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: start;
+    opacity: 0;
+    transition: all .3s;
+}
+.col-person:hover .person__info {
+  opacity: 1;
+}
+.person__info_text {
+    padding: 30px;
+    background-color: #fff;
+}
+.person__social .list-social__item {
+    width: 40px;
+    height: 40px;
+    line-height: 1;
+    margin: 0 0 2px;
+}
+.person__social .link--text {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-2);
+    color: #fff;
+}
+.person__social .link--text:hover {
+  background-color: var(--primary);
+} 
+.person__social svg {
+    width: 16px;
+    height: 16px;
+    margin: auto;
+}
+.person__social {
+  margin: 0;
+}
+.person__job {
+  font-size: calc(var(--base-font-size) - 2px);
+  font-weight: 400;
+  margin: 0 0 6px;
+}
+.person__name.h6 {
+  margin: 0 0 20px;
+  font-weight: 500;
+  color: var(--primary-2);
+}
+.teamwork-join-title {
+  font-size: 100px;
+  line-height: 106px;
+  font-weight: 500;
+  margin: 0 0 10px;
+}
+.teamwork-join-description {
+  margin: 0 0 30px;
+}
+.teamwork-join-button .button.btn-base {
+  margin-left: auto;
+}
+.teamwork-join {
+  position: relative;
+}
+.teamwork-join-content {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 60px;
+  text-align: right;
+}
+img.teamwork-img {
+    width: 100%;
+    object-fit: cover;
+}
+.teamwork-join-img img {
+    width: 100%;
+    object-fit: cover;
+}
+@media (max-width: 1199px) {
+  .teamwork-join-title {
+    font-size: 60px;
+    line-height: 1;
+  }
+  .teamwork-join-content {
+    padding: 30px;
+  }
+}
+</style>
+<section class="aboutus_section">
+    <div class="container">
+        {% if section.settings.tab_heading != blank %}
+        <header class="section__header text-{{ section.settings.text_align }} mb-60">
+          {% if section.settings.sub_heading != blank %}
+            <p class="heading sub-heading mb-20">
+                {{ section.settings.sub_heading }}
+            </p>
+          {% endif %}
+          <h3 class="heading h{{ section.settings.tab_heading_size }}">{{ section.settings.tab_heading }}</h3>
+          {% if section.settings.tab_description != blank %}
+          <div class="heading-description">
+              {{ section.settings.tab_description }}
+          </div>
+          {% endif %}
+        </header>
+        {% endif %}
+      <div class="row">
+        {%- for block in section.blocks -%}
+          {%- case block.settings.width -%}
+          {%- when '20%' -%}
+          {%- assign block_width = 'col-xl-20 col-lg-4 col-md-4 col-12' -%}
+          {%- when '25%' -%}
+          {%- assign block_width = 'col-xl-3 col-md-6 col-12' -%}
+          {%- when '33%' -%}
+          {%- assign block_width = 'col-xl-4 col-lg-4 col-md-6 col-12' -%}
+          {%- when '37%' -%}
+          {%- assign block_width = 'col-xl-37 col-md-6 col-12' -%}
+          {%- when '40%' -%}
+          {%- assign block_width = 'col-xl-40 col-lg-4 col-md-4 col-12' -%}
+          {%- when '50%' -%}
+          {%- assign block_width = 'col-lg-6 col-md-12 col-12' -%}
+          {%- when '60%' -%}
+          {%- assign block_width = 'col-xl-60 col-md-6 col-12' -%}
+          {%- when '63%' -%}
+          {%- assign block_width = 'col-xl-63 col-md-6 col-12' -%}
+          {%- when '66%' -%}
+          {%- assign block_width = 'col-xl-8 col-md-6 col-12' -%}
+          {%- when '75%' -%}
+          {%- assign block_width = 'col-xl-9 col-md-6 col-12' -%}
+          {%- when '80%' -%}
+          {%- assign block_width = 'col-lg-80 col-md-8 col-sm-6 col-12' -%}
+          {%- when '100%' -%}
+          {%- assign block_width = 'col-12' -%}
+          {%- endcase -%}
+          <div id="block-{{ block.id }}" class="{{ block_width }} {{ block.settings.class }}">
+
+            {% case block.type %}
+
+              {%- when 'teamwork' -%}
+                <div class="col-person">
+                  <div class="person__avatar">
+                    {%- if block.settings.team_avatar != blank -%}
+                        <img class="teamwork-img" loading="lazy"
+                            sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px" alt=""
+                            src="{{ block.settings.team_avatar | image_url: width: block.settings.team_avatar.width }}"
+                            data-srcset="{%- if block.settings.team_avatar.width >= 195 -%}{{ block.settings.team_avatar | image_url: width: 195, crop: 'center' }} 195w,{%- endif -%}
+                            {%- if block.settings.team_avatar.width >= 330 -%}{{ block.settings.team_avatar | image_url: width: 330, crop: 'center' }} 330w,{%- endif -%}
+                            {%- if block.settings.team_avatar.width >= 535 -%}{{ block.settings.team_avatar | image_url: width: 535, crop: 'center' }} 535w,{%- endif -%}
+                            {%- if block.settings.team_avatar.width >= 750 -%}{{ block.settings.team_avatar | image_url: width: 750, crop: 'center' }} 750w,{%- endif -%}
+                            {%- if block.settings.team_avatar.width >= 1000 -%}{{ block.settings.team_avatar | image_url: width: 1000, crop: 'center' }} 1000w,{%- endif -%}
+                            {%- if block.settings.team_avatar.width >= 1500 -%}{{ block.settings.team_avatar | image_url: width: 1500 }} 1500w,{%- endif -%}
+                            {%- if block.settings.team_avatar.width >= 3000 -%}{{ block.settings.team_avatar | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                            {{ block.settings.team_avatar | image_url }} {{ block.settings.team_avatar.width }}w"
+                            src="{{ block.settings.team_avatar | image_url: width: 1500 }}"
+                            height="{{ block.settings.team_avatar.height }}"
+                            width="{{ block.settings.team_avatar.width }}">
+                    {%- else -%}
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {%- endif -%}
+                  </div>
+                  <div class="person__info">
+                    <div class="person__info_text">
+                      <h4 class="person__job">
+                        {{ block.settings.subtitle_person }}
+                      </h4>
+                      <h3 class="person__name h6">
+                        {{ block.settings.title_person }}
+                      </h3>
+                      <p class="person__des">
+                        {{ block.settings.team_des }}
+                      </p>
+                    </div>
+                    <ul class="person__social list-unstyled">
+                      {% if block.settings.team_fb != blank %}
+                      <li class="list-social__item">
+                        <a href="{{ block.settings.team_fb }}" class="link--text list-social__link" aria-describedby="a11y-external-message" title="Facebook">
+                            {%- render 'icon-facebook' -%}
+                        </a>
+                      </li>
+                      {% endif %}
+                      {% if block.settings.team_tw != blank %}
+                      <li class="list-social__item">
+                        <a href="{{ block.settings.team_tw }}" class="link--text list-social__link" aria-describedby="a11y-external-message" title="Twitter">
+                            {%- render 'icon-twitter' -%}
+                        </a>
+                      </li>
+                      {% endif %}
+                      {% if block.settings.team_insta != blank %}
+                      <li class="list-social__item">
+                        <a href="{{ block.settings.team_insta }}" class="link--text list-social__link" aria-describedby="a11y-external-message" title="Twitter">
+                          <svg focusable="false" width="16" height="16" class="icon icon--instagram   " viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C5.827 0 5.555.01 4.702.048 3.85.087 3.269.222 2.76.42a3.921 3.921 0 00-1.417.923c-.445.444-.719.89-.923 1.417-.198.509-.333 1.09-.372 1.942C.01 5.555 0 5.827 0 8s.01 2.445.048 3.298c.039.852.174 1.433.372 1.942.204.526.478.973.923 1.417.444.445.89.719 1.417.923.509.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.445-.01 3.298-.048c.852-.039 1.433-.174 1.942-.372a3.922 3.922 0 001.417-.923c.445-.444.719-.89.923-1.417.198-.509.333-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.298c-.039-.852-.174-1.433-.372-1.942a3.922 3.922 0 00-.923-1.417A3.921 3.921 0 0013.24.42c-.509-.198-1.09-.333-1.942-.372C10.445.01 10.173 0 8 0zm0 1.441c2.136 0 2.39.009 3.233.047.78.036 1.203.166 1.485.276.374.145.64.318.92.598.28.28.453.546.598.92.11.282.24.705.276 1.485.038.844.047 1.097.047 3.233s-.009 2.39-.047 3.233c-.036.78-.166 1.203-.276 1.485-.145.374-.318.64-.598.92-.28.28-.546.453-.92.598-.282.11-.705.24-1.485.276-.844.038-1.097.047-3.233.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.479 2.479 0 01-.92-.598 2.478 2.478 0 01-.598-.92c-.11-.282-.24-.705-.276-1.485-.038-.844-.047-1.097-.047-3.233s.009-2.39.047-3.233c.036-.78.166-1.203.276-1.485.145-.374.318-.64.598-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.844-.038 1.097-.047 3.233-.047zm0 9.226a2.667 2.667 0 110-5.334 2.667 2.667 0 010 5.334zm0-6.775a4.108 4.108 0 100 8.216 4.108 4.108 0 000-8.216zm5.23-.162a.96.96 0 11-1.92 0 .96.96 0 011.92 0z" fill="currentColor"></path>
+                          </svg>
+                        </a>
+                      </li>
+                      {% endif %}
+                      {% if block.settings.team_pin != blank %}
+                      <li class="list-social__item">
+                        <a href="{{ block.settings.team_pin }}" class="link--text list-social__link" aria-describedby="a11y-external-message" title="Twitter">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M5.6587 12.7947C5.6747 12.5707 5.7067 12.3473 5.7547 12.1273C5.7967 11.9307 5.92403 11.374 6.1107 10.5673L6.11537 10.5473L6.37336 9.43532C6.42603 9.20865 6.4667 9.03265 6.49403 8.97398C6.36458 8.6747 6.30005 8.35137 6.3047 8.02532C6.3047 7.13398 6.8087 6.44332 7.46203 6.44332C7.70203 6.43932 7.93137 6.54332 8.09003 6.72732C8.2487 6.91065 8.32203 7.15665 8.29136 7.39132C8.29136 7.69332 8.2347 7.92332 7.98936 8.74798C7.94203 8.90665 7.90936 9.01732 7.8787 9.12865C7.8447 9.25398 7.81536 9.36732 7.7907 9.47665C7.7267 9.73398 7.78536 10.008 7.9487 10.214C8.02797 10.3147 8.13026 10.3948 8.24698 10.4477C8.36369 10.5006 8.4914 10.5247 8.61936 10.518C9.61403 10.518 10.3527 9.19465 10.3527 7.48598C10.3527 6.17265 9.4927 5.30332 8.0647 5.30332C7.70723 5.29003 7.35089 5.35107 7.01822 5.48258C6.68555 5.61408 6.38379 5.81319 6.13203 6.06732C5.87487 6.32701 5.67199 6.6353 5.53521 6.97421C5.39843 7.31313 5.3305 7.67588 5.33536 8.04132C5.31879 8.43515 5.43944 8.82253 5.6767 9.13732C5.79736 9.23065 5.84337 9.39265 5.79337 9.53065C5.76603 9.64265 5.70003 9.89865 5.67603 9.98398C5.66907 10.0259 5.65244 10.0656 5.62744 10.1C5.60244 10.1344 5.56977 10.1624 5.53203 10.182C5.49553 10.201 5.45502 10.2111 5.41386 10.2113C5.3727 10.2115 5.33207 10.2019 5.29536 10.1833C4.52203 9.86399 4.09803 8.99798 4.09803 7.88998C4.09803 5.89998 5.7587 4.16732 8.22603 4.16732C10.316 4.16732 11.88 5.71998 11.88 7.59398C11.88 9.94865 10.592 11.6633 8.75336 11.6633C8.49184 11.6709 8.23219 11.617 7.99528 11.506C7.75838 11.3949 7.55085 11.2298 7.38937 11.024L7.3607 11.142L7.2227 11.71L7.22136 11.7147C7.12403 12.1147 7.05603 12.3927 7.02936 12.4973C6.9587 12.734 6.86936 12.966 6.7627 13.1907C8.08929 13.5065 9.48645 13.3021 10.667 12.6196C11.8476 11.9372 12.7219 10.8284 13.1103 9.52118C13.4987 8.21399 13.3715 6.80769 12.7551 5.59132C12.1386 4.37496 11.0797 3.44092 9.79584 2.98119C8.51201 2.52147 7.10085 2.57097 5.85239 3.11952C4.60393 3.66808 3.61301 4.67402 3.0833 5.93059C2.5536 7.18717 2.52534 8.59891 3.00433 9.87568C3.48333 11.1524 4.43319 12.1972 5.6587 12.7953V12.7947ZM7.9987 14.6673C4.3167 14.6673 1.33203 11.6827 1.33203 8.00065C1.33203 4.31865 4.3167 1.33398 7.9987 1.33398C11.6807 1.33398 14.6654 4.31865 14.6654 8.00065C14.6654 11.6827 11.6807 14.6673 7.9987 14.6673Z" fill="currentColor"/>
+                          </svg>
+                        </a>
+                      </li>
+                      {% endif %}
+                      {% if block.settings.team_youtube != blank %}
+                      <li class="list-social__item">
+                        <a href="{{ block.settings.team_youtube }}" class="link--text list-social__link" aria-describedby="a11y-external-message" title="Youtube">
+                            {%- render 'icon-youtube' -%}
+                        </a>
+                      </li>
+                      {% endif %}
+                    </ul>
+                  </div>
+          
+                </div>
+
+              {%- when 'teamwork-join' -%}
+                <div class="teamwork-join">
+                  <div class="teamwork-join-img">
+                    {% if block.settings.featured_image != blank %}
+                      <img class="banner-list-image" loading="lazy" 
+                      sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                      alt="" 
+                      src="{{ block.settings.featured_image | image_url: width: block.settings.featured_image.width }}" 
+                      data-srcset="{%- if block.settings.featured_image.width >= 3000 -%}{{ block.settings.featured_image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                          {{ block.settings.featured_image | image_url }} {{ block.settings.featured_image.width }}w"
+                      src="{{ block.settings.featured_image | image_url: width: 1500 }}"
+                      height="{{ block.settings.featured_image.height }}"
+                      width="{{ block.settings.featured_image.width }}">
+                    {% else %}
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {% endif %}
+                  </div>
+                  <div class="teamwork-join-content">
+                    <div style="color: {{ block.settings.color_text }};" class="teamwork-join-title">
+                      {{ block.settings.title }}
+                    </div>
+                    <div style="color: {{ block.settings.color_text }};" class="teamwork-join-description h6">
+                      {{ block.settings.description }}
+                    </div>
+                    {% if block.settings.button1_label != blank %}
+                      <div class="teamwork-join-button">
+                          <a href="{{ block.settings.link1 }}" class="button btn-base">
+                              {{ block.settings.button1_label }}
+                          </a>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+
+            {% endcase %}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+{% schema %}
+{
+  "name": "Team work",
+  "tag": "section",
+  "max_blocks": 20,
+  "class": "spaced-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "t:sections.all.padding_mobile.label",
+      "info": "t:sections.all.padding_mobile.info"
+    },
+    {
+      "type": "liquid",
+      "id": "sub_heading",
+      "default": "Sub heading",
+      "label": "Sub heading"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.all.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.all.tab_heading_size.label"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_description",
+      "label": "t:sections.all.tab_description.label"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Text align"
+    },
+    {
+      "type": "color",   
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.all.heading_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.all.text_color.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "teamwork",
+      "name": "Team work",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width Image",
+          "default": "50%",
+          "options": [
+            {
+              "value": "20%",
+              "label": "20%"
+            },
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Settings content"
+        },
+        {
+          "type": "image_picker",
+          "id": "team_avatar",
+          "label": "Avatar"
+        },
+        {
+          "type": "text",
+          "id": "title_person",
+          "label": "Title person",
+          "default": "Emma Watson"
+        },
+        {
+          "type": "text",
+          "id": "subtitle_person",
+          "label": "Sub title",
+          "default": "CEO/FOUNDER"
+        },
+        {
+          "type": "textarea",
+          "id": "team_des",
+          "label": "Description",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore"
+        },
+        {
+          "type": "header",
+          "content": "Settings Social"
+        },
+        {
+          "type": "url",
+          "id": "team_fb",
+          "label": "Link Facebook"
+        },
+        {
+          "type": "url",
+          "id": "team_tw",
+          "label": "Link X"
+        },
+        {
+          "type": "url",
+          "id": "team_insta",
+          "label": "Link Instagram"
+        },
+        {
+          "type": "url",
+          "id": "team_pin",
+          "label": "Link Pinterest"
+        },
+        {
+          "type": "url",
+          "id": "team_youtube",
+          "label": "Link Youtube"
+        }
+      ]
+    },
+    {
+      "type": "teamwork-join",
+      "name": "Team Join",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width Image",
+          "default": "50%",
+          "options": [
+            {
+              "value": "20%",
+              "label": "20%"
+            },
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "color",
+          "id": "color_text",
+          "label": "Color text",
+          "default": "#fff"
+        },
+        {
+          "type": "image_picker",
+          "id": "featured_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Title"
+        },
+        {
+          "type": "liquid",
+          "id": "description",
+          "label": "Description",
+          "default": "Description"
+        },
+        {
+          "type": "liquid",
+          "id": "button1_label",
+          "label": "Button"
+        },
+        {
+          "type": "url",
+          "id": "link1",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Team Work",
+      "blocks": [
+        {
+          "type": "teamwork"
+        },
+        {
+          "type": "teamwork"
+        },
+        {
+          "type": "teamwork"
+        },
+        {
+          "type": "teamwork"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,58 @@
+<ul class="social-media social-media--no-radius list--unstyled" role="list">
+    {%- if settings.social_facebook != blank -%}
+      <li class="social-media__item social-media__item--facebook">
+        <a href="{{ settings.social_facebook }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on Facebook">
+            {%- render 'icon-facebook' -%}
+            <span class="d-none">{{ 'general.social.links.facebook' | t }}</span>
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_twitter != blank -%}
+      <li class="social-media__item social-media__item--twitter">
+        <a href="{{ settings.social_twitter }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on twitter">
+            {%- render 'icon-twitter' -%}
+            <span class="d-none">{{ 'general.social.links.twitter' | t }}</span>
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_instagram != blank -%}
+      <li class="social-media__item social-media__item--instagram">
+        <a href="{{ settings.social_instagram }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on Instagram">
+            {%- render 'icon-instagram' -%}
+          <span class="d-none">{{ 'general.social.links.instagram' | t }}</span>
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_pinterest != blank -%}
+      <li class="social-media__item social-media__item--pinterest">
+        <a href="{{ settings.social_pinterest }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on Pinterest">
+            {%- render 'icon-pinterest' -%}     
+          <span class="d-none">{{ 'general.social.links.pinterest' | t }}</span>
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_youtube != blank -%}
+      <li class="social-media__item social-media__item--youtube">
+        <a href="{{ settings.social_youtube }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on YouTube">
+            {%- render 'icon-youtube' -%}     
+          <span class="d-none">{{ 'general.social.links.youtube' | t }}</span>
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_linkedin != blank -%}
+      <li class="social-media__item social-media__item--linkedin">
+        <a href="{{ settings.social_linkedin }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on LinkedIn">
+            {%- render 'icon-linkedin' -%}     
+          <span class="d-none">{{ 'general.social.links.linkedin' | t }}</span>
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_tiktok != blank -%}
+      <li class="social-media__item social-media__item--tiktok">
+        <a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on tiktok">
+            {%- render 'icon-tiktok' -%}     
+          <span class="d-none">{{ 'general.social.links.tiktok' | t }}</span>
+        </a>
+      </li>
+    {%- endif -%}
+</ul>

@@ -1,0 +1,475 @@
+{%- if template contains 'blog' or template contains 'article' -%}
+  {{ 'main-article.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .main-blog-section {
+    margin: 0;
+  }
+  {%- if template contains 'blog' -%}
+
+
+    {% if section.settings.blog_sidebar %}
+      .main-blog {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      @media (min-width: 1200px) {
+        .main-blog {
+          width: 67%;
+        }
+      }
+      .blog-sidebar {
+        flex: 1;
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+      .article-item__image-container {
+        min-height: auto;
+        max-height: unset;
+        height: auto;
+      }
+      .ap-listarticle--stacked {
+        grid-template-columns: repeat(auto-fit, calc(100% / 1 - var(--ap-listarticle-column-gap)*(0 / 3)));
+        justify-content: safe center;
+      }
+    {% endif %}
+
+  {%- endif -%}
+{%- endstyle -%}
+
+{% if section.settings.menu != blank %}
+<ap-linkbar class="ap-linkbar">
+  <div class="container">
+    <div class="ap-linkbar__wrapper">
+      <span class="ap-linkbar__title heading heading--small text--subdued">{{ 'blogs.article.top_blog.view' | t }}</span>
+      <div class="ap-linkbar__scroller hide-scrollbar">
+        <ul class="ap-linkbar__linklist list--unstyled" role="list">
+          <li class="ap-linkbar__link-item ap-linkbar__link-item--selected">
+            <a href="/blogs/news" class="ap-linkbar__link link--animated ">{{ 'blogs.article.top_blog.all_posts' | t }}</a>
+          </li>
+          {%- for link in section.settings.menu.links -%}
+            <li class="ap-linkbar__link-item ">
+              <a class="ap-linkbar__link link--animated {% if link.current %}text--underlined{% endif %}" href="{{ link.url }}">{{ link.title | escape }}</a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </div>
+</ap-linkbar>
+{% endif %}
+
+<div class="container">
+  <div class="row">
+    <div class="main-blog page-width section-{{ section.id }}-padding">
+      {% comment %}
+      <h1 class="title--primary mb-3">{{ blog.title | escape }}</h1>
+      {% endcomment %}
+      {%- paginate blog.articles by 6 -%}
+        <ap-listarticle stagger-apparition="" class="ap-listarticle ap-listarticle--stacked ap-object-loaded">
+          {%- for article in blog.articles -%}
+            {%- render 'article-card',
+              article: article,
+              media_aspect_ratio: article.image.aspect_ratio,
+              show_image: section.settings.show_image,
+              show_date: section.settings.show_date,
+              show_author: section.settings.show_author,
+              show_excerpt: true 
+            -%}
+          {%- endfor -%}
+        </ap-listarticle>
+        {%- if paginate.pages > 1 -%}
+          {%- render 'pagination', paginate: paginate -%}
+        {%- endif -%}
+      {%- endpaginate -%}
+    </div>
+    {% if section.settings.blog_sidebar %}
+      <div class="blog-sidebar hd-xl-none">
+        <div class="article__inner">
+          <div class="article__info">
+
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+
+                {%- when 'blog-aboutus' -%}
+                  <div class="blog-aboutus">
+                    <h4 class="title_block-blog">{{ 'blogs.article.title_blog_about' | t }}</h4>
+                    <div class="blog-aboutus-img mb-20">
+                      {% if block.settings.featured_image != blank %}
+                        <img class="c-list-image" loading="lazy"
+                          sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px" alt=""
+                          src="{{ block.settings.featured_image | image_url: width: block.settings.featured_image.width }}"
+                          data-srcset="{%- if block.settings.featured_image.width >= 3000 -%}{{ block.settings.featured_image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                                              {{ block.settings.featured_image | image_url }} {{ block.settings.featured_image.width }}w"
+                          src="{{ block.settings.featured_image | image_url: width: 1500 }}"
+                          height="{{ block.settings.featured_image.height }}"
+                          width="{{ block.settings.featured_image.width }}">
+                      {% else %}
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {% endif %}
+                    </div>
+                    <div class="blog-aboutus-description">
+                      {{ block.settings.description }}
+                    </div>
+                  </div>
+
+                {%- when 'search' -%}
+                  <div class="block-search">
+                    <div class="blog__search-bar predictive-search">
+                      <form class="predictive-search__form_blog" action="/search" method="get" role="search">
+                        <input type="hidden" name="type" value="product">
+                        <input type="hidden" name="options[prefix]" value="last">
+                        <input type="hidden" name="options[unavailable_products]" value="last">
+                        <input class="predictive-search__input_blog" is="ap-predictivesearchinput" type="text" name="q"
+                          autocomplete="off" autocorrect="off" ap-controlsaria="search-drawer" ap-expanded-aria="false"
+                          aria-label="Search" placeholder="Search...">
+                        <button class="btn-search-blog">
+                          <svg focusable="false" width="18" height="18" class="icon icon--blog-search   "
+                            viewBox="0 0 18 18">
+                            <path
+                              d="M12.336 12.336c2.634-2.635 2.682-6.859.106-9.435-2.576-2.576-6.8-2.528-9.435.106C.373 5.642.325 9.866 2.901 12.442c2.576 2.576 6.8 2.528 9.435-.106zm0 0L17 17"
+                              fill="none" stroke="currentColor" stroke-width="1.2"></path>
+                          </svg>
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+
+                {%- when 'blog-list' -%}
+                  <div class="block-list-blog">
+                    <h4 class="title_block-blog">{{ 'blogs.article.title_blog' | t }}</h4>
+                    <ul class="list-block">
+                      {% for article in blog.articles limit: 4 %}
+                      <li>
+                        <a href="{{ article.url }}" class="recent-posts-thumbnail">
+                          <img class="article-item__image"
+                            data-srcset="{%- if article.image.src.width >= 1500 -%}{{ article.image.src | image_url: width: 1500 }} 1500w,{%- endif -%}
+                            {{ article.image.src | image_url }} {{ article.image.src.width }}w"
+                            src="{{ article.image.src | image_url: width: 533 }}"
+                            sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                            alt="{{ article.image.src.alt | escape }}"
+                            class="motion-reduce"
+                            width="{{ article.image.width }}"
+                            height="{{ article.image.height }}"
+                            loading="lazy"
+                          >
+                        </a>
+                        <div class="recent-posts-info">
+                          <a href="{{ article.url}}">{{ article.title | truncatewords: 5 }}</a>
+                          {{- article.published_at | time_tag: format: 'abbreviated_date' -}}
+                        </div>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+
+                {%- when 'categories' -%}
+                  <div class="article_categories">
+                    <h4 class="title_block-blog">{{ 'blogs.article.title_blog_categories' | t }}</h4>
+                    <ul>
+                        <li>
+                          <a href="{{ block.settings.article_link }}">
+                            {{ block.settings.article_text }}
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ block.settings.article_link_2 }}">
+                            {{ block.settings.article_text_2 }}
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ block.settings.article_link_3 }}">
+                            {{ block.settings.article_text_3 }}
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ block.settings.article_link_4 }}">
+                            {{ block.settings.article_text_4 }}
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ block.settings.article_link_5 }}">
+                            {{ block.settings.article_text_5 }}
+                          </a>
+                        </li>
+                    </ul>
+                  </div>
+
+                {%- when 'banner' -%}
+                  <div class="article-banner-img-text">
+                    <div class="article-banner-image">
+                      {% if block.settings.featured_image != blank %}
+                      <img class="c-list-image" loading="lazy"
+                        sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px" alt=""
+                        src="{{ block.settings.featured_image | image_url: width: block.settings.featured_image.width }}"
+                        data-srcset="{%- if block.settings.featured_image.width >= 3000 -%}{{ block.settings.featured_image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                                            {{ block.settings.featured_image | image_url }} {{ block.settings.featured_image.width }}w"
+                        src="{{ block.settings.featured_image | image_url: width: 1500 }}"
+                        height="{{ block.settings.featured_image.height }}"
+                        width="{{ block.settings.featured_image.width }}">
+                      {% else %}
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {% endif %}
+                    </div>
+                    <div class="article-banner-text">
+                      <h3 style="color: {{ block.settings.color_title }}" class="article-banner-text-title">{{
+                        block.settings.title }}</h3>
+                      <p style="color: {{ block.settings.color_description }}" class="article-banner-text-description">{{
+                        block.settings.description }}</p>
+                      {% if block.settings.button1_label != blank %}
+                      <a href="{{ block.settings.link1 }}" class="button btn-base">
+                        {{ block.settings.button1_label }}
+                        {% render 'icon-arrow-2' %}
+                      </a>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                {%- when 'tags' -%}
+                  <div class="article__tags">
+                    <span class="article__tags-label heading heading--small title_block-blog">{{ 'blogs.article.tags' | t }}</span>
+                    <ul class="article__tags-list list--unstyled" role="list">
+                      {%- for tag in blog.all_tags -%} 
+                        {%- if current_tags contains tag -%}
+                          <li class="article__tags-item">{{ tag }}</li>
+                        {%- else -%}
+                          <li class="article__tags-item">{{ tag | link_to_tag: tag }}</li>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+
+              {%- endcase -%}
+            {%- endfor -%}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "t:sections.main-blog.name",
+  "tag": "section",
+  "class": "section main-blog-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.main-blog.settings.header.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_sidebar",
+      "default": false,
+      "label": "Show Blog sidebar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": false,
+      "label": "t:sections.main-blog.settings.show_author.label"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.main-blog.settings.paragraph.content"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Top menu"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "categories",
+      "name": "Categories",
+      "limit": 1,
+      "settings": [
+        {
+          "id": "article_text",
+          "type": "text",
+          "label": "Content"    
+        },
+        {
+          "id": "article_link",
+          "type": "url",
+          "label": "Link"
+        },
+        {
+          "id": "article_text_2",
+          "type": "text",
+          "label": "Content 2"
+        },
+        {
+          "id": "article_link_2",
+          "type": "url",
+          "label": "Link 2"
+        },
+        {
+          "id": "article_text_3",
+          "type": "text",
+          "label": "Content 3"
+        },
+        {
+          "id": "article_link_3",
+          "type": "url",
+          "label": "Link 3"
+        },
+        {
+          "id": "article_text_4",
+          "type": "text",
+          "label": "Content 4"
+        },
+        {
+          "id": "article_link_4",
+          "type": "url",
+          "label": "Link 4"
+        },
+        {
+          "id": "article_text_5",
+          "type": "text",
+          "label": "Content 5"
+        },
+        {
+          "id": "article_link_5",
+          "type": "url",
+          "label": "Link 5"
+        }
+      ]
+    },
+    {
+      "type": "banner",
+      "name": "Banner",
+      "limit": 1,
+      "settings": [
+        {
+          "id": "featured_image",
+          "type": "image_picker",
+          "label": "Image banner"
+        },
+        {
+          "id": "title",
+          "type": "liquid",
+          "label": "Title banner",
+          "default": "Title banner"
+        },
+        {
+          "id": "color_title",
+          "type": "color",
+          "label": "Color Title banner",
+          "default": "#000"
+        },
+        {
+          "id": "description",
+          "type": "liquid",
+          "label": "Description banner",
+          "default": "Description banner"
+        },
+        {
+          "id": "color_description",
+          "type": "color",
+          "label": "Color Description banner",
+          "default": "#978F8B"
+        },
+        {
+          "id": "button1_label",
+          "type": "text",
+          "label": "Button",
+          "default": "Top selling teas"
+        },
+        {
+          "id": "link1",
+          "type": "url",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "blog-aboutus",
+      "name": "About us",
+      "limit": 1,
+      "settings": [
+        {
+          "id": "featured_image",
+          "type": "image_picker",
+          "label": "Image banner"
+        },
+        {
+          "id": "description",
+          "type": "liquid",
+          "label": "Description banner",
+          "default": "To be the industry leader, globally recognized for effective & efficient solutions. To provide innovative solutions delivering quality, excellence and speed."
+        }
+      ]
+    },
+    {
+      "type": "tags",
+      "name": "Tags",
+      "limit": 1
+    },
+    {
+      "type": "blog-list",
+      "name": "Blog-list",
+      "limit": 1
+    },
+    {
+      "type": "search",
+      "name": "Search",
+      "limit": 1
+    }
+  ]
+}
+{% endschema %}

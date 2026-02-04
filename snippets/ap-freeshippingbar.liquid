@@ -1,0 +1,22 @@
+{% if settings.cart_shipping_enable %}
+    {% liquid
+        assign total_price = cart.total_price | divided_by: 100 | plus: 0.0
+        assign max_price = settings.min_total_cart | plus: 0.0
+    %}
+    {% if max_price <= total_price %}
+        <ap-freeshippingbar threshold="{{ max_price }}" class="shipping-bar" style="--progress: 1">
+            <span class="shipping-bar__text text--small">{{ settings.free_shipping_free_label }}</span>
+            <span class="shipping-bar__progress"></span>
+        </ap-freeshippingbar>
+    {% else %}
+        {% liquid
+            assign max_price_1 = max_price | times: 100 
+            assign progress = total_price | divided_by: max_price | times: 1
+            assign spend_price = max_price_1 | minus: cart.total_price
+            assign spend_price_money = spend_price | money
+        %}
+        <ap-freeshippingbar threshold="{{ max_price }}" class="shipping-bar shipping-bar--large" style="--progress: {{ progress }}">
+            <span class="shipping-bar__text">{{ settings.free_shipping_label | replace: "%%", spend_price_money }}</span><span class="shipping-bar__progress"></span>
+        </ap-freeshippingbar>
+    {% endif %}
+{% endif %}

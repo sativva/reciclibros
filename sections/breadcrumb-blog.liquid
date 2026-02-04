@@ -1,0 +1,158 @@
+{%- style -%}
+    .main-blog-title {
+      margin-bottom: 8px;
+    }
+  
+    .title-blog-content {
+      color: #000;
+      font-size: 2rem;
+      text-align: center;
+    }
+  
+    {%- if template contains 'blog' or template contains 'article' -%}
+      .section-{{ section.id }}-padding {
+        margin: {{ section.settings.margin_desktop }};
+      }
+      .breadcrumb__list {
+        padding: 0;   
+      }
+      .breadcrumb__link ,
+      .breadcrumb__item+.breadcrumb__item:before {
+        color: {{ section.settings.color_breadcrumb }};
+      }
+      .main-blog-title {
+        text-align: left;
+      }
+      .section-{{ section.id }}-padding .breadcrumb-wp {
+        padding-top: {{ section.settings.padding_top | times: 1 | round: 0 }}px;
+        padding-bottom: {{ section.settings.padding_bottom | times: 1 | round: 0 }}px;
+        {% if section.settings.bg_img != blank %}
+          background-image: url({{ section.settings.bg_img | image_url: width: 2000 }});
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+        {% endif %}
+        min-height: {{ section.settings.height }}px;
+        border-radius: 0;
+        text-align: center;
+        {% if section.settings.background_color != blank %}
+          background-color: {{ section.settings.background_color }};
+        {% endif %}
+      }
+      .main-content-blog {
+        padding-bottom: 60px;
+      }
+      .breadcrumb-wp {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    {%- endif -%}
+  
+{%- endstyle -%}
+  
+<div class="section-{{ section.id }}-padding">
+    <div class="{{ section.settings.setwidthout }}">
+        <div class="breadcrumb-wp">
+        <h1 style="color: {{ section.settings.color_title }};font-family: 'Francois One', sans-serif;" class="main-blog-title blog-title h1">
+            {{ blog.title | escape }}
+        </h1>
+        {% render 'breadcrumb' %}
+        </div>
+    </div>
+</div>
+  
+{% schema %}
+  {
+    "name": "Blog",
+    "tag": "section",
+    "class": "section section-blog",
+    "settings": [
+      {
+        "type": "select",
+        "id": "setwidthout",
+        "label": "Set Width",
+        "default": "full",
+        "options": [
+          {
+            "value": "container",
+            "label": "Box"
+          },
+          {
+            "value": "container-fluid",
+            "label": "Container Fluid"
+          },
+          {
+            "value": "full",
+            "label": "Full"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.padding.section_padding_heading"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 110,
+        "step": 5,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 35
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 110,
+        "step": 5,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 35
+      },
+      {
+        "type": "range",
+        "id": "height",
+        "label": "Height banner",
+        "max": 800,
+        "min": 10,
+        "step": 10,
+        "unit": " px",
+        "default": 150
+      },
+      {
+        "type": "text",
+        "id": "margin_desktop",
+        "label": "t:sections.all.margin_desktop.label",
+        "info": "t:sections.all.margin_desktop.info"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_img",
+        "label": "Background Image"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#282828"
+      },
+      {
+        "type": "color",
+        "id": "color_title",
+        "label": "Color Breadcrumb Title",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "color_breadcrumb",
+        "label": "Color Breadcrumb",
+        "default": "#fff"
+      }
+    ]
+}
+{% endschema %}
+  

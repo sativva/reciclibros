@@ -1,0 +1,147 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "84faaa95-4fe7-4cbb-8b26-ddb22b24bceb": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_ktLKMP": {
+          "type": "heading",
+          "settings": {
+            "heading": "Talk about your brand",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_ktLKMP"
+      ],
+      "disabled": true,
+      "settings": {
+        "fullwidth": false,
+        "margin_desktop": "0 0 60px",
+        "margin_tablet": "",
+        "margin_mobile": "",
+        "content_alignment": "center",
+        "padding_desktop": "0 0 60px",
+        "padding_mobile": "",
+        "bg_color_content": "rgba(0,0,0,0)",
+        "border_color": "#000000",
+        "heading_color": "#282828",
+        "text_color": "#282828"
+      }
+    },
+    "27aac235-e7d5-4d8c-aa6d-5136e9a4bc08": {
+      "type": "collection-list-grid",
+      "blocks": {
+        "template--17631061279036__27aac235-e7d5-4d8c-aa6d-5136e9a4bc08-1675328948e6dd6e70-0": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "body",
+            "highlight": false,
+            "heading_color": "#ffffff",
+            "heading": "",
+            "heading_size_range": 4,
+            "heading_2": "",
+            "heading_2_size": "heading--xsmall",
+            "text_color": "#282828",
+            "overlay": "#000000",
+            "overlay_opacity": 5,
+            "link": ""
+          }
+        },
+        "template--17631061279036__27aac235-e7d5-4d8c-aa6d-5136e9a4bc08-1675328948e6dd6e70-1": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "frontpage",
+            "highlight": false,
+            "heading_color": "#ffffff",
+            "heading": "",
+            "heading_size_range": 4,
+            "heading_2": "",
+            "heading_2_size": "heading--xsmall",
+            "text_color": "#282828",
+            "overlay": "#000000",
+            "overlay_opacity": 5,
+            "link": ""
+          }
+        },
+        "template--17631061279036__27aac235-e7d5-4d8c-aa6d-5136e9a4bc08-1675328948e6dd6e70-2": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "interior",
+            "highlight": false,
+            "heading_color": "#ffffff",
+            "heading": "",
+            "heading_size_range": 4,
+            "heading_2": "",
+            "heading_2_size": "heading--xsmall",
+            "text_color": "#282828",
+            "overlay": "#000000",
+            "overlay_opacity": 5,
+            "link": ""
+          }
+        },
+        "a375647f-169c-4291-bbea-a1efbdfd7e57": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "lights",
+            "highlight": false,
+            "heading_color": "#ffffff",
+            "heading": "",
+            "heading_size_range": 4,
+            "heading_2": "",
+            "heading_2_size": "heading--xsmall",
+            "text_color": "#282828",
+            "overlay": "#000000",
+            "overlay_opacity": 5,
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--17631061279036__27aac235-e7d5-4d8c-aa6d-5136e9a4bc08-1675328948e6dd6e70-0",
+        "template--17631061279036__27aac235-e7d5-4d8c-aa6d-5136e9a4bc08-1675328948e6dd6e70-1",
+        "template--17631061279036__27aac235-e7d5-4d8c-aa6d-5136e9a4bc08-1675328948e6dd6e70-2",
+        "a375647f-169c-4291-bbea-a1efbdfd7e57"
+      ],
+      "disabled": true,
+      "settings": {
+        "section_background": "rgba(0,0,0,0)",
+        "heading_color": "#282828",
+        "text_color": "#282828",
+        "number_column": 4,
+        "heading": "",
+        "heading_size_range": 1,
+        "description": "PREMIUM COLLECTION",
+        "description_size": "heading--xsmall",
+        "margin_desktop": "",
+        "margin_tablet": "",
+        "margin_mobile": ""
+      }
+    },
+    "main": {
+      "type": "main-list-collections",
+      "settings": {
+        "display_default_collection": true,
+        "title": "Collections All",
+        "sort": "alphabetical",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "columns_mobile": "2"
+      }
+    }
+  },
+  "order": [
+    "84faaa95-4fe7-4cbb-8b26-ddb22b24bceb",
+    "27aac235-e7d5-4d8c-aa6d-5136e9a4bc08",
+    "main"
+  ]
+}

@@ -1,0 +1,559 @@
+{{ 'ap-productlist.css' | asset_url | stylesheet_tag }}
+{% render 'section-style' %}
+
+<style>
+    #shopify-section-{{ section.id }} {
+      --heading-color: {{ section.settings.heading_color | color_extract: 'red' }}, {{ section.settings.heading_color | color_extract: 'green' }}, {{ section.settings.heading_color | color_extract: 'blue' }};
+      --color-body: {{ section.settings.text_color | color_extract: 'red' }}, {{ section.settings.text_color | color_extract: 'green' }}, {{ section.settings.text_color | color_extract: 'blue' }};
+
+      --primary-button-text-color: 255, 255, 255;
+  
+      --ap-nextap-buttonprev-background: {{ section.settings.prev_next_button_background | color_extract: 'red' }}, {{ section.settings.prev_next_button_background | color_extract: 'green' }}, {{ section.settings.prev_next_button_background | color_extract: 'blue' }};
+      --ap-nextap-buttonprev-color: {{ section.settings.prev_next_button_color | color_extract: 'red' }}, {{ section.settings.prev_next_button_color | color_extract: 'green' }}, {{ section.settings.prev_next_button_color | color_extract: 'blue' }};;
+  
+      --section-products-per-row: {{ section.settings.products_per_row }};
+    }
+    
+    #shopify-section-{{ section.id }} .ap-productlist__inner--scroller {
+      {% if section.settings.product_line == '1' %}
+        grid-template-rows: 1fr;
+      {% elsif section.settings.product_line == '2' %}
+        grid-template-rows: 1fr 1fr;
+      {% elsif section.settings.product_line == '3' %}
+        grid-template-rows: 1fr 1fr 1fr;
+      {% elsif section.settings.product_line == '4' %}
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+      {% endif %}
+    }
+
+    /* COUNTDOWN */
+    #shopify-section-{{ section.id }} div#countdowntimer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 27px;
+    }
+    #shopify-section-{{ section.id }} div#countdowntimer > div {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      padding: 10px;
+      background-color: var(--primary);
+      border-radius: 3px;
+      min-width: 50px;
+    }
+    #shopify-section-{{ section.id }} .num {
+      font-size: 22px;
+      line-height: 28px;
+      font-family: var(--hd-font-family);
+    }
+    #shopify-section-{{ section.id }} .word {
+      font-size: 12px;
+      line-height: 22px;
+      text-transform: uppercase;
+    }
+
+
+    {% if section.settings.bg_image != blank %}
+    #shopify-section-{{ section.id }} .product-list-row {
+      background-image: url({{ section.settings.bg_image | image_url: width: 2000 }});
+      background-size: cover;
+      background-position: center;
+      padding-top: 120px;
+      padding-bottom: 120px;
+      border-radius: 10px;
+    }
+    {% endif %}
+
+    @media (min-width: 1200px) and (max-width: 1299px) {
+      #shopify-section-{{ section.id }} .product-list-row {
+        background-position: left;
+      }
+    }
+
+    @media (max-width: 1199px) {
+      #shopify-section-{{ section.id }} .section__header.text-left {
+        flex-wrap: wrap;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        gap: 30px 0;
+      }
+    }
+   
+    @media screen and (max-width: 767px) {
+      #shopify-section-{{ section.id }} .ap-productlist__inner--scroller {
+        margin: 0;
+      }
+
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: 1;
+      }
+      #shopify-section-{{ section.id }} .ap-productlist__inner--scroller{
+        grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+      }
+    }
+  
+    @media screen and (min-width: 768px) {
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: {{ section.settings.products_per_row_mobile }};
+      }
+      #shopify-section-{{ section.id }} .ap-productlist__inner--scroller{
+        grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+      }
+    }
+  
+    @media screen and (min-width: 992px) {
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: {{ section.settings.products_per_row_tablet }}
+      }
+      #shopify-section-{{ section.id }} .ap-productlist__inner--scroller{
+        grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+      }
+    }
+  
+    @media screen and (min-width: 1200px) {
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: {{ section.settings.desktop_small }};
+      }
+      #shopify-section-{{ section.id }} .ap-productlist__inner--scroller{
+        grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+      }
+    }
+
+    @media screen and (min-width: 1300px) {
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: {{ section.settings.products_per_row_desktop }};
+      }
+      #shopify-section-{{ section.id }} .ap-productlist__inner--scroller{
+        grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+      }
+    }
+
+    /* SHOW BUTTON */
+    #shopify-section-{{ section.id }} .ap-productlist__arrow {
+      position: absolute;
+      opacity: 1;
+      visibility: visible;
+      top: 50%;
+      transform: scale(1);
+      width: 40px;
+      height: 40px;
+      border-radius: 40%;
+      box-shadow: none;
+      transition: all .4s;
+    }
+    #shopify-section-{{ section.id }} .ap-productlist__arrow:hover {
+      background-color: var(--primary-2);
+      color: rgb(var(--ap-nextap-buttonprev-background, var(--root-background)));
+    }
+    #shopify-section-{{ section.id }} .ap-nextap-buttonprev--prev {
+      left: -70px;
+    }
+    #shopify-section-{{ section.id }} .ap-nextap-buttonprev--next {
+      right: -70px;
+    }
+    #shopify-section-{{ section.id }} .ap-productlist__arrow[disabled] {
+      opacity: 1!important;
+      visibility: visible!important;
+    }
+  </style>
+  
+<section class="section ap-productlist-section
+">
+  <div class="{{ section.settings.setwidthout }}">
+    <div class="product-list-row">
+      {% if section.settings.tab_heading != blank %}
+        <header class="section__header text-{{ section.settings.text_align }} mb-5 {% if section.settings.text_align == "left" %}d-flex align-items-end justify-content-between{% endif %}">  
+          <div class="section__header-text">
+            {% if section.settings.sub_heading != blank %}
+              <p class="heading sub-heading mb-14">{{ section.settings.sub_heading }}</p>
+            {% endif %}
+            <h3 class="heading h{{ section.settings.tab_heading_size }} my-0 mb-2">{{ section.settings.tab_heading
+              }}</h3>
+            {% if section.settings.tab_description != blank %}
+            <div class="heading-description">
+              {{ section.settings.tab_description }}
+            </div>
+            {% endif %}
+            {% if section.settings.date_picker != blank %}
+              {% render 'collection-countdown' , settings: section.settings %}
+            {% endif %}
+          </div>      
+          {% if section.settings.btn_text != blank %}
+          <div class="btn-more">
+            <a href="{{ section.settings.btn_link }}" class="button {{ section.settings.style_btn }}">
+              {{ section.settings.btn_text }}
+            </a>
+          </div>
+          {% endif %}
+        </header>
+      {% endif %}
+      <div class="featured-collections">
+          <ap-productlist stagger-apparition=""
+            class="ap-productlist ap-productlist--center ap-object-loaded">
+            <div class="scroller">
+              <div id="ap-scroll" class="product__list ap-productlist__inner ap-productlist__inner--scroller hide-scrollbar">
+                {% liquid
+                if section.settings.collection != blank
+                assign limit = section.settings.limit
+                for product in section.settings.collection.products limit: limit
+                render 'product-grid', product: product
+                endfor
+                else
+                if block.settings.collection == blank
+                for i in (1..6)
+                echo '<div class="product-items">'
+                  capture current
+                  cycle 1, 2, 3, 4, 5, 6
+                  endcapture
+                  assign img = 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg'
+                  echo img
+                  echo '</div>'
+                endfor
+                endif
+                endif
+                %}
+              </div>
+            </div>
+            
+            <ap-button-nextprev class="ap-productlist__ap-nextprev hd-pocket"
+              style="--smallest-image-aspect-ratio: 1.0">
+              <button class="ap-productlist__arrow ap-nextap-buttonprev ap-nextap-buttonprev--prev"
+                disabled="">
+                <span class="visually-hidden">Previous</span>
+                {% render 'icon-prev' %}
+              </button>
+              <button class="ap-productlist__arrow ap-nextap-buttonprev ap-nextap-buttonprev--next">
+                <span class="visually-hidden">Next</span>
+                {% render 'icon-next' %}
+              </button>
+            </ap-button-nextprev>
+          </ap-productlist>
+      </div>
+      {% if section.settings.btn_text_2 != blank %}
+      <div class="btn-viewall text-{{ section.settings.text_align }} mt-5">
+        <a href="{{ section.settings.btn_link_2 }}" class="button {{ section.settings.style_btn_2 }}">
+          {{ section.settings.btn_text_2 }}
+        </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  
+</section>
+
+
+{% schema %}
+{
+  "name": "Product List",
+  "class": "shopify-section--ap-productlist",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Set Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "t:sections.all.padding_mobile.label",
+      "info": "t:sections.all.padding_mobile.info"
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "default": "#ffffff",
+      "label": "t:sections.all.background-color.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image content"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.all.heading_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.all.text_color.label"
+    },
+    {
+      "type": "color",
+      "id": "prev_next_button_background",
+      "default": "#FFFFFF",
+      "label": "t:sections.all.prev_next_button_background.label"
+    },
+    {
+      "type": "color",
+      "id": "prev_next_button_color",
+      "default": "#282828",
+      "label": "t:sections.all.prev_next_button_color.label"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_mobile",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.all.products_per_row_mobile.label"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_tablet",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.all.products_per_row_tablet.label"
+    },
+    {
+      "type": "range",
+      "id": "desktop_small",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 4,
+      "label": "Desktop small"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_desktop",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.all.products_per_row_desktop.label"
+    },
+    {
+      "type": "select",
+      "id": "product_line",
+      "options": [
+        {
+          "value": "1",
+          "label": "Row 1"
+        },
+        {
+          "value": "2",
+          "label": "Row 2"
+        },
+        {
+          "value": "3",
+          "label": "Row 3"
+        },
+        {
+          "value": "4",
+          "label": "Row 4"
+        }
+      ],
+      "default": "1",
+      "label": "Product line number"
+    },
+    {
+      "type": "liquid",
+      "id": "sub_heading",
+      "default": "Sub heading",
+      "label": "Sub heading"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.advanced-content.settings.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.advanced-content.settings.tab_heading_size.label"
+    },
+    {
+      "type": "text",
+      "id": "tab_description",
+      "label": "t:sections.advanced-content.settings.tab_description.label"
+    },
+    {
+      "type": "text",
+      "id": "time_picker",
+      "label": "Choose time",
+      "default": "23:00",
+      "info": "00:00"
+    },
+    {
+      "type": "text",
+      "id": "date_picker",
+      "label": "Choose date",
+      "default": "30-12-2225",
+      "info": "e.g. dd-mm-yyyy"
+    },
+    {
+      "type": "liquid",
+      "id": "btn_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "style_btn",
+      "label": "Style Button",
+      "default": "btn-base",
+      "options": [
+        {
+          "value": "btn-base",
+          "label": "Button Base"
+        },
+        {
+          "value": "btn-outline",
+          "label": "Button Out Line"
+        },
+        {
+          "value": "btn-outline-white",
+          "label": "Button Out Line White"
+        },
+        {
+          "value": "btn-line",
+          "label": "Button Line"
+        },
+        {
+          "value": "btn-line-black",
+          "label": "Button Line Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+      "id": "collection",
+      "type": "collection",
+      "label": "t:sections.all.collection.label"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "default": 10,
+      "label": "t:sections.all.limit.label"
+    },
+    {
+      "type": "text",
+      "id": "border_width",
+      "label": "Border width",
+      "info": "Ex: 1px 1px 1px 1px"
+    },
+    {
+      "type": "liquid",
+      "id": "btn_text_2",
+      "label": "Button View All"
+    },
+    {
+      "type": "url",
+      "id": "btn_link_2",
+      "label": "Link view all"
+    },
+    {
+      "type": "select",
+      "id": "style_btn_2",
+      "label": "Style Button",
+      "default": "btn-base",
+      "options": [
+        {
+          "value": "btn-base",
+          "label": "Button Base"
+        },
+        {
+          "value": "btn-black",
+          "label": "Button Black"
+        },
+        {
+          "value": "btn-outline",
+          "label": "Button Out Line"
+        },
+        {
+          "value": "btn-outline-white",
+          "label": "Button Out Line White"
+        },
+        {
+          "value": "btn-line",
+          "label": "Button Line"
+        },
+        {
+          "value": "btn-line-black",
+          "label": "Button Line Black"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product List"
+    }
+  ]
+}
+{% endschema %}

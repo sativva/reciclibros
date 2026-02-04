@@ -1,0 +1,33 @@
+{% liquid
+    assign icon_search = section.settings.icon_search
+    case icon_search
+    when 'icon'
+        assign styleSearch = 'icon'
+    when 'icon-text'
+        assign styleSearch = 'icon-text'
+    else
+        assign styleSearch = 'icon'
+    endcase
+%}
+    {% if section.settings.icon_search == 'icon-text' %}
+    <nav class="header-icon search-icon-text header-search d-xl-block d-none">
+        <div class="header__search-bar predictive-search">
+            <form class="predictive-search__form" action="/search" method="get" role="search">
+                <input type="hidden" name="type" value="product">
+                <input type="hidden" name="options[prefix]" value="last">
+                <input type="hidden" name="options[unavailable_products]" value="last">
+                <input class="predictive-search__input" is="ap-predictivesearchinput" type="text" name="q"
+                autocomplete="off" autocorrect="off" ap-controlsaria="search-drawer"
+                ap-expanded-aria="false" aria-label="Search" placeholder="{{ 'general.search.placeholder' | t }}">
+                <button class="btn-search-header">
+                    {% render "icon-search-header" %}
+                    <span>{{ 'general.search.search' | t }}</span>
+                </button>
+            </form>
+        </div>
+    </nav>
+{% else %}
+    <a href="/search" is="ap-togglelink" class="header-icon header-search tap-area hd-pocket hd-lap " aria-label="Search" ap-controlsaria="search-drawer" ap-expanded-aria="false">
+        {% render "icon-search-header" %}
+    </a>
+{% endif %}

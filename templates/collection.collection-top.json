@@ -1,0 +1,114 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "setwidthout": "container",
+        "content_box_size": "",
+        "content_box_position": "center",
+        "content_text_align": "center",
+        "height": 290,
+        "show_collection_image": false,
+        "show_description": true,
+        "default_background_color": "#ffffff",
+        "heading_color": "#000000",
+        "heading_text_size": 1,
+        "text_color": "#000000",
+        "breadcrumb_position": "2",
+        "show_shop_bar": true,
+        "shop_bar_label": "",
+        "menu_shop": "category"
+      }
+    },
+    "line_section_itgUDz": {
+      "type": "line-section",
+      "settings": {
+        "bgsection": "#ffffff",
+        "setwidth": "container",
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingtablet": "0px 0px 0px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "margintablet": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px",
+        "bgborder": "#e2e2e2",
+        "wborder": "1px 0px 0px 0px"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "blocks": {
+        "2e93ff46-735e-43a7-b638-b10c8eab5a73": {
+          "type": "banner",
+          "disabled": true,
+          "settings": {
+            "title_description": "Karpart is your one-stop-shop for all things automotive. Be it brakes or exhaust systems, seat covers or trailer hitches, ball bearings, or air/fuel filters, you can trust us for all your automotive needs.",
+            "color_title_top": "#194a33",
+            "sub_title": "Get Up To\n<br>\n<span class=\"primary\">\n20% off\n<span>",
+            "color_subtitle": "#ffffff",
+            "title": "Brakes and \n<br>\nRotors for Sale",
+            "color_title": "#ffffff",
+            "description": "",
+            "color_description": "#ffffff",
+            "button1_label": "shop now",
+            "link1": "",
+            "color_btn": "#000000",
+            "bg_btn": "#ffffff",
+            "color_btn_hover": "#ffffff",
+            "bg_btn_hover": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "2e93ff46-735e-43a7-b638-b10c8eab5a73"
+      ],
+      "settings": {
+        "type_collection": "collection-top",
+        "setwidthout": "container",
+        "margin_desktop": "",
+        "padding_desktop": "30px 30px 0",
+        "title_categories": "Categories",
+        "collection": "frontpage",
+        "collection2": "books",
+        "collection3": "family",
+        "collection4": "fantasy",
+        "collection5": "fiction",
+        "collection6": "horror",
+        "products_per_page": 16,
+        "columns_desktop": 4,
+        "show_load_product": true
+      }
+    },
+    "3cf928a0-4ae7-4dbd-b666-3715ab87ee96": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "heading": "Recently viewed products",
+        "heading_size": 2,
+        "tab_description": "",
+        "text_align": "left",
+        "products_to_show": 10,
+        "products_per_row_mobile_sm": 1,
+        "products_per_row_desktop": 4,
+        "margin_desktop": "",
+        "margin_mobile": "",
+        "padding_desktop": "",
+        "padding_mobile": ""
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "line_section_itgUDz",
+    "product-grid",
+    "3cf928a0-4ae7-4dbd-b666-3715ab87ee96"
+  ]
+}

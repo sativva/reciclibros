@@ -1,0 +1,99 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumb_blog_UAKVmQ": {
+      "type": "breadcrumb-blog",
+      "settings": {
+        "setwidthout": "full",
+        "padding_top": 35,
+        "padding_bottom": 35,
+        "height": 450,
+        "margin_desktop": "",
+        "bg_img": "shopify://shop_images/Mask_group_13_1.jpg",
+        "background_color": "#282828",
+        "color_title": "#ffffff",
+        "color_breadcrumb": "#ffffff"
+      }
+    },
+    "main": {
+      "type": "main-blog",
+      "blocks": {
+        "search_DHp6F8": {
+          "type": "search",
+          "settings": {}
+        },
+        "blog_aboutus_84FdHm": {
+          "type": "blog-aboutus",
+          "settings": {
+            "featured_image": "shopify://shop_images/Rectangle_6863_1.png",
+            "description": "To be the industry leader, globally recognized for effective & efficient solutions. To provide innovative solutions delivering quality, excellence and speed."
+          }
+        },
+        "categories_EwWYMM": {
+          "type": "categories",
+          "settings": {
+            "article_text": "Tips & Tricks",
+            "article_link": "",
+            "article_text_2": "Planning",
+            "article_link_2": "",
+            "article_text_3": "Construction",
+            "article_link_3": "",
+            "article_text_4": "Repair",
+            "article_link_4": "",
+            "article_text_5": "Technology",
+            "article_link_5": ""
+          }
+        },
+        "blog_list_X4mcMW": {
+          "type": "blog-list",
+          "settings": {}
+        },
+        "tags_E8ERdN": {
+          "type": "tags",
+          "settings": {}
+        },
+        "banner_frxdTk": {
+          "type": "banner",
+          "settings": {
+            "featured_image": "shopify://shop_images/Rectangle_6867_1.png",
+            "title": "",
+            "color_title": "#ffffff",
+            "description": "",
+            "color_description": "#978f8b",
+            "button1_label": "",
+            "link1": ""
+          }
+        }
+      },
+      "block_order": [
+        "search_DHp6F8",
+        "blog_aboutus_84FdHm",
+        "categories_EwWYMM",
+        "blog_list_X4mcMW",
+        "tags_E8ERdN",
+        "banner_frxdTk"
+      ],
+      "settings": {
+        "blog_sidebar": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "menu": ""
+      }
+    }
+  },
+  "order": [
+    "breadcrumb_blog_UAKVmQ",
+    "main"
+  ]
+}

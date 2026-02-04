@@ -1,0 +1,45 @@
+<div class="ap-productform__buy-buttons ap-productform__buy-buttons--single">
+  <form method="post" action="/cart/add" id="ap-productform-{{ section.id }}-{{ product.id }}" accept-charset="UTF-8" class="shopify-ap-productform" enctype="multipart/form-data" is="ap-productform">
+      {%- form 'product',
+        product,
+        id: product_form_id,
+        class: 'form',
+        novalidate: 'novalidate',
+        data-type: 'add-to-cart-form'
+      -%}
+        <input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓">
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <ap-paymentcontainerproduct id="ApolloProductSticky" form-id="ap-productform-{{ section.id }}-{{ product.id }}" class="ap-productform__payment-container">
+          <button id="AddToCart" type="submit" is="loader-button" data-use-primary="" data-product-add-to-cart-button="" data-button-content="{{ 'products.product.add_to_cart' | t }}" class="ap-productform__add-button button button--primary button--full">
+            <span class="ap-text-loaderbutton">
+              {%- if product.selected_or_first_available_variant.available -%}
+                  {{ 'products.product.add_to_cart' | t }}
+                {%- else -%}
+                  {{ 'products.product.sold_out' | t }}
+                {%- endif -%}
+                 {% comment %} Suppression icône add to cart du html 
+                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                  <path
+                    d="M0.84375 0.25H2.46094C3.28125 0.296875 3.86719 0.671875 4.21875 1.375H18.668C19.1367 1.39844 19.5117 1.58594 19.793 1.9375C20.0508 2.28906 20.1328 2.6875 20.0391 3.13281L18.5977 8.51172C18.4336 9.07422 18.1289 9.51953 17.6836 9.84766C17.2383 10.1992 16.7227 10.375 16.1367 10.375H6.01172L6.1875 11.3945C6.30469 11.8164 6.58594 12.0391 7.03125 12.0625H17.1562C17.6719 12.1094 17.9531 12.3906 18 12.9062C17.9531 13.4219 17.6719 13.7031 17.1562 13.75H7.03125C6.39844 13.75 5.85938 13.5625 5.41406 13.1875C4.94531 12.7891 4.65234 12.2969 4.53516 11.7109L2.70703 2.18359C2.68359 2.01953 2.60156 1.9375 2.46094 1.9375H0.84375C0.328125 1.89063 0.046875 1.60938 0 1.09375C0.046875 0.578125 0.328125 0.296875 0.84375 0.25ZM4.60547 3.0625L5.69531 8.6875H16.1367C16.5586 8.66406 16.8281 8.45312 16.9453 8.05469L18.3164 3.0625H4.60547ZM6.1875 18.25C5.55469 18.2266 5.0625 17.9453 4.71094 17.4062C4.42969 16.8438 4.42969 16.2812 4.71094 15.7188C5.0625 15.1797 5.55469 14.8984 6.1875 14.875C6.82031 14.8984 7.3125 15.1797 7.66406 15.7188C7.94531 16.2812 7.94531 16.8438 7.66406 17.4062C7.3125 17.9453 6.82031 18.2266 6.1875 18.25ZM18 16.5625C17.9766 17.1953 17.6953 17.6875 17.1562 18.0391C16.5938 18.3203 16.0312 18.3203 15.4688 18.0391C14.9297 17.6875 14.6484 17.1953 14.625 16.5625C14.6484 15.9297 14.9297 15.4375 15.4688 15.0859C16.0312 14.8047 16.5938 14.8047 17.1562 15.0859C17.6953 15.4375 17.9766 15.9297 18 16.5625Z"
+                    fill="white" />
+                </svg>
+                {% endcomment %}
+              </span>
+            <span class="ap-loader-loaderbutton" hidden="">
+              <div class="spinner">
+                <svg focusable="false" width="24" height="24" class="icon icon--spinner" viewBox="25 25 50 50">
+                  <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="5"></circle>
+                </svg>
+              </div>
+            </span>
+          </button>
+
+         {% comment %}
+        {{ form | payment_button }} suppression bouton buy now sur la fiche produit
+        {% endcomment %}
+
+
+        </ap-paymentcontainerproduct>
+      {%- endform -%}
+    </form>
+</div>

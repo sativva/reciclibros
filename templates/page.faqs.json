@@ -1,0 +1,326 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "setwidthout": "full",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "height": 450,
+        "margin_desktop": "",
+        "background_color": "#222222",
+        "color_title": "#ffffff",
+        "color_breadcrumb": "#ffffff"
+      }
+    },
+    "37965532-19cc-42e6-aca6-c53a66c39838": {
+      "type": "collapsible-content",
+      "blocks": {
+        "template--18034441683225__37965532-19cc-42e6-aca6-c53a66c39838-1677230555b2858e61-0": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Puedo vender libros sin un teléfono móvil?",
+            "icon": "chat_bubble",
+            "row_content": "<p>No, la aplicación de compra de libros solo está disponible en smartphones o tabletas. No puedes vender tus libros desde un ordenador.</p>",
+            "page": ""
+          }
+        },
+        "template--18034441683225__37965532-19cc-42e6-aca6-c53a66c39838-1677230555b2858e61-1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Podéis valorar el precio de un lote de libros?",
+            "icon": "chat_bubble",
+            "row_content": "<p>No podemos darte un presupuesto para un lote de libros. Para saber el precio de compra, tienes que escanear el código de barras de cada libro.</p>",
+            "page": ""
+          }
+        },
+        "template--18034441683225__37965532-19cc-42e6-aca6-c53a66c39838-1677230555b2858e61-2": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿En qué condiciones deben estar los libros que envío?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Solo compramos libros en muy buen estado. Se considera que un libro está<br/>en muy buen estado si no está dañado (manchado, roto, rayado, amarillento, desgastado, deformado o rozado) en la cubierta, el lomo, las esquinas o las páginas interiores. El interior del libro no debe contener notas manuscritas ni palabras tachadas, subrayadas o resaltadas. Además, Reciclibros rechazará sistemáticamente los libros que presenten al menos una de las siguientes anomalías:</p><ul><li>libros sin código de barras</li><li>libros sin número ISBN en forma de código de barras</li><li>libros plastificados</li><li>libros que pertenezcan o hayan pertenecido a bibliotecas (comprueba si hay sellos)</li><li>libros marcados como «gratuitos», «pruebas no corregidas» y/o procedentes de un servicio de prensa</li><li>libros con páginas faltantes, arrancadas, rotas, pegadas o amarillentas</li><li>libros diferentes de los introducidos previamente en la venta (cubierta, edición, ISBN o formato diferente) en el momento de la venta</li><li>libros incompletos (falta un volumen, un tomo, un CD o un accesorio)</li><li>libros defectuosos (mal funcionamiento del mecanismo interno)</li></ul><p><br/>Los libros evaluados en condiciones aceptables, es decir aquellos que presenten signos evidentes de desgaste, serán objeto de una nueva oferta de compra. Los libros en condiciones inferiores serán rechazados y no estarán sujetos a pago.</p>",
+            "page": ""
+          }
+        },
+        "template--18034441683225__37965532-19cc-42e6-aca6-c53a66c39838-1677230555b2858e61-3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Por qué mi libro fue rechazado por la aplicación?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Si la aplicación ha rechazado uno o varios libros puede ser por diferentes razones: nuestra biblioteca ya está bien surtida y ya no tenemos espacio para esa referencia, el valor del libro es demasiado bajo o la referencia tiene poca demanda y es difícil de vender.</p>",
+            "page": ""
+          }
+        },
+        "6411fa10-7eec-461f-bcf8-dbcb278dc79c": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Qué hacer con los libros rechazados por la aplicación?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Hay varias formas de hacerlo: puedes regalar los libros a amigos y familiares, donarlos a asociaciones o ponerte en contacto con alguna librería que pueda estar interesada en recogerlos.</p>",
+            "page": ""
+          }
+        },
+        "438737e4-ecc5-4b13-b45d-fb096dcd5c7d": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cómose calculan los precios?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Si el precio de compra propuesto te parece demasiado bajo puede deberse a varios factores: ya tenemos ese artículo en grandes cantidades, el valor del libro es demasiado bajo o es probable que tengamos dificultades para revenderlo. Recuerda que nosotros nos hacemos cargo de los gastos de envío y de los riesgos de reventa.</p>",
+            "page": ""
+          }
+        },
+        "d38673f8-faae-417a-a977-c22e15fce2ce": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Porqué varía el precio de un día para otro?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Los precios se calculan a partir de datos que pueden cambiar de un día para otro: por ejemplo, si hemos vendido este libro a un precio más alto o más bajo, o si hemos puesto un ejemplar en stock y, por lo tanto, ya no tenemos espacio para un nuevo ejemplar.</p>",
+            "page": ""
+          }
+        },
+        "bc5ceaa2-aed4-4d23-bd9a-01200c0367db": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cuál es el importe mínimo necesario para validar mi cesta?",
+            "icon": "chat_bubble",
+            "row_content": "<p>El importe mínimo para validar tu cesta en la aplicación es de 10€.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_Kr4879": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Podré recuperar los libros si los envío pero no cumplen las condiciones de compra?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Te recomendamos comprobar el estado de tus libros antes de enviar la caja, pero si cuando los recibimos, uno o varios libros no cumplen nuestros criterios de compra, tendrás la posibilidad de recuperarlos. En este caso, se descontarán 4€ por libro devuelto del importe de tu venta. Si el importe de su venta no es suficiente para cubrir los gastos de devolución, se enviará una factura de la diferencia.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_mnPYKq": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Qué pasa con los libros que no cumplen las condiciones de compra si no los quiero recuperar?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Los libros rechazados se donarán a asociaciones o se reciclarán.En el caso de los libros que no cumplan las condiciones de compra pero que sean considerados «Aceptables» haremos una nueva oferta del 50% del precio inicialmente ofrecido e intentaremos revenderlos a un precio inferior. Si no lo conseguimos, también se donarán a asociaciones o se reciclarán.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--18034441683225__37965532-19cc-42e6-aca6-c53a66c39838-1677230555b2858e61-0",
+        "template--18034441683225__37965532-19cc-42e6-aca6-c53a66c39838-1677230555b2858e61-1",
+        "template--18034441683225__37965532-19cc-42e6-aca6-c53a66c39838-1677230555b2858e61-2",
+        "template--18034441683225__37965532-19cc-42e6-aca6-c53a66c39838-1677230555b2858e61-3",
+        "6411fa10-7eec-461f-bcf8-dbcb278dc79c",
+        "438737e4-ecc5-4b13-b45d-fb096dcd5c7d",
+        "d38673f8-faae-417a-a977-c22e15fce2ce",
+        "bc5ceaa2-aed4-4d23-bd9a-01200c0367db",
+        "collapsible_row_Kr4879",
+        "collapsible_row_mnPYKq"
+      ],
+      "settings": {
+        "heading_color": "#282828",
+        "caption": "",
+        "heading": "Condiciones de compra",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "layout": "none",
+        "open_first_collapsible_row": false,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "c9ac342e-90ec-46bc-8fa1-c42bdb86c1ab": {
+      "type": "collapsible-content",
+      "blocks": {
+        "template--18034441683225__c9ac342e-90ec-46bc-8fa1-c42bdb86c1ab-1677230555b2858e61-0": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Quién paga los gastos de envío?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Reciclibros se hace cargo de los gastos de envío. Puedes elegir recogida a domicilio o entrega en un punto pack GLS.</p><p>Si deseas utilizar otro método de entrega, los gastos de envío correrán a tu cargo.</p>",
+            "page": ""
+          }
+        },
+        "template--18034441683225__c9ac342e-90ec-46bc-8fa1-c42bdb86c1ab-1677230555b2858e61-1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Tengo libros para donar ¿puedo incluirlos en la venta?",
+            "icon": "chat_bubble",
+            "row_content": "<p>No es posible incluir los libros en la misma venta. Para donaciones, tenemos un servicio de recogida gratuito a partir de 50 libros en la Comunidad de Madrid y Barcelona. Puedes inscribirte a una recogida rellenando este formulario: </p>",
+            "page": ""
+          }
+        },
+        "template--18034441683225__c9ac342e-90ec-46bc-8fa1-c42bdb86c1ab-1677230555b2858e61-2": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cómo preparar mi paquete?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Preparar tu paquete es muy sencillo:</p><ul><li>Mete los libros en una o varias cajas de cartón. Asegúrate de que la caja cumple las condiciones de la compañía de transportes (peso: 30kg máx. por bulto y la suma de los 3 lados no puede superar los 150cm). Si has escogido entrega en un punto pack GLS solo se admitirá una caja. <br/>\t</li><li>Comprueba que no has olvidado ningún libro (la cantidad figura en el albarán de venta) y que están bien protegidos.</li></ul>",
+            "page": ""
+          }
+        },
+        "template--18034441683225__c9ac342e-90ec-46bc-8fa1-c42bdb86c1ab-1677230555b2858e61-3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Mi venta no cabe en un solo paquete ¿qué puedo hacer?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Tu venta debe poder enviarse en 1 u 8 cajas como máximo y cumplir con las condiciones del transportista (peso: 30kg máx. por bulto y la suma de los 3 lados no puede superar los 150cm).</p><p><br/>Si has escogido entrega en un punto GLS deberás enviar los libros en una sola caja. <br/><br/>En caso de no cumplir estas condiciones, puedes realizar una segunda venta con los artículos restantes.</p>",
+            "page": ""
+          }
+        },
+        "aef72c41-8ed1-4f34-a4dd-9fc33e466a45": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Puedo enviar mi paquete con otro transportista?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Puedes optar por enviar tu paquete con un transportista diferente. La responsabilidad de este envío será tuya hasta que llegue a nuestros almacenes. Nuestra dirección es:<br/></p><p>Grupo SIFU: </p><p>Reciclibros</p><p>Calle Luis I, 7             <br/>28031 Madrid          <br/></p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--18034441683225__c9ac342e-90ec-46bc-8fa1-c42bdb86c1ab-1677230555b2858e61-0",
+        "template--18034441683225__c9ac342e-90ec-46bc-8fa1-c42bdb86c1ab-1677230555b2858e61-1",
+        "template--18034441683225__c9ac342e-90ec-46bc-8fa1-c42bdb86c1ab-1677230555b2858e61-2",
+        "template--18034441683225__c9ac342e-90ec-46bc-8fa1-c42bdb86c1ab-1677230555b2858e61-3",
+        "aef72c41-8ed1-4f34-a4dd-9fc33e466a45"
+      ],
+      "settings": {
+        "heading_color": "#282828",
+        "caption": "",
+        "heading": "Envío",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "layout": "none",
+        "open_first_collapsible_row": false,
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    },
+    "collapsible_content_kc4nib": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_FcGX6V": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cómo recibiré el pago?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Los pagos se realizan mediante transferencia bancaria a una cuenta SEPA. Deberás indicar el IBAN, nombre y apellidos del titular de la cuenta en la aplicación Reciclibros.</p><p>El abono se efectuará en un plazo de 4 días laborables a partir de la validación de la venta si todos los libros enviados cumplen los criterios de compra, y en un plazo máximo de 6 días si se rechazan<br/>algunos libros.</p><p>Si algunos de tus libros no cumplen nuestros criterios de compra, te informaremos por correo electrónico.<br/>Dispones de 4 días para comunicarnos si aceptas esta nueva oferta a fin de recibir el pago. Si no tenemos noticias tuyas en este plazo, tu venta se tramitará y pagará en un plazo de 2 días laborables.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_nqnpKe": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Por qué no recibí el importe indicado durante mi venta?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Si no has recibido la cantidad esperada durante la validación de tu venta, es probable que algunos de los artículos no cumplan nuestras condiciones generales de compra. Puedes encontrar los detalles de la operación en el apartado « Mis ventas » o en los correos electrónicos recibidos durante la venta.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_xjHjUq": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cómo puedo donar el importe de mi venta a Biblioteca Solidaria?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Cuando hayas terminado de escanear tus libros, haz clic en «Finalizar mi venta» y, cuando llegues a la etapa «Pago», podrás desplazar el cursor para elegir la cantidad que quieres donar a Biblioteca Solidaria.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_dL3Aqm": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Me equivoqué en la cantidad que quería donar a la asociación alvalidar mi cesta, ¿qué debo hacer?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Puedes ponerte en contacto con nosotros por correo electrónico: <a href=\"mailto:contacto@reciclibros.com\"><span style=\"text-decoration:underline\">contacto@reciclibros.com</span></a> e indicarnos el número de la venta y la donación que quieres realizar para que podamos efectuar el cambio.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_FcGX6V",
+        "collapsible_row_nqnpKe",
+        "collapsible_row_xjHjUq",
+        "collapsible_row_dL3Aqm"
+      ],
+      "settings": {
+        "heading_color": "#282828",
+        "caption": "",
+        "heading": "Pago",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "layout": "none",
+        "open_first_collapsible_row": false,
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    },
+    "collapsible_content_CGhYPr": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_VbzN4E": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "No puedo conectarme a la aplicación. ¿Qué debo hacer?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Comprueba que la dirección de correo electrónico que estás utilizando es la<br/>misma con la que te registraste.<br/><br/>Si es así, solicita que se restablezca tu contraseña haciendo clic en «Contraseña olvidada». Recibirás un código a la dirección de correo electrónico que hayas indicado si está asociada a una cuenta existente en la aplicación. No olvides comprobar tu bandeja de correo no deseado. Dispones de 4 días para comunicarnos si aceptas esta nueva oferta a fin de recibir el pago. Si no tenemos noticias tuyas en este plazo, tu venta se tramitará y pagará en un plazo de 2 días laborables.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_rWE44F": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cómo puedo añadir mi IBAN?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Para actualizar tu IBAN, debes conectarte a la aplicación Reciclibros.<br/><br/>Una vez en la aplicación, en la esquina superior derecha de tu pantalla, puedes acceder a tu perfil y, a continuación, actualizar el apartado « Datos bancarios ».</p><p><br/>Para que la transferencia se realice correctamente, deberás indicar tu nombre y ambos apellidos junto con el IBAN.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_pTwm7z": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cómo puedo eliminar mi cuenta de cliente?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Si quieres eliminar tu cuenta, puedes hacerlo directamente desde la aplicación. Solo tienes que ir a tu perfil y en el apartado \"Información personal\" seleccionar \"Borrar cuenta\". Para confirmar la eliminación de tu cuenta, deberás introducir tu contraseña. <br/></p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_VbzN4E",
+        "collapsible_row_rWE44F",
+        "collapsible_row_pTwm7z"
+      ],
+      "settings": {
+        "heading_color": "#282828",
+        "caption": "",
+        "heading": "Mi Cuenta",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "layout": "none",
+        "open_first_collapsible_row": false,
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "main",
+    "37965532-19cc-42e6-aca6-c53a66c39838",
+    "c9ac342e-90ec-46bc-8fa1-c42bdb86c1ab",
+    "collapsible_content_kc4nib",
+    "collapsible_content_CGhYPr"
+  ]
+}

@@ -1,0 +1,431 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    --heading-color: {{ section.settings.heading_color | color_extract: 'red' }}, {{ section.settings.heading_color | color_extract: 'green' }}, {{ section.settings.heading_color | color_extract: 'blue' }};
+    --color-body: {{ section.settings.text_color | color_extract: 'red' }}, {{ section.settings.text_color | color_extract: 'green' }}, {{ section.settings.text_color | color_extract: 'blue' }};
+    --primary-button-background: {{ section.settings.button_background | color_extract: 'red' }}, {{ section.settings.button_background | color_extract: 'green' }}, {{ section.settings.button_background | color_extract: 'blue' }};
+    --primary-button-text-color: {{ section.settings.button_text_color | color_extract: 'red' }}, {{ section.settings.button_text_color | color_extract: 'green' }}, {{ section.settings.button_text_color | color_extract: 'blue' }};
+    {% if section.settings.enable_accent_background %}
+      --section-accent-background: {{ section.settings.accent_background | color_extract: 'red' }} {{ section.settings.accent_background | color_extract: 'green' }} {{ section.settings.accent_background | color_extract: 'blue' }} / {{ section.settings.accent_background_opacity | divided_by: 100.0 }};
+    {% endif %}
+    --section-autoplay-duration: {{ section.settings.autoplay_duration }}s;
+    --section-animation-play-state: paused;
+  }/* We have to remove some extra spacing adding in non-overlap mode */
+  @media screen and (max-width: 999px) {
+    #shopify-section-{{ section.id }} .section {
+      margin-top: {{ section.settings.margin_top }}px;
+    }
+    #shopify-section-{{ section.id }} .ap-imagewithtext {
+      margin-bottom: calc(-1 * var(--vertical-breather)) !important;
+    }
+  }
+  {%- if template == 'page.about-us' -%}
+  .ap-imagewithtext__wrapper .ap-imagewithtext__image-wrapper {
+    width: 50%;
+    margin: 0;
+  }
+  .ap-imagewithtext__content-wrapper {
+    margin: 0!important;
+    flex: 1;
+    text-align: left;
+  }
+  .ap-imagewithtext__wrapper {
+    gap: 140px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .ap-imagewithtext__image {
+    width: 100%;
+    object-fit: cover;
+  }
+  .ap-imagewithtext__wrapper h2 {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    font-family: var(--hd-font-family);
+  }
+  .ap-imagewithtext__wrapper h3 {
+    margin: 0 0 23px!important;
+  }
+  .ap-imagewithtext__text-wrapper {
+    line-height: 32px;
+  }
+  .ap-imagewithtext__wrapper .ap-imagewithtext__navigation span {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    font-family: var(--hd-font-family);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-decoration: underline;
+  }
+  .ap-imagewithtext__wrapper .ap-imagewithtext__navigation {
+    margin: 15px 0 0;
+  }
+  @media (max-width: 1299px) {
+    .ap-imagewithtext__wrapper {
+      gap: 30px;
+    }
+  }
+  @media (max-width: 991px) {
+    .ap-imagewithtext__content-wrapper {
+      padding: 30px 0px;
+    }   
+    .ap-imagewithtext__wrapper {
+      gap: 0;
+    }
+    .ap-imagewithtext__wrapper .ap-imagewithtext__image-wrapper {
+      width: 100%;
+    }
+  }
+  @media (max-width: 767px) {
+    .ap-imagewithtext__wrapper {
+      gap: 0;
+    }
+    p.image-banner-description {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+  {%- endif -%}
+{% endstyle %}
+
+{% render 'section-style' %}
+
+<section class="section">
+  <div>
+    {% liquid
+      assign _class = ""
+      if section.settings.enable_accent_background
+        assign _class = _class | append: ' ap-imagewithtext'
+      endif
+      if section.settings.image_position == 'right'
+        assign _class = _class | append: ' ap-imagewithtext--reverse'
+      endif
+      if section.settings.overlap_image
+        assign _class = _class | append: ' ap-imagewithtext--overlap-image'
+      endif
+      assign _class = _class | append: ' ap-object-loaded'
+    %}
+    <ap-imagewithtext reveal-on-scroll="" class="{{ _class }}" >
+      <div class="{{ section.settings.setwidthout }}">
+        <div class="ap-imagewithtext__wrapper">
+          <div class="ap-imagewithtext__image-wrapper">
+            {% for block in section.blocks %}
+              {% if block.settings.image != blank %}
+                {%- capture sizes -%}(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2){%- endcapture -%}
+                <img id="{{ block.id }}" class="ap-imagewithtext__image" ap-revealvisibility="" 
+                  sizes: sizes loading="lazy" alt="{{ block.settings.heading_2 }}" 
+                  src="{{ block.settings.image | image_url: width: block.settings.image.width }}" 
+                  data-srcset=" {%- if block.settings.image.width >= 165 -%}{{ block.settings.image | image_url: width: 165 }} 165w,{%- endif -%} {%- if block.settings.image.width >= 360 -%}{{ block.settings.image | image_url: width: 360 }} 360w,{%- endif -%} {%- if block.settings.image.width >= 533 -%}{{ block.settings.image | image_url: width: 533 }} 533w,{%- endif -%} {%- if block.settings.image.width >= 720 -%}{{ block.settings.image | image_url: width: 720 }} 720w,{%- endif -%} {%- if block.settings.image.width >= 940 -%}{{ block.settings.image | image_url: width: 940 }} 940w,{%- endif -%} {%- if block.settings.image.width >= 1066 -%}{{ block.settings.image | image_url: width: 1066 }} 1066w,{%- endif -%} {{ block.settings.image | image_url }} {{ block.settings.image.width }}w "
+                    {% if forloop.index != 1 %} hidden="" {% endif %}
+                  width="{{ block.settings.image.width }}" height="{{ block.settings.image.width }}">
+              {% else %}
+                <div id="{{ block.id }}" class="ap-imagewithtext__image" ap-revealvisibility="" style="background:#fff">
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="ap-imagewithtext__content-wrapper">
+            <div class="ap-imagewithtext__content-list">
+              {% for block in section.blocks %}
+                <ap-imagewithtext-item attached-image="{{ block.id }}" class="ap-imagewithtext__content text-container" {% if forloop.index != 1 %} hidden="" {% endif %}>
+                  <h2 style="color: {{ block.settings.color_title }}" class="heading {{ block.settings.heading1_size }}">
+                    {% render 'ap-splitlines', heading: block.settings.heading_1 %}
+                  </h2>
+                  <h3 style="color: {{ block.settings.color_text }}" class="heading h3">
+                    {% render 'ap-splitlines', heading: block.settings.heading_2 %}
+                  </h3>
+                  <div style="color: {{ block.settings.color_text_2 }}" class="ap-imagewithtext__text-wrapper" reveal="">
+                    {{ block.settings.text }}
+                  </div>
+                </ap-imagewithtext-item>
+              {% endfor %}
+            </div>
+            <ap-pagedots animation-timer="" class="ap-imagewithtext__navigation">
+              {% for block in section.blocks %}
+                <button type="button" class="ap-imagewithtext__navigation-item" ap-currentaria="{% if forloop.index != 1 %} false {% endif %}">
+                  <span style="color: {{ block.settings.color_text_3 }}" class="heading {{ section.settings.navigation_size }}">{{ block.settings.navigation_text }}</span>
+                </button>
+              {% endfor %}
+            </ap-pagedots>
+          </div>
+        </div>
+      </div>
+    </ap-imagewithtext>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.ap-imagewithtext.name",
+  "class": "section shopify-section--ap-imagewithtext",
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Set Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "Heading color"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "Text color"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "default": "#845640",
+      "label": "Text color"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "default": "#ffffff",
+      "label": "Button text color"
+    },
+    {
+      "type": "color",
+      "id": "accent_background",
+      "default": "#F3FF34",
+      "label": "Accent background"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Image position"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_accent_background",
+      "default": true,
+      "label": "Enable Accent_background"
+    },
+    {
+      "type": "checkbox",
+      "id": "overlap_image",
+      "default": true,
+      "label": "Accent_background with Image"
+    },
+    {
+      "type": "range",
+      "id": "accent_background_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "label": "Accent background opacity",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "autoplay_duration",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Autoplay duration",
+      "default": 8
+    },
+    {
+      "type": "select",
+      "id": "navigation_size",
+      "options": [
+        {
+          "value": "heading--xxsmall",
+          "label": "xxsmall"
+        },
+        {
+          "value": "heading--xsmall",
+          "label": "xsmall"
+        },
+        {
+          "value": "heading--small",
+          "label": "small"
+        },
+        {
+          "value": "",
+          "label": "nomal"
+        },
+        {
+          "value": "heading--large",
+          "label": "large"
+        }
+      ],
+      "default": "heading--small",
+      "label": "Heading size"
+    },
+    {
+      "type": "header",
+      "content": "Tablet & Mobile"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin top",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ap-imagetextblock",
+      "name": "t:sections.ap-imagewithtext.blocks.ap-imagetextblock.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.ap-imagewithtext.blocks.ap-imagetextblock.settings.image.label"
+        },
+        {
+          "type": "text",
+          "id": "heading_1",
+          "default": "Image with text",
+          "label": "Heading 1"
+        },
+        {
+          "type": "select",
+          "id": "heading1_size",
+          "options": [
+            {
+              "value": "heading--xxsmall",
+              "label": "xxsmall"
+            },
+            {
+              "value": "heading--xsmall",
+              "label": "xsmall"
+            },
+            {
+              "value": "heading--small",
+              "label": "small"
+            },
+            {
+              "value": "",
+              "label": "nomal"
+            },
+            {
+              "value": "heading--large",
+              "label": "large"
+            }
+          ],
+          "default": "heading--small",
+          "label": "Heading size"
+        },
+        {
+          "type": "text",
+          "id": "heading_2",
+          "default": "Image with text",
+          "label": "Heading 2"
+        },
+        {
+          "type": "range",
+          "id": "heading2_size",
+          "min": 1,
+          "max": 6,
+          "step": 1,
+          "label": "Heading 2 size",
+          "default": 3
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+          "label": "t:sections.ap-imagewithtext.blocks.text.settings.text.label"
+        },
+        {
+          "type": "text",
+          "id": "navigation_text",
+          "label": "Navigation text",
+          "default": "Shop"
+        },
+        {
+          "type": "color",
+          "id": "color_title",
+          "default": "#282828",
+          "label": "Color title"
+        },
+        {
+          "type": "color",
+          "id": "color_text",
+          "default": "#282828",
+          "label": "Text color"
+        },
+        {
+          "type": "color",
+          "id": "color_text_2",
+          "default": "#282828",
+          "label": "Text color 2"
+        },
+        {
+          "type": "color",
+          "id": "color_text_3",
+          "default": "#282828",
+          "label": "Text color 3"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.ap-imagewithtext.presets.name",
+      "blocks": [
+        {
+          "type": "ap-imagetextblock"
+        },
+        {
+          "type": "ap-imagetextblock"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

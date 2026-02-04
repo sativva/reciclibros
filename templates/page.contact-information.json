@@ -1,0 +1,233 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "setwidthout": "full",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "height": 300,
+        "margin_desktop": "0 0 60px",
+        "background_color": "#e1e1e1",
+        "color_title": "#ffffff",
+        "color_breadcrumb": "#ffffff"
+      }
+    },
+    "banner_grid_TXxBJW": {
+      "type": "banner-grid",
+      "blocks": {
+        "banner_grid_RyKWn9": {
+          "type": "banner-grid",
+          "settings": {
+            "width": "33%",
+            "background_color": "",
+            "color_title": "",
+            "padding_inner": "",
+            "heading_title": "",
+            "heading": "",
+            "description": "",
+            "description_2": "",
+            "button1_label": "",
+            "link1": "",
+            "button2_label": "",
+            "link2": "",
+            "text_align": "left",
+            "position_text": "mid-center"
+          }
+        },
+        "banner_grid_J39BH4": {
+          "type": "banner-grid",
+          "settings": {
+            "width": "33%",
+            "background_color": "",
+            "color_title": "",
+            "padding_inner": "",
+            "heading_title": "",
+            "heading": "",
+            "description": "",
+            "description_2": "",
+            "button1_label": "",
+            "link1": "",
+            "button2_label": "",
+            "link2": "",
+            "text_align": "left",
+            "position_text": "mid-center"
+          }
+        },
+        "banner_grid_kXhhqr": {
+          "type": "banner-grid",
+          "settings": {
+            "width": "33%",
+            "background_color": "",
+            "color_title": "",
+            "padding_inner": "",
+            "heading_title": "",
+            "heading": "",
+            "description": "",
+            "description_2": "",
+            "button1_label": "",
+            "link1": "",
+            "button2_label": "",
+            "link2": "",
+            "text_align": "left",
+            "position_text": "mid-center"
+          }
+        }
+      },
+      "block_order": [
+        "banner_grid_RyKWn9",
+        "banner_grid_J39BH4",
+        "banner_grid_kXhhqr"
+      ],
+      "name": "Banner grid",
+      "settings": {
+        "setwidthout": "full",
+        "background-color": "#ffffff",
+        "margin_desktop": "",
+        "margin_tablet_large": "0px 0px 0px 0px",
+        "margin_mobile": "",
+        "padding_desktop": "",
+        "padding_tablet_lager": "0px 0px 0px 0px",
+        "padding_mobile": "",
+        "heading_color": "#282828",
+        "text_color": "#282828",
+        "sub_heading": "",
+        "tab_heading": "Vende tus libros de forma rápida y sencilla con la app Reciclibros",
+        "tab_heading_size": 4,
+        "tab_description": "",
+        "btn_text": "",
+        "btn_link": "",
+        "style_btn": "btn-base",
+        "text_align": "left",
+        "distance_col": "15",
+        "color_title_center": "",
+        "color_description": "",
+        "color_btn": "",
+        "bg_btn": "",
+        "color_btn_hover": "",
+        "bg_btn_hover": "",
+        "heading_size_2": "h3",
+        "position_btn_bottom": true,
+        "style_btn_item": "btn-base",
+        "style_btn_2": "btn-base"
+      }
+    },
+    "image_banner_PVJwzp": {
+      "type": "image-banner",
+      "blocks": {
+        "text_BGFxFm": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "setwidthout": "full",
+            "text_align": "left",
+            "position_text": "mid-center",
+            "padding_inner": "",
+            "heading_title": "Heading title",
+            "color_title": "",
+            "heading": "Heading",
+            "heading_size": "h2",
+            "color_title_center": "",
+            "description": "",
+            "description_2": "",
+            "color_description": "",
+            "title_countdown": "Title Count Down",
+            "time_picker": "23:00",
+            "date_picker": "30-12-2225",
+            "button1_label": "",
+            "color_btn": "",
+            "bg_btn": "",
+            "color_btn_hover": "",
+            "bg_btn_hover": "",
+            "link1": "",
+            "style_btn": "btn-base"
+          }
+        }
+      },
+      "block_order": [
+        "text_BGFxFm"
+      ],
+      "name": "Image banner",
+      "settings": {
+        "setwidthout": "full",
+        "height_img": "550",
+        "height_img_mobile": "450",
+        "margin_desktop": "",
+        "margin_tablet": "",
+        "margin_mobile": "",
+        "tab_heading": "Welcome to our store",
+        "tab_heading_size": 2,
+        "tab_description": "",
+        "heading_color": "",
+        "text_color": "",
+        "overlay": "#000000",
+        "overlay_opacity": 1
+      }
+    },
+    "rich_text_CyxAmc": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_fBHEXc": {
+          "type": "heading",
+          "settings": {
+            "heading": "Talk about your brand",
+            "heading_size": "h4"
+          }
+        },
+        "text_Nf7dnc": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+          }
+        },
+        "button_8FpfaW": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_fBHEXc",
+        "text_Nf7dnc",
+        "button_8FpfaW"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "fullwidth": false,
+        "margin_desktop": "",
+        "margin_tablet": "",
+        "margin_mobile": "",
+        "content_alignment": "center",
+        "padding_desktop": "",
+        "padding_mobile": "",
+        "border_width": "0px 0px 0px",
+        "bg_color_content": "#fff",
+        "border_color": "#000",
+        "sub_color": "#282828",
+        "heading_color": "#282828",
+        "text_color": "#282828"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "banner_grid_TXxBJW",
+    "image_banner_PVJwzp",
+    "rich_text_CyxAmc"
+  ]
+}

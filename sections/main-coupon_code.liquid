@@ -1,0 +1,175 @@
+{%- if collection.metafields.custom.coupon_code != blank -%}
+<style>
+  #jsCoupon.show {
+    background-color: #000000b3;
+    display: block;
+  }
+  #jsCoupon {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1060;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: 0;
+    transition: all .4s;
+  }
+  .modalCoupppon-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%)!important;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 520px !important;
+    text-align: center;
+  }
+  .modalCoupppon-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-clip: padding-box;
+    border-radius: 0.3rem;
+    outline: 0;
+  }
+  .modalCoupppon-header {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: end;
+  }
+  #jsCoupon button.close {
+    padding: 1rem 1rem;
+  }
+  .modalCoupppon-body {
+    padding: 0 15px 30px;
+  }
+  .js-btn-coupon {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    height: 100%;
+  }
+  input#coupon_code {
+    background: 0 0;
+    text-align: center;
+    font-weight: 700;
+    color: {{ section.settings.color_title }};
+    border: 2px dashed {{ section.settings.color_title }};
+    transition: all ease 0.45s;
+    cursor: pointer;
+    padding: 0;
+    font-size: 20px;
+    width: 100%;
+  }
+  .icon-close {
+    width: 16px;
+    height: 16px;
+  }
+  .close-coupon {
+    padding: 1rem;
+  }
+  .position-relative {
+    position: relative;
+  }
+  .coupon-copied.show {
+    display: block!important;
+  }
+  .modalCoupppon-body .h4 {
+    margin: 0;
+  }
+  .modalCoupppon-body p {
+    margin: 5px 0 10px;
+  }
+</style>
+  <!-- coupon_code.liquid -->
+  <div class="modalCoupppon fade" id="jsCoupon" role="dialog" aria-hidden="true" data-delay="{{ section.settings.coupon_time | times: 1000 }}">
+      <div class="modalCoupppon-dialog" role="document">
+        <div class="modalCoupppon-content"
+          {%- if section.settings.coupon_background != "blank" -%}
+            style="
+              background-image: url({{ section.settings.coupon_background | image_url: width: 2000 }});
+              background-size: cover;
+              background-position: center;
+            "
+          {%-endif-%}
+        >
+          <div class="modalCoupppon-header">
+            <button style="color: {{ section.settings.color_des }}" type="button" class="close-coupon" data-dismiss="modalCoupppon">
+              {%- render 'icon-close' -%}
+            </button>  
+          </div>
+          <div class="modalCoupppon-body">
+            <h3 class="h4" style="color: {{ section.settings.color_title }}">{{ section.settings.coupon_title }}</h3>
+            <p style="color: {{ section.settings.color_des }}">{{ section.settings.coupon_description }}</p>
+            <div class="position-relative">
+              <input
+                id="coupon_code"
+                type="text"
+                value="{{ collection.metafields.custom.coupon_code }}"
+              />
+              <button class="btn btn-theme js-btn-coupon">Copy</button>
+            </div>
+            <div class="coupon-copied" style="display: none;color: {{ section.settings.color_des }};">Coupon code copied</div>
+          </div>
+        </div>
+      </div>
+  </div>
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "Coupon",
+  "class": "shopify-section--Coupon",      
+  "tag": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "coupon_time",
+      "min": 1,
+      "max": 10,
+      "step": 0.1,
+      "unit": "s",
+      "label": "Time delay",
+      "default": 3
+    },
+    {
+      "type": "image_picker",
+      "id": "coupon_background",
+      "label": "Coupon Background"
+    },
+    {
+      "type": "text",
+      "id": "coupon_title",
+      "default": "-10% FOR BEST SELLER",
+      "label": "Title"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "default": "#fff",
+      "label": "Color Title"
+    },
+    {
+      "type": "text",
+      "id": "coupon_description",
+      "default": "Enter this coupon code at checkout to get 10% off:",
+      "label": "Description"
+    },
+    {
+      "type": "color",
+      "id": "color_des",
+      "default": "#fff",
+      "label": "Color Text"
+    }
+  ]
+}
+{% endschema %}

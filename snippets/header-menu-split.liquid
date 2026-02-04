@@ -1,0 +1,104 @@
+{%- liquid
+    unless limit
+      assign limit = linklists[main_linklist].links.size
+    endunless
+    unless offset
+      assign offset = 0
+    endunless
+-%}
+
+<nav class="{{ _class }}" role="navigation">
+
+  <ap-navigationofdesktop>
+    <ul class="header__linklist list--unstyled hd-pocket hd-lap" role="list">
+      
+      {%- for link in linklists[main_linklist].links limit: limit offset: offset -%}
+        
+        {%- liquid
+          assign menu_index = forloop.index
+          assign aria_controls = ''
+
+          assign hasMega = false
+          assign titleCheckMega = link.title | escape | split: '[' | first | downcase
+          
+          for block in blocks
+            assign aria_controls = 'desktop-menu-' | append: menu_index
+          
+            assign type = block.type
+            assign block = block
+            assign is_megamenu = false
+            assign menu_title = block.settings.menu_title | strip | downcase 
+
+            if titleCheckMega == menu_title
+              assign hasMega = true
+              assign is_megamenu = true
+              assign intMega = forloop.index
+            break 
+            endif 
+          endfor
+        -%}
+
+        {%- if hasMega -%}  
+
+          <li class="header__linklist-item {% if is_megamenu == true %}has-dropdown{% endif %}"
+            data-item-title="{{ link.title | escape }}">
+            {% if is_megamenu == true %}
+              
+              <a class="header__linklist-link link--animated {% if link.current %}menu-item--active{% endif %}" href="{{ link.url }}" {% if aria_controls != '' %}ap-controlsaria="{{ aria_controls }}" {%
+              endif %} ap-expanded-aria="false">
+                {{ link.title | escape }}    
+                {% render 'icon-dropdown' %}    
+              </a>
+
+              {% if aria_controls != '' %}
+              <div id="{{ aria_controls }}" class="mega-menu pt-2 pb-4 meganav-{{ intMega }}" hidden="">
+                {%- liquid
+                  case type
+                    when 'menu-product'
+                      render 'megamenu-product', intMega: intMega, link: link, block: block
+                    when 'menu-collection'
+                      render 'megamenu-collection', intMega: intMega, link: link, block: block
+                    when 'menu-banner'
+                      render 'megamenu-banner', intMega: intMega, link: link, block: block
+                    else
+                      render 'megamenu-banner-classic', intMega: intMega, link: link, block: block
+                  endcase
+                -%}
+              </div>
+              {% endif %}
+
+            {% endif %}
+          </li>
+
+        {%- elsif link.links != blank -%}
+
+            <li class="header__linklist-item site-nav__item site-nav__item-normal {% if link.active %} site-nav--active{% endif %} site-nav__item-1">
+              <a href="{{ link.url }}" class="header__linklist-link link--animated {% if link.current %}menu-item--active{% endif %} site-nav__link" {% if link.active %} aria-current="page"{% endif %}>
+                <span class="site-nav__title">{%- render 'processMenuTitle' , itemName: link.title -%}</span>
+                {% render 'icon-dropdown' %}
+                {%- render 'processMenuLabel' , itemName: link.title -%}
+              </a>
+              <div class="site-nav__dropdown site-nav__dropdown-1 meganav">
+                <ul class="meganav__nav">
+                  {%- render 'site-nav', link: link -%}
+                </ul>
+              </div>
+            </li>
+    
+        {%- else -%}
+
+            <li class="header__linklist-item site-nav__item{% if link.active %} site-nav--active{% endif %} site-nav__item-1">
+              <a href="{{ link.url }}" class="header__linklist-link link--animated site-nav__link"{% if link.active %} aria-current="page"{% endif %}>
+                <span class="site-nav__title">{%- render 'processMenuTitle' , itemName: link.title -%}</span>
+                {%- render 'processMenuLabel' , itemName: link.title -%}
+              </a>
+            </li>
+
+        {%- endif -%} 
+
+
+      {%- endfor -%}
+    </ul>
+  </ap-navigationofdesktop>
+
+</nav>

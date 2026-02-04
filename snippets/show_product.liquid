@@ -1,0 +1,29 @@
+{% liquid
+    assign ids = ''
+    if product.metafields.custom.recommend_products_to_buy_together
+        assign ids = product.metafields.custom.recommend_products_to_buy_together
+    else
+        assign count = 0
+        paginate product.collections[0].products by 50
+            for crosssell_product in product.collections[0].products
+                if crosssell_product.price < product.price
+                    assign count = count | plus: 1
+                    if count < 5
+                        if ids == ''
+                            assign ids = crosssell_product.id
+                        else
+                            assign ids = ids | append: ',' | append: crosssell_product.id
+                        endif
+                    endif
+                endif
+            endfor   
+        endpaginate 
+    endif
+%}
+{% if ids %}    
+	<ap-crossselling data-id="{{ ids }}" section-id="{{ section.id }}">
+        {%- for crosssell in predictive_search.resources.products limit : section.settings.crossell_limit -%}
+            {% render 'product-grid', product: crosssell %}
+        {% endfor %}
+    </ap-crossselling>
+{% endif %}   

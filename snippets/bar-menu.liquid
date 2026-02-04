@@ -1,0 +1,84 @@
+<bar-menu id="bar-menu" class="bar-menu drawer">
+    <span class="drawer__overlay"></span>
+    <div class="drawer__header drawer__header--shadowed">
+      <button type="button" class="drawer__close-button drawer__close-button--block tap-area" data-action="close" title="Close">
+        <svg focusable="false" width="14" height="14" class="icon icon--close   " viewBox="0 0 14 14">
+          <path d="M13 13L1 1M13 1L1 13" stroke="currentColor" stroke-width="2" fill="none"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="bar-menu-content">
+        <div class="bar-menu-logo">
+            {% if request.page_type == 'index' %}
+                <h1 class="header__logo">
+            {% else %}
+                <span class="header__logo">
+            {% endif %}
+                <a href="{{ routes.root_url }}" class="header__logo-link">
+                <span class="visually-hidden">{{ shop.name }}</span>
+                {%- if section.settings.logo != blank -%}
+                    {%- assign logo_alt = section.settings.logo.alt | default: shop.name | escape -%}
+                    {%- assign logo_height = section.settings.logo_width | divided_by: section.settings.logo.aspect_ratio -%}
+                    {{ section.settings.logo | image_url: width: section.settings.width | image_tag:
+                    class: 'header__logo-image',
+                    widths: '1000',
+                    height: logo_height,
+                    width: section.settings.logo_width,
+                    alt: logo_alt
+                    }}
+                {%- else -%}
+                    <span class="h2">{{ shop.name }}</span>
+                {%- endif -%}
+                </a>
+            {% if request.page_type == 'index' %}
+                </h1>
+            {% else %}
+                </span>
+            {% endif %}
+        </div>
+        {% for block in section.blocks %}
+            {% if block.type == 'menu-bar' %}
+            <div class="bar-menu-image">    
+
+                <img class="menu-image" loading="lazy" sizes="240px" alt=""
+                src="{{ block.settings.image | image_url : width: 560 }}"
+                data-srcset="{{ block.settings.image | image_url : width: 2000 }} 2000w, {{ block.settings.image | image_url : width: 480 }} 480w, {{ block.settings.image | image_url : width: 560 }} 560w"
+                width="auto" height="auto">
+
+                <img class="menu-image" loading="lazy" sizes="240px" alt=""
+                src="{{ block.settings.image2 | image_url : width: 560 }}"
+                data-srcset="{{ block.settings.image2 | image_url : width: 2000 }} 2000w, {{ block.settings.image2 | image_url : width: 480 }} 480w, {{ block.settings.image2 | image_url : width: 560 }} 560w"
+                width="auto" height="auto">
+
+                <img class="menu-image" loading="lazy" sizes="240px" alt=""
+                src="{{ block.settings.image3 | image_url : width: 560 }}"
+                data-srcset="{{ block.settings.image3 | image_url : width: 2000 }} 2000w, {{ block.settings.image3 | image_url : width: 480 }} 480w, {{ block.settings.image3 | image_url : width: 560 }} 560w"
+                width="auto" height="auto">
+
+                <img class="menu-image" loading="lazy" sizes="240px" alt=""
+                src="{{ block.settings.image4 | image_url : width: 560 }}"
+                data-srcset="{{ block.settings.image4 | image_url : width: 2000 }} 2000w, {{ block.settings.image4 | image_url : width: 480 }} 480w, {{ block.settings.image4 | image_url : width: 560 }} 560w"
+                width="auto" height="auto">
+
+                <img class="menu-image" loading="lazy" sizes="240px" alt=""
+                src="{{ block.settings.image5 | image_url : width: 560 }}"
+                data-srcset="{{ block.settings.image5 | image_url : width: 2000 }} 2000w, {{ block.settings.image5 | image_url : width: 480 }} 480w, {{ block.settings.image5 | image_url : width: 560 }} 560w"
+                width="auto" height="auto">
+
+                <img class="menu-image" loading="lazy" sizes="240px" alt=""
+                src="{{ block.settings.image6 | image_url : width: 560 }}"
+                data-srcset="{{ block.settings.image6 | image_url : width: 2000 }} 2000w, {{ block.settings.image6 | image_url : width: 480 }} 480w, {{ block.settings.image6 | image_url : width: 560 }} 560w"
+                width="auto" height="auto">
+
+            </div>
+            <div class="bar-info">
+                {{ block.settings.info }}
+            </div>
+            {% endif %}
+        {% endfor %}
+
+        <div class="bar-menu-social">
+            {% render 'social_header' %}
+        </div>
+    </div>
+</bar-menu>

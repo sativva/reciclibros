@@ -1,0 +1,12 @@
+<div id="section-load-more-product">
+  {% liquid
+    assign products_per_page = 12
+  %}
+
+  {%- paginate collection.products by products_per_page -%}
+    {%- for product in collection.products -%}
+      {% render 'product-grid', product: product %}
+    {%- endfor -%}
+
+  {%- endpaginate -%}
+</div>

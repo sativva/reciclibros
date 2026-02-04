@@ -1,0 +1,6 @@
+<ap-splitlines reveal="" style="opacity: 1;">
+    {% assign heading = heading | split: "|" %}
+    {% for item in heading %}
+      <span reveal="">{{ item | strip }}</span>
+    {% endfor %}
+</ap-splitlines>

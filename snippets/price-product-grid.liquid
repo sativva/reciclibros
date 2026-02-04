@@ -1,0 +1,40 @@
+{% assign variant = product.selected_or_first_available_variant %}
+
+<div class="product-item-meta__price-list-container">
+  <div class="price-list {%- if variant.compare_at_price > variant.price -%}{{ 'price-sale' | prepend: ' ' }}{% endif %}">
+    {%- if variant.compare_at_price > variant.price -%}
+      <span class="price"><span class="visually-hidden">Sale price</span>{{ variant.price | money }}</span>
+      <span class="price price--compare"><span class="visually-hidden">Regular price</span>{{ variant.compare_at_price | money }}</span>
+    {%- else -%}
+      <span class="price"><span class="visually-hidden">Regular price</span>{{ variant.price | money }}</span>
+    {%- endif -%}
+
+    {% if  variant.selected_or_first_available_variant.unit_price_measurement.reference_unit %}
+      <div class="product-single__unit">
+        {%- capture unit_price_separator -%}
+          <span aria-hidden="true">/</span><span class="sr-only invisible">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+        {%- endcapture -%}
+        {%- capture unit_price_base_unit -%}
+          <span data-unit-price-base-unit>
+            {%- if variant.unit_price_measurement -%}
+              {%- if variant.unit_price_measurement.reference_value != 1 -%}
+                {{- variant.unit_price_measurement.reference_value -}}
+              {%- endif -%}
+              {{ variant.unit_price_measurement.reference_unit }}
+            {%- endif -%}
+          </span>
+        {%- endcapture -%}
+        <span class="product-unit-price">
+          <span class="sr-only invisible">{{ 'products.product.price.unit_price' | t }}</span>
+          <span data-unit-price>{{ variant.unit_price | money }}</span>{{- unit_price_separator -}}{{- unit_price_base_unit -}}
+        </span>
+      </div>
+    {% endif %}
+    
+  </div>
+  
+</div>
+
+
+  
+

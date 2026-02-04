@@ -1,0 +1,707 @@
+{% render 'section-style' %}
+
+<style>
+.section-{{ section.id }} .ap-navtabs__item {
+    text-align: left;
+}
+.section-{{ section.id }} .ap-navtabs__position {
+    display: none !important;
+}
+.product-tab-swiper__nav .ap-navtabs__item {
+  padding: 0;
+    font-size: calc(var(--base-font-size) + 2px);
+    line-height: 26px;
+    text-transform: capitalize;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    margin: 0;
+}
+.product-tab-swiper__nav .ap-navtabs__item svg {
+    color: var(--color-accent-3);
+    margin-right: 7px;
+}
+.section-{{ section.id }} .ap-navtabs__item[ap-expanded-aria=true], 
+.section-{{ section.id }} .ap-navtabs__item[ap-expanded-aria=true] svg ,
+.section-{{ section.id }} .ap-navtabs__item:hover {
+    color: rgb(var(--heading-color));
+    border-color: var(--primary);
+}
+.section-{{ section.id }} .ap-navtabs__item-list {
+  gap: 15px 35px;
+  box-shadow: none;
+  flex-wrap: wrap;
+}
+
+.section-{{ section.id }} img.banner-list-image {
+  border-radius: 10px;
+}
+.section-{{ section.id }} .banner-text {
+  padding: 15px;
+}
+@media (min-width: 992px) {
+  .section-{{ section.id }} .banner-text {
+    padding: {{ section.settings.padding_inner }};
+  }
+}
+@media (min-width: 1200px) {
+  .product-tab-swiper__image {
+    width: 40%;
+  }
+  .product-tab-swiper__listitem {
+      width: 60%;
+  }
+  {% if section.settings.position_btn_bottom %}
+  .section-{{ section.id }} .wrapper-button {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+  }
+  {% endif %}
+}
+
+@media (max-width: 767px) {
+  .product-tab-swiper__image {
+    order: 1;
+  }
+  .section-{{ section.id }} img.banner-list-image {
+    min-height: 300px;
+    object-fit: cover;
+  }
+}
+</style>
+
+<section class="section-{{ section.id }} product-tab-swiper">
+    <div class="{{ section.settings.setwidthout }}">
+        <div style="gap: 15px 0;"class="d-flex flex-wrap flex-md-row flex-column align-items-center mb-5">
+                
+            {% render 'section-heading' %}
+
+            <div class="product-tab-swiper__nav">
+                <ap-navtabs class="ap-navtabs ap-navtabs--center">
+                    <ap-scrollablecontent class="ap-navtabs__scroller">
+                    <div class="ap-navtabs__scroller-inner">
+                        <div class="ap-navtabs__item-list">
+                        {% for block in section.blocks %}
+                            <button type="button" class="ap-navtabs__item" ap-expanded-aria="{% if forloop.index == 1 %}true{% else %}false{% endif %}" ap-controlsaria="block-{{ block.id }}">{{ block.settings.tab_name }}</button>
+                        {% endfor %}
+                        </div>
+                        <span class="ap-navtabs__position is-initialized"></span>
+                    </div>
+                    </ap-scrollablecontent>
+                </ap-navtabs>
+            </div>
+        
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 col-12 product-tab-swiper__image">
+              <banner-content reveal-on-scroll="">
+                <div class="banner-content has-overlay">
+                    <div class="banner-image">
+                      {% if section.settings.featured_image != blank %}
+                          <img class="banner-list-image" reveal="" loading="lazy" 
+                          sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                          alt="" 
+                          src="{{ section.settings.featured_image | image_url: width: section.settings.featured_image.width }}" 
+                          data-srcset="{%- if section.settings.featured_image.width >= 3000 -%}{{ section.settings.featured_image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%} {{ section.settings.featured_image | image_url }} {{ section.settings.featured_image.width }}w"
+                          src="{{ section.settings.featured_image | image_url: width: 1500 }}"
+                          height="{{ section.settings.featured_image.height }}"
+                          width="{{ section.settings.featured_image.width }}">
+                      {% else %}
+                          <div class="banner-list-image">
+                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                          </div>
+                      {% endif %}
+                    </div>
+
+                    {%-liquid
+                      assign position_text = section.settings.position_text
+                      case position_text
+                        when 'top-left'
+                        assign positiontxt = 'align-items-start justify-content-start'
+                        when 'top-center'
+                        assign positiontxt = 'align-items-center justify-content-start'
+                        when 'top-right'
+                        assign positiontxt = 'align-items-end justify-content-start'
+                        when 'mid-left'
+                        assign positiontxt = 'align-items-start justify-content-center'
+                        when 'mid-center'
+                        assign positiontxt = 'align-items-center justify-content-center'
+                        when 'mid-right'
+                        assign positiontxt = 'align-items-end justify-content-center'
+                        when 'bot-left'
+                        assign positiontxt = 'align-items-start justify-content-end'
+                        when 'bot-center'
+                        assign positiontxt = 'align-items-center justify-content-end'
+                        when 'bot-right'
+                        assign positiontxt = 'align-items-end justify-content-end'
+                        else 
+                        assign positiontxt = 'align-items-end justify-content-start'
+                      endcase
+                    -%}
+                    <div class="banner-text d-flex flex-column {{ positiontxt }}">
+
+                      <div class="text-{{ section.settings.text_align_item }}">
+
+                        {% if section.settings.heading_title != blank %}
+                        <h3 style="color: {{ section.settings.color_title }};transition: all .4s;" class="heading sub-heading-2 mb-1" reveal="">
+                          {{- section.settings.heading_title -}}
+                        </h3>
+                        {% endif %}
+                        
+                        {% if section.settings.heading != blank %}
+                        <h2 style="color: {{ section.settings.color_title_center }};transition: all .4s;" class="heading heading-center fw-semibold text-uppercase my-0 {{ section.settings.heading_size_2 }} {% if section.settings.description != blank %} mb-2{% else %} mb-4 pb-3{% endif %}" reveal="">
+                            <span>
+                                {{- section.settings.heading -}}
+                            </span>
+                        </h2>
+                        {% endif %}   
+
+                        {% if section.settings.description != blank %}
+                        <p style="color: {{ section.settings.color_description }};transition: all .4s;" class="description mb-0" reveal="">
+                            <span>
+                              {{- section.settings.description -}}
+                            </span>   
+                        </p>
+                        {% endif %}
+                        
+                        <div class="wrapper-button">
+                          {% if section.settings.button1_label != blank %}
+                          <a href="{{ section.settings.link1 }}" reveal="" class="button {{ section.settings.style_btn_item }}">
+                              {{ section.settings.button1_label }}
+                          </a>
+                          {% endif %}
+                        </div>
+
+                      </div>
+
+                    </div>
+                </div>
+              </banner-content>
+            </div>
+
+            <div class="col-md-6 col-12 product-tab-swiper__listitem mb-md-0 mb-4">
+
+                {% for block in section.blocks %}  
+                    {% case block.type %}
+                    {% when 'product_tab' %}
+                        <div stagger-apparition="" id="block-{{ block.id }}" class="product-tab-swiper__item {% if forloop.index == 1 %}ap-object-loaded{% endif %}" {% if forloop.index == 1 %}style="opacity: 1;"{% endif %} {% if forloop.index != 1 %}hidden=""{% endif %}>
+                            <!-- Swiper -->
+                            <div data-swiper-id="{{ section.id }}" class="ap-swiper mySwiper swiper-container" data-swiper='{
+                                "spaceBetween": 15,
+                                "slidesPerView": 1,
+                                    "breakpoints":{
+                                        "576": {
+                                            "slidesPerView": 2,
+                                            "spaceBetween": 15
+                                        },
+                                        "768":{
+                                            "slidesPerView": 2,
+                                            "spaceBetween": {{ section.settings.spaceBetween }}
+                                        },
+                                        "1200":{
+                                            "slidesPerView": 3,
+                                            "spaceBetween": {{ section.settings.spaceBetween }}
+                                        },
+                                        "1500":{
+                                            "slidesPerView": {{ section.settings.perviewDesktop }},
+                                            "spaceBetween": {{ section.settings.spaceBetween }}
+                                        }
+                                    }
+                                }'>
+                                <div class="swiper-wrapper">
+                                    <!-- Generating 10 cards with different content -->
+                                    {% liquid
+                                        if block.settings.collection != blank
+                                            assign limit = section.settings.limit
+                                            for product in block.settings.collection.products limit: limit
+                                                echo '<div class="swiper-slide">'
+                                                    render 'product-grid-2', product: product
+                                                echo '</div>'
+                                            endfor
+                                        else
+                                            if block.settings.collection == blank
+                                                for i in (1..6)
+                                                    echo '<div class="swiper-slide">'
+                                                        capture current
+                                                        cycle 1, 2, 3, 4, 5, 6
+                                                        endcapture
+                                                        assign img = 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg'
+                                                        echo img
+                                                    echo '</div>'
+                                                endfor
+                                            endif
+                                        endif
+                                    %}
+                                </div>
+    
+                                <!-- Pagination and Navigation -->
+                                {% if section.settings.dots %}
+                                  <div class="swiper-pagination"></div>
+                                {% endif %}
+    
+                                {% if section.settings.arrows %}
+                                  <button class="swiper-button-prev" data-swiper-id="{{ section.id }}-prev">
+                                    {% render 'icon-arrow-prev' %}
+                                  </button>
+                                  <button class="swiper-button-next" data-swiper-id="{{ section.id }}-next">
+                                    {% render 'icon-arrow-next' %}
+                                  </button>
+                                {% endif %}
+    
+                            </div>
+                        </div>     
+
+                        {% for product in block.settings.collection.products %}
+                            <ap-quickbuy id="product-{{ section.id }}-{{ product.id }}-drawer" href="/products/{{ product.handle }}?view=quick-buy-drawer" class="drawer drawer--large drawer--quick-buy hd-phone"></ap-quickbuy>
+                        {% endfor %}
+                        
+                    {% endcase %}
+                {% endfor %} 
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product tab Swiper",
+  "class": "index-section",
+  "tag": "section",
+  "max_blocks": 7,
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Set Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "default": "#ffffff",
+      "label": "t:sections.all.background-color.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:sections.all.background_image.label"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.advanced-content.settings.heading_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.advanced-content.settings.text_color.label"
+    },
+    {
+      "type": "liquid",
+      "id": "sub_heading",
+      "default": "Sub heading",
+      "label": "Sub Heading"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.advanced-content.settings.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.advanced-content.settings.tab_heading_size.label"
+    },
+    {
+      "type": "text",
+      "id": "tab_description",
+      "label": "t:sections.advanced-content.settings.tab_description.label"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "style_btn",
+      "label": "Style Button",
+      "default": "btn-base",
+      "options": [
+        {
+          "value": "btn-base",
+          "label": "Button Base"
+        },
+        {
+          "value": "btn-outline",
+          "label": "Button Out Line"
+        },
+        {
+          "value": "btn-line",
+          "label": "Button Line"
+        },
+        {
+          "value": "btn-line-black",
+          "label": "Button Line Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+      "type": "header",
+      "content": "Settings item"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "min": 3,
+      "max": 30,
+      "step": 1,
+      "label": "Limit items",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "perviewDesktop",
+      "label": "Per View Desktop",
+      "max": 6,
+      "min": 1,
+      "step": 1,
+      "unit": " c",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "spaceBetween",
+      "label": "Space Between",
+      "max": 40,
+      "min": 0,
+      "step": 1,
+      "unit": " sp",
+      "default": 30
+    },
+    {
+      "type": "checkbox",
+      "id": "arrows",
+      "label": "Arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "dots",
+      "label": "Dots",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Margin & Padding"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_tablet",
+      "label": "t:sections.all.margin_tablet.label",
+      "info": "t:sections.all.margin_tablet.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "t:sections.all.padding_mobile.label",
+      "info": "t:sections.all.padding_mobile.info"
+    },
+    {
+      "type": "header",
+      "content": "Settings banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "padding_inner",
+      "label": "Padding inner",
+      "info": "Eg: 20px 20px 20px 20px (corresponds to the positions 'Top' 'Right' 'Bottom' 'Left')"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Color Sub Text"
+    },
+    {
+      "type": "color",
+      "id": "color_title_center",
+      "label": "Color title center"
+    },
+    {
+      "type": "color",
+      "id": "color_description",
+      "label": "Color description"
+    },
+    {
+      "type": "liquid",
+      "id": "heading_title",
+      "label": "Sub Text"
+    },
+    {
+      "type": "liquid",
+      "id": "heading",
+      "label": "Heading center"
+    },
+    {
+      "type": "liquid",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "liquid",
+      "id": "button1_label",
+      "label": "Button"
+    },
+    {
+      "type": "url",
+      "id": "link1",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "text_align_item",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+      "type": "select",
+      "id": "heading_size_2",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        },
+        {
+          "value": "p",
+          "label": "P"
+        }
+      ],
+      "default": "h3",
+      "label": "Heading size"
+    },
+    {
+      "type": "checkbox",
+      "id": "position_btn_bottom",
+      "label": "Position button bottom",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "style_btn_item",
+      "label": "Style Button",
+      "default": "btn-base",
+      "options": [
+        {
+          "value": "btn-base",
+          "label": "Button Base"
+        },
+        {
+          "value": "btn-base btn-md",
+          "label": "Button Base md"
+        },
+        {
+          "value": "btn-base btn-sm",
+          "label": "Button Base sm"
+        },
+        {
+          "value": "btn-outline",
+          "label": "Button Out Line"
+        },
+        {
+          "value": "btn-line",
+          "label": "Button Line"
+        },
+        {
+          "value": "btn-line-black",
+          "label": "Button Line Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "position_text",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "Top Left"
+        },
+        {
+          "value": "top-center",
+          "label": "Top Center"
+        },
+        {
+          "value": "top-right",
+          "label": "Top Right"
+        },
+        {
+          "value": "mid-left",
+          "label": "Midle Left "
+        },
+        {
+          "value": "mid-center",
+          "label": "Midle Center "
+        },
+        {
+          "value": "mid-right",
+          "label": "Midle Right "
+        },
+        {
+          "value": "bot-left",
+          "label": "Bottom Left "
+        },
+        {
+          "value": "bot-center",
+          "label": "Bottom Center "
+        },
+        {
+          "value": "bot-right",
+          "label": "Bottom Right "
+        }
+      ],
+      "default": "mid-center",
+      "label": "Text Position"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_tab",
+      "name": "Product tab",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "tab_name",
+          "default": "Tab name",
+          "label": "Tab Name"
+        },
+        {
+          "id": "collection",
+          "type": "collection",
+          "label": "t:sections.all.collection.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product tab (Swiper)",
+      "blocks": [
+        {
+          "type": "product_tab"
+        },
+        {
+          "type": "product_tab"
+        },
+        {
+          "type": "product_tab"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

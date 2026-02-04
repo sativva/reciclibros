@@ -1,0 +1,92 @@
+{% comment %}
+    Renders an article card for a given blog with settings to either show the image or not.
+
+    Accepts:
+    - blog: {Object} Blog object
+    - article: {Object} Article object
+    - media_aspect_ratio: {String} The setting changes the aspect ratio of the article image, if shown
+    - media_height: {String} The setting changes the height of the article image. Overrides media_aspect_ratio.
+    - show_image: {String} The setting either show the article image or not. If it's not included it will show the image by default
+    - show_date: {String} The setting either show the article date or not. If it's not included it will not show the image by default
+    - show_author: {String} The setting either show the article author or not. If it's not included it will not show the author by default
+    - show_badge: {String} The setting either show the blog badge or not.
+    - lazy_load: {Boolean} Image should be lazy loaded. Default: true (optional)
+
+    Usage:
+    {% render 'article-card' blog: blog, article: article, show_image: section.settings.show_image %}
+{% endcomment %}
+
+{%- if article and article != empty -%}
+
+{% comment %}
+  {%- liquid
+    assign ratio = 1
+    if media_aspect_ratio != nil
+      assign ratio = media_aspect_ratio
+    endif
+  -%}
+{% endcomment %}
+
+  <div reveal="" class="article-item  image-zoom">
+    {%- if show_image == true and article.image -%}
+      <a href="{{ article.url }}" class="article-item__image-container">
+        <img class="article-item__image"
+          data-srcset="{%- if article.image.src.width >= 165 -%}{{ article.image.src | image_url: width: 165 }} 165w,{%- endif -%}
+            {%- if article.image.src.width >= 360 -%}{{ article.image.src | image_url: width: 360 }} 360w,{%- endif -%}
+            {%- if article.image.src.width >= 533 -%}{{ article.image.src | image_url: width: 533 }} 533w,{%- endif -%}
+            {%- if article.image.src.width >= 720 -%}{{ article.image.src | image_url: width: 720 }} 720w,{%- endif -%}
+            {%- if article.image.src.width >= 1000 -%}{{ article.image.src | image_url: width: 1000 }} 1000w,{%- endif -%}
+            {%- if article.image.src.width >= 1500 -%}{{ article.image.src | image_url: width: 1500 }} 1500w,{%- endif -%}
+            {{ article.image.src | image_url }} {{ article.image.src.width }}w"
+          src="{{ article.image.src | image_url: width: 533 }}"
+          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+          alt="{{ article.image.src.alt | escape }}"
+          class="motion-reduce"
+          width="{{ article.image.width }}"
+          height="{{ article.image.height }}"
+          loading="lazy"
+        >
+        <span class="article-item__arrow ap-nextap-buttonprev ap-nextap-buttonprev--small ap-nextap-buttonprev--next">
+          <svg focusable="false" width="15" height="12" class="icon icon--nav-arrow-right  icon--direction-aware " viewBox="0 0 17 14">
+            <path d="M0 7h15M9 1l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+          </svg>
+        </span>
+      </a>
+    {%- endif -%}
+    <div class="article-item__content text-container">
+      <h3 class="article-item__title heading h4">
+        <a href="{{ article.url }}">{{ article.title | truncate: 50 | escape }}</a>
+      </h3>
+      {%- if show_date -%}
+        <span class="circle-divider">{{ article.published_at | time_tag: format: 'date' }}</span>
+      {%- endif -%}
+      {%- if show_author -%}
+        <span>{{ article.author }}</span>
+      {%- endif -%}
+
+      {%- if show_excerpt -%}
+        {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
+          <p class="article-card__excerpt rte-width">
+            {%- if article.excerpt.size > 0 -%}
+              {{ article.excerpt | strip_html | truncatewords: 30 }}
+            {%- else -%}
+              {{ article.content | strip_html | truncatewords: 30 }}
+            {%- endif -%}
+          </p>
+        {%- endif -%}
+        <div class="article-card__footer">
+          {%- if article.comments_count > 0 and blog.comments_enabled? -%}
+            <span>{{ 'blogs.article.comments' | t: count: article.comments_count }}</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+      {%- if show_badge -%}
+        <div class="card__badge {{ settings.badge_position }}">
+          <span class="badge color-background-1">{{ 'blogs.article.blog' | t }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+
+  </div>
+  
+{%- endif -%}

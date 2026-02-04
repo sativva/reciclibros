@@ -1,0 +1,293 @@
+<style>
+    #mini-cart .product-item-meta {
+        padding: 0;
+    }
+</style>
+
+<ap-cartdrawer section="mini-cart" id="mini-cart" class="mini-cart drawer drawer--large">
+    <span class="drawer__overlay"></span>
+    <header class="drawer__header">
+        <p class="drawer__title heading h6">
+            <svg focusable="false" width="20" height="18" class="icon icon--header-cart   " viewBox="0 0 20 18">
+                <path d="M3 1h14l1 16H2L3 1z" fill="none" stroke="currentColor" stroke-width="2"></path>
+                <path d="M7 4v0a3 3 0 003 3v0a3 3 0 003-3v0" fill="none" stroke="currentColor" stroke-width="2"></path>
+            </svg>
+            {%- if cart != empty -%}
+                {{ cart.item_count }} {{ 'general.cart.cart_item' | t }}
+            {% else %}
+                {{ 'sections.cart.title' | t }}
+            {% endif %}
+        </p>
+  
+        <button type="button" class="drawer__close-button tap-area" data-action="close" title="Close"><svg focusable="false" width="14" height="14" class="icon icon--close   " viewBox="0 0 14 14">
+          <path d="M13 13L1 1M13 1L1 13" stroke="currentColor" stroke-width="2" fill="none"></path>
+        </svg></button>
+    </header>
+    <div class="drawer__content drawer__content--{{ settings.minicart_content_display }}">
+        {%- if cart != empty -%}
+            
+            {% render 'ap-freeshippingbar' %}
+
+            <form id="mini-cart-form" action="/cart" novalidate="" method="post">
+                <input type="hidden" name="checkout">
+                {%- for item in cart.items -%}
+                    <line-item class="line-item" style="opacity: 1;">
+                        <div class="line-item__content-wrapper">
+                            <a href="{{ item.url }}" class="line-item__image-wrapper" tabindex="-1" aria-hidden="true">
+                                <span class="line-item__loader" hidden="">
+                                    <span class="line-item__loader-spinner spinner" hidden="">
+                                        <svg focusable="false" width="16" height="16" class="icon icon--spinner   " viewBox="25 25 50 50">
+                                            <circle cx="50" cy="50" r="20" fill="none" stroke="#282828" stroke-width="6"></circle>
+                                        </svg>
+                                    </span>
+                                    <span class="line-item__loader-mark" hidden="">
+                                        <svg focusable="false" width="20" height="20" class="icon icon--check   " viewBox="0 0 32 32">
+                                            <path d="M24.59 8L12.9885 20.6731L7.31806 15.1819L6 16.6956L12.3755 22.8792L13.0805 23.5556L13.7395 22.8309L26 9.43318L24.59 8Z" stroke="currentColor"></path>
+                                        </svg>
+                                    </span>
+                                </span>
+                
+                                <img class="line-item__image"
+                                    loading="lazy"
+                                    sizes="(max-width: 740px) 80px, 92px" 
+                                    alt="{{ item.title }}" 
+                                    src="{{ item.image | image_url: width: item.image.width }}" 
+                                    data-srcset="{{ item.image | image_url: width: 80 }} 80w, {{ item.image | image_url: width: 92 }} 92w, {{ item.image | image_url: width: 160 }} 160w, {{ item.image | image_url: width: 184 }} 184w, {{ item.image | image_url: width: 240 }} 240w, {{ item.image | image_url: width: 276 }} 276w" 
+                                    width="{{ item.image.width }}" height="{{ item.image.height }}">
+                            </a>
+                            <div class="line-item__info">
+                                <div class="product-item-meta">
+                                    <a href="{{ item.url }}" class="product-item-meta__title text--small">{{ item.title }}</a>
+                                    <div class="product-item-meta__price-list-container text--small">
+                                        <div class="price-list hd-tablet-and-up">
+                                            <span class="price ">
+                                                {%- if item.original_line_price != item.final_line_price -%}
+                                                    <span class="visually-hidden">
+                                                      {{ 'products.product.price.regular_price' | t }}
+                                                    </span>
+                                                    <s class="cart-item__old-price price price--end">
+                                                      {{ item.original_line_price | money }}
+                                                    </s>
+                                                    <span class="visually-hidden">
+                                                      {{ 'products.product.price.sale_price' | t }}
+                                                    </span>
+                                                    <span class="price--end">
+                                                      {{ item.final_line_price | money }}
+                                                    </span>
+                                                {%- else -%}
+                                                  <span class="price--end">
+                                                    {{ item.original_line_price | money }}
+                                                  </span>
+                                                {%- endif -%}
+
+                                                {%- if item.variant.available and item.unit_price_measurement -%}
+                                                    <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+                                                    {{ item.variant.unit_price | money }}
+                                                    <span aria-hidden="true">/</span>
+                                                    <span class="visually-hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+                                                    {%- if item.variant.unit_price_measurement.reference_value != 1 -%}
+                                                      {{- item.variant.unit_price_measurement.reference_value -}}
+                                                    {%- endif -%}
+                                                    {{ item.variant.unit_price_measurement.reference_unit }}
+                                                {%- endif -%}
+
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <line-item-quantity class="line-item__quantity">
+                                    <div class="ap-quantityselector ap-quantityselector--small">
+                                        {% assign pre_quantity = item.quantity | minus: 1 %}
+                                        <a href="/cart/change?quantity={{ pre_quantity }}&line={{ forloop.index }}" class="ap-quantityselector__button" aria-label="Decrease quantity" data-no-instant="">
+                                            <svg focusable="false" width="8" height="2" class="icon icon--minus   " viewBox="0 0 8 2">
+                                                <path fill="currentColor" d="M0 0h8v2H0z"></path>
+                                            </svg>
+                                        </a>
+            
+                                        <input is="ap-inputnumber" class="ap-quantityselector__input text--xsmall" autocomplete="off" type="text" inputmode="numeric" name="updates[]" data-line="{{ forloop.index }}" value="{{ item.quantity }}" size="2" aria-label="Change quantity">
+                                        {% assign next_quantity = item.quantity | plus: 1 %}
+                                        <a href="/cart/change?quantity={{ next_quantity }}&line={{ forloop.index }}" class="ap-quantityselector__button" aria-label="Increase quantity" data-no-instant="">
+                                            <svg focusable="false" width="8" height="8" class="icon icon--plus   " viewBox="0 0 8 8">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3 5v3h2V5h3V3H5V0H3v3H0v2h3z" fill="currentColor"></path>
+                                            </svg>
+                                        </a>
+                                    </div>
+    
+                                    <a href="{{ item.url_to_remove }}&quantity=0" class="line-item__remove-button link text--subdued text--xxsmall" data-no-instant="">{{ 'general.cart.remove' | t }}</a>
+                                </line-item-quantity>
+                            </div>
+            
+                            <div class="line-item__price-list-container text--small hd-phone">
+                                <div class="price-list price-list--stack">
+                                    <span class="price ">
+                                        <span class="price ">
+                                            {%- if item.original_line_price != item.final_line_price -%}
+                                                <span class="visually-hidden">
+                                                  {{ 'products.product.price.regular_price' | t }}
+                                                </span>
+                                                <s class="cart-item__old-price price price--end">
+                                                  {{ item.original_line_price | money }}
+                                                </s>
+                                                <span class="visually-hidden">
+                                                  {{ 'products.product.price.sale_price' | t }}
+                                                </span>
+                                                <span class="price--end">
+                                                  {{ item.final_line_price | money }}
+                                                </span>
+                                            {%- else -%}
+                                              <span class="price--end">
+                                                {{ item.original_line_price | money }}
+                                              </span>
+                                            {%- endif -%}
+
+                                            {%- if item.variant.available and item.unit_price_measurement -%}
+                                                <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+                                                {{ item.variant.unit_price | money }}
+                                                <span aria-hidden="true">/</span>
+                                                <span class="visually-hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+                                                {%- if item.variant.unit_price_measurement.reference_value != 1 -%}
+                                                  {{- item.variant.unit_price_measurement.reference_value -}}
+                                                {%- endif -%}
+                                                {{ item.variant.unit_price_measurement.reference_unit }}
+                                            {%- endif -%}
+
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </line-item>
+
+                    {%  comment  %} 
+                    {% render 'show_product' product: item.product %}
+                    {% endcomment %}
+
+                {%- endfor -%}
+                
+            </form>
+
+        {% else %}
+            <p>Your cart is empty</p>
+            <div class="button-wrapper">
+            <a href="/collections/all" class="button button--primary">Ver Productos</a>
+            </div>
+        {% endif %}
+        
+    </div>
+
+
+    {%- if cart != empty -%}
+        <footer class="mini-cart__drawer-footer drawer__footer drawer__footer--tight drawer__footer--bordered">
+            <div class="ajaxcart__info_header">
+                {% if settings.show_gift_card and 0 %}
+                    <div class="mini-cart-info-icon">
+                        <button type="button" is="toggle-button" id="order-gift-toggle" class="link" data-action="toggle-order-gift" ap-controlsaria="mini-cart-gift" ap-expanded-aria="false">
+                            <span class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12v10H4V12M2 7h20v5H2zm10 15V7m0 0H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zm0 0h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+                            </span>
+                            <span>{{ 'general.cart.gift' | t }}</span>
+                        </button>
+                    </div>
+                {% endif %}
+                {% if settings.cart_notes_enable %}
+                    <div class="mini-cart-info-icon">
+                        <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7-.25c.41 0 .75.34.75.75s-.34.75-.75.75s-.75-.34-.75-.75s.34-.75.75-.75zM19 19H5V5h14v14z"/><path fill="currentColor" d="m15.08 11.03l-2.12-2.12L7 14.86V17h2.1zm1.77-1.76c.2-.2.2-.51 0-.71l-1.41-1.41c-.2-.2-.51-.2-.71 0l-1.06 1.06l2.12 2.12l1.06-1.06z"/></svg>
+                        </span>
+                        <button type="button" is="toggle-button" id="order-note-toggle" class="link" data-action="toggle-order-note" ap-controlsaria="mini-ap-cartnote" ap-expanded-aria="false">
+                            <span>{{ 'general.cart.note' | t }}</span>
+                        </button>
+                    </div>
+                {% endif %}
+                {% if settings.cart_coupon_enable %}
+                    <div class="mini-cart-info-icon">
+                        <button type="button" is="toggle-button" id="order-coupon-toggle" class="link" data-action="toggle-order-coupon" ap-controlsaria="mini-cart-coupon" ap-expanded-aria="false">
+                            <span class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M7.5 11q-1.45 0-2.475-1.025Q4 8.95 4 7.5q0-1.45 1.025-2.475Q6.05 4 7.5 4q1.45 0 2.475 1.025Q11 6.05 11 7.5q0 1.45-1.025 2.475Q8.95 11 7.5 11Zm0-2q.625 0 1.062-.438Q9 8.125 9 7.5t-.438-1.062Q8.125 6 7.5 6t-1.062.438Q6 6.875 6 7.5t.438 1.062Q6.875 9 7.5 9Zm9 11q-1.45 0-2.475-1.025Q13 17.95 13 16.5q0-1.45 1.025-2.475Q15.05 13 16.5 13q1.45 0 2.475 1.025Q20 15.05 20 16.5q0 1.45-1.025 2.475Q17.95 20 16.5 20Zm0-2q.625 0 1.062-.438Q18 17.125 18 16.5t-.438-1.062Q17.125 15 16.5 15t-1.062.438Q15 15.875 15 16.5t.438 1.062Q15.875 18 16.5 18ZM5.4 20L4 18.6L18.6 4L20 5.4Z"/></svg>
+                            </span>
+                            <span>{{ 'general.cart.counpon' | t }}</span>
+                        </button>
+                    </div>
+                {% endif %}
+                {% if settings.cart_shipping_enable %}
+                    <div class="mini-cart-info-icon">
+                        <button type="button" is="toggle-button" id="order-note-shipping" class="link" data-action="toggle-order-shipping" ap-controlsaria="mini-cart-shipping" ap-expanded-aria="false">
+                            <span class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M0 6v2h19v15h-6.156c-.446-1.719-1.992-3-3.844-3c-1.852 0-3.398 1.281-3.844 3H4v-5H2v7h3.156c.446 1.719 1.992 3 3.844 3c1.852 0 3.398-1.281 3.844-3h8.312c.446 1.719 1.992 3 3.844 3c1.852 0 3.398-1.281 3.844-3H32v-8.156l-.063-.157l-2-6L29.72 10H21V6zm1 4v2h9v-2zm20 2h7.281L30 17.125V23h-1.156c-.446-1.719-1.992-3-3.844-3c-1.852 0-3.398 1.281-3.844 3H21zM2 14v2h6v-2zm7 8c1.117 0 2 .883 2 2s-.883 2-2 2s-2-.883-2-2s.883-2 2-2zm16 0c1.117 0 2 .883 2 2s-.883 2-2 2s-2-.883-2-2s.883-2 2-2z"/></svg>
+                            </span>
+                            <span>{{ 'general.cart.shipping' | t }}</span>
+                        </button>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="ajaxcart__footer-price">
+                <span class="ajaxcart__subtotal-name">{{ 'general.cart.subtotal' | t }}</span>
+                <span class="ajaxcart__subtotal">{{ cart.total_price | money_with_currency }}</span>
+            </div>
+            <p class="ajaxcart__policies">{{ 'general.cart.policy' | t }}</p>
+            <div class="ajaxcart-currency" data-currency-jsnotify="">
+				<div class="content">
+					<div class="marquee">
+						<marquee direction="left">
+                            {{ 'general.cart.marquee' | t }}
+                        </marquee>
+					</div>
+				</div>
+			</div>
+            <div>
+                <p class="ajaxcart_terms_conditions d-none">
+                    <input style="float:none; vertical-align: middle;" type="checkbox" class="agree_terms_conditions" id="agree_terms_conditions">
+                    <label style="display:inline; float:none" for="agree">
+                        {{ 'general.cart.agree' | t }} <a href="#">{{ 'general.cart.conditions' | t }}</a>
+                    </label>
+                </p>
+                
+                <button id="bt_checkout" form="mini-cart-form" type="submit" class="checkout-button button button--primary button--full" name="checkout">
+                    {{ 'general.cart.checkout' | t }}
+                </button>
+                <a href="/cart" class="cart-button button button--primary button--full">
+                Ver mi cesta
+                </a>
+            </div>
+        </footer>
+    {% endif %}
+
+    {% if settings.cart_coupon_enable %}
+        <ap-elementopen id="mini-cart-coupon" class="mini-cart__order-coupon">
+            <span class="openable__overlay"></span>
+            <label for="cart[coupon]" class="mini-cart__order-note-title heading heading--xsmall">* El descuento se calculará y se aplicará en la pantalla de pago</label>
+            <div class="discount_code">
+                <label for="discount">Código de descuento</label>
+                {% raw %}<input class="discount_code_input" autocomplete="off" type="text" name="discount" value="Enter discount code here" />{% endraw %}
+                <button type="button" data-action="close" class="form__submit form__submit--closer button button--secondary">Cerrar</button>
+            </div> 
+            
+        </ap-elementopen>
+    {% endif %}
+    {% if settings.cart_shipping_enable %}
+        <ap-elementopen id="mini-cart-shipping" class="mini-cart__order-shipping">
+            <span class="openable__overlay"></span>
+            <label for="cart[shipping]" class="mini-cart__order-note-title heading heading--xsmall">{{ 'general.cart.ship_estimates' | t }}</label>
+            {% render "shipping-calculator" %}
+        </ap-elementopen>
+    {% endif %}
+    {% if settings.cart_notes_enable %}
+        <ap-elementopen id="mini-ap-cartnote" class="mini-cart__order-note">
+            <span class="openable__overlay"></span>
+            <label for="cart[note]" class="mini-cart__order-note-title heading heading--xsmall">{{ 'general.cart.add_note' | t }}</label>
+            <textarea is="ap-cartnote" name="note" id="cart[note]" rows="3" ap-ariaowns="order-note-toggle" class="input__field input__field--textarea" placeholder="{{ 'general.cart.note_placeholder' | t }}"></textarea>
+            <button type="button" data-action="close" class="form__submit form__submit--closer button button--secondary">{{ 'general.cart.save' | t }}</button>
+        </ap-elementopen>
+    {% endif %}
+</ap-cartdrawer>
+
+
+
+{% schema %}
+{
+  "name": "Section mini cart",
+  "class": "shopify-section--mini-cart"
+}
+{% endschema %}
+

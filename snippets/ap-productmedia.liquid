@@ -1,0 +1,210 @@
+{% style %}
+  .product__media-item-external_video iframe{
+    width: 100%;
+    height: 300px;
+  }
+  .modal-full .content-popup-modal {
+    display: flex;
+  }
+  .modal-full iframe{
+    width: 100%;
+    height: 100%;
+    max-width: 1000px;
+    max-height: 560px;
+    margin: auto;
+    display: block;
+  }
+  .modal-full video{
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    max-height: 90%;
+  }
+  .product-popup-media{
+    display: block;
+    margin-top: 15px;
+  }
+  .product-popup-media svg{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 50%;
+  }
+  .product__media-item {  
+    margin-bottom: 15px;
+  }
+  
+  .product__media-item {  
+    opacity: 0;
+    transition: all .4s;
+  }
+  .flickity-viewport .product__media-item ,
+  .product__media-item.d-show {
+    opacity: 1;      
+  }
+  {%- if section.settings.media_type == 'list' -%}
+    .product__media-item{
+      cursor: zoom-in;
+    }
+    .product__media-item {
+      opacity: 1;      
+    }
+  {%- endif -%}
+  {% endstyle %}
+  
+  <div id="ap_product_detail_media" class="product__media">
+  <ap-productmedia form-id="ap-productform-{{ section.id }}-{{ product.id }}" autoplay-video="" thumbnails-position="bottom" reveal-on-scroll="" product-handle="{{ product.handle }}" class="ap-object-loaded" reveal-on-scroll>
+    <div class="ap-product-media-list-wrapper">
+        <ap-flickitycarousel click-nav="" flickity-config="{
+          &quot;adaptiveHeight&quot;: true,
+          &quot;dragThreshold&quot;: 10,
+          &quot;initialIndex&quot;: &quot;.is-initial-selected&quot;,
+          &quot;fade&quot;: false,
+          &quot;draggable&quot;: &quot;>1&quot;,
+          &quot;contain&quot;: true,  
+          &quot;imagesLoaded&quot;: true,  
+          &quot;resize&quot;: true,  
+          &quot;cellSelector&quot;: &quot;.product__media-item:not(.is-filtered)&quot;,
+          &quot;percentPosition&quot;: false,
+          &quot;pageDots&quot;: {% if section.settings.carousel_page_dots %}true{% else %}false{% endif %},
+          &quot;prevNextButtons&quot;: {% if section.settings.carousel_prevnextbuttons %}true{% else %}false{% endif %}
+        }" id="product-{{ section.id }}-{{ product.id }}-media-list" class="ap-product-media-list ap-object-loaded flickity-enabled is-draggable is-hovering-left" {%- if section.settings.media_type == 'list' -%}list-type="true"{%- endif -%}>
+          {%- for media in product.media -%}  
+            {% if media.media_type == 'video' %}
+              {% if section.settings.enable_video_looping %}
+                {%- if template != "index" -%}
+                  
+                <div id="product-{{ section.id }}-{{ media.id }}" class="product__media-item product__media-item-{{ media.media_type }} is-selected" data-media-type="{{ media.media_type }}" data-media-id="{{ media.id }}">
+                        <div style="padding-top:140%;" class="ap-product-media-image-wrapper aspect-ratio aspect-ratio--natural">
+  
+                            <product-popup-media class="product-popup-media" data-controls="popup-product-{{ section.id }}-{{ media.id }}">
+                              <img loading="lazy" sizes="(max-width: 999px) calc(100vw - 48px), 640px" 
+                                alt="{{ product.title }}" 
+                                src="{{ media.preview_image | image_url: width: media.preview_image.width }}"
+                                srcset="{{ media.preview_image | image_url: width: 400 }} 400w, {{ media.preview_image | image_url: width: 500 }} 500w, {{ media.preview_image | image_url: width: 600 }} 600w, {{ media.preview_image | image_url: width: 700 }} 700w, {{ media.preview_image | image_url: width: 800 }} 800w" 
+                                width="{{ media.preview_image.width }}" height="{{ media.preview_image.height }}">
+                                {%- if media.media_type == 'model' -%}{%- render 'icon-3d-model' -%}{%- endif -%}
+                                {%- if media.media_type != 'model' -%}{%- render 'icon-play' -%}{%- endif -%}
+                            </product-popup-media>
+  
+                        </div>
+                      </div>
+        
+                {%- endif -%}
+              {% endif %}
+            {% elsif media.media_type == 'external_video' %}
+              {% if section.settings.enable_video_looping %}
+                {%- if template != "index" -%}
+                  
+                <div id="product-{{ section.id }}-{{ media.id }}" class="product__media-item product__media-item-{{ media.media_type }} is-selected" data-media-type="{{ media.media_type }}" data-media-id="{{ media.id }}">
+                        <div style="padding-top:140%;" class="ap-product-media-image-wrapper aspect-ratio aspect-ratio--natural">
+  
+                            <product-popup-media class="product-popup-media" data-controls="popup-product-{{ section.id }}-{{ media.id }}">
+                              <img loading="lazy" sizes="(max-width: 999px) calc(100vw - 48px), 640px" 
+                                alt="{{ product.title }}" 
+                                src="{{ media.preview_image | image_url: width: media.preview_image.width }}"
+                                srcset="{{ media.preview_image | image_url: width: 400 }} 400w, {{ media.preview_image | image_url: width: 500 }} 500w, {{ media.preview_image | image_url: width: 600 }} 600w, {{ media.preview_image | image_url: width: 700 }} 700w, {{ media.preview_image | image_url: width: 800 }} 800w" 
+                                width="{{ media.preview_image.width }}" height="{{ media.preview_image.height }}">
+                                {%- if media.media_type == 'model' -%}{%- render 'icon-3d-model' -%}{%- endif -%}
+                                {%- if media.media_type != 'model' -%}{%- render 'icon-play' -%}{%- endif -%}
+                            </product-popup-media>
+  
+                        </div>
+                      </div>
+        
+                {%- endif -%}
+              {% endif %}
+            {% elsif media.media_type == 'model' %}
+                {%- if template != "index" -%}      
+                  <div id="product-{{ section.id }}-{{ media.id }}" class="product__media-item product__media-item-{{ media.media_type }} is-selected" data-media-type="{{ media.media_type }}" data-media-id="{{ media.id }}">
+                    <div style="padding-top:140%;" class="ap-product-media-image-wrapper aspect-ratio aspect-ratio--natural">
+  
+                        <product-popup-media class="product-popup-media" data-controls="popup-product-{{ section.id }}-{{ media.id }}">
+                          <img loading="lazy" sizes="(max-width: 999px) calc(100vw - 48px), 640px" 
+                            alt="{{ product.title }}" 
+                            src="{{ media.preview_image | image_url: width: media.preview_image.width }}"
+                            srcset="{{ media.preview_image | image_url: width: 400 }} 400w, {{ media.preview_image | image_url: width: 500 }} 500w, {{ media.preview_image | image_url: width: 600 }} 600w, {{ media.preview_image | image_url: width: 700 }} 700w, {{ media.preview_image | image_url: width: 800 }} 800w" 
+                            width="{{ media.preview_image.width }}" height="{{ media.preview_image.height }}">
+                            {%- if media.media_type == 'model' -%}{%- render 'icon-3d-model' -%}{%- endif -%}
+                            {%- if media.media_type != 'model' -%}{%- render 'icon-play' -%}{%- endif -%}
+                        </product-popup-media>
+  
+                    </div>
+                  </div>
+                {% endif %}
+            {% else %}
+              <div id="product-{{ section.id }}-{{ media.id }}" class="product__media-item product__media-item-{{ media.media_type }} is-selected" data-media-type="{{ media.media_type }}" data-media-id="{{ media.id }}">
+                  <div style="padding-top:{{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;" class="ap-product-media-image-wrapper aspect-ratio aspect-ratio--natural">
+                    <img loading="lazy" sizes="(max-width: 999px) calc(100vw - 48px), 640px" 
+                      alt="{{ product.title }}" 
+                      src="{{ media.preview_image | image_url: width: media.preview_image.width }}"
+                      srcset="{{ media.preview_image | image_url: width: 400 }} 400w, {{ media.preview_image | image_url: width: 500 }} 500w, {{ media.preview_image | image_url: width: 600 }} 600w, {{ media.preview_image | image_url: width: 700 }} 700w, {{ media.preview_image | image_url: width: 800 }} 800w" 
+                      width="{{ media.preview_image.width }}" height="{{ media.preview_image.height }}">
+                  </div>
+              </div>
+            {% endif %}  
+          {%- endfor -%}
+        </ap-flickitycarousel>
+          <button is="toggle-button" ap-controlsaria="product-{{ section.id }}-{{ product.id }}-zoom" ap-expanded-aria="false" class="tap-area product__zoom-button" >
+            <span class="visually-hidden">Zoom</span>
+            <svg fill="none" focusable="false" width="14" height="14" class="icon icon--image-zoom   " viewBox="0 0 14 14">
+              <path d="M9.50184 9.50184C11.4777 7.52595 11.5133 4.358 9.58134 2.42602C7.64936 0.494037 4.48141 0.529632 2.50552 2.50552C0.529632 4.48141 0.494037 7.64936 2.42602 9.58134C4.358 11.5133 7.52595 11.4777 9.50184 9.50184ZM9.50184 9.50184L13 13" stroke="currentColor" stroke-width="2"></path>
+            </svg>
+          </button>
+    </div>
+  
+    {%- if section.settings.media_type == 'carousel' or settings.thumbnails_position != 'none' -%}
+      {%- if section.settings.media_type != 'list' -%}
+        <ap-flickitycontrols controls="product-{{ section.id }}-{{ product.id }}-media-list" class="product__media-nav">
+          <button class="product__media-ap-nextprev  hd-lap-and-up tap-area tap-area--large" aria-label="Previous" data-action="prev">
+            <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-left  icon--direction-aware " viewBox="0 0 17 14">
+              <path d="M17 7H2M8 1L2 7l6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+            </svg>
+          </button>
+          
+          <div class="dots-nav dots-nav--centered hd-lap-and-up">
+            {%- for media in product.media -%}
+              {%- if media.media_type == "image" -%}
+                <button type="button" tabindex="-1" class="dots-nav__item  tap-area" ap-currentaria="true" ap-controlsaria="product-{{ section.id }}-{{ media.id }}" data-media-id="{{ media.id }}" data-action="select">
+                  <span class="visually-hidden">Go to slide {{ forloop.index }}</span>
+                </button>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+          
+          {%- if section.settings.media_type != 'without-thumbnails' -%}
+            <ap-shadowscroll class="product__thumbnail-ap-shadowscroll hd-pocket">
+              <div class="product__thumbnail-list hide-scrollbar">
+                <div class="product__thumbnail-list-inner">
+                  {%- for media in product.media -%}
+                      <button type="button" tabindex="-1" reveal="" class="product__thumbnail-item  hd-pocket" ap-currentaria="true" ap-controlsaria="product-{{ section.id }}-{{ media.id }}" data-media-id="{{ media.id }}" data-action="select">
+                        <div class="product__thumbnail">
+                          <img loading="lazy" 
+                            sizes="(max-width: 999px) 72px, 60px" 
+                            alt="{{ product.title }}" 
+                            src="{{ media.preview_image | image_url: width: 300 }}"
+                            srcset="{{ media.preview_image | image_url: width: 60 }} 60w, {{ media.preview_image | image_url: width: 70 }} 70w, {{ media.preview_image | image_url: width: 120 }} 120w, {{ media.preview_image | image_url: width: 140 }} 140w, {{ media.preview_image | image_url: width: 180 }} 180w, {{ media.preview_image | image_url: width: 210 }} 210w, {{ media.preview_image | image_url: width: 240 }} 240w, {{ media.preview_image | image_url: width: 300 }} 300w" 
+                            width="{{ media.preview_image.width }}" height="{{ media.preview_image.height }}">
+                        </div>
+                      </button>
+                  {%- endfor -%}
+                </div>
+              </div>
+            </ap-shadowscroll>
+          {%- endif -%}
+  
+          <button class="product__media-ap-nextprev  hd-lap-and-up tap-area tap-aera--large" aria-label="Next" data-action="next">
+            <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-right  icon--direction-aware " viewBox="0 0 17 14">
+              <path d="M0 7h15M9 1l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+            </svg>
+          </button>
+        </ap-flickitycontrols>
+      {%- endif -%}
+    {%- endif -%}
+  
+  </ap-productmedia>
+  </div>

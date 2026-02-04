@@ -1,0 +1,223 @@
+{% render 'section-style' %}
+
+<style>
+    @media screen and (max-width: 767px) {
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: 3;
+      }
+      #shopify-section-{{ section.id }} .ap-productlist__inner--scroller{
+        grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+      }
+    }
+  
+    @media screen and (min-width: 768px) {
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: 3;
+      }
+      #shopify-section-{{ section.id }} .ap-productlist__inner--scroller{
+        grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+      }
+    }
+  
+    @media screen and (min-width: 992px) {
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: 3;
+      }
+      #shopify-section-{{ section.id }} .ap-productlist__inner--scroller{
+        grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+      }
+    }
+  
+    @media screen and (min-width: 1200px) {
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: 6;
+      }
+      #shopify-section-{{ section.id }} .ap-productlist__inner--scroller{
+        grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+        padding-bottom: 55px;
+      }
+    }
+
+    @media screen and (min-width: 1300px) {
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: {{ section.settings.products_per_row_desktop }};
+      }
+      #shopify-section-{{ section.id }} .ap-productlist__inner--scroller{
+        grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+      }
+    }
+    @media screen and (max-width: 740px) {
+  #shopify-section-{{ section.id }} .ap-productlist__inner--scroller {
+    gap: clamp(12px, 4vw, 20px);
+  }
+}
+</style>
+
+{% liquid
+  assign id_product = ''
+  if template == 'product'
+    assign id_product = product.id
+  endif
+  if template == 'cart' and cart.items.size
+    assign id_product = cart.items[0]['product_id']
+  endif
+
+  if id_product == ''
+    assign id_product = collections.all.products[0].id
+  endif
+%}
+<ap-productrecommendations section-id="{{ section.id }}" product-id="{{ id_product }}" use-automaticrecommendations recommendations-count="{{ section.settings.products_to_show }}" class="section section--flush productrecommendations">
+  <div class="{{ section.settings.setwidthout }} container--medium vertical-breather vertical-breather--tight vertical-breather--margin">
+    {% if section.settings.heading != blank %}
+      <header class="section__header text-{{ section.settings.text_align }} mb-5">
+        <h2 class="heading h{{ section.settings.heading_size }}">{{ section.settings.heading
+          }}</h2>
+        {% if section.settings.tab_description != blank %}
+        <div class="heading-description">
+          {{ section.settings.tab_description }}
+        </div>
+        {% endif %}
+      </header>
+    {% endif %}
+    <ap-productlist stagger-apparition="" class="ap-productlist ap-object-loaded">
+      <div class="scroller">
+        <div class="ap-productlist__inner ap-productlist__inner--scroller ap-productlist__inner--desktop-no-scroller hide-scrollbar">
+          {% for product in recommendations.products %}
+            {% render 'product-grid', product: product %}
+          {% endfor %}
+          
+        </div>
+      </div>
+    </ap-productlist>
+  </div>
+</ap-productrecommendations>
+
+
+{% schema %}
+{
+  "name": "Product Recommendations",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Set Width",
+      "default": "container-fluid",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "Product Recommendations"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "You may also like",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 1,
+      "label": "Heading size"
+    },
+    {
+      "type": "text",
+      "id": "tab_description",
+      "label": "t:sections.advanced-content.settings.tab_description.label"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+      "type": "header",
+      "content": "Product Settings"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_desktop",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 6,
+      "label": "t:sections.all.products_per_row_desktop.label"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 10,
+      "label": "ProductS Show Limit"
+    },
+    {
+      "type": "header",
+      "content": "Margin & Padding"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "t:sections.all.padding_mobile.label",
+      "info": "t:sections.all.padding_mobile.info"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Recom"
+    }
+  ]
+}
+{% endschema %}

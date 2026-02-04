@@ -1,0 +1,129 @@
+.collection-1 .vertical-breather {
+    padding: 0;
+}
+
+.shopify-section--collection-1 {
+    margin: 0;
+}
+
+p.heading.h3 {
+    text-transform: uppercase;
+    font-size: 80px;
+    line-height: 0.9;
+    letter-spacing: 0;
+    margin-bottom: 42px;
+}
+
+.list-collections--collage {
+    --list-collections-collage-rows-height: 100%;
+}
+
+.list-collections__item-list {
+    gap: 0;
+}
+
+.collection-1 .list-collections__item-image {
+    width: 100%;
+}
+
+span.heading.count {
+    font-size: 16px;
+    line-height: 26px;
+    text-transform: capitalize;
+    margin-bottom: 0;
+    letter-spacing: 0;
+    font-family: var(--body-font-family);
+}
+
+.list-collections__item-list {
+    gap: 30px;
+    border: none;
+}
+
+.collection-1 .list-collections__item {
+    overflow: unset;
+}
+
+.list-collections__item-image-wrapper {
+    transition: all 0.4s;
+    overflow: hidden;
+}
+
+p.heading.h4 {
+    margin-bottom: 10px;
+}
+
+span.heading.heading--xsmall.link {
+    text-decoration: none;
+    margin: 0;
+}
+
+p.heading.h3 span {
+    background-color: var(--primary);
+    background-image: linear-gradient( rgb(var(--heading-color-1)), rgb(var(--heading-color-1)), rgb(var(--heading-color-1)));
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 150%;
+    transition: all 0.8s;
+}
+
+p.heading.h3 span:hover {
+    background-size: 0;
+    color: rgb(var(--root-heading-color));
+}
+
+.list-collections__item:hover .list-collections__item-image-wrapper,
+.collection-item-3 .list-collections__item-image-wrapper {
+    opacity: 1;
+}
+
+.link .btn-base-2,
+.link .btn-base-2 path {
+    color: var(--color-a);
+    fill: var(--color-a);
+}
+
+.list-collections__item:hover p.heading.h4,
+.list-collections__item:hover span.heading.count,
+.list-collections__item:hover .link .btn-base-2,
+.list-collections__item:hover .link .btn-base-2 path {
+    color: var(--color-a-hover);
+    fill: var(--color-a-hover);
+}
+
+.list-collections__item .link .btn-base-2:hover {
+    background-color: var(--bg-color-a-hover);
+}
+
+.link .btn-base-2 {
+    margin: auto;
+    border-radius: 5px;
+    padding: 18px 30px;
+    background-color: var(--bg-color-a);
+    border: 1px solid var(--border-color);
+}
+
+.list-collections--collage .list-collections__item-list {
+    grid-auto-rows: unset;
+    gap: 0;
+}
+
+.list-collections__item-link {
+    position: relative;
+    display: block;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .collection-1 .list-collections__item-list {
+        margin: 0 calc(-1 * var(--container-distance));
+    }
+    .collection-1 .list-collections__item {
+        padding: 0 var(--container-distance);
+    }
+}
+
+@media (max-width: 767px) {
+    .list-collections--collage .list-collections__item-list {
+        gap: 15px;
+    }
+}

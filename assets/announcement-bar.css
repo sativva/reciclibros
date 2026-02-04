@@ -1,0 +1,149 @@
+.ap-announcementbar {
+  padding: 0;
+}
+
+.ap-announcementbar__message {
+  padding: 0;
+}
+
+.no-focus-outline .social-media__item {
+  box-shadow: none;
+  overflow: visible;
+}
+
+.social-media__item {
+  margin: 0;
+}
+
+.social-media__item:last-child {
+  margin-right: 0;
+}
+
+.announcement__item-content .text-social {
+  display: none;
+}
+
+.social-media__link {
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.social-media__item:last-child:after {
+  display: none;
+}
+
+.social-media__item:hover .social-media__link {
+  color: var(--primary);
+}
+
+.announcemnt-menu__item {
+  position: relative;
+}
+
+.announcemnt-menu__item:before {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 1px;
+  background-color: rgb(var(--color-body));
+}
+
+.announcemnt-menu {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  gap: 20px;
+}
+
+.announcemnt-menu__item:last-child::before {
+  display: none;
+}
+
+.ap-announcementbar .social-media__item:hover:before {
+  transform: none;
+  background-color: transparent;
+}
+
+.ap-announcementbar .social-media {
+  gap: 12px;
+}
+
+.announcement-contact-list a {
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.announcement-contact-list ul {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.announcement__item-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: end;
+}
+
+.announcement-social_title {
+  font-family: var(--hd-font-family);
+  font-size: calc(var(--base-font-size) - 2px);
+}
+
+@media (min-width: 1200px) {
+  .announcement-transparent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid rgb(var(--border-color));
+  }
+  body:not(.index) .announcement-transparent {
+    position: unset;
+  }
+}
+@media (max-width: 767px) {
+  .announcement-contact-list ul {
+    flex-direction: column;
+  }
+  .announcement-contact-list ul ,
+  .announcement-social.text-right {
+    justify-content: center!important;
+  }
+  .announcement-row {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px 0;
+    justify-content: center;
+  }
+  .btn-next {
+    right: 15px;
+  }
+  .ap-announcementbar__message {
+    text-align: center;
+  }
+  .announcement-social {
+    display: none;
+  }
+  .announcement-contact.text-left {
+    text-align: center;
+  }
+  .disclosure {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .announcemnt-menu {
+    display: none;
+  }
+}

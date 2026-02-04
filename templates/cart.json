@@ -1,0 +1,51 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "cart-items": {
+      "type": "main-cart-items",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_payment_methods": true,
+        "payment_methods_label": ""
+      }
+    },
+    "cart-footer": {
+      "type": "main-cart-footer",
+      "settings": {
+        "enable_payment_methods": true,
+        "payment_methods_label": "Aceptamos",
+        "payment_methods_image": "shopify://shop_images/Medios_de_pago_62a59b55-a622-475e-8f4a-f30c3407a427.png"
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "setwidthout": "container",
+        "heading": "Quizás te interesa...",
+        "heading_size": 4,
+        "tab_description": "",
+        "text_align": "left",
+        "products_per_row_desktop": 6,
+        "products_to_show": 10,
+        "margin_desktop": "60px 0",
+        "margin_mobile": "",
+        "padding_desktop": "",
+        "padding_mobile": ""
+      }
+    }
+  },
+  "order": [
+    "cart-items",
+    "cart-footer",
+    "product-recommendations"
+  ]
+}

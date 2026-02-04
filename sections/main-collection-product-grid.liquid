@@ -1,0 +1,640 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    --section-products-per-row: 2;
+
+    {%- if section.settings.margin_desktop != blank -%}
+      margin: {{ section.settings.margin_desktop }};
+    {%- endif -%}
+
+    {%- if section.settings.padding_desktop != blank -%}
+      padding: {{ section.settings.padding_desktop }};
+    {%- endif -%}
+  }
+
+  @media screen and (min-width: 741px) {
+    #shopify-section-{{ section.id }} {
+      --section-products-per-row: {{ section.settings.columns_desktop }};
+    }
+  }
+  @media screen and (min-width: 1400px) {
+    #shopify-section-{{ section.id }} {
+      --section-products-per-row: {{ section.settings.columns_desktop }};
+    }
+  }
+  #block-template--14993172660432__main-e231065e-5bdb-4483-91fc-79c63ebbcffc {
+    --heading-color: 255, 255, 255;
+    --color-body: 255, 255, 255;
+    --section-block-background: 247, 248, 253;
+    --primary-button-background: 255, 255, 255;
+    --primary-button-text-color: 30, 49, 106;--section-blocks-alignment: center;
+  }
+  #block-template--14993172660432__main-cb5ead93-c537-42ed-9e12-32caae9a0fff {
+    --heading-color: 255, 255, 255;
+    --color-body: 255, 255, 255;
+    --section-block-background: 247, 248, 253;
+    --primary-button-background: 255, 255, 255;
+    --primary-button-text-color: 30, 49, 106;--section-blocks-alignment: center;
+  }
+
+  /*
+  IMPLEMENTATION NOTE: due to design requirements, the mobile toolbar (with filters and sort by) had to be moved to the
+  layout file. However as section settings cannot be accessed outside the section itself, we simply hide them in CSS.
+  */
+
+  @media screen and (max-width: 999px) {
+    :root {
+      --anchor-offset: 60px;
+    }
+  }
+  @media screen and (max-width: 740px) {
+    .ap-productlist {
+      --ap-productlist-column-gap: 12px;
+    }
+  }
+
+  {%- if template contains 'collection' -%}
+  .ap-productfacet_aside__categories-title {
+    padding-top: 0;
+  }
+  .ap-productfacet_aside__categories-list {
+    display: flex;
+    flex-direction: column;
+    padding: 14px 0 30px;
+  }
+  .ap-productfacet_aside__categories-list a {
+    font-size: 16px;
+    line-height: 30px;
+  }
+  .ap-productfacet_aside__categories-list a .count {
+    color: var(--primary);
+  }
+  .banner {
+    flex-direction: column;
+    padding: 0;
+    margin-bottom: 30px;
+  }
+  .c-banner-text-title-top {
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 27px;
+  }
+  .c-banner-img-text {
+    position: relative;
+    width: 100%;
+  }
+  .c-list-image {
+    width: 100%;
+    object-fit: cover;
+  }
+  .c-banner-text {
+    position: absolute;
+    top: 50%;
+    left: 105px;
+    transform: translateY(-50%);
+  }
+  .c-banner-text-title {
+    font-size: 40px;
+    line-height: 38px;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    font-family: var(--hd-font-family);
+    margin: 0 0 17px;
+  }
+  .c-banner-text-title span {
+    color: var(--primary)
+  }
+  .c-banner-text-subtitle span {
+    font-size: 20px;
+    text-decoration: underline;
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 22px;
+  }
+  .c-banner-text-description {
+    font-size: 18px;
+    line-height: 1;
+    text-decoration: line-through;
+  }
+  .c-banner-text-description span {
+    font-size: 28px;
+    line-height: 1;
+    color: #ffde00;
+    text-decoration: none;
+    margin-left: 5px;
+    display: inline-block;
+  }
+  body.collection .breadcrumb__list {
+    padding: 0;
+    margin: 0;
+  }
+  .c-banner-text-subtitle {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 0 11px;
+  }
+  @media (max-width: 1299px) {
+    .c-list-image {
+      min-height: 300px;
+      object-fit: cover;
+    }
+    .c-banner-text {
+      left: 15px;
+    }
+  }
+  @media (max-width: 767px) {
+    .c-banner-text {
+      left: 50%;
+      text-align: center;
+      transform: translate(-50%,-50%);
+      background-color: #000;
+      padding: 15px
+    }
+    .c-banner-text-title {
+      font-size: 28px;
+      line-height: 1;
+    }
+  }
+  @media (max-width: 740px) {
+    .image-overlay {
+      --image-height: 100%;
+    }
+  }
+  @media (max-width: 480px) {
+    .c-banner-text {
+      width: 100%;
+    }
+  }
+
+    {%- if section.settings.type_collection == 'collection-top' -%}
+      .collection-top .c-banner-text-title-top {
+        margin-top: 40px;
+      }
+      .collection-top .ap-productfacet {
+        flex-direction: column;
+      }
+      .collection-top .filter-toggle {
+        display: none;
+      }
+      .collection-top .collection-carousel-item-info {
+        margin-top: 20px;
+      }
+      .collection-top .collection-carousel-title {
+        font-size: 16px;
+        line-height: 20px;
+        text-align: center;
+      }
+      .collection-top .collection-carousel-item-image {
+        width: 100%;
+        object-fit: cover;
+      }
+      .collection-top .ap-productfacet__active-list {
+        margin-top: 18px;
+        margin-bottom: 18px;
+      }
+      .collection-top .ap-productfacet_aside__categories-list {
+        padding: 14px 0 0;
+      }
+      .collection-top  .ap-productfacet {
+        margin-top: 0;
+      }
+      @media (min-width: 1000px) {
+        .collection-top .drawer__header-action {
+          display: none;
+        }
+        .collection-top .filter-toggle {
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          cursor: pointer;
+        }
+        .collection-top .wp-productfacet__meta {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
+        .collection-top  .ap-productfacet__aside {
+          position: fixed;
+          display: flex;
+          flex-direction: column;
+          top: 0;
+          left: 0;
+          right: auto;
+          width: 89vw;
+          max-width: 410px;
+          height: 100%;
+          max-height: 100vh;
+          background: #fff;
+          color: rgb(var(--color-body));
+          z-index: 9999999;
+          transform: translateX(-410px);
+          visibility: hidden;
+          font-size: 1rem;
+          padding: 0 20px;
+          transition: transform .6s cubic-bezier(.75,0,.175,1),visibility .6s cubic-bezier(.75,0,.175,1);
+          overflow-y: auto;
+          overflow-x: hidden;
+        }
+        .collection-top  .ap-productfacet__aside.open {
+          visibility: visible;
+          transform: translateX(0);
+        }
+        .collection-top  .drawer__overlay-filter.open {
+          right: auto;
+          left: 0;
+          visibility: visible;
+          opacity: .3;
+        }
+        .collection-top  .drawer__overlay-filter.open {
+          z-index: 9999999;
+        }
+      }
+    {%- endif -%}
+
+  {%- endif -%}
+{% endstyle %}
+
+{%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+
+<section class="{%- if section.settings.type_collection == 'collection-top' -%}collection-top{% endif %}">
+  <div class="{{ section.settings.setwidthout }}">
+    <ap-productfacet class="ap-productfacet" section-id="{{ section.id }}">
+
+      {%- if section.settings.type_collection == 'collection-top' -%}
+        {% render 'product-filter-collection-top', sort_by: sort_by %}
+      {%- else -%}
+        {% render 'product-filter', sort_by: sort_by %}
+      {%- endif -%}
+      
+      <div id="facet-main" class="ap-productfacet__main anchor" role="region" aria-live="polite">
+        
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {%- when 'banner' -%}
+              <div class="banner">
+                <div style="color: {{ block.settings.color_title_top }}" class="c-banner-text-title-top">{{ block.settings.title_description }}</div>
+                <div class="c-banner-img-text">
+                  <div class="c-banner-image">
+                    {% if block.settings.featured_image != blank %}
+                      <img class="c-list-image" loading="lazy" 
+                        sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                        alt="" 
+                        src="{{ block.settings.featured_image | image_url: width: block.settings.featured_image.width }}" 
+                        data-srcset="{%- if block.settings.featured_image.width >= 3000 -%}{{ block.settings.featured_image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                          {{ block.settings.featured_image | image_url }} {{ block.settings.featured_image.width }}w"
+                        src="{{ block.settings.featured_image | image_url: width: 1500 }}"
+                        height="{{ block.settings.featured_image.height }}"
+                        width="{{ block.settings.featured_image.width }}">
+                    {% else %}
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {% endif %}
+                  </div>
+                  <div class="c-banner-text">
+                    <h4 style="color: {{ block.settings.color_subtitle }}" class="c-banner-text-subtitle">{{ block.settings.sub_title }}</h4>
+                    <h3 style="color: {{ block.settings.color_title }}" class="c-banner-text-title">{{ block.settings.title }}</h3>
+                    {% if block.settings.description != blank %}
+                    <p style="color: {{ block.settings.color_description }}" class="c-banner-text-description">{{ block.settings.description }}</p>
+                    {% endif %}
+                    {% if block.settings.button1_label != blank %}
+                      <style>
+                        #btn-{{ block.id }}.btn-base {
+                          color: {{ block.settings.color_btn }};
+                          background-color: {{ block.settings.bg_btn }};
+                        }
+                        #btn-{{ block.id }}.btn-base:hover {
+                          color: {{ block.settings.color_btn_hover }};
+                          background-color: {{ block.settings.bg_btn_hover }};
+                        }
+                      </style>
+                    <a id="btn-{{ block.id }}" href="{{ block.settings.link1 }}" class="button btn-base btn-sm">
+                      {{ block.settings.button1_label }}
+                      {% render 'icon-arrow-2' %}
+                    </a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+          {% endcase %}
+        {% endfor %}
+
+        <div class="ap-productfacet__meta-bar anchor">
+          {%- if section.settings.type_collection == 'collection-top' -%}
+          <div class="wp-productfacet__meta">
+            <div class="filter-toggle">
+              {% render 'icon-filter-2' %}
+              <span>Filter</span>
+            </div>
+            <span class="ap-productfacet__meta-bar-item ap-productfacet__meta-bar-item--count" role="status">
+              {{ collection.products_count }} products
+            </span>
+          </div>
+          {%- else -%}
+          <span class="ap-productfacet__meta-bar-item ap-productfacet__meta-bar-item--count" role="status">
+            {{ collection.products_count }} products
+          </span>
+          {%- endif -%}
+          <div class="ap-productfacet__meta-bar-item ap-productfacet__meta-bar-item--sort">
+            <span class="ap-productfacet__sort-by-title text--subdued hd-pocket">Ordenar por</span>
+            <div class="popover-container">
+              <button type="button" is="toggle-button" class="popover-button hd-pocket" ap-expanded-aria="false" ap-controlsaria="ap-sortbypopover">
+                <span id="sort-by-selected-value" style="pointer-events: none">
+                  {%- for option in collection.sort_options -%}
+                    {% if option.value == sort_by %}
+                      {{ option.name | escape }}
+                    {% endif %}
+                  {%- endfor -%}
+                </span>
+                <svg focusable="false" width="12" height="8" class="icon icon--chevron icon--inline  " viewBox="0 0 12 8">
+                  <path fill="none" d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="2"></path>
+                </svg>
+              </button>
+
+              <ap-sortbypopover id="ap-sortbypopover" class="popover">
+                <span class="popover__overlay"></span>
+                <header class="popover__header">
+                  <span class="popover__title heading h6">Ordenar por</span>
+                  <button type="button" class="popover__close-button tap-area tap-area--large" data-action="close" title="Close">
+                    <svg focusable="false" width="14" height="14" class="icon icon--close   " viewBox="0 0 14 14">
+                      <path d="M13 13L1 1M13 1L1 13" stroke="currentColor" stroke-width="2" fill="none"></path>
+                    </svg>
+                  </button>
+                </header>
+
+                <div class="popover__content">
+                  <div class="popover__choice-list">
+                    {%- for option in collection.sort_options -%}
+                      <label class="popover__choice-item">
+                        <input type="radio" data-bind-value="sort-by-selected-value" class="visually-hidden" {% if option.value == sort_by %}checked="checked"{% endif %} name="sort_by" value="{{ option.value | escape }}" title="{{ option.name | escape }}">
+                        <span class="popover__choice-label">{{ option.name | escape }}</span>
+                      </label>
+                    {%- endfor -%}
+                  </div>
+                </div>
+              </ap-sortbypopover>
+            </div>
+          </div>
+        </div>
+
+        {% liquid
+          assign products_per_page = 12
+          if section.settings.products_per_page
+            assign products_per_page = section.settings.products_per_page
+          endif
+        %}
+
+        {%- paginate collection.products by products_per_page -%}
+          
+          <ap-productlist class="ap-productfacet__ap-productlist ap-productlist anchor ap-object-loaded" stagger-apparition="">
+            <div id="ap_productlist" class="ap-productlist__inner">
+              {%- for product in collection.products -%}
+                {% render 'product-grid', product: product %}
+              {%- endfor -%}
+            </div>
+            
+            {% if section.settings.show_load_product %}
+            <div id="ap_loadmoreproduct">
+              <div id="loading-more-product-icon" style="display:none">
+                {% render 'icon-loading' %}
+              </div>
+              <input type="hidden" id="ap_page_load" value="1">
+              <input type="hidden" id="ap_max_page" value="{{ paginate.pages }}">
+              <input type="hidden" id="ap_page_link" value="{{ collection.url }}">
+            </div>
+            {% endif %}
+
+          </ap-productlist>
+
+          {% if section.settings.show_load_product != true %}
+            {%- if paginate.pages > 1 -%}
+              {% render 'pagination', paginate: paginate, anchor: '' %}
+            {%- endif -%}
+          {% endif %}
+
+        {%- endpaginate -%}
+
+        
+
+      </div>
+
+    </ap-productfacet>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main-collection-product-grid.name",
+  "class": "shopify-section--main-collection",
+  "settings": [
+    {
+      "type": "select",
+      "id": "type_collection",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "collection-top",
+          "label": "Collection Top"
+        }
+      ],
+      "default": "default",
+      "label": "Type Collection"
+    },
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Set Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "header",
+      "content": "Settings Filter"
+    },
+    {
+      "type": "text",
+      "id": "title_categories",
+      "label": "Title Categories collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection2",
+      "label": "Collection 2"
+    },
+    {
+      "type": "collection",
+      "id": "collection3",
+      "label": "Collection 3"
+    },
+    {
+      "type": "collection",
+      "id": "collection4",
+      "label": "Collection 4"
+    },
+    {
+      "type": "collection",
+      "id": "collection5",
+      "label": "Collection 5"
+    },
+    {
+      "type": "collection",
+      "id": "collection6",
+      "label": "Collection 6"
+    },
+    {
+      "type": "header",
+      "content": "Settings Product"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 4,
+      "max": 48,
+      "step": 4,
+      "default": 48,
+      "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.main-collection-product-grid.settings.columns_desktop.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-product-grid.settings.header__3.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_load_product",
+      "label": "Show Loading Product Scroll",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "Banner",
+      "settings": [
+        {
+          "id": "title_description",
+          "type": "text",
+          "label": "Title top banner",
+          "default": "Title top banner"
+        },
+        {
+          "id": "color_title_top",
+          "type": "color",
+          "label": "Color Title top banner",
+          "default": "#194A33"
+        },
+        {
+          "id": "featured_image",
+          "type": "image_picker",
+          "label": "Image banner"     
+        },
+        {
+          "id": "sub_title",
+          "type": "liquid",
+          "label": "Sub Title banner",
+          "default": "Sub Title banner"
+        },
+        {
+          "id": "color_subtitle",
+          "type": "color",
+          "label": "Color Sub Title banner",
+          "default": "#000"
+        },
+        {
+          "id": "title",
+          "type": "liquid",
+          "label": "Title banner",
+          "default": "Title banner"
+        },
+        {
+          "id": "color_title",
+          "type": "color",
+          "label": "Color Title banner",
+          "default": "#000"
+        },
+        {
+          "id": "description",
+          "type": "liquid",
+          "label": "Description banner",
+          "default": "Description banner"
+        },
+        {
+          "id": "color_description",
+          "type": "color",
+          "label": "Color Description banner",
+          "default": "#978F8B"
+        },
+        {
+          "id": "button1_label",
+          "type": "text",
+          "label": "Button",
+          "default": "Top selling teas"
+        },
+        {
+          "id": "link1",
+          "type": "url",
+          "label": "Link"
+        },
+        {
+          "type": "color",
+          "id": "color_btn",
+          "label": "Color button"
+        },
+        {
+          "type": "color",
+          "id": "bg_btn",
+          "label": "Background button"
+        },
+        {
+          "type": "color",
+          "id": "color_btn_hover",
+          "label": "Color button hover"
+        },
+        {
+          "type": "color",
+          "id": "bg_btn_hover",
+          "label": "Background button hover"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

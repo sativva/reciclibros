@@ -1,0 +1,265 @@
+<style>
+    #shopify-section-{{ section.id }} .footer-bot {
+        background-color: {{ section.settings.background }};
+        background-image: url({{ section.settings.background_image | image_url: width: 2000 }});
+        background-position: center;
+    }
+    #shopify-section-{{ section.id }} .footer-bot_inner {
+        padding: {{ section.settings.padding_desktop }};
+    }
+    .info-content_title {
+        margin: 0;
+    }
+    .footer-bot .row {
+        margin-left: 0;
+        margin-right: 0;
+        align-items: center;
+    }
+    .footer-bot_content {
+        flex: auto;
+    }
+    #shopify-section-{{ section.id }} .info-content-wp {
+        display: flex;
+        align-items: center;
+    }
+    .info-content-icon {
+        line-height: 1;
+        padding: 9px 10px;
+        background-color: var(--color-accent-6);
+        margin-right: 12px;
+    }
+    .info-content-icon path {
+        fill: var(--primary-2);
+    }
+    .info-content-text strong {
+        font-size: 16px;
+        color: var(--primary);
+    }
+    .info-content_title.heading.h4 {
+      line-height: 1;
+    }
+    #shopify-section-{{ section.id }} .info-content-text {
+        font-weight: 400;
+    }
+    #shopify-section-{{ section.id }} .info-content-text span:not(:last-child):after {
+        content: '';
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: var(--primary);
+        vertical-align: middle;
+        margin: 0 30px;
+    }
+    #shopify-section-{{ section.id }} .info-content_title span {
+        font-size: 16px;
+        line-height: 28px;
+        font-family: var(--body-font-family);
+        text-transform: none;
+        font-weight: 400;
+    }
+    .info-content-text a {
+        font-weight: 400;
+        text-decoration: underline!important;
+    }
+    .footer-bot_item_2 .info-content-text a {
+        text-decoration: none!important;
+    }
+    .info-content-text span {
+        font-weight: 400;
+    }
+    #shopify-section-{{ section.id }} .info-content-text p {
+      margin: 0;
+      line-height: 1;
+    }
+    #shopify-section-{{ section.id }} .text-center .info-content-wp {
+      justify-content: center;
+    }
+    #shopify-section-{{ section.id }} .text-right .info-content-wp {
+      justify-content: end;
+    }
+    @media (max-width: 767px) {
+      #shopify-section-{{ section.id }} .footer-bot_inner {
+          padding: {{ section.settings.padding_mobile }};
+      }
+    }
+</style>
+
+{% if section.settings.show_footer_info %}
+<footer class="footer-bot">
+  <div class="{{ section.settings.setwidthout }}">
+    <div class="footer-bot_inner">
+        <div class="row">
+            {%- for block in section.blocks -%}
+
+                    {%- case block.type -%}
+        
+                        {%- when 'footer-bot' -%}
+                            <div class="footer-bot_content text-{{ block.settings.text_align }} footer-bot_item_{{ forloop.index }}">
+                                {% if block.settings.info_title != blank %}
+                                <h2 style="color: {{ section.settings.color_title }}" class="info-content_title heading h4 text-uppercase">
+                                    {{ block.settings.info_title }}
+                                </h2>
+                                {% endif %}
+
+                                <div class="info-content-wp">
+                                    {% if  block.settings.icon != blank %}
+                                    <div class="info-content-icon">
+                                        {{ block.settings.icon }}
+                                    </div>
+                                    {% endif %}
+                                    {% if block.settings.info_heading != blank %}
+                                    <div style="color: {{ section.settings.color_heading }}" class="info-content-text">
+                                        {{ block.settings.info_heading }}
+                                    </div>
+                                    {% endif %}
+                                    {% if block.settings.info_heading_2 != blank %}
+                                    <div style="color: {{ section.settings.color_heading }}" class="info-content-text">
+                                        {{ block.settings.info_heading_2 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+        
+                    {%- endcase -%}
+
+            {%- endfor -%}
+        </div>
+    </div>
+  </div>
+</footer>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Footer bot",
+  "class": "shopify-section--footer-bot",
+  "blocks": [
+    {
+      "type": "footer-bot",
+      "name": "Footer Top",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "info_title",
+          "label": "Title"
+        },
+        {
+          "type": "liquid",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "richtext",
+          "id": "info_heading",
+          "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+          "label": "Content"
+        },
+        {
+          "type": "liquid",
+          "id": "info_heading_2",
+          "default": "Content",
+          "label": "Content 2"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left",
+          "label": "Text align"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_footer_info",
+      "label": "Enable Footer Info",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Set Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Settings Color"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "default": "#202020",
+      "label": "t:sections.all.background.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:sections.all.background_image.label"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "default": "#939393",
+      "label": "Color title"
+    },
+    {
+      "type": "color",
+      "id": "color_heading",
+      "default": "#ffffff",
+      "label": "Color heading"
+    },
+    {
+      "type": "color",
+      "id": "color_des",
+      "default": "#EBEBEB",
+      "label": "Color description"
+    },
+    {
+      "type": "header",
+      "content": "Settings Advanced"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "t:sections.all.padding_mobile.label",
+      "info": "t:sections.all.padding_mobile.info"
+    }
+  ]
+}
+{% endschema %}

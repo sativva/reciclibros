@@ -1,0 +1,915 @@
+{{ 'look-book.css' | asset_url | stylesheet_tag }}
+{% render 'section-style' %}
+   
+{% style %}
+    #shopify-section-{{ section.id }} {
+      --heading-color: {{ section.settings.heading_color | color_extract: 'red' }}, {{ section.settings.heading_color | color_extract: 'green' }}, {{ section.settings.heading_color | color_extract: 'blue' }};
+      --color-body: {{ section.settings.text_color | color_extract: 'red' }}, {{ section.settings.text_color | color_extract: 'green' }}, {{ section.settings.text_color | color_extract: 'blue' }};
+    }
+    
+    #shopify-section-{{ section.id }} .ap-text-loaderbutton {
+      flex-direction: row;
+    }
+
+    #shopify-section-{{ section.id }} .ap-lookbookshop__product[open] {
+      transform: scale(1) translateX(-50%);
+    }
+    [dir=ltr] #shopify-section-{{ section.id }} .ap-lookbookshop__product--reverse {
+      left: -125px;
+      top: -290px;
+      right: unset;
+      bottom: unset;
+    }
+    .ap-lookbookshop__product--reverse:before {
+      display: none;
+    }
+
+    .full .section__header.text-left {
+      padding: 60px 15px 60px 60px;
+    }
+    @media (min-width: 1500px) {
+      .full .section__header.text-left {
+        padding: 0 15px 0 220px;
+      }
+    }
+    
+    {% for block in section.blocks %}
+      {%- case block.type -%}
+        {%- when 'look_book_item' -%}
+        {% if block.settings.product_1 %}
+            #block-{{ block.id }}-1 {
+                top: {{ block.settings.product_1_top }}%;
+                left: {{ block.settings.product_1_left }}%;
+            }
+            @media screen and (max-width: 740px) {
+                #block-{{ block.id }}-1 {
+                    top: {{ block.settings.product_1_top_tablet }}%;
+                    left: {{ block.settings.product_1_left_tablet }}%;
+                }
+            }
+        {% endif %}
+        {% if block.settings.product_2 %}
+            #block-{{ block.id }}-2 {
+                top: {{ block.settings.product_2_top }}%;
+                left: {{ block.settings.product_2_left }}%;
+            }
+            @media screen and (max-width: 740px) {
+                #block-{{ block.id }}-2 {
+                    top: {{ block.settings.product_2_top_tablet }}%;
+                    left: {{ block.settings.product_2_left_tablet }}%;
+                }
+            }
+        {% endif %}
+        {% if block.settings.product_3 %}
+            #block-{{ block.id }}-3 {
+                top: {{ block.settings.product_3_top }}%;
+                left: {{ block.settings.product_3_left }}%;
+            }
+            @media screen and (max-width: 740px) {
+                #block-{{ block.id }}-3 {
+                    top: {{ block.settings.product_3_top_tablet }}%;
+                    left: {{ block.settings.product_3_left_tablet }}%;
+                }
+            }
+        {% endif %}
+        {% if block.settings.product_4 %}
+            #block-{{ block.id }}-4 {
+                top: {{ block.settings.product_4_top }}%;
+                left: {{ block.settings.product_4_left }}%;
+            }
+            @media screen and (max-width: 740px) {
+                #block-{{ block.id }}-4 {
+                    top: {{ block.settings.product_4_top_tablet }}%;
+                    left: {{ block.settings.product_4_left_tablet }}%;
+                }
+            }
+        {% endif %}
+        {% if block.settings.product_5 %}
+            #block-{{ block.id }}-5 {
+                top: {{ block.settings.product_5_top }}%;
+                left: {{ block.settings.product_5_left }}%;
+            }
+            @media screen and (max-width: 740px) {
+                #block-{{ block.id }}-5 {
+                    top: {{ block.settings.product_5_top_tablet }}%;
+                    left: {{ block.settings.product_5_left_tablet }}%;
+                }
+            }
+        {% endif %}
+      {%- endcase -%}
+    {% endfor %}
+{% endstyle %}
+
+<section class="look-book">
+  <div class="{{ section.settings.setwidthout }}">
+
+    {% render 'section-heading' %}
+
+    <ap-lookbookshop reveal-on-scroll="" class="ap-lookbookshop ap-object-loaded" style="opacity: 1;">
+      <div class="ap-lookbookshop__item-list">
+          {% for block in section.blocks %}
+            {%- case block.type -%}
+            {%- when 'look_book_item' -%}
+              <ap-lookbookshop-item id="block-{{ block.id }}" class="ap-lookbookshop__item d-flex align-items-md-center flex-wrap" {% if forloop.index != 1 %} hidden="" {% endif %}>
+                <div class="block-lookbook-content col-md-8 col-12 mb-md-0 mb-4">         
+                  <div class="ap-lookbookshop__image-wrapper">
+                    {% if block.settings.image_wrapper != blank %}
+                      <img loading="lazy" sizes="100vw" reveal="" class="ap-lookbookshop__image hd-pocket" alt="" 
+                          src="{{ block.settings.image_wrapper | image_url: width: block.settings.image_wrapper.width }}" 
+                          style="opacity: 1;" 
+                          width="{{ block.settings.image_wrapper.width }}" height="{{ block.settings.image_wrapper.width }}">
+                    {% else %}
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {% endif %}
+                      <img loading="lazy" sizes="100vw" reveal="" class="ap-lookbookshop__image hd-lap-and-up" alt="" 
+                          src="{{ block.settings.image_wrapper_tablet | image_url: width: block.settings.image_wrapper_tablet.width }}" 
+                          style="opacity: 1;" width="{{ block.settings.image_wrapper_tablet.width }}" height="{{ block.settings.image_wrapper_tablet.width }}">
+                  </div>
+                  {% if block.settings.product_1 != null %}
+                      <div id="block-{{ block.id }}-1" class="ap-lookbookshop__product-wrapper">
+                          <button type="button" is="toggle-button" reveal="" class="ap-lookbookshop__dot tap-area hd-phone" ap-controlsaria="block-{{ block.id }}-1-product" ap-expanded-aria="{% if block.settings.product_1.product_1_show %}true{% else %}false{% endif %}" style="opacity: 1;">
+                              <span class="visually-hidden">{{ block.settings.product_1.title }}</span>
+                          </button>
+      
+                          <button type="button" is="toggle-button" reveal="" class="ap-lookbookshop__dot tap-area hd-tablet-and-up" ap-controlsaria="block-{{ block.id }}-1-popover" ap-expanded-aria="{% if block.settings.product_1.product_1_show %}true{% else %}false{% endif %}" style="opacity: 1;">
+                              <span class="visually-hidden">{{ block.settings.product_1.title }}</span>
+                          </button>
+      
+                          <ap-elementopen id="block-{{ block.id }}-1-product" class="ap-lookbookshop__product ap-lookbookshop__product--reverse hd-phone" {% if block.settings.product_1.product_1_show %}open=""{% endif %}>
+                              <img class="ap-lookbookshop__product-image" loading="lazy" sizes="72px" alt="{{ block.settings.product_1.title }}" 
+                                  src="{{ block.settings.product_1.featured_media | image_url: width: product.featured_media.width }}" 
+                                  width="{{ block.settings.product_1.featured_media.width }}" height="{{ block.settings.product_1.featured_media.width }}">
+                              <div class="ap-lookbookshop__product-info">
+                                  <a href="/products/{{ block.settings.product_1.handle }}" class="ap-lookbookshop__product-title">{{ block.settings.product_1.title }}</a>
+      
+                                  <div class="ap-lookbookshop__product-bottom-wrapper">
+                                      <span class="price">
+                                          <span class="visually-hidden">Sale price</span>{{ block.settings.product_1.price | money }}
+                                      </span>
+                                      <button is="toggle-button" class="ap-lookbookshop__product-link link text--subdued" ap-controlsaria="block-{{ block.id }}-1-drawer" ap-expanded-aria="{% if block.settings.product_1.product_1_show %}true{% else %}false{% endif %}">Quick view</button>
+                                  </div>
+                              </div>
+                          </ap-elementopen>
+
+                      </div>
+                  {% endif %}
+                  {% if block.settings.product_2 != null %}
+                      <div id="block-{{ block.id }}-2" class="ap-lookbookshop__product-wrapper">
+                          <button type="button" is="toggle-button" reveal="" class="ap-lookbookshop__dot tap-area hd-phone" ap-controlsaria="block-{{ block.id }}-2-product" ap-expanded-aria="{% if block.settings.product_2.product_2_show %}true{% else %}false{% endif %}" style="opacity: 1;">
+                              <span class="visually-hidden">{{ block.settings.product_2.title }}</span>
+                          </button>
+                  
+                          <button type="button" is="toggle-button" reveal="" class="ap-lookbookshop__dot tap-area hd-tablet-and-up" ap-controlsaria="block-{{ block.id }}-2-popover" ap-expanded-aria="{% if block.settings.product_2.product_2_show %}true{% else %}false{% endif %}" style="opacity: 1;">
+                              <span class="visually-hidden">{{ block.settings.product_2.title }}</span>
+                          </button>
+                  
+                          <ap-elementopen id="block-{{ block.id }}-2-product" class="ap-lookbookshop__product ap-lookbookshop__product--reverse hd-phone" {% if block.settings.product_2.product_2_show %}open=""{% endif %}>
+                              <img class="ap-lookbookshop__product-image" loading="lazy" sizes="72px" alt="{{ block.settings.product_2.title }}" 
+                                  src="{{ block.settings.product_2.featured_media | image_url: width: product.featured_media.width }}" 
+                                  width="{{ block.settings.product_2.featured_media.width }}" height="{{ block.settings.product_2.featured_media.width }}">
+                              <div class="ap-lookbookshop__product-info">
+                                  <a href="/products/{{ block.settings.product_2.handle }}" class="ap-lookbookshop__product-title">{{ block.settings.product_2.title }}</a>
+                  
+                                  <div class="ap-lookbookshop__product-bottom-wrapper">
+                                      <span class="price">
+                                          <span class="visually-hidden">Sale price</span>{{ block.settings.product_2.price | money }}
+                                      </span>
+                                      <button is="toggle-button" class="ap-lookbookshop__product-link link text--subdued" ap-controlsaria="block-{{ block.id }}-2-drawer" ap-expanded-aria="{% if block.settings.product_2.product_2_show %}true{% else %}false{% endif %}">Quick view</button>
+                                  </div>
+                              </div>
+                          </ap-elementopen>
+                  
+                      </div>
+                  {% endif %}
+                  {% if block.settings.product_3 != null %}
+                      <div id="block-{{ block.id }}-3" class="ap-lookbookshop__product-wrapper">
+                          <button type="button" is="toggle-button" reveal="" class="ap-lookbookshop__dot tap-area hd-phone" ap-controlsaria="block-{{ block.id }}-3-product" ap-expanded-aria="{% if block.settings.product_3.product_3_show %}true{% else %}false{% endif %}" style="opacity: 1;">
+                              <span class="visually-hidden">{{ block.settings.product_3.title }}</span>
+                          </button>
+                  
+                          <button type="button" is="toggle-button" reveal="" class="ap-lookbookshop__dot tap-area hd-tablet-and-up" ap-controlsaria="block-{{ block.id }}-3-popover" ap-expanded-aria="{% if block.settings.product_3.product_3_show %}true{% else %}false{% endif %}" style="opacity: 1;">
+                              <span class="visually-hidden">{{ block.settings.product_3.title }}</span>
+                          </button>
+                  
+                          <ap-elementopen id="block-{{ block.id }}-3-product" class="ap-lookbookshop__product ap-lookbookshop__product--reverse hd-phone" {% if block.settings.product_3.product_3_show %}open=""{% endif %}>
+                              <img class="ap-lookbookshop__product-image" loading="lazy" sizes="72px" alt="{{ block.settings.product_3.title }}" 
+                                  src="{{ block.settings.product_3.featured_media | image_url: width: product.featured_media.width }}" 
+                                  width="{{ block.settings.product_3.featured_media.width }}" height="{{ block.settings.product_3.featured_media.width }}">
+                              <div class="ap-lookbookshop__product-info">
+                                  <a href="/products/{{ block.settings.product_3.handle }}" class="ap-lookbookshop__product-title">{{ block.settings.product_3.title }}</a>
+                  
+                                  <div class="ap-lookbookshop__product-bottom-wrapper">
+                                      <span class="price">
+                                          <span class="visually-hidden">Sale price</span>{{ block.settings.product_3.price | money }}
+                                      </span>
+                                      <button is="toggle-button" class="ap-lookbookshop__product-link link text--subdued" ap-controlsaria="block-{{ block.id }}-3-drawer" ap-expanded-aria="{% if block.settings.product_3.product_3_show %}true{% else %}false{% endif %}">Quick view</button>
+                                  </div>
+                              </div>
+                          </ap-elementopen>
+                  
+                      </div>
+                  {% endif %}
+                  {% if block.settings.product_4 != null %}
+                      <div id="block-{{ block.id }}-4" class="ap-lookbookshop__product-wrapper">
+                          <button type="button" is="toggle-button" reveal="" class="ap-lookbookshop__dot tap-area hd-phone" ap-controlsaria="block-{{ block.id }}-4-product" ap-expanded-aria="{% if block.settings.product_4.product_4_show %}true{% else %}false{% endif %}" style="opacity: 1;">
+                              <span class="visually-hidden">{{ block.settings.product_4.title }}</span>
+                          </button>
+                    
+                          <button type="button" is="toggle-button" reveal="" class="ap-lookbookshop__dot tap-area hd-tablet-and-up" ap-controlsaria="block-{{ block.id }}-4-popover" ap-expanded-aria="{% if block.settings.product_4.product_4_show %}true{% else %}false{% endif %}" style="opacity: 1;">
+                              <span class="visually-hidden">{{ block.settings.product_4.title }}</span>
+                          </button>
+                    
+                          <ap-elementopen id="block-{{ block.id }}-4-product" class="ap-lookbookshop__product ap-lookbookshop__product--reverse hd-phone" {% if block.settings.product_4.product_4_show %}open=""{% endif %}>
+                              <img class="ap-lookbookshop__product-image" loading="lazy" sizes="72px" alt="{{ block.settings.product_4.title }}" 
+                                  src="{{ block.settings.product_4.featured_media | image_url: width: product.featured_media.width }}" 
+                                  width="{{ block.settings.product_4.featured_media.width }}" height="{{ block.settings.product_4.featured_media.width }}">
+                              <div class="ap-lookbookshop__product-info">
+                                  <a href="/products/{{ block.settings.product_4.handle }}" class="ap-lookbookshop__product-title">{{ block.settings.product_4.title }}</a>
+                    
+                                  <div class="ap-lookbookshop__product-bottom-wrapper">
+                                      <span class="price">
+                                          <span class="visually-hidden">Sale price</span>{{ block.settings.product_4.price | money }}
+                                      </span>
+                                      <button is="toggle-button" class="ap-lookbookshop__product-link link text--subdued" ap-controlsaria="block-{{ block.id }}-4-drawer" ap-expanded-aria="{% if block.settings.product_4.product_4_show %}true{% else %}false{% endif %}">Quick view</button>
+                                  </div>
+                              </div>
+                          </ap-elementopen>
+                    
+                      </div>
+                  {% endif %}
+                  {% if block.settings.product_5 != null %}
+                    <div id="block-{{ block.id }}-5" class="ap-lookbookshop__product-wrapper">
+                        <button type="button" is="toggle-button" reveal="" class="ap-lookbookshop__dot tap-area hd-phone" ap-controlsaria="block-{{ block.id }}-5-product" ap-expanded-aria="{% if block.settings.product_5.product_5_show %}true{% else %}false{% endif %}" style="opacity: 1;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
+                              <line x1="9.5" y1="2.18557e-08" x2="9.5" y2="5" stroke="#DE8A26" />
+                              <line x1="9.5" y1="14" x2="9.5" y2="19" stroke="#DE8A26" />
+                              <line x1="4.37114e-08" y1="9.5" x2="5" y2="9.5" stroke="#DE8A26" />
+                              <line x1="14" y1="9.5" x2="19" y2="9.5" stroke="#DE8A26" />
+                              <circle cx="9.5" cy="9.5" r="7" stroke="#DE8A26" />
+                              <circle cx="9.5" cy="9.5" r="2.5" fill="#DE8A26" />
+                            </svg>
+                            <span class="visually-hidden">{{ block.settings.product_5.title }}</span>
+                        </button>
+                  
+                        <button type="button" is="toggle-button" reveal="" class="ap-lookbookshop__dot tap-area hd-tablet-and-up" ap-controlsaria="block-{{ block.id }}-5-popover" ap-expanded-aria="{% if block.settings.product_5.product_5_show %}true{% else %}false{% endif %}" style="opacity: 1;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
+                              <line x1="9.5" y1="2.18557e-08" x2="9.5" y2="5" stroke="#DE8A26" />
+                              <line x1="9.5" y1="14" x2="9.5" y2="19" stroke="#DE8A26" />
+                              <line x1="4.37114e-08" y1="9.5" x2="5" y2="9.5" stroke="#DE8A26" />
+                              <line x1="14" y1="9.5" x2="19" y2="9.5" stroke="#DE8A26" />
+                              <circle cx="9.5" cy="9.5" r="7" stroke="#DE8A26" />
+                              <circle cx="9.5" cy="9.5" r="2.5" fill="#DE8A26" />
+                            </svg>
+                            <span class="visually-hidden">{{ block.settings.product_5.title }}</span>
+                        </button>
+                  
+                        <ap-elementopen id="block-{{ block.id }}-5-product" class="ap-lookbookshop__product ap-lookbookshop__product--reverse hd-phone" {% if block.settings.product_5.product_5_show %}open=""{% endif %}>
+                            <img class="ap-lookbookshop__product-image" loading="lazy" sizes="72px" alt="{{ block.settings.product_5.title }}" 
+                                src="{{ block.settings.product_5.featured_media | image_url: width: product.featured_media.width }}" 
+                                width="{{ block.settings.product_5.featured_media.width }}" height="{{ block.settings.product_5.featured_media.width }}">
+                            <div class="ap-lookbookshop__product-info">
+                                <a href="/products/{{ block.settings.product_5.handle }}" class="ap-lookbookshop__product-title">{{ block.settings.product_5.title }}</a>
+                  
+                                <div class="ap-lookbookshop__product-bottom-wrapper">
+                                    <span class="price">
+                                        <span class="visually-hidden">Sale price</span>{{ block.settings.product_5.price | money }}
+                                    </span>
+                                    <button is="toggle-button" class="ap-lookbookshop__product-link link text--subdued" ap-controlsaria="block-{{ block.id }}-5-drawer" ap-expanded-aria="{% if block.settings.product_5.product_5_show %}true{% else %}false{% endif %}">Quick view</button>
+                                </div>
+                            </div>
+                        </ap-elementopen>
+                  
+                    </div>
+                  {% endif %}
+                </div>
+
+                {% if block.settings.show_product_list %}
+                  <div class="block-product-list col-md-4 col-12">
+                    <div class="featured-collections lookbook-product">
+                      <ap-product-carousel reveal-on-scroll="" auto-play="" transition-type="sweep"
+                        class="product-carousel-content ap-product-carousel">
+                        <div class="ap-product-carousel__wrapper">
+                          {%- if block.settings.collection != blank -%}
+                          {% for product in block.settings.collection.products limit: block.settings.limit %}
+                          <product-carousel class="product-carousel" {% if forloop.index !=1 %}hidden="" {% endif %}>
+                            <div class="product-carousel-box" reveal-visibility="">
+                              {% render 'product-grid', product: product, show_rating: block.settings.show_rating %}
+                            </div>
+                          </product-carousel>
+                          {% endfor %}
+                          {%- else -%}
+                          <div class="product-items">
+                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                            {{ 'onboarding.product_title' | t }}
+                          </div>
+                          {%- endif -%}
+                  
+                        </div>
+                        <div class="ap-product-carousel__nav">
+                          <ap-pagedots class="lookbook__nav container">
+                            {% for product in block.settings.collection.products limit: block.settings.limit %}
+                            <button class="lookbook__progress-bar dots-nav__item tap-area"
+                              ap-currentaria="{% if forloop.index == 1 %}true{% else %}false{% endif %}">
+                              <span class="visually-hidden">{{ forloop.index }}</span>
+                            </button>
+                            {% endfor %}
+                          </ap-pagedots>
+                        </div>
+  
+                        <ap-button-nextprev class="ap-productlist__ap-nextprev d-none" style="--smallest-image-aspect-ratio: 1.0">
+                          <button class="ap-productlist__arrow ap-nextap-buttonprev ap-nextap-buttonprev--prev">
+                            <span class="visually-hidden">Previous</span>
+                            <svg focusable="false" width="17" height="14"
+                              class="icon icon--nav-arrow-left  icon--direction-aware " viewBox="0 0 17 14">
+                              <path d="M17 7H2M8 1L2 7l6 6" stroke="currentColor" stroke-width="2" fill="none">
+                              </path>
+                            </svg>
+                          </button>
+                          <button class="ap-productlist__arrow ap-nextap-buttonprev ap-nextap-buttonprev--next">
+                            <span class="visually-hidden">Next</span>
+                            <svg focusable="false" width="17" height="14"
+                              class="icon icon--nav-arrow-right  icon--direction-aware " viewBox="0 0 17 14">
+                              <path d="M0 7h15M9 1l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none">
+                              </path>
+                            </svg>
+                          </button>
+                        </ap-button-nextprev>
+                  
+                      </ap-product-carousel>
+                    </div>
+                  </div>
+                {% endif %}
+
+              </ap-lookbookshop-item>
+
+              {% if block.settings.product_1 != null %}
+                <ap-popoverquickbuy href="/products/{{ block.settings.product_1.handle }}?view=quick-buy-popover" id="block-{{ block.id }}-1-popover" class="popover popover--quick-buy"></ap-popoverquickbuy>
+                <ap-quickbuy href="/products/{{ block.settings.product_1.handle }}?view=quick-buy-drawer" id="block-{{ block.id }}-1-drawer" class="drawer drawer--large drawer--quick-buy"></ap-quickbuy>
+              {% endif %}
+              {% if block.settings.product_2 != null %}
+                <ap-popoverquickbuy href="/products/{{ block.settings.product_2.handle }}?view=quick-buy-popover" id="block-{{ block.id }}-1-popover" class="popover popover--quick-buy"></ap-popoverquickbuy>
+                <ap-quickbuy href="/products/{{ block.settings.product_2.handle }}?view=quick-buy-drawer" id="block-{{ block.id }}-1-drawer" class="drawer drawer--large drawer--quick-buy"></ap-quickbuy>
+              {% endif %}
+              {% if block.settings.product_3 != null %}
+                <ap-popoverquickbuy href="/products/{{ block.settings.product_3.handle }}?view=quick-buy-popover" id="block-{{ block.id }}-1-popover" class="popover popover--quick-buy"></ap-popoverquickbuy>
+                <ap-quickbuy href="/products/{{ block.settings.product_3.handle }}?view=quick-buy-drawer" id="block-{{ block.id }}-1-drawer" class="drawer drawer--large drawer--quick-buy"></ap-quickbuy>
+              {% endif %}
+              {% if block.settings.product_4 != null %}
+                <ap-popoverquickbuy href="/products/{{ block.settings.product_4.handle }}?view=quick-buy-popover" id="block-{{ block.id }}-1-popover" class="popover popover--quick-buy"></ap-popoverquickbuy>
+                <ap-quickbuy href="/products/{{ block.settings.product_4.handle }}?view=quick-buy-drawer" id="block-{{ block.id }}-1-drawer" class="drawer drawer--large drawer--quick-buy"></ap-quickbuy>
+              {% endif %}
+              {% if block.settings.product_5 != null %}
+                <ap-popoverquickbuy href="/products/{{ block.settings.product_5.handle }}?view=quick-buy-popover" id="block-{{ block.id }}-1-popover" class="popover popover--quick-buy"></ap-popoverquickbuy>
+                <ap-quickbuy href="/products/{{ block.settings.product_5.handle }}?view=quick-buy-drawer" id="block-{{ block.id }}-1-drawer" class="drawer drawer--large drawer--quick-buy"></ap-quickbuy>
+              {% endif %}
+
+            {%- endcase -%}
+          {% endfor %}
+      </div>
+
+      <div class="arrow-lookbook">
+          <ap-lookbookshopnav reveal="" class="ap-lookbookshop__nav">
+              <span class="ap-lookbookshop__label heading heading--small hd-pocket d-none">Define your style</span>
+              <div class="ap-lookbookshop__ap-button-nextprev">
+                  {% assign _size = section.blocks | size %}
+                  {% if _size > 1 %}
+                      <button class="ap-lookbookshop__arrow ap-nextap-buttonprev ap-nextap-buttonprev--prev" data-action="prev">
+                          <span class="visually-hidden">Previous</span>
+                          <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-left  icon--direction-aware " viewBox="0 0 17 14">
+                              <path d="M17 7H2M8 1L2 7l6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+                          </svg>
+                      </button>
+                  {% endif %}
+                  <span class="ap-lookbookshop__counter hd-pocket d-none">
+                      <span class="ap-lookbookshop__counter-page">
+                          <span class="ap-lookbookshop__counter-page-base">1</span>
+                          {% for block in section.blocks %}
+                            {%- case block.type -%}
+                              {%- when 'look_book_item' -%}
+                              <span class="ap-lookbookshop__counter-page-transition" {% if forloop.index != 1 %}hidden=""{% endif %}>{{ forloop.index }}</span>
+                            {%- endcase -%}
+                          {% endfor %}
+                      </span>
+                      <span class="ap-lookbookshop__counter-separator">/</span>
+                      <span class="ap-lookbookshop__counter-total">{{ _size }}</span>
+                  </span>
+                  {% if _size > 1 %}
+                      <button class="ap-lookbookshop__arrow ap-nextap-buttonprev ap-nextap-buttonprev--next" data-action="next">
+                          <span class="visually-hidden">Next</span>
+                          <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-right  icon--direction-aware " viewBox="0 0 17 14">
+                              <path d="M0 7h15M9 1l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+                          </svg>
+                      </button>
+                  {% endif %}
+              </div>
+          </ap-lookbookshopnav>
+      </div>
+    </ap-lookbookshop>
+
+  </div>
+</section>
+
+{% for block in section.blocks %}
+  {%- case block.type -%}
+  {%- when 'html' -%}
+    <div>
+      {{ block.settings.code }}
+    </div>
+  {%- endcase -%}
+{% endfor %}
+   
+{% schema %}
+{
+  "name": "Look Book",
+  "class": "shopify-section--ap-lookbookshop",
+  "tag": "section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Set Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "default": "#fff",
+      "label": "t:sections.all.background-color.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:sections.all.background_image.label"
+    },
+     {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.advanced-content.settings.heading_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.advanced-content.settings.text_color.label"
+    },
+    {
+      "type": "liquid",
+      "id": "sub_heading",
+      "default": "Sub heading",
+      "label": "Sub Heading"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.advanced-content.settings.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.all.tab_heading_size.label"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_description",
+      "label": "t:sections.advanced-content.settings.tab_description.label"
+    },
+    {
+      "type": "liquid",
+      "id": "btn_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "style_btn",
+      "label": "Style Button",
+      "default": "btn-base",
+      "options": [
+        {
+          "value": "btn-base",
+          "label": "Button Base"
+        },
+        {
+          "value": "btn-outline",
+          "label": "Button Out Line"
+        },
+        {
+          "value": "btn-line",
+          "label": "Button Line"
+        },
+        {
+          "value": "btn-line-black",
+          "label": "Button Line Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "t:sections.all.padding_mobile.label",
+      "info": "t:sections.all.padding_mobile.info"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "look_book_item",
+      "name": "Look Book Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_wrapper",
+          "label": "t:sections.all.image_wrapper.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_wrapper_tablet",
+          "label": "t:sections.all.image_wrapper_tablet.label"
+        },
+        {
+          "type": "header",
+          "content": "Product list settings"
+        },
+        {
+          "id": "show_product_list",
+          "type": "checkbox",
+          "label": "Show product list"
+        },
+        {
+          "id": "collection",
+          "type": "collection",
+          "label": "t:sections.all.collection.label"
+        },
+        {
+          "type": "range",
+          "id": "limit",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 10,
+          "label": "t:sections.all.limit.label"
+        },
+        {
+          "type": "header",
+          "content": "Product 1 settings"
+        },
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "t:sections.all.product_1.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "product_1_show",
+          "default": false,
+          "label": "t:sections.all.product_1_show.label"
+        },
+        {
+          "type": "range",
+          "id": "product_1_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_1_top.label"
+        },
+        {
+          "type": "range",
+          "id": "product_1_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_1_left.label"
+        },
+        {
+          "type": "range",
+          "id": "product_1_top_tablet",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_1_top_tablet.label"
+        },
+        {
+          "type": "range",
+          "id": "product_1_left_tablet",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_1_left_tablet.label"
+        },
+        {
+          "type": "header",
+          "content": "Product 2 settings"
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "t:sections.all.product_2.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "product_2_show",
+          "default": false,
+          "label": "t:sections.all.product_2_show.label"
+        },
+        {
+          "type": "range",
+          "id": "product_2_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_2_top.label"
+        },
+        {
+          "type": "range",
+          "id": "product_2_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_2_left.label"
+        },
+        {
+          "type": "range",
+          "id": "product_2_top_tablet",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_2_top_tablet.label"
+        },
+        {
+          "type": "range",
+          "id": "product_2_left_tablet",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_2_left_tablet.label"
+        },
+        {
+          "type": "header",
+          "content": "Product 3 settings"
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "t:sections.all.product_3.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "product_3_show",
+          "default": false,
+          "label": "t:sections.all.product_3_show.label"
+        },
+        {
+          "type": "range",
+          "id": "product_3_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_3_top.label"
+        },
+        {
+          "type": "range",
+          "id": "product_3_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_3_left.label"
+        },
+        {
+          "type": "range",
+          "id": "product_3_top_tablet",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_3_top_tablet.label"
+        },
+        {
+          "type": "range",
+          "id": "product_3_left_tablet",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_3_left_tablet.label"
+        },
+        {
+          "type": "header",
+          "content": "Product 4 settings"
+        },
+        {
+          "type": "product",
+          "id": "product_4",
+          "label": "t:sections.all.product_4.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "product_4_show",
+          "default": false,
+          "label": "t:sections.all.product_4_show.label"
+        },
+        {
+          "type": "range",
+          "id": "product_4_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_4_top.label"
+        },
+        {
+          "type": "range",
+          "id": "product_4_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_4_left.label"
+        },
+        {
+          "type": "range",
+          "id": "product_4_top_tablet",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_4_top_tablet.label"
+        },
+        {
+          "type": "range",
+          "id": "product_4_left_tablet",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_4_left_tablet.label"
+        },
+        {
+          "type": "header",
+          "content": "Product 5 settings"
+        },
+        {
+          "type": "product",
+          "id": "product_5",
+          "label": "t:sections.all.product_5.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "product_5_show",
+          "default": false,
+          "label": "t:sections.all.product_5_show.label"
+        },
+        {
+          "type": "range",
+          "id": "product_5_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_5_top.label"
+        },
+        {
+          "type": "range",
+          "id": "product_5_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_5_left.label"
+        },
+        {
+          "type": "range",
+          "id": "product_5_top_tablet",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_5_top_tablet.label"
+        },
+        {
+          "type": "range",
+          "id": "product_5_left_tablet",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "t:sections.all.product_5_left_tablet.label"
+        }
+      ]
+    },
+    {
+      "type": "html",
+      "name": "Custom HTML",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "code",
+          "label": "HTML",
+          "default": "<h2>Heading</h2>This text can be used to share information about your brand with customers."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Look Book",
+      "blocks": [
+        {
+          "type": "look_book_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

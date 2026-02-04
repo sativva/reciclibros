@@ -1,0 +1,117 @@
+.ap-navtabs__item-list {
+  box-shadow: none;
+  gap: 12px;
+  justify-content: end;
+}
+
+.ap-navtabs__item {
+  position: relative;
+  text-align: center;
+  padding: 3px 16px;
+  opacity: 1;
+  text-transform: uppercase;
+  color: var(--color-button-tab);
+  background-color: var(--bg-button-tab);
+}
+
+.ap-navtabs__item.p {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  text-transform: capitalize;
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: 1px solid rgb(var(--border-color));
+  background-color: transparent;
+}
+
+.ap-navtabs__item[ap-expanded-aria="true"],
+.ap-navtabs__item:hover {
+  color: var(--color-button-tab-active);
+  background-color: var(--bg-button-tab-active);
+  font-weight: 700;
+}
+
+.product-tab .ap-productlist__inner--scroller {
+  gap: 0;
+}
+
+.product-tab .ap-navtabs {
+  margin: 0 0 10px;
+}
+
+.product-tab,
+.ap-productlist {
+  margin: 0;
+}
+
+.product-tab {
+  overflow: hidden;
+}
+
+.product-tab .ap-productlist__ap-nextprev {
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+/* .product-tab .ap-productlist__arrow {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+} */
+
+.product-tab .ap-productlist {
+  overflow: unset;
+}
+
+/* PRODUCT TAB ROW */
+.product-tab-row .product-item__label-list,
+.product-tab-row .service-product,
+.product-tab-row .service-add-cart,
+.product-tab-row .type-product {
+  display: none;
+}
+.product-tab-row .product-item-wrapper {
+  align-items: start;
+  flex-direction: row;
+  padding: 20px;
+}
+.product-tab-row .product-item__image-wrapper {
+  max-width: 120px;
+  height: 120px;
+  width: 100%;
+  padding: 0;
+  margin-right: 20px;
+}
+.product-tab-row .product-item-meta {
+  padding: 0;
+}
+.product-tab-row .product-item__info {
+  flex: auto;
+}
+@media (max-width: 1199px) {
+  .product-tab .section__header {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 991px) {
+  .product-tab .ap-productlist__inner--scroller {
+    grid-auto-flow: column;
+  }
+}
+
+@media (max-width: 767px) {
+  .ap-navtabs__item-list {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 576px) {
+  .product-tab .section__header {
+    justify-content: center;
+  }
+  .ap-navtabs__position {
+    display: none;
+  }
+}

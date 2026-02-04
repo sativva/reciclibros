@@ -1,0 +1,49 @@
+{% liquid
+    assign ids = ''
+    if product.metafields.custom.upsell_products
+        assign ids = product.metafields.custom.upsell_products
+    else
+        assign count = 0
+        paginate product.collections[0].products by 50
+            for upsell_product in product.collections[0].products
+                if upsell_product.price > product.price
+                    assign count = count | plus: 1
+                    if count < 5
+                        if ids == ''
+                            assign ids = upsell_product.id
+                        else
+                            assign ids = ids | append: ',' | append: upsell_product.id
+                        endif
+                    endif
+                endif
+            endfor
+        endpaginate
+    endif
+%}
+{% if ids %}
+    <style>    
+        ap-upsell .jdgm-widget.jdgm-widget {
+            display: none;
+        }  
+        ap-upsell .product-price {
+            overflow: unset;
+        }   
+    </style>
+    <ap-upsell id="modal-productsell" data-id="{{ ids }}" section-id="{{ section.id }}" product-id="{{ product.id }}">
+        <div class="modal_bg"></div>
+        <div class="modal-product">
+            <button id="close">X</button>
+            <div class="modal-produt-content">
+                <p class="sell-promotion">
+                    <b>Upselling</b> is by far one of the best ways to boost sales in your ecommerce store. It doesn’t even
+                    require a lot of additional work! On average, <b>Upselling is considered to be 20 times more effective</b>
+                </p>
+                <div class="modal-product-list">
+                    {%- for upsell in predictive_search.resources.products limit : section.settings.upsell_limit -%}
+                        {% render 'product-grid', product: upsell %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </ap-upsell>
+{% endif %}

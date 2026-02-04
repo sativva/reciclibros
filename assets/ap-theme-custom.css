@@ -1,0 +1,393 @@
+.fs-u2 {
+  font-size: calc(var(--base-font-size) + 2px);
+}
+
+.fs-u4 {
+  font-size: calc(var(--base-font-size) + 4px);
+}
+
+.fs-u30 {
+  font-size: calc(var(--base-font-size) + 30px);
+}
+
+.fs-d2 {
+  font-size: calc(var(--base-font-size) - 2px);
+}
+
+.mx-10 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.mx-20 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.mx-30 {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+.mx-40 {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+.mx-50 {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.mb-7 {
+  margin-bottom: 7px!important;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.mt-d15 {
+  margin-top: -15px !important;
+}
+
+.mb-40 {
+  margin-bottom: 40px!important;
+}
+
+.mb-60 {
+  margin-bottom: 60px!important;
+}
+
+.mb-25 {
+  margin-bottom: 25px!important;
+}
+
+.mt-25 {
+  margin-bottom: 25px;
+}
+
+.mt-30 {
+  margin-top: 30px!important;
+}
+
+.mt-35 {
+  margin-top: 35px!important;
+}
+
+.mb-70 {
+  margin-bottom: 70px!important;
+}
+
+.mb-12 {
+  margin-bottom: 12px!important;
+}
+
+.mb-14 {
+  margin-bottom: 14px!important;
+}
+
+.mb-11 {
+  margin-bottom: 11px!important;
+}
+
+.mb-10 {
+  margin-bottom: 10px!important;
+}
+
+.mb-15 {
+  margin-bottom: 15px!important;
+}
+
+.mb-25 {
+  margin-bottom: 25px!important;
+}
+
+.mt-60 {
+  margin-top: 60px;
+}
+
+.mb-20 {
+  margin-bottom: 20px !important;
+}
+
+.mb-33 {
+  margin-bottom: 33px !important;
+}
+
+.mb-18 {
+  margin-bottom: 18px;
+}
+
+.mb-17 {
+  margin-bottom: 17px;
+}
+
+.mb-30 {
+  margin-bottom: 30px !important;
+}
+
+.mb-32 {
+  margin-bottom: 32px !important;
+}
+
+.mb-35 {
+  margin-bottom: 35px !important;
+}
+
+.mb-23 {
+  margin-bottom: 23px;
+}
+
+.mb-21 {
+  margin-bottom: 21px!important;
+}
+
+.mt-23 {
+  margin-top: 23px;
+}
+
+.mt-6 {
+  margin-top: 6px;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+.mb-56 {
+  margin-bottom: 56px;
+}
+
+.mr-20 {
+  margin-right: 20px !important;
+}
+
+.mt-20 {
+  margin-top: 20px !important;
+}
+
+.mt-40 {
+  margin-top: 40px !important;
+}
+
+.mt-38 {
+  margin-top: 38px !important;
+}
+
+.ml-20 {
+  margin-left: 20px !important;
+}
+
+.py-20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.pb-11 {
+  padding-bottom: 11px!important;
+}
+
+.primary {
+  color: var(--primary);
+}
+
+.font-heading {
+  font-family: var(--hd-font-family);
+}
+
+.font-body {
+  font-family: var(--body-font-family);
+}
+
+.p {
+  font-family: var(--body-font-family);
+  font-weight: var(--text-font-weight);
+  font-style: var(--text-font-style);
+  font-size: var(--base-font-size);
+  line-height: 1.7142857143;
+  color: rgb(var(--color-body));
+}
+
+.font-custom {
+  font-family: var(--custom-font-family);
+  font-style: italic;
+}
+
+.text-none {
+  text-transform: none!important;
+}
+
+/* ICON */
+.fa-check::before {
+  content: '\f00c';
+}
+.fa-circle-plus::before {
+  content: '\f055';
+}
+.fa-circle-minus::before {
+  content: '\f056';
+}
+.fa-chevron-left::before {
+  content: '\f053';
+}
+.fa-chevron-right::before {
+  content: '\f054';
+}
+.fa-xmark::before {
+  content: '\f00d';
+}
+
+.fa-facebook::before {
+  content: "\f39e";
+}
+.fa-twitter::before {
+  content: "\f099";
+}
+.fa-youtube::before {
+  content: "\f167";
+}
+.fa-google-plus::before {
+  content: "\f0d5";
+}
+.fa-pinterest::before {
+  content: "\f0d2";
+}
+.fa-phone::before {
+  content: "\f095";
+}
+
+@media (min-width: 1200px) {
+  /* XL */
+  .px-xl-60 {
+    padding-left: 60px !important;
+    padding-right: 60px !important;
+  }
+}
+@media (min-width: 992px) {
+  /* LG  */
+}
+@media (min-width: 768px) {
+  /* MD */
+  .mb-md-10 {
+    margin-bottom: 10px;
+  }
+  .mb-md-15 {
+    margin-bottom: 15px;
+  }
+}
+@media (min-width: 577px) {
+  /* SM */
+  .p-sm-30 {
+    padding: 30px;
+  }
+.book-specs {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.book-specs td {
+  padding: 12px 16px;
+  vertical-align: top;
+}
+
+.book-specs tr:nth-child(odd) {
+  background-color: #f3f3f3;
+}
+
+.book-specs strong {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.icon-discount {
+  width: 1em;
+  height: 1em;
+}
+.discounts__discount {
+  display: flex;
+  align-items: center;   /* 🔥 alignement vertical parfait */
+  gap: 6px;              /* espace entre icône et texte */
+  font-size: 13px;
+}
+/* Désactiver les majuscules forcées */
+* {
+  text-transform: none !important;
+}
+/* Bouton "Cart" du mini cart : gris + souligné */
+.mini-cart .cart-button {
+  background: transparent !important;
+  color: #9ca3af; /* gris doux */
+  text-decoration: underline;
+  border: none;
+  box-shadow: none;
+}
+
+/* Hover */
+.mini-cart .cart-button:hover {
+  color: #6b7280; /* gris un peu plus foncé */
+  text-decoration: underline;
+}
+a.cart-button {
+  display: block;
+  text-align: center;
+  padding: 12px 0;
+}
+/* Add to Cart Product Page 50% */
+.ap-productform__buy-buttons--single {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.ap-productform__buy-buttons--single .ap-productform__add-button {
+  grid-column: 1 / 2;
+}
+
+/*Aligner wishlist page produit à gauche*/
+.single_variation_wrap {
+  display: flex;
+  justify-content: flex-start !important;
+}
+/* Bouton AGOTADO - état désactivé */
+button[disabled],
+button[aria-disabled="true"] {
+  background-color: #F2F2F2 !important;
+  color: #000000 !important;
+  cursor: not-allowed;
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+/* Aucune interaction possible */
+button[disabled]:hover,
+button[disabled]:active,
+button[disabled]:focus,
+button[disabled]:focus-visible,
+button[aria-disabled="true"]:hover,
+button[aria-disabled="true"]:active,
+button[aria-disabled="true"]:focus,
+button[aria-disabled="true"]:focus-visible {
+  background-color: #F2F2F2 !important;
+  color: #000000 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Supprime aussi les effets via pseudo-éléments */
+button[disabled]::before,
+button[disabled]::after,
+button[aria-disabled="true"]::before,
+button[aria-disabled="true"]::after {
+  display: none !important;
+}
+/* Supprime visuellement compare */
+.btn-compare,
+ap-comparebutton {
+  display: none !important;
+}
+/* Supprime visuellement pastille sold out*/
+.label--subdued {
+  display: none !important;
+}
+/* Supprime visuellement titre blog*/
+.ap-linkbar__title {
+  display: none!important
+}

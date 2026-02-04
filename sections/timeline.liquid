@@ -1,0 +1,317 @@
+<style>
+    #shopify-section-{{ section.id }} {
+        --heading-color: {{ section.settings.heading_color | color_extract: 'red' }}, {{ section.settings.heading_color | color_extract: 'green' }}, {{ section.settings.heading_color | color_extract: 'blue' }};
+        --color-body: {{ section.settings.text_color | color_extract: 'red' }}, {{ section.settings.text_color | color_extract: 'green' }}, {{ section.settings.text_color | color_extract: 'blue' }};
+        --ap-nextap-buttonprev-background: {{ section.settings.prev_next_button_background | color_extract: 'red' }}, {{ section.settings.prev_next_button_background | color_extract: 'green' }}, {{ section.settings.prev_next_button_background | color_extract: 'blue' }};
+        --ap-nextap-buttonprev-color: {{ section.settings.prev_next_button_color | color_extract: 'red' }}, {{ section.settings.prev_next_button_color | color_extract: 'green' }}, {{ section.settings.prev_next_button_color | color_extract: 'blue' }};
+  
+      --section-background: {{ section.settings.section_background }};
+      --section-items-count: 4;
+    }
+
+    #shopify-section-{{ section.id }} {
+      margin-bottom: 60px;
+    }
+
+    .shopify-section--timeline .vertical-breather {
+      padding-top: 0;
+    }
+
+    @media (max-width: 576px) {
+      .shopify-section--timeline .section__header {
+        margin-bottom: 0;
+      }
+    }
+
+    .timeline__content {
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }    
+  
+    #shopify-section-{{ section.id }} .timeline__item {
+      --heading-color: {{ section.settings.timeline_heading_color | color_extract: 'red' }}, {{ section.settings.timeline_heading_color | color_extract: 'green' }}, {{ section.settings.timeline_heading_color | color_extract: 'blue' }};
+      --color-body: {{ section.settings.timeline_text_color | color_extract: 'red' }}, {{ section.settings.timeline_text_color | color_extract: 'green' }}, {{ section.settings.timeline_text_color | color_extract: 'blue' }};
+      --primary-button-background: {{ section.settings.timeline_button_background | color_extract: 'red' }}, {{ section.settings.timeline_button_background | color_extract: 'green' }}, {{ section.settings.timeline_button_background | color_extract: 'blue' }};
+      --primary-button-text-color: {{ section.settings.timeline_button_color | color_extract: 'red' }}, {{ section.settings.timeline_button_color | color_extract: 'green' }}, {{ section.settings.timeline_button_color | color_extract: 'blue' }};
+      --section-box-background: {{ section.settings.timeline_background | color_extract: 'red' }}, {{ section.settings.timeline_background | color_extract: 'green' }}, {{ section.settings.timeline_background | color_extract: 'blue' }};
+    }
+    .timeline .section__header {
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+
+  {% render 'section-style' %}
+    
+  <section data-section-id="{{ section.id }}" data-section-type="timeline" class="section section--flush timeline">
+    <div class="section__color-wrapper vertical-breather">
+        <header class="section__header container text-container">
+            <h2 class="heading {{ section.settings.description_size }}">{{ section.settings.description }}</h2>
+            <h3 class="heading h{{ section.settings.heading_size }}">{{ section.settings.heading }}</h3>
+        </header>
+  
+        <ap-timeline class="timeline">
+            <div class="timeline__inner">
+                <ap-button-nextprev class="timeline__ap-button-nextprev ap-button-nextprev hd-pocket">
+                    <button class="timeline__arrow ap-nextap-buttonprev ap-nextap-buttonprev--prev" aria-label="Previous" disabled="">
+                        <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-left  icon--direction-aware " viewBox="0 0 17 14">
+                        <path d="M17 7H2M8 1L2 7l6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+                        </svg>
+                    </button>
+  
+                    <button class="timeline__arrow ap-nextap-buttonprev ap-nextap-buttonprev--next" aria-label="Next">
+                        <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-right  icon--direction-aware " viewBox="0 0 17 14">
+                        <path d="M0 7h15M9 1l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+                        </svg>
+                    </button>
+                </ap-button-nextprev>
+          
+                <div class="timeline__list-wrapper hide-scrollbar">
+                    <div class="container">
+                        <div class="timeline__list">
+                            {% for block in section.blocks %}
+                                <div id="block-{{ block.id }}" class="timeline__item" {% if forloop.index != 1 %}hidden=""{% endif %}>
+                                    <div class="timeline__image-wrapper">
+                                        <img class="timeline__image" loading="lazy" sizes="(max-width: 740px) 81vw, 490px" alt="" 
+                                            src="{{ block.settings.image | image_url: width: block.settings.image.width }}" 
+                                            data-srcset="{{ block.settings.image | image_url: width: 400 }} 400w, {{ block.settings.image | image_url: width: 500 }} 500w, {{ block.settings.image | image_url: width: 600 }} 600w, {{ block.settings.image | image_url: width: 700 }} 700w, {{ block.settings.image | image_url: width: 800 }} 800w, {{ block.settings.image | image_url: width: 900 }} 900w, {{ block.settings.image | image_url: width: 1000 }} 1000w, {{ block.settings.image | image_url: width: 1200 }} 1200w, {{ block.settings.image | image_url: width: 1400 }} 1400w" 
+                                            width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}">
+                                    </div>
+                
+                                    <div class="timeline__content-wrapper timeline__content-wrapper--bottom">
+                                        <div class="timeline__content text-container">
+                                            <h2 class="heading h{{ section.settings.timeline_heading_size }}">{{ block.settings.heading }}</h2>
+                                            <p>{{ block.settings.content }}</p>
+                                            {% if block.settings.read_more != blank and block.settings.link != blank %}
+                                                <div class="button-wrapper">
+                                                    <a href="{{ block.settings.link }}" class="button button--primary">{{ block.settings.read_more }}</a>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="timeline__nav-wrapper hide-scrollbar">
+                    <div class="timeline__nav-scroller">
+                        <ap-pagedots ap-selectedalign="" class="timeline__nav">
+                        <span class="timeline__progress-bar progress-bar" style="--divider: 4; --transform: 0%;"></span>
+                        {% for block in section.blocks %}
+                            <button class="timeline__nav-item" {% if forloop.index == 1 %}ap-currentaria="true"{% else %}ap-currentaria="false"{% endif %}>
+                                <span class="heading heading--small">{{ block.settings.year }}</span>
+                            </button>
+                        {% endfor %}
+                        </ap-pagedots>
+                    </div>
+                </div>
+            </div>
+        </ap-timeline>
+    </div>
+</section>
+  
+  
+
+{% schema %}
+{
+  "name": "Timeline",
+  "tag": "section",
+  "class": "shopify-section--timeline",
+  "settings": [
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "default": "#ffffff",
+      "label": "t:sections.all.section_background.label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Testimonial",
+      "label": "t:sections.all.heading.label"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.all.heading_color.label"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "t:sections.all.description.label"
+    },
+    {
+      "type": "select",
+      "id": "description_size",
+      "options": [
+        {
+          "value": "heading--xxsmall",
+          "label": "t:sections.all.description_size.options__1.label"
+        },
+        {
+          "value": "heading--xsmall",
+          "label": "t:sections.all.description_size.options__2.label"
+        },
+        {
+          "value": "heading--small",
+          "label": "t:sections.all.description_size.options__3.label"
+        },
+        {
+          "value": "",
+          "label": "t:sections.all.description_size.options__4.label"
+        },
+        {
+          "value": "heading--large",
+          "label": "t:sections.all.description_size.options__5.label"
+        }
+      ],
+      "default": "",
+      "label": "t:sections.all.description_size.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.all.text_color.label"
+    },
+    {
+      "type": "color",
+      "id": "prev_next_button_background",
+      "default": "#FFFFFF",
+      "label": "t:sections.all.prev_next_button_background.label"
+    },
+    {
+      "type": "color",
+      "id": "prev_next_button_color",
+      "default": "#282828",
+      "label": "t:sections.all.prev_next_button_color.label"
+    },
+    {
+      "type": "header",
+      "content": "Timeline settings"
+    },
+    {
+      "type": "color",
+      "id": "timeline_heading_color",
+      "default": "#282828",
+      "label": "t:sections.all.timeline_heading_color.label"
+    },
+    {
+      "type": "range",
+      "id": "timeline_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 5,
+      "label": "t:sections.all.timeline_heading_size.label"
+    },
+    {
+      "type": "color",
+      "id": "timeline_text_color",
+      "default": "#282828",
+      "label": "t:sections.all.timeline_text_color.label"
+    },
+    {
+      "type": "color",
+      "id": "timeline_button_background",
+      "default": "#282828",
+      "label": "t:sections.all.timeline_button_background.label"
+    },
+    {
+      "type": "color",
+      "id": "timeline_button_color",
+      "default": "#F5F5F5",
+      "label": "t:sections.all.timeline_button_color.label"
+    },
+    {
+      "type": "color",
+      "id": "timeline_background",
+      "default": "#ffffff",
+      "label": "t:sections.all.timeline_background.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline",
+      "name": "timeline",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.all.image.label"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Heading",
+          "label": "t:sections.all.heading.label"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "default": "timeline content",
+          "label": "t:sections.all.content.label"
+        },
+        {
+          "type": "text",
+          "id": "year",
+          "default": "Year",
+          "label": "Year"
+        },
+        {
+          "type": "text",
+          "id": "read_more",
+          "label": "t:sections.all.read_more.label",
+          "default": "Read more"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Timeline",
+      "blocks": [
+        {
+          "type": "timeline"
+        },
+        {
+          "type": "timeline"
+        },
+        {
+          "type": "timeline"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

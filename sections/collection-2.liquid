@@ -1,0 +1,873 @@
+{{ 'collection-2.css' | asset_url | stylesheet_tag }}
+{% render 'section-style' %}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    --heading-color: {{ section.settings.heading_color | color_extract: 'red' }}, {{ section.settings.heading_color | color_extract: 'green' }}, {{ section.settings.heading_color | color_extract: 'blue' }};
+    --color-body: {{ section.settings.text_color | color_extract: 'red' }}, {{ section.settings.text_color | color_extract: 'green' }}, {{ section.settings.text_color | color_extract: 'blue' }};
+    --ap-nextap-buttonprev-background: var(--color-body);
+    --ap-nextap-buttonprev-color: var(--section-background);
+  }
+  {% for block in section.blocks %}
+    #block-{{ block.id }}-{{ forloop.index }} {
+      --section-block-overlay: {{ block.settings.overlay | color_extract: 'red' }}, {{ block.settings.overlay | color_extract: 'green' }}, {{ block.settings.overlay | color_extract: 'blue' }};
+      --section-block-overlay-opacity: {{ block.settings.overlay_opacity | divided_by: 10.0 }};
+    }
+  {% endfor %}
+
+  #shopify-section-{{ section.id }} .list-collections__item-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    padding: {{ section.settings.padding_inner }};
+    transform: none;
+  }
+
+  #shopify-section-{{ section.id }} .heading.count {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    padding: 4px 16px;
+    background-color: var(--primary);
+    display: inline-block;
+    border-radius: 8px;
+    margin: 0 0 10px;
+  }
+
+  #shopify-section-{{ section.id }} h2.heading.h5 {
+    transition: all .4s;
+  }
+
+  #shopify-section-{{ section.id }} .list-collections__item:hover h2.heading.h5 {
+    border-bottom: 1px solid rgb(var(--heading-color));
+    padding-bottom: 6px;
+  }
+
+  #shopify-section-{{ section.id }} .list-collections__item-image-wrapper {
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    #shopify-section-{{ section.id }} .list-collections__item-info {
+      padding: 20px;
+    }
+  }
+
+{% endstyle %}
+
+<section class="section section--flush collection-2">   
+  <ap-collectionlist reveal-on-scroll="" class="list-collections list-collections--collage ap-object-loaded">
+    <div class="{{ section.settings.setwidthout }}">
+
+      {% render 'section-heading' %}
+
+      <div class="collection-2-content row">
+
+        {%-liquid
+          assign position_text = section.settings.position_text
+
+          case position_text
+            when 'top-left'
+            assign positiontxt = 'align-items-start justify-content-start'
+            when 'top-center'
+            assign positiontxt = 'align-items-center justify-content-start'
+            when 'top-right'
+            assign positiontxt = 'align-items-end justify-content-start'
+            when 'mid-left'
+            assign positiontxt = 'align-items-start justify-content-center'
+            when 'mid-center'
+            assign positiontxt = 'align-items-center justify-content-center'
+            when 'mid-right'
+            assign positiontxt = 'align-items-end justify-content-center'
+            when 'bot-left'
+            assign positiontxt = 'align-items-start justify-content-end'
+            when 'bot-center'
+            assign positiontxt = 'align-items-center justify-content-end'
+            when 'bot-right'
+            assign positiontxt = 'align-items-end justify-content-end'
+            else 
+            assign positiontxt = 'align-items-end justify-content-start'
+          endcase
+        -%}
+
+        {% for block in section.blocks %}
+          {%- case block.settings.width -%}
+            {%- when '25%' -%}
+            {%- assign block_width = 'col-lg-3 col-md-6 col-12' -%}
+            {%- when '28%' -%}
+            {%- assign block_width = 'col-lg-28 col-md-6 col-12 mb-30' -%}
+            {%- when '33%' -%}
+            {%- assign block_width = 'col-xl-4 col-lg-4 col-12' -%}
+            {%- when '44%' -%}
+            {%- assign block_width = 'col-lg-44 col-md-6 col-12 mb-30' -%}
+            {%- when '50%' -%}
+            {%- assign block_width = 'col-lg-6 col-md-12 col-12' -%}
+            {%- when '66%' -%}
+            {%- assign block_width = 'col-xl-8 col-lg-66 col-12' -%}
+            {%- when '100%' -%}
+            {%- assign block_width = 'col-12' -%}
+            {%- endcase -%}
+            <div class="{{ block_width }} {{ block.settings.class }}">
+              {% case block.type %}
+
+              {%- when 'collection' -%}
+              {% liquid
+                assign _link = block.settings.collection.url
+              %}
+              <div class="collection-1-row h-100">
+                <a id="block-{{ block.id }}-{{ forloop.index }}" href="{{ _link }}" class="list-collections__item has-overlay image-zoom">
+                  <div class="list-collections__item-image-wrapper" style="padding-top:{{ 1 | divided_by: block.settings.featured_image.aspect_ratio | times: 100 }}%;">
+                    {% if block.settings.featured_image != blank %}
+                      <img class="list-collections__item-image" reveal="" loading="lazy" 
+                        sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                        alt="" 
+                        src="{%- if block.settings.featured_image.width >= 3000 -%}{{ block.settings.featured_image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                          {{ block.settings.featured_image | image_url }} {{ block.settings.featured_image.width }}w"
+                        src="{{ block.settings.featured_image | image_url: width: 1500 }}"
+                        height="{{ block.settings.featured_image.height }}"
+                        width="{{ block.settings.featured_image.width }}">
+                    {% else %}
+                      <div class="list-collections__item-image">
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                      </div>
+                    {% endif %}
+                  </div>
+                  <div class="list-collections__item-info d-flex flex-column {{ positiontxt }}">
+
+                    <div class="text-{{ section.settings.text_align_item }}">
+                      {% if section.settings.show_count %}
+                        <span class="heading count" reveal="">{{ block.settings.collection.products_count | append: ' ' | append: ' products' }}</span>
+                      {% endif %}
+                      <h2 class="heading h{{ section.settings.heading_size_range }}" reveal="">
+                        {% if block.settings.heading != blank %}
+                          <span>
+                            {{- block.settings.heading -}}
+                          </span>
+                        </h2>
+                      {% else %}
+                        {{- block.settings.collection.title | escape -}}</p>
+                      {% endif %}
+                    </div>
+
+                  </div>
+                </a>
+              </div>
+
+              {%- when 'collection-2-row' -%}
+                {% liquid
+                assign _link = block.settings.collection.url
+                assign _link2 = block.settings.collection2.url
+              %}
+              <div class="collecton-2-row">
+                <div class="collection-top">
+                  <a id="block-{{ block.id }}-{{ forloop.index }}" href="{{ _link }}" class="list-collections__item has-overlay image-zoom mb-30">
+                    <div class="list-collections__item-image-wrapper">
+                      {% if block.settings.featured_image != blank %}
+                        <img class="list-collections__item-image" reveal="" loading="lazy" 
+                          sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                          alt="" 
+                          src="{{ block.settings.featured_image | image_url: width: block.settings.featured_image.width }}" 
+                          data-srcset="{%- if block.settings.featured_image.width >= 3000 -%}{{ block.settings.featured_image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                            {{ block.settings.featured_image | image_url }} {{ block.settings.featured_image.width }}w"
+                          src="{{ block.settings.featured_image | image_url: width: 1500 }}"
+                          height="{{ block.settings.featured_image.height }}"
+                          width="{{ block.settings.featured_image.width }}">
+                      {% else %}
+                        <div class="list-collections__item-image">
+                          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                        </div>
+                      {% endif %}
+                    </div>
+                    <div class="list-collections__item-info d-flex flex-column {{ positiontxt }}">
+
+                      <div class="text-{{ section.settings.text_align_item }}">
+                        {% if section.settings.show_count %}
+                          <span class="heading count" reveal="">{{ block.settings.collection.products_count | append: ' ' | append: ' products' }}</span>
+                        {% endif %}
+                        <h2 class="heading  h{{ section.settings.heading_size_range }}" reveal="">
+                          {% if block.settings.heading != blank %}
+                            <span>
+                              {{- block.settings.heading -}}
+                            </span>
+                        </h2>
+                        {% else %}
+                          {{- block.settings.collection.title | escape -}}</p>
+                        {% endif %}
+                      </div>
+
+                    </div>
+                  </a>
+                </div>
+                <div class="collection-bot">
+                  <a id="block-{{ block.id }}-{{ forloop.index }}" href="{{ _link2 }}" class="list-collections__item has-overlay image-zoom mb-30">
+                    <div class="list-collections__item-image-wrapper">
+                      {% if block.settings.featured_image2 != blank %}
+                        <img class="list-collections__item-image" reveal="" loading="lazy" 
+                          sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                          alt="" 
+                          src="{{ block.settings.featured_image2 | image_url: width: block.settings.featured_image2.width }}" 
+                          data-srcset="{%- if block.settings.featured_image2.width >= 3000 -%}{{ block.settings.featured_image2 | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                            {{ block.settings.featured_image2 | image_url }} {{ block.settings.featured_image2.width }}w"
+                          src="{{ block.settings.featured_image2 | image_url: width: 1500 }}"
+                          height="{{ block.settings.featured_image2.height }}"
+                          width="{{ block.settings.featured_image2.width }}">
+                      {% else %}
+                        <div class="list-collections__item-image">
+                          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                        </div>
+                      {% endif %}
+                    </div>
+                    <div class="list-collections__item-info d-flex flex-column {{ positiontxt }}">
+
+                      <div class="text-{{ section.settings.text_align_item }}">
+                        {% if section.settings.show_count %}
+                          <span class="heading count" reveal="">{{ block.settings.collection2.products_count | append: ' ' | append: ' products' }}</span>
+                        {% endif %}
+                        <h2 class="heading  h{{ section.settings.heading_size_range }}" reveal="">
+                          {% if block.settings.heading2 != blank %}
+                          <span>
+                            {{- block.settings.heading2 -}}
+                          </span>
+                          </h2>
+                        {% else %}
+                          {{- block.settings.collection2.title | escape -}}</p>
+                        {% endif %}
+                      </div>
+
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              {%- when 'collection-row-2' -%}
+              {% liquid
+                assign _link = block.settings.collection.url
+                assign _link2 = block.settings.collection2.url
+                assign _link3 = block.settings.collection3.url
+              %}
+              <div class="collection-row-2">
+                <div class="collection-top">
+                  <a id="block-{{ block.id }}-{{ forloop.index }}" href="{{ _link }}" class="list-collections__item has-overlay image-zoom mb-30">
+                    <div class="list-collections__item-image-wrapper">
+                      {% if block.settings.featured_image != blank %}
+                        <img class="list-collections__item-image" reveal="" loading="lazy" 
+                          sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                          alt="" 
+                          src="{{ block.settings.featured_image | image_url: width: block.settings.featured_image.width }}" 
+                          data-srcset="{%- if block.settings.featured_image.width >= 3000 -%}{{ block.settings.featured_image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                            {{ block.settings.featured_image | image_url }} {{ block.settings.featured_image.width }}w"
+                          src="{{ block.settings.featured_image | image_url: width: 1500 }}"
+                          height="{{ block.settings.featured_image.height }}"
+                          width="{{ block.settings.featured_image.width }}">
+                      {% else %}
+                        <div class="list-collections__item-image">
+                          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                        </div>
+                      {% endif %}
+                    </div>
+                    <div class="list-collections__item-info d-flex flex-column {{ positiontxt }}">
+
+                      <div class="text-{{ section.settings.text_align_item }}">
+                        {% if section.settings.show_count %}
+                          <span class="heading count" reveal="">{{ block.settings.collection.products_count | append: ' ' | append: ' products' }}</span>
+                        {% endif %}
+                        <h2 class="heading  h{{ section.settings.heading_size_range }}" reveal="">
+                          {% if block.settings.heading != blank %}
+                            <span>
+                              {{- block.settings.heading -}}
+                            </span>
+                        </h2>
+                        {% else %}
+                          {{- block.settings.collection.title | escape -}}</p>
+                        {% endif %}
+                      </div>
+
+                    </div>
+                  </a>
+                </div>
+                <div class="collection-bot">
+                  <div class="collection-bot-left">
+                    <a id="block-{{ block.id }}-{{ forloop.index }}" href="{{ _link2 }}" class="list-collections__item has-overlay image-zoom mb-30">
+                      <div class="list-collections__item-image-wrapper">
+                        {% if block.settings.featured_image2 != blank %}
+                          <img class="list-collections__item-image" reveal="" loading="lazy" 
+                            sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                            alt="" 
+                            src="{{ block.settings.featured_image2 | image_url: width: block.settings.featured_image2.width }}" 
+                            data-srcset="{%- if block.settings.featured_image2.width >= 3000 -%}{{ block.settings.featured_image2 | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                              {{ block.settings.featured_image2 | image_url }} {{ block.settings.featured_image2.width }}w"
+                            src="{{ block.settings.featured_image2 | image_url: width: 1500 }}"
+                            height="{{ block.settings.featured_image2.height }}"
+                            width="{{ block.settings.featured_image2.width }}">
+                        {% else %}
+                          <div class="list-collections__item-image">
+                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                          </div>
+                        {% endif %}
+                      </div>
+                      <div class="list-collections__item-info d-flex flex-column {{ positiontxt }}">
+
+                        <div class="text-{{ section.settings.text_align_item }}">
+                          {% if section.settings.show_count %}
+                            <span class="heading count" reveal="">{{ block.settings.collection2.products_count | append: ' ' | append: ' products' }}</span>
+                          {% endif %}
+                          <h2 class="heading  h{{ section.settings.heading_size_range }}" reveal="">
+                            {% if block.settings.heading2 != blank %}
+                            <span>
+                              {{- block.settings.heading2 -}}
+                            </span>
+                            </h2>
+                          {% else %}
+                            {{- block.settings.collection2.title | escape -}}</p>
+                          {% endif %}
+                        </div>
+
+                      </div>
+                    </a>
+                  </div>
+                  <div class="collection-bot-right">
+                    <a id="block-{{ block.id }}-{{ forloop.index }}" href="{{ _link3 }}" class="list-collections__item has-overlay image-zoom mb-30">
+                      <div class="list-collections__item-image-wrapper">
+                        {% if block.settings.featured_image3 != blank %}
+                          <img class="list-collections__item-image" reveal="" loading="lazy" 
+                            sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                            alt="" 
+                            src="{{ block.settings.featured_image3 | image_url: width: block.settings.featured_image3.width }}" 
+                            data-srcset="{%- if block.settings.featured_image3.width >= 3000 -%}{{ block.settings.featured_image3 | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                              {{ block.settings.featured_image3 | image_url }} {{ block.settings.featured_image3.width }}w"
+                            src="{{ block.settings.featured_image3 | image_url: width: 1500 }}"
+                            height="{{ block.settings.featured_image3.height }}"
+                            width="{{ block.settings.featured_image3.width }}">
+                        {% else %}
+                          <div class="list-collections__item-image">
+                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                          </div>
+                        {% endif %}
+                      </div>
+                      <div class="list-collections__item-info d-flex flex-column {{ positiontxt }}">
+
+                        <div class="text-{{ section.settings.text_align_item }}">
+                          {% if section.settings.show_count %}
+                            <span class="heading count" reveal="">{{ block.settings.collection3.products_count | append: ' ' | append: ' products' }}</span>
+                          {% endif %}
+                          <h2 class="heading  h{{ section.settings.heading_size_range }}" reveal="">
+                            {% if block.settings.heading3 != blank %}
+                            <span>
+                              {{- block.settings.heading3 -}}
+                            </span>
+                            </h2>
+                          {% else %}
+                            {{- block.settings.collection3.title | escape -}}</p>
+                          {% endif %}     
+                        </div>
+
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {% endcase %}
+            </div>
+
+        {% endfor %}
+      </div>
+    </div>
+  </ap-collectionlist>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.collection-2.name",
+  "tag": "section",
+  "class": "section section-collection-2",
+  "max_blocks": 15,
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Set Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "default": "#ffffff",
+      "label": "t:sections.all.background-color.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:sections.all.background_image.label"
+    },
+    {
+      "type": "header",
+      "content": "Margin & Padding"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "t:sections.all.padding_mobile.label",
+      "info": "t:sections.all.padding_mobile.info"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.advanced-content.settings.heading_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.advanced-content.settings.text_color.label"
+    },
+    {
+      "type": "liquid",
+      "id": "sub_heading",
+      "default": "Sub heading",
+      "label": "Sub Heading"
+    },
+    {
+      "type": "liquid",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.advanced-content.settings.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.advanced-content.settings.tab_heading_size.label"
+    },
+    {
+      "type": "text",
+      "id": "tab_description",
+      "label": "t:sections.advanced-content.settings.tab_description.label"
+    },
+    {
+      "type": "liquid",
+      "id": "btn_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "style_btn",
+      "label": "Style Button",
+      "default": "btn-base",
+      "options": [
+        {
+          "value": "btn-base",
+          "label": "Button Base"
+        },
+        {
+          "value": "btn-outline",
+          "label": "Button Out Line"
+        },
+        {
+          "value": "btn-line",
+          "label": "Button Line"
+        },
+        {
+          "value": "btn-line-black",
+          "label": "Button Line Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_align_item",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+      "type": "header",
+      "content": "Setting item"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_count",
+      "label": "Show Count"
+    },
+    {
+      "type": "text",
+      "id": "padding_inner",
+      "label": "Padding inner",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "select",
+      "id": "position_text",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "Top Left"
+        },
+        {
+          "value": "top-center",
+          "label": "Top Center"
+        },
+        {
+          "value": "top-right",
+          "label": "Top Right"
+        },
+        {
+          "value": "mid-left",
+          "label": "Midle Left "
+        },
+        {
+          "value": "mid-center",
+          "label": "Midle Center "
+        },
+        {
+          "value": "mid-right",
+          "label": "Midle Right "
+        },
+        {
+          "value": "bot-left",
+          "label": "Bottom Left "
+        },
+        {
+          "value": "bot-center",
+          "label": "Bottom Center "
+        },
+        {
+          "value": "bot-right",
+          "label": "Bottom Right "
+        }
+      ],
+      "default": "mid-center",
+      "label": "Text Position"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text align"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_range",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 1,
+      "label": "t:sections.all.heading_size_range.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width",
+          "default": "50%",
+          "options": [
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "28%",
+              "label": "28%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "44%",
+              "label": "44%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "t:sections.all.collection.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "featured_image",
+          "label": "t:sections.all.featured_image.label"
+        },
+        {
+          "type": "liquid",
+          "id": "heading",
+          "label": "t:sections.all.heading.label"
+        }
+      ]
+    },
+    {
+      "type": "collection-2-row",
+      "name": "Collection 2 Row",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width",
+          "default": "50%",
+          "options": [
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "28%",
+              "label": "28%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "44%",
+              "label": "44%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "t:sections.all.collection.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "featured_image",
+          "label": "t:sections.all.featured_image.label"
+        },
+        {
+          "type": "liquid",
+          "id": "heading",
+          "label": "t:sections.all.heading.label"
+        },
+        {
+          "type": "header",
+          "content": "Setting Collection bot"
+        },
+        {
+          "type": "collection",
+          "id": "collection2",
+          "label": "t:sections.all.collection.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "featured_image2",
+          "label": "t:sections.all.featured_image.label"
+        },
+        {
+          "type": "liquid",
+          "id": "heading2",
+          "label": "t:sections.all.heading.label"
+        }
+      ]
+    },
+    {
+      "type": "collection-row-2",
+      "name": "Collection Row 2",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width",
+          "default": "50%",
+          "options": [
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "28%",
+              "label": "28%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "44%",
+              "label": "44%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "t:sections.all.collection.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "featured_image",
+          "label": "t:sections.all.featured_image.label"
+        },
+        {
+          "type": "liquid",
+          "id": "heading",
+          "label": "t:sections.all.heading.label"
+        },
+        {
+          "type": "header",
+          "content": "Setting Collection bot left"
+        },
+        {
+          "type": "collection",
+          "id": "collection2",
+          "label": "t:sections.all.collection.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "featured_image2",
+          "label": "t:sections.all.featured_image.label"
+        },
+        {
+          "type": "liquid",
+          "id": "heading2",
+          "label": "t:sections.all.heading.label"
+        },
+        {
+          "type": "header",
+          "content": "Setting Collection bot right"
+        },
+        {
+          "type": "collection",
+          "id": "collection3",
+          "label": "t:sections.all.collection.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "featured_image3",
+          "label": "t:sections.all.featured_image.label"
+        },
+        {
+          "type": "liquid",
+          "id": "heading3",
+          "label": "t:sections.all.heading.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collections 2",
+      "blocks": [
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection-2-row"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

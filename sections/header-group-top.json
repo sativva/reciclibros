@@ -1,0 +1,116 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header Top",
+  "sections": {
+    "scroll_text_VkCzAz": {
+      "type": "scroll-text",
+      "blocks": {
+        "item_jdhttY": {
+          "type": "item",
+          "settings": {
+            "code": "Washing made easy",
+            "text_style": "solid"
+          }
+        },
+        "item_6rTThk": {
+          "type": "item",
+          "settings": {
+            "code": "Free Shipping over $49",
+            "text_style": "solid"
+          }
+        },
+        "item_WBGC8J": {
+          "type": "item",
+          "settings": {
+            "code": "Don’t miss the treat & toy of the month",
+            "text_style": "solid"
+          }
+        },
+        "item_dqjUAR": {
+          "type": "item",
+          "settings": {
+            "code": "Supper Savings",
+            "text_style": "solid"
+          }
+        }
+      },
+      "block_order": [
+        "item_jdhttY",
+        "item_6rTThk",
+        "item_WBGC8J",
+        "item_dqjUAR"
+      ],
+      "disabled": true,
+      "settings": {
+        "background-color": "#0a4253",
+        "text": "#ffffff",
+        "margin_desktop": "",
+        "margin_tablet_large": "0px 0px 0px 0px",
+        "margin_mobile": "",
+        "padding_desktop": "14px 0",
+        "padding_tablet_lager": "14px 0",
+        "padding_mobile": "",
+        "size_text": "p",
+        "speed": 12,
+        "scroll_type": "from-right",
+        "size_icon": 20,
+        "radius_image": 0,
+        "space_image": "mx-20"
+      }
+    },
+    "announcement_bar_c4nzng": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_gywHAW": {
+          "type": "announcement",
+          "settings": {
+            "width": "100%",
+            "text_align": "center",
+            "text": "Entrega gratuita en puntos de recogida",
+            "view_more": "",
+            "link_view": ""
+          }
+        },
+        "announcement_LnJcaF": {
+          "type": "announcement",
+          "settings": {
+            "width": "100%",
+            "text_align": "center",
+            "text": "También puedes vender tus libros con nuestra app",
+            "view_more": "",
+            "link_view": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_gywHAW",
+        "announcement_LnJcaF"
+      ],
+      "settings": {
+        "fullwidth": false,
+        "transparent": false,
+        "show_btn": true,
+        "location_btn": "30",
+        "heading_color": "#ffffff",
+        "text_color": "#ffffff",
+        "background": "#ff6400",
+        "border_color": "#ff6400",
+        "z_index": "4",
+        "top": "0"
+      }
+    }
+  },
+  "order": [
+    "scroll_text_VkCzAz",
+    "announcement_bar_c4nzng"
+  ]
+}

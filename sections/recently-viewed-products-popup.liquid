@@ -1,0 +1,168 @@
+{% if section.settings.show %}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --progress-bar-color: 255, 255, 255;
+    --section-autoplay-duration: 3s;
+    --section-animation-play-state: paused;
+    display: none;
+  }
+  #shopify-section-{{ section.id }}.active{
+    display: block;
+  }
+  {%- for product in predictive_search.resources.products -%}
+    #ap-productsviewed-button-{{ forloop.index }} {
+      --section-blocks-alignment: center;
+      --section-blocks-overlay-opacity: 0.05;
+    }
+  {% endfor %}
+  ap-productsslideshowitem {
+    cursor: pointer;
+  }
+  #products-viewed-popup {
+    display: block;
+    position: fixed;
+    bottom: calc(3vh + 60px);
+    left: 2vh;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+    z-index: 9;
+  }
+  .recently-list {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+  }
+  ap-recentlyproductsviewed-popup .drawer__content {
+    padding: 20px;
+  }
+  ap-recentlyproductsviewed-popup .heading.h1 {
+    font-size: 24px;
+    line-height: 1;
+  }
+  @media (max-width: 576px) {
+    ap-recentlyproductsviewed-popup .heading.h1 {
+      font-size: 18px;
+    }
+    .recently-list {
+      grid-template-columns: 1fr;
+    }
+  }
+{%- endstyle -%}
+
+<ap-productsviewed-button>
+  <div id="products-viewed-popup">
+    <a style="display:block" href="#" is="ap-togglelink" ap-controlsaria="{{ section.id }}" ap-expanded-aria="false" data-no-instant="">
+      <ap-productsslideshow reveal-on-scroll="" auto-play="true" transition-type="fade" class="slideshow {{ section.settings.slideshow_height }} ap-object-loaded" style="">
+        <div class="slideshow__slide-list">
+          {%- for product in predictive_search.resources.products -%}
+            <ap-productsslideshowitem id="ap-productsviewed-button-{{ forloop.index }}" ap-revealvisibility="" class="slideshow__slide slideshow__slide--fade" style="visibility: visible;" {% if forloop.index > 1 %}hidden=""{% endif %}>
+              <img class="product-item__primary-image" loading="eager" data-media-id="{{ product.featured_media.id }}" 
+                sizes= "{{ product.featured_image }}px"
+                alt="{{ product.title }}" 
+                src="{{ product.featured_image | image_url: width: 200 }}" 
+                data-srcset="
+                    {%- if product.featured_media.width >= 165 -%}{{ product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                    {%- if product.featured_media.width >= 360 -%}{{ product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                "
+                width="200" height="200">
+            </ap-productsslideshowitem>
+          {% endfor %}
+        </div>
+  
+        <ap-pagedots style="opacity: 0;" animation-timer="" class="slideshow__nav container">
+          {%- for product in predictive_search.resources.products -%}
+            <button class="slideshow__progress-bar" ap-controlsaria="ap-productsviewed-button-{{ forloop.index }}" ap-currentaria="{% if forloop.index == 1 %}true{% else %}false{% endif %}">
+                <span class="visually-hidden">{{ forloop.index }}</span>
+              </button>
+          {%- endfor -%}
+        </ap-pagedots>
+  
+      </ap-productsslideshow>  
+    </a>
+  </div>
+</ap-productsviewed-button>
+<ap-recentlyproductsviewed-popup id="{{ section.id }}" section="{{ section.id }}" section-id="{{ section.id }}" products-count="{{ section.settings.products_to_show }}" class="section section--flush drawer drawer--large">
+    <span class="drawer__overlay"></span>
+    <header class="drawer__header">
+      <p class="drawer__title heading h{{ section.settings.heading_size }}">{{ section.settings.heading | escape }}</p>
+      <button type="button" class="drawer__close-button tap-area" data-action="close" title="Close"><svg focusable="false" width="14" height="14" class="icon icon--close   " viewBox="0 0 14 14">
+        <path d="M13 13L1 1M13 1L1 13" stroke="currentColor" stroke-width="2" fill="none"></path>
+      </svg></button>
+    </header>
+
+    <div class="drawer__content drawer__content--padded-start">
+      <div class="recently-list">
+        {%- for product in predictive_search.resources.products -%}
+          <div class="media">
+            <a href="{{ product.url | within: collection }}"><img class="lazyload" 
+              src="{{ product.featured_image | image_url: width: product.featured_media.width }}" 
+              loading="lazy"
+              width="{{ product.featured_image.width }}"
+              height="{{ product.featured_image.height }}"></a>
+            <div class="media-body mt-2">
+              <a href="{{ product.url | within: collection }}" title="{{ product.title }}" class="product-item-meta__title mb-1">{{ product.title }}
+              </a>
+              {%- if product.available -%}
+                {% render 'price-product-grid', product: product %}
+              {%- else -%}
+                <div class="product-card__availability">
+                  {{ 'products.product.sold_out' | t }}
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+</ap-recentlyproductsviewed-popup>
+
+{% endif %}
+       
+{% schema %}
+{
+  "name": "Recently viewed popup",
+  "tag": "section",
+  "class": "shopify-section--recently-viewed-products-popup",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show",
+      "default": true,
+      "label": "Show Recently popup"
+    },
+    {
+      "type": "paragraph",
+      "content": "Setting Recently viewed products"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Recently viewed products",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 1,
+      "label": "Heading size"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 10,
+      "label": "Show product"
+    }
+  ]
+}
+{% endschema %}

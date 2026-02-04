@@ -1,0 +1,50 @@
+{% assign variant = product.selected_or_first_available_variant %}
+
+<div class="ap-productmeta__price-list-container" role="region" aria-live="polite">
+  <div class="price-list" data-product-price-list=""><span class="price price--highlight price--large">
+    {%- if variant.compare_at_price > variant.price -%}
+      <span class="price"><span class="visually-hidden">Sale price</span>{{ variant.price | money }}</span>
+      <span class="price price--compare"><span class="visually-hidden">Regular price</span>{{ variant.compare_at_price | money }}</span>
+    {%- else -%}
+      <span class="price"><span class="visually-hidden">Regular price</span>{{ variant.price | money }}</span>
+    {%- endif -%}
+    
+  </div>
+
+  {% if  variant.selected_or_first_available_variant.unit_price_measurement.reference_unit %}
+    <div class="product-single__unit">
+      {%- capture unit_price_separator -%}
+        <span aria-hidden="true">/</span><span class="sr-only invisible">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+      {%- endcapture -%}
+      {%- capture unit_price_base_unit -%}
+        <span data-unit-price-base-unit>
+          {%- if variant.unit_price_measurement -%}
+            {%- if variant.unit_price_measurement.reference_value != 1 -%}
+              {{- variant.unit_price_measurement.reference_value -}}
+            {%- endif -%}
+            {{ variant.unit_price_measurement.reference_unit }}
+          {%- endif -%}
+        </span>
+      {%- endcapture -%}
+      <span class="product-unit-price">
+        <span class="sr-only invisible">{{ 'products.product.price.unit_price' | t }}</span>
+        <span data-unit-price>{{ variant.unit_price | money }}</span>{{- unit_price_separator -}}{{- unit_price_base_unit -}}
+      </span>
+    </div>
+  {% endif %}
+
+  <div class="ap-productmeta__label-list label-list" data-product-label-list="">
+    {%  comment  %} Enlever la pastille sold out
+    {%- if variant.available == false -%}
+      <span class="label label--subdued">Sold out</span>
+    {%- endif -%}
+     {% endcomment %}
+    {%- if variant.compare_at_price > variant.price -%}
+      {% assign discount = variant.compare_at_price | minus: variant.price %}
+      <span class="label label--highlight">Ahorras {{ discount | money }}</span>
+    {% endif %}
+  </div>
+</div>
+
+
+

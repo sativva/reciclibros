@@ -1,0 +1,905 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    position: relative;
+  }
+
+    #shopify-section-{{ section.id }} .footer-top {
+        background-color: {{ section.settings.background }};
+        background-image: url({{ section.settings.background_image | image_url: width: 2000 }});
+        background-position: {{ section.settings.bg_align }};
+    }
+    #shopify-section-{{ section.id }} .footer-top_inner {
+        padding: {{ section.settings.padding_desktop }};
+        border-width: {{ section.settings.border_width }};
+        border-style: solid;
+        border-color: {{ section.settings.color_border }};
+    }
+    .info-content_title {
+        margin: 0;
+    }
+    .footer-top .row {
+        align-items: END;
+        gap: 15px 0;
+    }
+    @media (max-width: 767px) {
+      #shopify-section-{{ section.id }} .footer-top_inner {
+        padding: {{ section.settings.padding_mobile }};
+      }
+      .footer-top_content.text-left.d-flex {
+        flex-direction: column;
+        gap: 15px 0;
+      }
+      .footer-top_content.text-left {
+        text-align: center;
+      }
+      #shopify-section-{{ section.id }} ul.social-media {
+        justify-content: center;
+      }
+    }
+
+    #shopify-section-{{ section.id }} .social-media__link {
+      width: 20px;
+      height: 20px;
+      color: {{ section.settings.color_des }};
+    }
+    #shopify-section-{{ section.id }} ul.social-media {
+      gap: 20px;
+    }
+    #shopify-section-{{ section.id }} .social-media__item {
+      box-shadow: none;
+    }
+
+    /* NEWSLETTER */
+    .button-newsletter {
+      height: var(--form-input-field-height);
+    }
+    .button-newsletter.sub-heading {
+      padding: 0 37px;
+    }
+    #shopify-section-{{ section.id }} .input__label {
+      left: 28px;
+    }
+    #shopify-section-{{ section.id }} .input__field {
+      padding-left: 28px;
+    }
+    @media (max-width: 480px) {
+      #shopify-section-{{ section.id }} .wp-newsletter-input.d-flex {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px 0;
+      }
+    }
+
+</style>
+
+<footer class="footer-top">
+  <div class="{{ section.settings.setwidthout }}">
+    <div class="footer-top_inner">
+        <div class="row">
+            {%- for block in section.blocks -%}
+              {%- case block.settings.width -%}
+              {%- when '1%' -%}
+              {%- assign block_width = 'col-1 hd-xl-none' -%}
+              {%- when '16%' -%}
+              {%- assign block_width = 'col-xl-2 col-md-6 col-12' -%}
+              {%- when '20%' -%}
+              {%- assign block_width = 'col-xl-20 col-md-6 col-12' -%}
+              {%- when '23%' -%}
+              {%- assign block_width = 'col-xl-23 col-md-6 col-12' -%}
+              {%- when '25%' -%}
+              {%- assign block_width = 'col-xl-3 col-md-6 col-12' -%}
+              {%- when '33%' -%}
+              {%- assign block_width = 'col-xl-4 col-md-6 col-12' -%}
+              {%- when '45%' -%}
+              {%- assign block_width = 'col-xl-45 col-md-6 col-12' -%}
+              {%- when '50%' -%}
+              {%- assign block_width = 'col-lg-6 col-md-12 col-12' -%}
+              {%- when '66%' -%}
+              {%- assign block_width = 'col-xl-8 col-md-6 col-12' -%}
+              {%- when '75%' -%}
+              {%- assign block_width = 'col-xl-9 col-md-6 col-12' -%}
+              {%- when '100%' -%}
+              {%- assign block_width = 'col-12' -%}
+              {%- endcase -%}
+              <div class="{{ block_width }} {{ block.settings.class }}">
+
+                {%- case block.type -%}
+    
+                    {%- when 'footer-logo' -%}
+                      {%- if block.settings.bottom_logo != blank -%}
+                        <div class="logo-footer footer__item-title text-{{ block.settings.text_align }}">
+                          <img style="width: {{ block.settings.bottom_logo_width }}px" loading="lazy" sizes="{{ block.settings.bottom_logo_width }}px" class="footer__image" alt="" 
+                            src="{{ block.settings.bottom_logo | image_url: width: block.settings.bottom_logo.width }}" 
+                            data-srcset="{{ block.settings.bottom_logo | image_url: width: 100 }} 100w, {{ block.settings.bottom_logo | image_url: width: 200 }} 200w, {{ block.settings.bottom_logo | image_url: width: 300 }} 300w, {{ block.settings.bottom_logo | image_url: width: 400 }} 400w, {{ block.settings.bottom_logo | image_url: width: 500 }} 500w" 
+                            width="{{ block.settings.bottom_logo.width }}" height="{{ block.settings.bottom_logo.height }}">
+                        </div>
+                      {% endif %}
+
+                    {%- when 'footer-top' -%}   
+                        <div class="footer-top_content text-{{ block.settings.text_align }} {% if block.settings.icon != blank %} d-flex{% endif %} footer-top_item_{{ forloop.index }}">
+
+                          {% if block.settings.icon != blank %}
+                            <div class="footer-top_icon mr-md-3">
+                              {{ block.settings.icon }}
+                            </div>
+                          {% endif %}
+                          
+                          <div class="info-content-wp">
+                            {% if block.settings.info_title != blank %}
+                            <h2 style="color: {{ section.settings.color_title }}" class="info-content_title heading {{ section.settings.heading_size }} mb-2">
+                                {{ block.settings.info_title }}
+                            </h2>
+                            {% endif %}
+
+                            {% if block.settings.info_heading != blank %}
+                            <div style="color: {{ section.settings.color_des }}" class="info-content-text">
+                                {{ block.settings.info_heading }}
+                            </div>
+                            {% endif %}
+
+                            {% liquid
+                              assign _show_social = false
+                              if block.settings.social_facebook != blank
+                                assign _show_social = true
+                              endif
+                              if section.settings.social_tw != blank
+                                assign _show_social = true
+                              endif
+                              if block.settings.social_instagram != blank
+                                assign _show_social = true
+                              endif
+                              if block.settings.social_pinterest != blank
+                                assign _show_social = true
+                              endif
+                              if block.settings.social_youtube != blank
+                                assign _show_social = true
+                              endif
+                              if block.settings.social_linkedin != blank
+                                assign _show_social = true
+                              endif
+                            %}
+                            {%- if _show_social == true -%}
+                              {%- if block.settings.social_heading != blank -%}
+                                <div class="footer__item-title heading {{ block.settings.heading_size }}">{{ block.settings.social_heading }}</div>
+                              {%- endif -%}
+                              <div class="footer__item-content mt-3">
+                                <ul class="social-media social-media--no-radius list--unstyled" role="list">
+                                  {%- if block.settings.social_facebook != blank -%}
+                                    <li class="social-media__item social-media__item--facebook">
+                                      <a href="{{ block.settings.social_facebook }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on Facebook"><svg focusable="false" width="9" height="17" class="icon icon--facebook   " viewBox="0 0 9 17">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.486 16.2084L2.486 8.81845H0L0 5.93845L2.486 5.93845L2.486 3.81845C2.38483 2.79982 2.73793 1.78841 3.45107 1.05407C4.16421 0.319722 5.16485 -0.0628415 6.186 0.00844868C6.9284 0.00408689 7.67039 0.0441585 8.408 0.128449V2.69845L6.883 2.69845C6.4898 2.61523 6.08104 2.73438 5.79414 3.01585C5.50724 3.29732 5.3803 3.70373 5.456 4.09845L5.456 5.93845H8.308L7.936 8.81845H5.46L5.46 16.2084H2.486Z" fill="currentColor"></path>
+                                      </svg>
+                                      <span class="text-social d-none">{{ 'general.social.links.facebook' | t }}</span>
+                                      </a>
+                                    </li>
+                                  {%- endif -%}
+                                  {%- if block.settings.social_tw != blank -%}
+                                    <li class="social-media__item social-media__item--tw">
+                                      <a href="{{ block.settings.social_tw }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on tw">
+                                        <svg class="icon icon--tw" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                          <g>
+                                          <path d="M9.4893 6.77491L15.3176 0H13.9365L8.87577 5.88256L4.8338 0H0.171875L6.28412 8.89547L0.171875 16H1.55307L6.8973 9.78782L11.1659 16H15.8278L9.48896 6.77491H9.4893ZM7.59756 8.97384L6.97826 8.08805L2.05073 1.03974H4.17217L8.14874 6.72795L8.76804 7.61374L13.9371 15.0075H11.8157L7.59756 8.97418V8.97384Z" fill="currentColor"/>
+                                          </g>
+                                          <defs>
+                                            <clipPath id="clip0_872_3267">
+                                              <rect width="16" height="16" fill="white"/>
+                                            </clipPath>
+                                          </defs>
+                                        </svg>
+                                        <span class="text-social d-none">{{ 'general.social.links.tw' | t }}</span>
+                                      </a>
+                                    </li>
+                                  {%- endif -%}
+                                  {%- if block.settings.social_instagram != blank -%}
+                                    <li class="social-media__item social-media__item--instagram">
+                                      <a href="{{ block.settings.social_instagram }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on Instagram"><svg focusable="false" width="16" height="16" class="icon icon--instagram   " viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C5.827 0 5.555.01 4.702.048 3.85.087 3.269.222 2.76.42a3.921 3.921 0 00-1.417.923c-.445.444-.719.89-.923 1.417-.198.509-.333 1.09-.372 1.942C.01 5.555 0 5.827 0 8s.01 2.445.048 3.298c.039.852.174 1.433.372 1.942.204.526.478.973.923 1.417.444.445.89.719 1.417.923.509.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.445-.01 3.298-.048c.852-.039 1.433-.174 1.942-.372a3.922 3.922 0 001.417-.923c.445-.444.719-.89.923-1.417.198-.509.333-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.298c-.039-.852-.174-1.433-.372-1.942a3.922 3.922 0 00-.923-1.417A3.921 3.921 0 0013.24.42c-.509-.198-1.09-.333-1.942-.372C10.445.01 10.173 0 8 0zm0 1.441c2.136 0 2.39.009 3.233.047.78.036 1.203.166 1.485.276.374.145.64.318.92.598.28.28.453.546.598.92.11.282.24.705.276 1.485.038.844.047 1.097.047 3.233s-.009 2.39-.047 3.233c-.036.78-.166 1.203-.276 1.485-.145.374-.318.64-.598.92-.28.28-.546.453-.92.598-.282.11-.705.24-1.485.276-.844.038-1.097.047-3.233.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.479 2.479 0 01-.92-.598 2.478 2.478 0 01-.598-.92c-.11-.282-.24-.705-.276-1.485-.038-.844-.047-1.097-.047-3.233s.009-2.39.047-3.233c.036-.78.166-1.203.276-1.485.145-.374.318-.64.598-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.844-.038 1.097-.047 3.233-.047zm0 9.226a2.667 2.667 0 110-5.334 2.667 2.667 0 010 5.334zm0-6.775a4.108 4.108 0 100 8.216 4.108 4.108 0 000-8.216zm5.23-.162a.96.96 0 11-1.92 0 .96.96 0 011.92 0z" fill="currentColor"></path>
+                                      </svg>
+                                        <span class="text-social d-none">{{ 'general.social.links.instagram' | t }}</span>
+                                      </a>
+                                    </li>
+                                  {%- endif -%}
+                                  {%- if block.settings.social_pinterest != blank -%}
+                                    <li class="social-media__item social-media__item--pinterest">
+                                      <a href="{{ block.settings.social_pinterest }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on Pinterest"><svg focusable="false" width="12" height="16" class="icon icon--pinterest   " viewBox="0 0 12 16">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.8042 0.00123531C8.79537 -0.0442356 10.6685 1.16769 11.5498 3.29299C11.8407 3.99433 12.1516 5.28439 11.9181 6.35474C11.825 6.78208 11.7985 7.22812 11.6726 7.63086C11.4163 8.4496 11.0829 9.17441 10.6413 9.79945C10.0418 10.6486 9.13196 11.2212 7.98951 11.5091C6.97899 11.7637 6.04959 11.3826 5.50954 10.9732C5.33747 10.843 5.10674 10.6728 5.04304 10.4377C5.03488 10.4377 5.0267 10.4377 5.01853 10.4377C4.97972 10.8669 4.81532 11.3224 4.69924 11.7135C4.53858 12.2545 4.50733 12.8146 4.3064 13.3208C4.08349 13.8828 3.81274 14.3978 3.52072 14.8776C3.36739 15.1292 2.94427 15.9904 2.63675 16C2.60311 15.9354 2.58964 15.9105 2.58761 15.796C2.48858 15.6383 2.55757 15.3724 2.51393 15.1578C2.44604 14.8236 2.39317 14.2217 2.46491 13.8824C2.46491 13.7038 2.46491 13.5248 2.46491 13.3465C2.54397 12.9786 2.54085 12.6015 2.63675 12.2494C2.84537 11.4824 2.96145 10.6699 3.17692 9.87611C3.38398 9.11352 3.57396 8.27939 3.74172 7.50321C3.77957 7.32789 3.56652 6.82389 3.52072 6.63572C3.37628 6.04186 3.48624 5.21874 3.66805 4.77269C3.89698 4.21111 4.56717 3.3535 5.43589 3.57359C6.13407 3.75039 6.57846 4.50528 6.34437 5.46192C6.09862 6.46589 5.7798 7.3653 5.5587 8.37035C5.50173 8.62933 5.59968 8.90442 5.65687 9.05958C5.86357 9.61934 6.49037 10.163 7.32652 9.95278C8.59396 9.63365 9.15431 8.48627 9.53645 7.24791C9.63981 6.91302 9.62743 6.59647 9.70831 6.22709C9.87894 5.44763 9.80648 4.28411 9.56098 3.67556C9.16753 2.70023 8.43329 2.07518 7.42471 1.73624C7.1465 1.68526 6.86819 1.63427 6.58988 1.58329C6.12397 1.47655 5.23532 1.63685 4.92023 1.73624C3.51171 2.18156 2.63952 2.92544 2.09658 4.26247C1.91177 4.71767 1.81046 5.17911 1.77741 5.81884C1.76913 5.8955 1.76094 5.97217 1.75278 6.04883C1.86153 6.62068 1.87259 6.99959 2.09658 7.42657C2.20715 7.63711 2.46971 7.8029 2.51393 8.06444C2.54001 8.2185 2.42705 8.45105 2.39125 8.57467C2.33705 8.76137 2.35676 8.97522 2.26844 9.13625C2.10873 9.42678 1.67383 9.20852 1.48275 9.08491C0.489307 8.44373 -0.329526 6.5895 0.132284 4.79837C0.20342 4.5218 0.206915 4.28118 0.304126 4.03285C0.906661 2.49554 1.80565 1.55101 3.10325 0.741098C3.58947 0.437749 4.24511 0.287354 4.84657 0.128885C5.16574 0.0863481 5.48503 0.0437917 5.8042 0.00123531Z" fill="currentColor"></path>
+                                      </svg>
+                                        <span class="text-social d-none">{{ 'general.social.links.pinterest' | t }}</span>
+                                      </a>
+                                    </li>
+                                  {%- endif -%}
+                                  {%- if block.settings.social_youtube != blank -%}
+                                    <li class="social-media__item social-media__item--youtube">
+                                      <a href="{{ block.settings.social_youtube }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on YouTube"><svg fill="none" focusable="false" width="18" height="13" class="icon icon--youtube   " viewBox="0 0 18 13">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M16.0325 0.369454C16.807 0.572743 17.4168 1.17173 17.6238 1.9324C18 3.31101 18 6.1875 18 6.1875C18 6.1875 18 9.06389 17.6238 10.4427C17.4168 11.2033 16.807 11.8023 16.0325 12.0056C14.6288 12.375 9 12.375 9 12.375C9 12.375 3.37122 12.375 1.96752 12.0056C1.19311 11.8023 0.583159 11.2033 0.376159 10.4427C0 9.06389 0 6.1875 0 6.1875C0 6.1875 0 3.31101 0.376159 1.9324C0.583159 1.17173 1.19311 0.572743 1.96752 0.369454C3.37122 0 9 0 9 0C9 0 14.6288 0 16.0325 0.369454ZM11.8636 6.1876L7.1591 8.79913V3.57588L11.8636 6.1876Z" fill="currentColor"></path>
+                                      </svg>
+                                        <span class="text-social d-none">{{ 'general.social.links.youtube' | t }}</span>
+                                      </a>
+                                    </li>
+                                  {%- endif -%}
+                                  {%- if block.settings.social_linkedin != blank -%}
+                                    <li class="social-media__item social-media__item--linkedin">
+                                      <a href="{{ block.settings.social_linkedin }}" target="_blank" rel="noopener" class="social-media__link" aria-label="Follow us on LinkedIn"><svg fill="none" focusable="false" width="13" height="13" class="icon icon--linkedin   " viewBox="0 0 13 13">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.12412 1.56485C3.12412 0.70105 2.42432 0 1.56256 0C0.697275 0 0 0.70105 0 1.56485C0 2.42916 0.697275 3.13021 1.56256 3.13021C2.42432 3.13021 3.12412 2.42916 3.12412 1.56485ZM2.91019 13H0.213925V4.31649H2.91019V13ZM7.18264 4.31648H4.6004V13H7.29112V8.70525C7.29112 7.57205 7.50505 6.47473 8.90666 6.47473C10.2891 6.47473 10.3068 7.77018 10.3068 8.77702V13H13V8.23771C13 5.89903 12.496 4.10117 9.76892 4.10117C8.45812 4.10117 7.57871 4.82092 7.21948 5.50377H7.18264V4.31648Z" fill="currentColor"></path>
+                                      </svg>
+                                        <span class="text-social d-none">{{ 'general.social.links.linkedin' | t }}</span>
+                                      </a>
+                                    </li>
+                                  {%- endif -%}
+                                </ul>
+                              </div>
+                            {%- endif -%}
+                          </div>
+
+                        </div>
+
+                    {%- when 'newsletter' -%}
+                      <style>
+                        #shopify-section-{{ section.id }} .input__label {
+                          color: {{ block.settings.color_input }};
+                        }
+                        #shopify-section-{{ section.id }} .input__field {
+                          color: {{ block.settings.color_input }};
+                        }
+                        #shopify-section-{{ section.id }} .button-newsletter {
+                          color: {{ block.settings.color_button }};
+                          background-color: {{ block.settings.bg_btn }};
+                        }
+                        #shopify-section-{{ section.id }} .button-newsletter > .ap-text-loaderbutton path {
+                          fill: {{ block.settings.color_button }};
+                        }
+                        #shopify-section-{{ section.id }} .button-newsletter:hover {
+                          color: {{ block.settings.color_button_hover }};
+                          background-color: {{ block.settings.bg_btn_hover }};
+                        }
+                        #shopify-section-{{ section.id }} .button-newsletter >  .ap-text-loaderbutton:hover path {
+                          fill: {{ block.settings.color_button_hover }};
+                        }
+                      </style>
+                      <div class="footer__item newsletter-footer">
+                        <h2 class="footer__item-title heading {{ block.settings.heading_size }} mb-21">{{ block.settings.heading }}</h2>
+                        {% if block.settings.description != blank %}
+                        <p class="footer-description">{{ block.settings.description }}</p>
+                        {% endif %}
+                        <div {{ block.shopify_attributes }}>
+                          {% form 'customer', class: 'newsletter-form' %}
+                            <input type="hidden" name="form_type" value="customer">
+                            <input type="hidden" name="utf8" value="✓">
+                            <input type="hidden" name="contact[tags]" value="newsletter">
+                            <input type="hidden" name="contact[context]" value="newsletter-{{ section.id }}">
+          
+                            <div class="wp-newsletter-input d-flex" style="background-color: {{ block.settings.bg_color }};">
+                              <div class="input-row w-100">
+                                <div class="input input-mail">
+                                  <input style="background-color: {{ block.settings.bg_input }};" type="email" id="newsletter[{{ section.id }}][contact][email]" name="contact[email]" class="input__field" required="">
+                                  <label style="background-color: {{ block.settings.bg_input }};" for="newsletter[{{ section.id }}][contact][email]" class="input__label">{{ 'newsletter.label' | t }}</label>
+                                </div>
+                                <div class="input-icon d-none">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="800px" height="800px" viewBox="0 0 32 32">
+                                    <title/>
+                                    <g data-name="Layer 2" id="Layer_2">
+                                    <path d="M29,11H3a1,1,0,0,0-1,1V29a1,1,0,0,0,1,1H29a1,1,0,0,0,1-1V12A1,1,0,0,0,29,11Zm-2.79,2L16,20.23,5.79,13ZM4,28V14.18l11.42,8.09a1,1,0,0,0,1.16,0L28,14.18V28Z"/>
+                                    </g>
+                                  </svg>
+                                </div>
+                              </div>
+                              <div class="input">
+                                <button type="submit" is="loader-button" class="button-newsletter sub-heading">
+                                  <span class="ap-text-loaderbutton">
+                                    {{ 'newsletter.button_label' | t }}
+                                  </span>
+                                  <div class="footer-newsletter_icon d-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5034 2.10344C20.0279 1.5953 21.4782 3.04559 20.97 4.57002L15.9134 19.7398C15.3798 21.3407 13.2025 21.554 12.3684 20.0871L9.27322 14.6439C9.07304 14.2919 8.78155 14.0004 8.4295 13.8002L2.9864 10.7051C1.51946 9.87095 1.73272 7.69368 3.33364 7.16004L18.5034 2.10344ZM19.547 4.09567C19.6643 3.74388 19.3296 3.4092 18.9778 3.52646L3.80798 8.58306C3.43854 8.70621 3.38932 9.20866 3.72785 9.40115L9.17095 12.4962C9.7577 12.8299 10.2435 13.3157 10.5772 13.9024L13.6723 19.3456C13.8648 19.6841 14.3672 19.6349 14.4904 19.2655L19.547 4.09567Z" fill="white"/>
+                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M9.2728 13.8007C8.9799 13.5078 8.9799 13.0329 9.2728 12.74L11.2728 10.74C11.5657 10.4471 12.0406 10.4471 12.3335 10.74C12.6264 11.0329 12.6264 11.5078 12.3335 11.8007L10.3335 13.8007C10.0406 14.0936 9.56569 14.0936 9.2728 13.8007Z" fill="white"/>
+                                    </svg>
+                                  </div>
+                                  <span class="ap-loader-loaderbutton" hidden="">
+                                    <div class="spinner">
+                                      <svg focusable="false" width="24" height="24" class="icon icon--spinner" viewBox="25 25 50 50">
+                                        <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="5"></circle>
+                                      </svg>
+                                    </div>
+                                  </span>
+                                </button>
+                              </div>
+                            </div>
+          
+                            {%- if form.errors -%}
+                              <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</small>
+                            {%- endif -%}
+                            {%- if form.posted_successfully? -%}
+                              <div class="form__banner banner banner--success">
+                                <span class="banner__ribbon">
+                                  <svg focusable="false" width="18" height="26" class="icon icon--form-success   " viewBox="0 0 18 26">
+                                    <circle fill="none" cx="9" cy="13" r="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                                    <path fill="none" d="M5 13l3 3 5-6" stroke="currentColor" stroke-width="1.5"></path>
+                                  </svg>
+                                </span>
+                                <p class="banner__content">{{ 'newsletter.success' | t }}</p>
+                              </div>
+                            {%- endif -%}
+          
+                          {% endform %}
+                        </div>
+                      </div>
+
+                    {%- when 'line' -%}
+                      <style>
+                        .border-{{ block.id }} {
+                          height: 100%;
+                        }
+                        .border-{{ block.id }} .border-footer {
+                          border-width: {{ block.settings.wborder }} !important;
+                          border-color: {{ block.settings.bgborder }} !important;
+                          border-style: solid;
+                          height: 100%;
+                          opacity: {{ block.settings.overlay_opacity | divided_by: 10.0 }};
+                        }
+                      </style>
+                      <div class="border-{{ block.id }}">
+                        <div class="border-footer"></div>
+                      </div>
+
+                {%- endcase -%}
+
+              </div>
+
+            {%- endfor -%}
+        </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer Top",
+  "class": "shopify-section--footer-top",
+  "blocks": [
+    {
+      "type": "line",
+      "name": "Line",
+      "settings": [   
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width",
+          "default": "1%",
+          "options": [
+            {
+              "value": "1%",
+              "label": "1%"
+            }
+          ]
+        },
+        {
+          "type": "color",
+          "id": "bgborder",
+          "label": "Border Line",
+          "default": "#dddddd"
+        },
+        {
+          "type": "text",
+          "id": "wborder",
+          "label": "Width Border",
+          "default": "1px 0px 0px 0px",
+          "info": "Ex: 1px 1px 1px 1px"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "default": 1,
+          "label": "Overlay opacity"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width",
+          "default": "33%",
+          "options": [
+            {
+              "value": "16%",
+              "label": "16%"
+            },
+            {
+              "value": "20%",
+              "label": "20%"
+            },
+            {
+              "value": "23%",
+              "label": "23%"
+            },
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "45%",
+              "label": "45%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "75%",
+              "label": "75%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "padding_desktop",
+          "label": "t:sections.all.padding_desktop.label",
+          "info": "t:sections.all.padding_desktop.info"
+        },
+        {
+          "type": "liquid",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            },
+            {
+              "value": "sub-heading",
+              "label": "Sub heading"
+            }
+          ],
+          "default": "h6",
+          "label": "Heading Size"
+        },
+        {
+          "type": "liquid",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "color",
+          "id": "color_input",
+          "label": "Color input"
+        },
+        {
+          "type": "color",
+          "id": "bg_input",
+          "label": "Background input",
+          "default": "#fff"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color Box",
+          "default": "#DDDBD4"
+        },
+        {
+          "type": "color",
+          "id": "color_button",
+          "label": "Color button"
+        },
+        {
+          "type": "color",
+          "id": "bg_btn",
+          "label": "Background button"
+        },
+        {
+          "type": "color",
+          "id": "color_button_hover",
+          "label": "Color button hover"
+        },
+        {
+          "type": "color",
+          "id": "bg_btn_hover",
+          "label": "Background button hover"
+        }
+      ]
+    },
+    {
+      "type": "footer-logo",
+      "name": "Footer Logo",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width",
+          "default": "33%",
+          "options": [
+            {
+              "value": "16%",
+              "label": "16%"
+            },
+            {
+              "value": "20%",
+              "label": "20%"
+            },
+            {
+              "value": "23%",
+              "label": "23%"
+            },
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "45%",
+              "label": "45%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "75%",
+              "label": "75%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left",
+          "label": "Text align"
+        },
+        {
+          "type": "image_picker",
+          "id": "bottom_logo",
+          "label": "t:sections.all.bottom_logo.label"
+        },
+        {
+          "type": "range",
+          "id": "bottom_logo_width",
+          "min": 100,
+          "max": 500,
+          "step": 5,
+          "unit": "px",
+          "label": "t:sections.all.bottom_logo.label",
+          "default": 125
+        }
+      ]
+    },
+    {
+      "type": "footer-top",
+      "name": "Footer Top",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width",
+          "default": "33%",
+          "options": [
+            {
+              "value": "16%",
+              "label": "16%"
+            },
+            {
+              "value": "20%",
+              "label": "20%"
+            },
+            {
+              "value": "23%",
+              "label": "23%"
+            },
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "45%",
+              "label": "45%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "75%",
+              "label": "75%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "liquid",
+          "id": "icon",
+          "label": "Icon / HTML"
+        },
+        {
+          "type": "liquid",
+          "id": "info_title",
+          "label": "Title"
+        },
+        {
+          "type": "liquid",
+          "id": "info_heading",
+          "default": "Content",
+          "label": "Content"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left",
+          "label": "Text align"
+        },
+        {
+          "type": "header",
+          "content": "Social"
+        },
+        {
+          "type": "text",
+          "id": "social_heading",
+          "label": "t:sections.all.social_heading.label"
+        },
+        {
+          "type": "text",
+          "id": "social_facebook",
+          "label": "t:sections.all.social_facebook.label"
+        },
+        {
+          "type": "text",
+          "id": "social_tw",
+          "label": "x"
+        },
+        {
+          "type": "text",
+          "id": "social_instagram",
+          "label": "t:sections.all.social_instagram.label"
+        },
+        {
+          "type": "text",
+          "id": "social_pinterest",
+          "label": "t:sections.all.social_pinterest.label"
+        },
+        {
+          "type": "text",
+          "id": "social_youtube",
+          "label": "t:sections.all.social_youtube.label"
+        },
+        {
+          "type": "text",
+          "id": "social_linkedin",
+          "label": "t:sections.all.social_linkedin.label"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Set Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Settings Color"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "default": "#202020",
+      "label": "t:sections.all.background.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:sections.all.background_image.label"
+    },
+    {
+      "type": "select",
+      "id": "bg_align",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "top",
+      "label": "Background align"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "default": "#939393",
+      "label": "Color title"
+    },
+    {
+      "type": "color",
+      "id": "color_heading",
+      "default": "#ffffff",
+      "label": "Color heading"
+    },
+    {
+      "type": "color",
+      "id": "color_des",
+      "default": "#EBEBEB",
+      "label": "Color description"
+    },
+    {
+      "type": "color",
+      "id": "color_border",
+      "default": "#EBEBEB",
+      "label": "Color Border"
+    },
+    {
+      "type": "header",
+      "content": "Settings Item"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        },
+        {
+          "value": "sub-heading",
+          "label": "Sub heading"
+        }
+      ],
+      "default": "h6",
+      "label": "Heading Size Item"
+    },
+    {
+      "type": "header",
+      "content": "Settings Advanced"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "t:sections.all.padding_mobile.label",
+      "info": "t:sections.all.padding_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "border_width",
+      "label": "Border width",
+      "info": "Ex: 1px 1px 1px 1px"
+    }
+  ]
+}
+{% endschema %}

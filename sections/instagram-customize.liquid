@@ -1,0 +1,374 @@
+{% render 'section-style' %}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    --heading-color-1: {{ section.settings.heading_color | color_extract: 'red' }}, {{ section.settings.heading_color | color_extract: 'green' }}, {{ section.settings.heading_color | color_extract: 'blue' }};
+    --color-body: {{ section.settings.text_color | color_extract: 'red' }}, {{ section.settings.text_color | color_extract: 'green' }}, {{ section.settings.text_color | color_extract: 'blue' }};
+  }
+
+    @media (max-width: 767px) {
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: {{ section.settings.products_per_row_ipad }};
+      }
+      #shopify-section-{{ section.id }} .instagram-carousel .ap-productlist__inner--scroller{
+        margin:0;
+        padding:0;
+        grid-gap: 0;
+        gap: 0;
+        grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+      }
+    }
+
+    @media (max-width: 480px) {
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: 1;
+      }
+      #shopify-section-{{ section.id }} .instagram-carousel .ap-productlist__inner--scroller{
+        margin:0;
+        padding:0;
+        grid-gap: 0;
+        gap: 0;
+        grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+      }
+    }
+  
+    @media (min-width: 768px) and (max-width: 1199px) {
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: {{ section.settings.products_per_row_tablet }}
+      }
+      #shopify-section-{{ section.id }} .instagram-carousel .ap-productlist__inner--scroller{
+        margin:0;
+        padding:0;
+        grid-gap: 0;
+        gap: 0;
+        overflow-x: scroll;
+        grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+      }
+    }
+    
+    @media screen and (min-width: 1200px) {
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: {{ section.settings.products_per_row_desktop }};
+      }
+      #shopify-section-{{ section.id }} .instagram-carousel .ap-productlist__inner--scroller{
+        margin: 0;
+        padding:0;
+        grid-gap: 0;
+        gap: 0;
+        grid-auto-columns: calc( 100% / var(--section-products-per-row, 4) - ( var(--grid-gap) / var(--section-products-per-row, 4) * (var(--section-products-per-row, 4) - 1)));
+      }
+    }
+
+    .instagram-carousel-item {
+      padding: 0 {{ section.settings.distance_slide }}px;
+      box-shadow: 0 0 0 1px rgb(var(--border-color));
+    }
+    .instagram-customize h3.heading.h2 {
+      margin: 0;
+    }
+    #shopify-section-{{ section.id }} .scroller {
+      margin: 0 calc(-1* {{ section.settings.distance_slide }}px);
+    }
+    .insta-box {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+    @media (max-width: 1199px) {
+      .instagram-carousel-item {
+        text-align: center;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    }
+    @media (max-width: 767px) {
+      .instagram-carousel-item:nth-child(2n + 2) {
+        padding-top: 0;
+      }
+    }
+
+{% endstyle %}
+
+<section class="section instagram-customize">
+    <div class="{%- if section.settings.fullwidth -%}container-fluid{%- else -%}container{%- endif -%}">
+        {% if section.settings.tab_heading != blank %}
+        <header class="section__header ">
+            <div class="text-container">
+                <h3 class="heading h{{ section.settings.tab_heading_size }}">{{ section.settings.tab_heading }}</h3>
+                {% if section.settings.tab_description != blank %}
+                <div class="heading-description">
+                    {{ section.settings.tab_description }}
+                </div>
+                {% endif %}
+            </div>
+        </header>
+        {% endif %}
+        <div class="insta-carousel">
+                <instagram-carousel stagger-apparition="" class="instagram-carousel ap-object-loaded">    
+                  <!-- content -->
+                  
+                  <div class="instagram-carousel-content">
+                      <div class="scroller">
+                          <div id="ap-scroll" class="ap-productlist__inner ap-productlist__inner--scroller hide-scrollbar">
+                              {% for block in section.blocks %}
+                              {% case block.type %}
+                                {%- when 'instagram_item' -%}   
+                                    {% liquid
+                                        assign _link = block.settings.url_item
+                                    %}
+                                    <instagram-carousel-item id="block-{{ block.id }}" style="opacity: 1;" reveal="" class="instagram-carousel-item has-overlay">
+                                        <div class="instagram-carousel-image">
+                                        {% if block.settings.featured_image != blank %}
+                                        <a href="{{ _link }}">
+                                            <img class="instagram-carousel-item-image" loading="lazy" 
+                                            sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                                            alt="" 
+                                            src="{{ block.settings.featured_image | image_url: width: block.settings.featured_image.width }}" 
+                                            data-srcset="{%- if block.settings.featured_image.width >= 195 -%}{{ block.settings.featured_image | image_url: width: 195, crop: 'center' }} 195w,{%- endif -%}
+                                                {%- if block.settings.featured_image.width >= 330 -%}{{ block.settings.featured_image | image_url: width: 330, crop: 'center' }} 330w,{%- endif -%}
+                                                {%- if block.settings.featured_image.width >= 535 -%}{{ block.settings.featured_image | image_url: width: 535, crop: 'center' }} 535w,{%- endif -%}
+                                                {%- if block.settings.featured_image.width >= 750 -%}{{ block.settings.featured_image | image_url: width: 750, crop: 'center' }} 750w,{%- endif -%}
+                                                {%- if block.settings.featured_image.width >= 1000 -%}{{ block.settings.featured_image | image_url: width: 1000, crop: 'center' }} 1000w,{%- endif -%}
+                                                {%- if block.settings.featured_image.width >= 1500 -%}{{ block.settings.featured_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                                                {%- if block.settings.featured_image.width >= 3000 -%}{{ block.settings.featured_image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                                                {{ block.settings.featured_image | image_url }} {{ block.settings.featured_image.width }}w"
+                                            src="{{ block.settings.featured_image | image_url: width: 1500 }}"
+                                            height="{{ block.settings.featured_image.height }}"
+                                            width="{{ block.settings.featured_image.width }}">
+                                        </a>
+                                        {% else %}
+                                            <div class="instagram-carousel-item-image">
+                                            {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                                            </div>
+                                        {% endif %}
+                                        </div>
+                                    </instagram-carousel-item>
+
+                                  {%- when 'instagram_item_box' -%}
+                                    <instagram-carousel-item id="block-{{ block.id }}" style="opacity: 1;" reveal="" class="instagram-carousel-item has-overlay">
+                                      <a style="background-color: {{ block.settings.bg_color }};" class="insta-box" href="{{ _link }}">
+                                        {{ block.settings.content_custom }}
+                                      </a>
+                                    </instagram-carousel-item>
+
+                                {% endcase %}
+                              {% endfor %}
+                              
+                          </div>
+                      </div>
+
+                      {% if section.settings.show_arrow %}
+                      <ap-button-nextprev class="instagram-carousel__ap-nextprev" style="--smallest-image-aspect-ratio: 1.0">
+                        <button class="ap-instagram__arrow ap-nextap-buttonprev ap-nextap-buttonprev--prev" disabled="">
+                        <span class="visually-hidden">Previous</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon--nav-arrow-left  icon--direction-aware " width="20" height="8" viewBox="0 0 20 8" fill="none">
+                            <path d="M3.65251 7.60257C3.54738 7.60257 3.44225 7.56283 3.36277 7.48206L0.171742 4.29104C0.0537929 4.17309 0.0191775 3.99745 0.0832801 3.8436C0.147383 3.68975 0.296101 3.58975 0.462767 3.58975H19.5397C19.7666 3.58975 19.9499 3.77309 19.9499 4.00001C19.9499 4.22693 19.7666 4.41027 19.5397 4.41027H1.45251L3.94225 6.90001C4.10251 7.06027 4.10251 7.32052 3.94225 7.48078C3.86149 7.56283 3.75764 7.60257 3.65251 7.60257Z" fill="currentColor"/>
+                            <path d="M0.461485 4.41283C0.356357 4.41283 0.251229 4.37309 0.171742 4.29232C0.0114852 4.13206 0.0114852 3.87181 0.171742 3.71155L3.36661 0.516677C3.52687 0.35642 3.78713 0.35642 3.94738 0.516677C4.10764 0.676933 4.10764 0.937189 3.94738 1.09745L0.752511 4.29232C0.671742 4.37309 0.566613 4.41283 0.461485 4.41283Z" fill="currentColor"/>
+                        </svg>
+                        </button>
+                        <button class="ap-instagram__arrow ap-nextap-buttonprev ap-nextap-buttonprev--next">
+                        <span class="visually-hidden">Next</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon--nav-arrow-right  icon--direction-aware " width="20" height="8" viewBox="0 0 20 8" fill="none">
+                            <path d="M19.5385 4.4077H0.461526C0.234603 4.4077 0.0512695 4.22437 0.0512695 3.99745C0.0512695 3.77052 0.234603 3.58719 0.461526 3.58719H18.5474L16.0577 1.09745C15.8974 0.937189 15.8974 0.676933 16.0577 0.516677C16.2179 0.35642 16.4782 0.35642 16.6385 0.516677L19.8295 3.7077C19.9474 3.82565 19.982 4.00129 19.9179 4.15514C19.8538 4.3077 19.7038 4.4077 19.5385 4.4077Z" fill="currentColor"/>
+                            <path d="M16.3436 7.60257C16.2384 7.60257 16.1333 7.56283 16.0538 7.48206C15.8936 7.3218 15.8936 7.06155 16.0538 6.90129L19.2487 3.70642C19.409 3.54616 19.6692 3.54616 19.8295 3.70642C19.9897 3.86668 19.9897 4.12693 19.8295 4.28719L16.6346 7.48206C16.5538 7.56283 16.4487 7.60257 16.3436 7.60257Z" fill="currentColor"/>
+                        </svg>
+                        </button>
+                    </ap-button-nextprev> 
+                    {% endif %}  
+
+                  </div>
+
+                </instagram-carousel>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Instagram Carousel",
+  "class": "shopify-section--ap-instagram-carousel",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "fullwidth",
+      "label": "t:sections.all.fullwidth.label",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Margin section"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "Margin desktop",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "text",
+      "id": "margin_tablet_large",
+      "label": "Margin tablet large",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "Margin mobile",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "header",
+      "content": "Padding section"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "Padding desktop",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "Padding mobile",
+      "default": "0px 0px 0px 0px",
+      "info": "Example: 0px 0px 0px 0px"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.all.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.all.tab_heading_size.label"
+    },
+    {
+      "type": "text",
+      "id": "tab_description",
+      "label": "t:sections.all.tab_description.label",
+      "default": "SHOP BY CATEGORY"
+    },
+    {
+      "id": "heading_color",
+      "type": "color",
+      "label": "Color heading"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Color description"
+    },
+    {
+      "type": "header",
+      "content": "Setting item"
+    },
+    {
+      "type": "text",
+      "id": "distance_slide",
+      "default": "15",
+      "label": "Distance slide"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_ipad",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 2,
+      "label": "Products per row Ipad"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_tablet",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.all.products_per_row_tablet.label"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_desktop",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.all.products_per_row_desktop.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow",
+      "label": "Show arrow",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "instagram_item",
+      "name": "Instagram item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "featured_image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "url_item",
+          "label": "Image Url"
+        }
+      ]
+    },
+    {
+      "type": "instagram_item_box",
+      "name": "Instagram Box",
+      "settings": [
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background color"
+        },
+        {
+          "type": "liquid",
+          "id": "content_custom",
+          "label": "Text / HTML"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram Customize",
+      "blocks": [
+        {
+          "type": "instagram_item"
+        },
+        {
+          "type": "instagram_item"
+        },
+        {
+          "type": "instagram_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

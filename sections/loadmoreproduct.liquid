@@ -1,0 +1,16 @@
+<style>
+    #shopify-section-loadmoreproduct,
+    #ap-loadmoreproduct{
+        display:none;
+    }
+</style>
+<ap-loadmoreproduct id="ap-loadmoreproduct" section-id="{{ section.id }}" class="section section--flush">
+    {% liquid
+      assign products_per_page = 16
+    %}
+    {%- paginate collection.products by products_per_page -%}
+      {%- for product in collection.products -%}
+        {% render 'product-grid', product: product %}
+      {%- endfor -%}
+    {%- endpaginate -%}
+</ap-loadmoreproduct>

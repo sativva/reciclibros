@@ -1,0 +1,78 @@
+{% render 'section-style' %}
+
+{%- style -%}
+#shopify-section-{{ section.id }} iframe ,
+#shopify-section-{{ section.id }} .mapouter ,
+#shopify-section-{{ section.id }} .gmap_canvas {
+    width: 100%;
+    height: 600px;
+}
+{%- endstyle -%}
+
+<section class="map-section">
+  <div class="{{ section.settings.setwidthout }}">
+    <div class="gmap-iframe">
+      {{ section.settings.gmap_iframe }}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.contact-form.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidthout",
+      "label": "Width",
+      "default": "full",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "textarea",
+      "id": "gmap_iframe",
+      "label": "t:sections.contact-form.settings.gmap_iframe.label",
+      "info": "💡 [Get iframe code here](https://www.embedgooglemap.net/)"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "t:sections.all.padding_desktop.label",
+      "info": "t:sections.all.padding_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "t:sections.all.padding_mobile.label",
+      "info": "t:sections.all.padding_mobile.info"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,140 @@
+.copyright-item-content a {
+  color: var(--color-link);
+  width: auto;
+  height: auto;
+}
+
+.copyright__aside {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.copyright-item-content .linklist__item:not(:first-child) {
+  padding-top: 0;
+}
+
+.copyright-item-content .linklist {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  justify-content: end;
+}
+
+.copyright__payment-methods {
+  justify-content: end;
+  padding: 0;
+  margin: 0;
+}
+
+.copyright .linklist__item a {
+  font-size: 14px;
+  line-height: 20px;
+  text-decoration: underline;
+}
+
+.copyright-item-content > p > a {
+  color: rgb(var(--heading-color));
+  text-decoration: none;
+}
+
+.social-copyright {
+  justify-content: end;
+  gap: 20px;
+}
+
+.copyright-label {
+  text-transform: capitalize;
+  font-family: var(--hd-font-family);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.back-to-top-copyright {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.copyright-menu {
+  display: flex;
+}
+
+.copyright-menu.text-right {
+  justify-content: end;
+}
+
+.copyright-menu.text-center {
+  justify-content: center;
+}
+
+.social-copyright .social-media__item {
+  margin: 0;
+  width: auto;
+  height: auto;
+  border-radius: 0%;
+  background-color: rgb(var(--bg-link));
+  -webkit-border-radius: 0%;
+  -moz-border-radius: 0%;
+  -ms-border-radius: 0%;
+  -o-border-radius: 0%;
+}
+
+.social-copyright .social-media__item:before {
+  border-radius: 0%;
+  background-color: transparent;
+  width: auto;
+  height: auto;
+}
+
+.social-copyright {
+  color: rgb(var(--color-social));
+}
+
+.social-copyright .social-media__link:hover {
+  color: var(--primary_hover);
+}
+
+.copyright-social {
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .copyright__aside {
+    display: flex;
+    row-gap: 33px;
+  }
+}
+
+@media (max-width: 767px) {
+  .copyright__aside .text-left {
+    width: 100%;
+    text-align: center !important;
+    justify-content: center;
+  }
+  .copyright-item-2 {
+    text-align: center;
+    padding: 30px 0 15px;
+  }
+  .copyright-social,
+  .copyright-menu ,
+  .copyright-item-content .linklist {
+    justify-content: center !important;
+  }
+  .logo-copyright img {
+    margin: auto;
+  }
+  .copyright__aside .text-right {
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-copyright {
+    justify-content: center;
+  }
+}

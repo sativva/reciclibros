@@ -1,0 +1,38 @@
+<ap-contentcollapsible id="ap-shippingestimator">
+  <ap-shippingestimator class="ap-shippingestimator__form" role="form">
+    <div class="input-row">
+      <div class="input">
+        <label class="input__block-label" for="ap-shippingestimator[country]">Country</label>
+        <div class="select-wrapper is-filled">
+            <select class="select" is="ap-localizationselector" name="ap-shippingestimator[country]" id="ap-shippingestimator[country]" ap-ariaowns="ap-shippingestimator-province-wrapper" data-default="{% if shop.customer_accounts_enabled and customer %}{{ customer.default_address.country }}{% elsif settings.shipping_calculator_default_country != '' %}{{ settings.shipping_calculator_default_country }}{% endif %}">{{ country_option_tags }}</select>
+          <svg focusable="false" width="12" height="8" class="icon icon--chevron   " viewBox="0 0 12 8">
+            <path fill="none" d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="2"></path>
+          </svg>
+        </div>
+      </div>
+      <div id="ap-shippingestimator-province-wrapper" class="input" hidden="">
+        <label class="input__block-label" for="ap-shippingestimator[province]">Province</label>
+        <div class="select-wrapper">
+          <select class="select" name="ap-shippingestimator[province]" id="ap-shippingestimator[province]"></select>
+          <svg focusable="false" width="12" height="8" class="icon icon--chevron   " viewBox="0 0 12 8">
+            <path fill="none" d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="2"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="input">
+        <label class="input__block-label" for="ap-shippingestimator[zip]">Zip code</label>
+        <input type="text" class="input__field" name="ap-shippingestimator[zip]" id="ap-shippingestimator[zip]">
+      </div>
+    </div>
+    <button type="button" is="loader-button" class="form__submit form__submit--closer button button--primary">
+      <span class="ap-text-loaderbutton">Estimate</span>
+      <span class="ap-loader-loaderbutton" hidden="">
+        <div class="spinner">
+          <svg focusable="false" width="24" height="24" class="icon icon--spinner" viewBox="25 25 50 50">
+            <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="5"></circle>
+          </svg>
+        </div>
+      </span>
+    </button>
+  </ap-shippingestimator>
+</ap-contentcollapsible>

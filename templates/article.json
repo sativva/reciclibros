@@ -1,0 +1,98 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumb_blog_eYqJJw": {
+      "type": "breadcrumb-blog",
+      "settings": {
+        "setwidthout": "container-fluid",
+        "padding_top": 35,
+        "padding_bottom": 35,
+        "height": 200,
+        "margin_desktop": "0 0 40px",
+        "background_color": "#d5ece5",
+        "color_title": "#000000",
+        "color_breadcrumb": "#000000"
+      }
+    },
+    "main": {
+      "type": "main-article",
+      "blocks": {
+        "search_dNnzFY": {
+          "type": "search",
+          "settings": {}
+        },
+        "blog_aboutus_K7RgMX": {
+          "type": "blog-aboutus",
+          "settings": {
+            "description": "To be the industry leader, globally recognized for effective & efficient solutions. To provide innovative solutions delivering quality, excellence and speed."
+          }
+        },
+        "47f23791-91b9-4285-82d6-1f2f15225b9c": {
+          "type": "categories",
+          "settings": {
+            "article_text": "Tips & Tricks",
+            "article_link": "shopify://blogs/news",
+            "article_text_2": "Planning",
+            "article_link_2": "shopify://blogs/news",
+            "article_text_3": "Construction",
+            "article_link_3": "",
+            "article_text_4": "Repair",
+            "article_link_4": "",
+            "article_text_5": "Technology",
+            "article_link_5": ""
+          }
+        },
+        "blog_list_9nq4tU": {
+          "type": "blog-list",
+          "settings": {}
+        },
+        "d887c308-5061-4f24-9e3b-6922c8f5aa06": {
+          "type": "tags",
+          "settings": {}
+        },
+        "96ce13c5-3720-4f03-9e42-5f492870f98b": {
+          "type": "banner",
+          "settings": {
+            "title": "",
+            "color_title": "#ffffff",
+            "description": "",
+            "color_description": "#ffffff",
+            "button1_label": "",
+            "link1": ""
+          }
+        }
+      },
+      "block_order": [
+        "search_dNnzFY",
+        "blog_aboutus_K7RgMX",
+        "47f23791-91b9-4285-82d6-1f2f15225b9c",
+        "blog_list_9nq4tU",
+        "d887c308-5061-4f24-9e3b-6922c8f5aa06",
+        "96ce13c5-3720-4f03-9e42-5f492870f98b"
+      ],
+      "settings": {
+        "blog_show_tags": true,
+        "blog_show_date": true,
+        "blog_show_author": true,
+        "blog_show_share": false,
+        "share_label": "Share",
+        "blog_show_comment": true,
+        "show_mail": false,
+        "heading": "Join Us",
+        "description": "A short sentence describing what someone will receive by subscribing"
+      }
+    }
+  },
+  "order": [
+    "breadcrumb_blog_eYqJJw",
+    "main"
+  ]
+}
