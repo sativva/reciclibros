@@ -32,6 +32,7 @@
     },
     "banner": {
       "type": "main-collection-banner",
+      "disabled": true,
       "settings": {
         "setwidthout": "container",
         "content_box_size": "fill",
