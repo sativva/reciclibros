@@ -75,7 +75,7 @@
         "overlay_opacity": 1
       }
     },
-    "custom_liquid_nE6tjg": {
+    "custom_liquid_34pkTA": {
       "type": "custom-liquid",
       "name": "t:sections.custom-liquid.presets.name",
       "settings": {
@@ -234,7 +234,7 @@
   "order": [
     "main",
     "image_banner_xNQEjU",
-    "custom_liquid_nE6tjg",
+    "custom_liquid_34pkTA",
     "logo_swip_MGzb9J",
     "image_banner_cNFWxn",
     "contact_form_section_E4VBwF"
