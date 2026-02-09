@@ -1,21 +1,44 @@
-/* ===== CONTACT FORM LAYOUT ===== */
+/* ===== CONTAINER FORMULAIRE ===== */
 
 .contact-form {
-  background: #ffffff;
+  max-width: 520px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 36px;
+  border-radius: 28px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
 }
+
+/* ===== GRILLE DES CHAMPS ===== */
 
 .contact__fields {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 14px;
 }
 
-/* Champs pleine largeur si besoin */
 .contact__fields .field.full-width {
   grid-column: 1 / -1;
 }
 
-/* ===== INPUT STYLE ===== */
+/* ===== LABELS AU-DESSUS ===== */
+
+.field__label-top {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #9cc9b6;
+}
+
+.field__hint {
+  font-size: 12px;
+  font-weight: 400;
+  margin-left: 6px;
+  color: #9cc9b6;
+}
+
+/* ===== CHAMPS INPUT ===== */
 
 .field {
   width: 100%;
@@ -23,58 +46,60 @@
 
 .field__input {
   width: 100%;
-  height: 56px;
-  padding: 0 18px;
+  height: 48px;
+  padding: 0 16px;
   border-radius: 30px;
   border: 1px solid transparent;
   background-color: #f3f5f4;
-  font-size: 15px;
+  font-size: 14px;
   color: #222;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .field__input::placeholder {
-  color: #9cc9b6; /* vert clair comme sur l’image */
+  color: #9cc9b6;
   font-weight: 500;
 }
 
 .field__input:focus {
   outline: none;
-  border-color: #7bbca4;
   background-color: #ffffff;
+  border-color: #7bbca4;
 }
 
-/* Supprime les flèches sur input number */
+/* ===== INPUT NUMBER CLEAN ===== */
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 input[type="number"] {
   -moz-appearance: textfield;
 }
 
-/* ===== ERREURS NATIVES ===== */
+/* ===== VALIDATION HTML ===== */
 
 .field__input:invalid {
   border-color: #e05656;
 }
 
-/* ===== BUTTON ===== */
+/* ===== BOUTON ===== */
 
 .contact__button {
-  margin-top: 30px;
+  margin-top: 26px;
 }
 
 .contact__button .button {
   width: 100%;
-  height: 56px;
+  height: 48px;
   border-radius: 30px;
   background: transparent;
   border: 2px solid #7bbca4;
   color: #7bbca4;
+  font-size: 14px;
   font-weight: 600;
-  font-size: 15px;
   cursor: pointer;
   transition: all 0.25s ease;
 }
@@ -87,8 +112,14 @@ input[type="number"] {
 /* ===== MOBILE ===== */
 
 @media (max-width: 768px) {
+  .contact-form {
+    padding: 24px;
+    border-radius: 22px;
+  }
+
   .contact__fields {
     grid-template-columns: 1fr;
   }
 }
+
 
