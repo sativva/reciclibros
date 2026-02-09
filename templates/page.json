@@ -134,7 +134,7 @@
         "margin_desktop": "",
         "margin_mobile": "",
         "padding_desktop": "40px 20px 20px 20px",
-        "padding_mobile": "",
+        "padding_mobile": "40px 20px 20px 20px",
         "background-color": "#ffffff",
         "color_subtitle": "#fe7232",
         "heading_color": "#282828",
