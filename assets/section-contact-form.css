@@ -57,14 +57,14 @@
 }
 
 .field__input::placeholder {
-  color: #9cc9b6;
+  color: #ff6400;
   font-weight: 500;
 }
 
 .field__input:focus {
   outline: none;
   background-color: #ffffff;
-  border-color: #7bbca4;
+  border-color: #ff6400;
 }
 
 /* ===== INPUT NUMBER CLEAN ===== */
