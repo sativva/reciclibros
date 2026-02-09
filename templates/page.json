@@ -155,37 +155,6 @@
         "arrow_heading": false
       }
     },
-    "text_image_rGyVhg": {
-      "type": "text-image",
-      "blocks": {
-        "text_image_RbTMcU": {
-          "type": "text-image",
-          "settings": {
-            "content_text": "Facil de usar, descarga la app recuuuuuuuuu uuuuuuuuuuuu uuuuuuuuuuu",
-            "image": "shopify://shop_images/Ahorro.png",
-            "link": "",
-            "content_text2": ""
-          }
-        }
-      },
-      "block_order": [
-        "text_image_RbTMcU"
-      ],
-      "name": "Ap Text Image",
-      "settings": {
-        "fullwidth": false,
-        "margin_desktop": "",
-        "margin_tablet": "",
-        "margin_mobile": "",
-        "button1_label": "",
-        "link1": "",
-        "color_text": "",
-        "color_button": "",
-        "color_button_hover": "",
-        "background_color_button": "",
-        "background_color_button_hover": ""
-      }
-    },
     "custom_liquid_TPDCKe": {
       "type": "custom-liquid",
       "name": "t:sections.custom-liquid.presets.name",
@@ -280,7 +249,6 @@
     "image_banner_xNQEjU",
     "custom_liquid_34pkTA",
     "logo_swip_MGzb9J",
-    "text_image_rGyVhg",
     "custom_liquid_TPDCKe",
     "image_banner_cNFWxn",
     "contact_form_section_E4VBwF"
