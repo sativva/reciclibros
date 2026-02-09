@@ -67,56 +67,50 @@
 
           <div class="contact__fields">
 
-            <!-- Nombre -->
-            <div class="field">
-              <input class="field__input" type="text" id="ContactForm-name" name="contact[name]" placeholder="Nombre *" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" required>
-              <label class="field__label d-none" for="ContactForm-name">Nombre *</label>
-            </div>
+  <div class="field">
+    <label class="field__label-top" for="ContactForm-name">Nombre *</label>
+    <input class="field__input" type="text" id="ContactForm-name" name="contact[name]" required>
+  </div>
 
-            <!-- Apellido -->
-            <div class="field">
-              <input class="field__input" type="text" id="ContactForm-apellido" name="contact[apellido]" placeholder="Apellidos *" value="{% if form.apellido %}{{ form.apellido }}{% endif %}" required>
-              <label class="field__label d-none" for="ContactForm-apellido">Apellidos *</label>
-            </div>
+  <div class="field">
+    <label class="field__label-top" for="ContactForm-apellido">Apellidos *</label>
+    <input class="field__input" type="text" id="ContactForm-apellido" name="contact[apellido]" required>
+  </div>
 
-            <!-- Email -->
-            <div class="field field--with-error">
-              <input class="field__input" type="email" id="ContactForm-email" name="contact[email]" placeholder="Correo electrónico *" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" required>
-              <label class="field__label d-none" for="ContactForm-email">Correo electrónico *</label>
-            </div>
+  <div class="field">
+    <label class="field__label-top" for="ContactForm-email">Correo electrónico *</label>
+    <input class="field__input" type="email" id="ContactForm-email" name="contact[email]" required>
+  </div>
 
-            <!-- Teléfono -->
-            <div class="field">
-              <input class="field__input" type="tel" id="ContactForm-phone" name="contact[phone]" placeholder="Teléfono *" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" pattern="[0-9\-]+" required>
-              <label class="field__label d-none" for="ContactForm-phone">Teléfono *</label>
-            </div>
+  <div class="field">
+    <label class="field__label-top" for="ContactForm-phone">Teléfono *</label>
+    <input class="field__input" type="tel" id="ContactForm-phone" name="contact[phone]" required>
+  </div>
 
-            <!-- Dirección -->
-            <div class="field">
-              <input class="field__input" type="text" id="ContactForm-direccion" name="contact[direccion]" placeholder="Dirección *" value="{% if form.direccion %}{{ form.direccion }}{% endif %}" required>
-              <label class="field__label d-none" for="ContactForm-direccion">Dirección *</label>
-            </div>
+  <div class="field full-width">
+    <label class="field__label-top" for="ContactForm-direccion">Dirección *</label>
+    <input class="field__input" type="text" id="ContactForm-direccion" name="contact[direccion]" required>
+  </div>
 
-            <!-- Código postal -->
-            <div class="field">
-              <input class="field__input" type="number" id="ContactForm-cp" name="contact[codigo_postal]" placeholder="Código postal *" value="{% if form.codigo_postal %}{{ form.codigo_postal }}{% endif %}" min="10000" max="99999" required>
-              <label class="field__label d-none" for="ContactForm-cp">Código postal *</label>
-            </div>
+  <div class="field">
+    <label class="field__label-top" for="ContactForm-cp">Código postal *</label>
+    <input class="field__input" type="number" id="ContactForm-cp" name="contact[codigo_postal]" min="10000" max="99999" required>
+  </div>
 
-            <!-- Ciudad -->
-            <div class="field">
-              <input class="field__input" type="text" id="ContactForm-ciudad" name="contact[ciudad]" placeholder="Ciudad *" value="{% if form.ciudad %}{{ form.ciudad }}{% endif %}" required>
-              <label class="field__label d-none" for="ContactForm-ciudad">Ciudad *</label>
-            </div>
+  <div class="field">
+    <label class="field__label-top" for="ContactForm-ciudad">Ciudad *</label>
+    <input class="field__input" type="text" id="ContactForm-ciudad" name="contact[ciudad]" required>
+  </div>
 
-            <!-- Número de libros -->
-            <div class="field">
-              <input class="field__input" type="number" id="ContactForm-libros" name="contact[numero_libros]" placeholder="Número de libros * (mínimo 50)" value="{% if form.numero_libros %}{{ form.numero_libros }}{% endif %}" min="50" required>
-              <label class="field__label d-none" for="ContactForm-libros">Número de libros *</label>
-            </div>
+  <div class="field full-width">
+    <label class="field__label-top" for="ContactForm-libros">
+      Número de libros *
+      <span class="field__hint">(mínimo 50 libros)</span>
+    </label>
+    <input class="field__input" type="number" id="ContactForm-libros" name="contact[numero_libros]" min="50" required>
+  </div>
 
-          </div>
-
+</div>
           <div class="contact__button">
             <button type="submit" class="button btn-outline">
               {{ 'templates.contact.form.send_message' | t }}
