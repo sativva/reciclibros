@@ -2442,6 +2442,22 @@ ap-splitlines {
 .variant-swatch__radio:checked + .variant-swatch__item:after {
   opacity: 1;
   transform: scale(1);
+  border: 0px;
+}
+.block-swatch-list {
+  gap: 1rem;
+  display: flex;
+}
+.block-swatch__radio + .block-swatch__item {
+  color: rgb(var(--primary-button-background));
+  background: white;
+  border-radius: 15px;
+}
+.block-swatch__radio:checked + .block-swatch__item {
+  background: rgb(var(--primary-button-background));
+  color: white;
+  border-radius: 15px;
+
 }
 .ap-pricerange {
   display: block;
@@ -4097,8 +4113,8 @@ input:checked + .popover__choice-label:after {
 }
 .block-swatch__item:after,
 .variant-swatch__item:after {
-  box-shadow: 0 0 0 1px rgb(var(--color-body)) inset,
-    0 0 0 1px rgb(var(--color-body));
+  /*box-shadow: 0 0 0 1px rgb(var(--color-body)) inset,
+    0 0 0 1px rgb(var(--color-body));*/
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 0.2s, transform 0.2s;

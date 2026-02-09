@@ -191,6 +191,35 @@
                                 if color_variant == 'image_variant'
                                     assign color_custom_image = color_image_variant
                                 endif
+
+
+                            comment
+                              Trouve un prix "référence" pour cette valeur d'option en se basant sur la combinaison
+                              actuelle (option1/2/3 sélectionnées) — logique alignée avec votre désactivation.
+                            endcomment
+                            assign option_price = blank
+                            assign _found_price = false
+                            for v in product.variants
+                              if _found_price == false
+                                case option.position
+                                  when 1
+                                    if v.option1 == value
+                                      assign option_price = v.price
+                                      assign _found_price = true
+                                    endif
+                                  when 2
+                                    if v.option1 == product.selected_or_first_available_variant.option1 and v.option2 == value
+                                      assign option_price = v.price
+                                      assign _found_price = true
+                                    endif
+                                  when 3
+                                    if v.option1 == product.selected_or_first_available_variant.option1 and v.option2 == product.selected_or_first_available_variant.option2 and v.option3 == value
+                                      assign option_price = v.price
+                                      assign _found_price = true
+                                    endif
+                                endcase
+                              endif
+                            endfor
                                 
                             -%}
                             <div class="{% if color_custom_color != '' or color_custom_image != '' %}color-swatch{%- else -%}block-swatch{%- endif -%} {% if option_disabled %}is-disabled{% endif %}">
@@ -213,10 +242,22 @@
                                         
                                         
                                     </label>
+                                    <label class="block-swatch__item" for="option-{{ section.id }}-{{ option_index }}-{{ forloop.index }}">
+                                      {{ value }}
+                                      {%- if option_price != blank -%}
+                                        <span class="ap-option-price">{{ option_price | money }}</span>
+                                      {%- endif -%}
+                                    </label>
                                 {% else %}
                                     <label class="block-swatch__item" for="option-{{ section.id }}-{{ option_index }}-{{ forloop.index }}">
                                         {{ value }}
                                     </label>
+                                <label class="block-swatch__item" for="option-{{ section.id }}-{{ option_index }}-{{ forloop.index }}">
+                                  {{ value }}
+                                  {%- if option_price != blank -%}
+                                    <span class="ap-option-price">{{ option_price | money }}</span>
+                                  {%- endif -%}
+                                </label>
                                 {% endif %}
                             </div>
                         {% endfor %}
@@ -329,6 +370,35 @@
                                 endif
                             endfor
                             endif
+
+
+                            comment
+                              Trouve un prix "référence" pour cette valeur d'option en se basant sur la combinaison
+                              actuelle (option1/2/3 sélectionnées) — logique alignée avec votre désactivation.
+                            endcomment
+                            assign option_price = blank
+                            assign _found_price = false
+                            for v in product.variants
+                              if _found_price == false
+                                case option.position
+                                  when 1
+                                    if v.option1 == value
+                                      assign option_price = v.price
+                                      assign _found_price = true
+                                    endif
+                                  when 2
+                                    if v.option1 == product.selected_or_first_available_variant.option1 and v.option2 == value
+                                      assign option_price = v.price
+                                      assign _found_price = true
+                                    endif
+                                  when 3
+                                    if v.option1 == product.selected_or_first_available_variant.option1 and v.option2 == product.selected_or_first_available_variant.option2 and v.option3 == value
+                                      assign option_price = v.price
+                                      assign _found_price = true
+                                    endif
+                                endcase
+                              endif
+                            endfor
                         %}
                         {% if option.name contains 'Size' and show_size_chart == true and status == true %}
                             <button type="button" is="toggle-button" class="ap-productform__option-link link text--subdued hd-phone" ap-controlsaria="product-{{ section.id }}-{{ product.id }}-size-chart-drawer" ap-expanded-aria="false">Size chart</button>
@@ -360,6 +430,35 @@
                                     endif
                                 endcase
                             endfor
+
+
+                            comment
+                              Trouve un prix "référence" pour cette valeur d'option en se basant sur la combinaison
+                              actuelle (option1/2/3 sélectionnées) — logique alignée avec votre désactivation.
+                            endcomment
+                            assign option_price = blank
+                            assign _found_price = false
+                            for v in product.variants
+                              if _found_price == false
+                                case option.position
+                                  when 1
+                                    if v.option1 == value
+                                      assign option_price = v.price
+                                      assign _found_price = true
+                                    endif
+                                  when 2
+                                    if v.option1 == product.selected_or_first_available_variant.option1 and v.option2 == value
+                                      assign option_price = v.price
+                                      assign _found_price = true
+                                    endif
+                                  when 3
+                                    if v.option1 == product.selected_or_first_available_variant.option1 and v.option2 == product.selected_or_first_available_variant.option2 and v.option3 == value
+                                      assign option_price = v.price
+                                      assign _found_price = true
+                                    endif
+                                endcase
+                              endif
+                            endfor
                             -%}
                             <div class="block-swatch {% if option_disabled %}is-disabled{% endif %}">
                                 {% if option_index == 1 %}
@@ -371,7 +470,15 @@
                                 {% if option_index == 3 %}
                                     <input class="block-swatch__radio visually-hidden" type="radio" name="option{{ option_index }}" form="ap-productform-{{ section.id }}-{{ product.id }}" id="option-{{ section.id }}-{{ option_index }}-{{ forloop.index }}" value="{{ value }}" {% if product.selected_or_first_available_variant.option3 == value %}checked="checked"{% endif %} data-bind-value="option-{{ section.id }}-{{ option_index }}-value">
                                 {% endif %}
-                                <label class="block-swatch__item" for="option-{{ section.id }}-{{ option_index }}-{{ forloop.index }}">{{ value }}</label>
+
+
+                                <label class="block-swatch__item" for="option-{{ section.id }}-{{ option_index }}-{{ forloop.index }}">
+                                  {{ value }}
+                                  {%- if option_price != blank -%}
+                                  <br>
+                                    <span class="ap-option-price"><b>{{ option_price | money }}</b></span>
+                                  {%- endif -%}
+                                </label>
                             </div>
                         {% endfor %}
                     </div>
