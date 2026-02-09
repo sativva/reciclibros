@@ -56,6 +56,7 @@
       "block_order": [
         "text_aPBDc4"
       ],
+      "disabled": true,
       "custom_css": [],
       "name": "Image banner",
       "settings": {
@@ -73,6 +74,17 @@
         "text_color": "",
         "overlay": "#ffffff",
         "overlay_opacity": 1
+      }
+    },
+    "custom_liquid_34pkTA": {
+      "type": "custom-liquid",
+      "custom_css": [],
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "{% assign banner_image = 'banniere_donar_vender.png' | file_img_url: 'master' %}\n\n{% assign btn1_bg = '#ff6400' %}\n{% assign btn1_hover = '#FFD1B3' %}\n{% assign btn2_bg = '#ffffff' %}\n{% assign btn2_hover = '#f2f2f2' %}\n{% assign btn_text_color_1 = '#ffffff' %}\n{% assign btn_text_color_2 = '#000000' %}\n\n<div class=\"cta-banner\">\n  <img\n    src=\"{{ banner_image }}\"\n    alt=\"Donar Vender\"\n    class=\"cta-banner-img\"\n    loading=\"lazy\"\n  >\n\n  <div class=\"cta-overlay\"></div>\n\n  <div class=\"dual-buttons\">\n    <a href=\"#image-banner\" class=\"dual-btn btn-1\">Vender</a>\n    <a href=\"#formulario\" class=\"dual-btn btn-2\">Donar</a>\n  </div>\n</div>\n\n<style>\n/* Container */\n.cta-banner {\n  position: relative;\n  display: inline-block;\n  width: 100%;\n  max-width: 100%;\n}\n\n/* Image = taille native */\n.cta-banner-img {\n  display: block;\n  width: auto;\n  max-width: 100%;\n  height: auto;\n}\n\n/* Overlay */\n.cta-overlay {\n  position: absolute;\n  inset: 0;\n  background: rgba(0, 0, 0, 0.15);\n}\n\n/* Boutons bas-gauche */\n.dual-buttons {\n  position: absolute;\n  bottom: 100px;\n  left: 100px;\n  display: flex;\n  gap: 12px;\n  z-index: 2;\n}\n\n/* Boutons */\n.dual-btn {\n  padding: 14px 48px;\n  font-size: 14px;\n  font-weight: 600;\n  text-decoration: none;\n  border-radius: 4px;\n  transition: background-color 0.25s ease, color 0.25s ease;\n}\n\n/* Bouton 1 */\n.btn-1 {\n  background-color: {{ btn1_bg }};\n  color: {{ btn_text_color_1 }};\n}\n\n.btn-1:hover {\n  background-color: {{ btn1_hover }};\n}\n\n/* Bouton 2 */\n.btn-2 {\n  background-color: {{ btn2_bg }};\n  color: {{ btn_text_color_2 }};\n  border: 1px solid #ddd;\n}\n\n.btn-2:hover {\n  background-color: {{ btn2_hover }};\n}\n\n/* Mobile */\n@media (max-width: 768px) {\n  .dual-buttons {\n    left: 20px;\n    right: 20px;\n    bottom: 20px;\n    flex-direction: column;\n  }\n\n  .dual-btn {\n    width: 100%;\n    text-align: center;\n  }\n}\n</style>",
+        "color_scheme": "background-1",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "logo_swip_MGzb9J": {
@@ -143,6 +155,37 @@
         "arrow_heading": false
       }
     },
+    "text_image_rGyVhg": {
+      "type": "text-image",
+      "blocks": {
+        "text_image_RbTMcU": {
+          "type": "text-image",
+          "settings": {
+            "content_text": "Facil de usar, descarga la app recuuuuuuuuu uuuuuuuuuuuu uuuuuuuuuuu",
+            "image": "shopify://shop_images/Ahorro.png",
+            "link": "",
+            "content_text2": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_image_RbTMcU"
+      ],
+      "name": "Ap Text Image",
+      "settings": {
+        "fullwidth": false,
+        "margin_desktop": "",
+        "margin_tablet": "",
+        "margin_mobile": "",
+        "button1_label": "",
+        "link1": "",
+        "color_text": "",
+        "color_button": "",
+        "color_button_hover": "",
+        "background_color_button": "",
+        "background_color_button_hover": ""
+      }
+    },
     "image_banner_cNFWxn": {
       "type": "image-banner",
       "blocks": {
@@ -178,6 +221,7 @@
       "block_order": [
         "text_KLThjC"
       ],
+      "custom_css": [],
       "name": "Image banner",
       "settings": {
         "setwidthout": "container",
@@ -204,8 +248,8 @@
         "background-color": "#ff6400",
         "margin_desktop": "",
         "margin_mobile": "",
-        "padding_desktop": "",
-        "padding_mobile": "",
+        "padding_desktop": "20px 0px 20px 0px",
+        "padding_mobile": "20px 0px 20px 0px",
         "color_text": "#ffffff",
         "heading": "",
         "heading_size": "h4",
@@ -224,7 +268,9 @@
   "order": [
     "main",
     "image_banner_xNQEjU",
+    "custom_liquid_34pkTA",
     "logo_swip_MGzb9J",
+    "text_image_rGyVhg",
     "image_banner_cNFWxn",
     "contact_form_section_E4VBwF"
   ]
