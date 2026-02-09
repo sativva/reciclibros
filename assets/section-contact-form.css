@@ -28,14 +28,14 @@
   margin-bottom: 6px;
   font-size: 13px;
   font-weight: 600;
-  color: #000000;
+  color: #4f4f4f;
 }
 
 .field__hint {
   font-size: 12px;
   font-weight: 400;
   margin-left: 6px;
-  color: #000000;
+  color: #4f4f4f;
 }
 
 /* ===== CHAMPS INPUT ===== */
