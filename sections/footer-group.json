@@ -36,7 +36,7 @@
         "text_align": "left",
         "products_to_show": 10,
         "products_per_row_mobile_sm": 3,
-        "products_per_row_desktop": 4,
+        "products_per_row_desktop": 6,
         "margin_desktop": "20px 0px 0px 0px",
         "margin_mobile": "20px 0px 0px 0px",
         "padding_desktop": "",
