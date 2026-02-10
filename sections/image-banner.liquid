@@ -50,6 +50,31 @@
   .imagebanner__img {
     object-fit: cover;
   }
+  /* === FIX image banner proportions === */
+
+/* Base */
+#shopify-section-{{ section.id }} .banner-list-image,
+#shopify-section-{{ section.id }} img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Mode DEFAULT IMAGE → pas de crop */
+{% if section.settings.height_img == 'default-img' %}
+#shopify-section-{{ section.id }} .banner-list-image,
+#shopify-section-{{ section.id }} img {
+  object-fit: contain;
+  min-height: auto !important;
+}
+{% else %}
+/* Mode hauteur forcée → cover OK */
+#shopify-section-{{ section.id }} img {
+  height: 100%;
+  object-fit: cover;
+}
+{% endif %}
 </style>
 
 <div id="image-banner"></div>
