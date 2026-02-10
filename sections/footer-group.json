@@ -26,6 +26,23 @@
         "wborder": "1px 0px 0px 0px"
       }
     },
+    "recently_viewed_products_hnptiH": {
+      "type": "recently-viewed-products",
+      "name": "Recently viewed products",
+      "settings": {
+        "heading": "Recently viewed products",
+        "heading_size": 2,
+        "tab_description": "",
+        "text_align": "left",
+        "products_to_show": 10,
+        "products_per_row_mobile_sm": 3,
+        "products_per_row_desktop": 4,
+        "margin_desktop": "",
+        "margin_mobile": "",
+        "padding_desktop": "",
+        "padding_mobile": ""
+      }
+    },
     "newsletter_gF8hEw": {
       "type": "newsletter",
       "blocks": {
@@ -421,6 +438,7 @@
   },
   "order": [
     "line_section_rDbPi4",
+    "recently_viewed_products_hnptiH",
     "newsletter_gF8hEw",
     "footer_top_X7tjrJ",
     "line_section_YznULt",
