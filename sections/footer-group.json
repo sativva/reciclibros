@@ -30,15 +30,15 @@
       "type": "recently-viewed-products",
       "name": "Recently viewed products",
       "settings": {
-        "heading": "Recently viewed products",
-        "heading_size": 2,
+        "heading": "Productos que recién has visto",
+        "heading_size": 4,
         "tab_description": "",
         "text_align": "left",
         "products_to_show": 10,
         "products_per_row_mobile_sm": 3,
         "products_per_row_desktop": 4,
-        "margin_desktop": "",
-        "margin_mobile": "",
+        "margin_desktop": "20px 0px 0px 0px",
+        "margin_mobile": "20px 0px 0px 0px",
         "padding_desktop": "",
         "padding_mobile": ""
       }
