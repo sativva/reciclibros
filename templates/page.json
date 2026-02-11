@@ -81,7 +81,7 @@
       "custom_css": [],
       "name": "t:sections.custom-liquid.presets.name",
       "settings": {
-        "custom_liquid": "{% assign banner_image = 'banniere_donar_vender.png' | file_img_url: 'master' %}\n\n{% assign btn1_bg = '#ff6400' %}\n{% assign btn1_hover = '#FFD1B3' %}\n{% assign btn2_bg = '#ffffff' %}\n{% assign btn2_hover = '#f2f2f2' %}\n{% assign btn_text_color_1 = '#ffffff' %}\n{% assign btn_text_color_2 = '#000000' %}\n\n<div class=\"cta-banner\">\n  <img\n    src=\"{{ banner_image }}\"\n    alt=\"Donar Vender\"\n    class=\"cta-banner-img\"\n    loading=\"lazy\"\n  >\n\n  <div class=\"cta-overlay\"></div>\n\n  <div class=\"dual-buttons\">\n    <a href=\"#image-banner\" class=\"dual-btn btn-1\">Vender</a>\n    <a href=\"#formulario\" class=\"dual-btn btn-2\">Donar</a>\n  </div>\n</div>\n\n<style>\n/* Container */\n.cta-banner {\n  position: relative;\n  display: inline-block;\n  width: 100%;\n  max-width: 100%;\n}\n\n/* Image = taille native */\n.cta-banner-img {\n  display: block;\n  width: auto;\n  max-width: 100%;\n  height: auto;\n}\n\n/* Overlay */\n.cta-overlay {\n  position: absolute;\n  inset: 0;\n  background: rgba(0, 0, 0, 0.15);\n}\n\n/* Boutons bas-gauche */\n.dual-buttons {\n  position: absolute;\n  bottom: 100px;\n  left: 100px;\n  display: flex;\n  gap: 12px;\n  z-index: 2;\n}\n\n/* Boutons */\n.dual-btn {\n  padding: 14px 48px;\n  font-size: 14px;\n  font-weight: 600;\n  text-decoration: none;\n  border-radius: 4px;\n  transition: background-color 0.25s ease, color 0.25s ease;\n}\n\n/* Bouton 1 */\n.btn-1 {\n  background-color: {{ btn1_bg }};\n  color: {{ btn_text_color_1 }};\n}\n\n.btn-1:hover {\n  background-color: {{ btn1_hover }};\n}\n\n/* Bouton 2 */\n.btn-2 {\n  background-color: {{ btn2_bg }};\n  color: {{ btn_text_color_2 }};\n  border: 1px solid #ddd;\n}\n\n.btn-2:hover {\n  background-color: {{ btn2_hover }};\n}\n\n/* Mobile */\n@media (max-width: 768px) {\n  .dual-buttons {\n    left: 20px;\n    right: 20px;\n    bottom: 20px;\n    flex-direction: column;\n  }\n\n  .dual-btn {\n    width: 100%;\n    text-align: center;\n  }\n}\n</style>",
+        "custom_liquid": "{% assign banner_image = 'banniere_donar_vender.png' | file_img_url: 'master' %}\n\n{% assign btn1_bg = '#ff6400' %}\n{% assign btn1_hover = '#FFD1B3' %}\n{% assign btn2_bg = '#ffffff' %}\n{% assign btn2_hover = '#f2f2f2' %}\n{% assign btn_text_color_1 = '#ffffff' %}\n{% assign btn_text_color_2 = '#000000' %}\n\n<div class=\"cta-banner\">\n  <img\n    src=\"{{ banner_image }}\"\n    alt=\"Donar Vender\"\n    class=\"cta-banner-img\"\n    loading=\"lazy\"\n  >\n\n  <div class=\"cta-overlay\"></div>\n\n  <div class=\"dual-buttons\">\n    <a href=\"#app\" class=\"dual-btn btn-1\">Vender</a>\n    <a href=\"#formulario\" class=\"dual-btn btn-2\">Donar</a>\n  </div>\n</div>\n\n<style>\n/* Container */\n.cta-banner {\n  position: relative;\n  display: inline-block;\n  width: 100%;\n  max-width: 100%;\n}\n\n/* Image = taille native */\n.cta-banner-img {\n  display: block;\n  width: auto;\n  max-width: 100%;\n  height: auto;\n}\n\n/* Overlay */\n.cta-overlay {\n  position: absolute;\n  inset: 0;\n  background: rgba(0, 0, 0, 0.15);\n}\n\n/* Boutons bas-gauche */\n.dual-buttons {\n  position: absolute;\n  bottom: 100px;\n  left: 100px;\n  display: flex;\n  gap: 12px;\n  z-index: 2;\n}\n\n/* Boutons */\n.dual-btn {\n  padding: 14px 48px;\n  font-size: 14px;\n  font-weight: 600;\n  text-decoration: none;\n  border-radius: 4px;\n  transition: background-color 0.25s ease, color 0.25s ease;\n}\n\n/* Bouton 1 */\n.btn-1 {\n  background-color: {{ btn1_bg }};\n  color: {{ btn_text_color_1 }};\n}\n\n.btn-1:hover {\n  background-color: {{ btn1_hover }};\n}\n\n/* Bouton 2 */\n.btn-2 {\n  background-color: {{ btn2_bg }};\n  color: {{ btn_text_color_2 }};\n  border: 1px solid #ddd;\n}\n\n.btn-2:hover {\n  background-color: {{ btn2_hover }};\n}\n\n/* Mobile */\n@media (max-width: 768px) {\n  .dual-buttons {\n    left: 20px;\n    right: 20px;\n    bottom: 20px;\n    flex-direction: row;\n  }\n\n  .dual-btn {\n    width: 100%;\n    text-align: center;\n  }\n}\n</style>",
         "color_scheme": "background-1",
         "padding_top": 0,
         "padding_bottom": 0
@@ -134,11 +134,11 @@
         "margin_desktop": "",
         "margin_mobile": "",
         "padding_desktop": "40px 20px 20px 20px",
-        "padding_mobile": "",
+        "padding_mobile": "40px 20px 20px 20px",
         "background-color": "#ffffff",
         "color_subtitle": "#fe7232",
-        "heading_color": "#282828",
-        "text_color": "#282828",
+        "heading_color": "#4f4f4f",
+        "text_color": "#4f4f4f",
         "sub_heading": "",
         "tab_heading": "Vende tus libros de forma rápida y sencilla con la app Reciclibros",
         "tab_heading_size": 4,
@@ -155,35 +155,15 @@
         "arrow_heading": false
       }
     },
-    "text_image_rGyVhg": {
-      "type": "text-image",
-      "blocks": {
-        "text_image_RbTMcU": {
-          "type": "text-image",
-          "settings": {
-            "content_text": "Facil de usar, descarga la app recuuuuuuuuu uuuuuuuuuuuu uuuuuuuuuuu",
-            "image": "shopify://shop_images/Ahorro.png",
-            "link": "",
-            "content_text2": ""
-          }
-        }
-      },
-      "block_order": [
-        "text_image_RbTMcU"
-      ],
-      "name": "Ap Text Image",
+    "custom_liquid_TPDCKe": {
+      "type": "custom-liquid",
+      "custom_css": [],
+      "name": "Custom Liquid app",
       "settings": {
-        "fullwidth": false,
-        "margin_desktop": "",
-        "margin_tablet": "",
-        "margin_mobile": "",
-        "button1_label": "",
-        "link1": "",
-        "color_text": "",
-        "color_button": "",
-        "color_button_hover": "",
-        "background_color_button": "",
-        "background_color_button_hover": ""
+        "custom_liquid": "<div id=\"app\"></div>\n<div style=\"max-width:1200px;margin:auto;display:flex;gap:40px;align-items:center;flex-wrap:wrap\">\n\n  <!-- GAUCHE -->\n  <div style=\"flex:1;min-width:300px;padding:40px\">\n\n<h2 style=\"font-family:'Francois One';sans-serif; color:#4f4f4f;font-weight:500;font-size:36px;line-height:1.1;margin:0 0 32px\">\n  Vender tus libros es fácil y rápido\n</h2>\n\n\n    {% assign features = \n      \"https://cdn.shopify.com/s/files/1/0744/6652/5362/files/picto_tout-va-bien.svg?v=1770650816|Fácil de usar|Descárgate la app Reciclibros, regístrate y empieza a ganar dinero escaneando tus libros.###\n       https://cdn.shopify.com/s/files/1/0744/6652/5362/files/cadenas.svg?v=1770650816|Precios fijos|Te ofrecemos un precio de compra al instante, visible en cuanto escaneas tus libros.###\n       https://cdn.shopify.com/s/files/1/0744/6652/5362/files/Expedition.svg?v=1770650816|Envío gratuito y asegurado|Una vez finalizada tu venta, puedes solicitar una recogida totalmente gratuita.\"\n      | split: \"###\" \n    %}\n\n    {% for f in features %}\n      {% assign item = f | split: \"|\" %}\n      <div style=\"display:flex;gap:14px;margin-bottom:22px;color:#4f4f4f\">\n        <img src=\"{{ item[0] }}\" style=\"width:52px;height:52px\">\n        <div>\n          <div style=\"font-weight:600;margin-bottom:4px\">{{ item[1] }}</div>\n          <div style=\"font-size:16px;color:color:#4f4f4f\">{{ item[2] }}</div>\n        </div>\n      </div>\n    {% endfor %}\n\n    <div style=\"display:flex;gap:16px;margin-top:32px;margin-left:42px;flex-wrap:wrap\">\n      <a href=\"https://play.google.com/store/apps/details?id=com.reciclibros.app&hl=es_PY\"><img src=\"https://cdn.shopify.com/s/files/1/0744/6652/5362/files/Google_Store.png?v=1770654323\" style=\"height:40px\"></a>\n      <a href=\"https://apps.apple.com/es/app/reciclibros-vende-tus-libros/id1610564048\"><img src=\"https://cdn.shopify.com/s/files/1/0744/6652/5362/files/App_store.png?v=1770654316\" style=\"height:40px\"></a>\n    </div>\n  </div>\n\n  <!-- DROITE -->\n  <div class=\"phone-mockup\"style=\"flex:1;min-width:280px;text-align:center\">\n    <img src=\"https://cdn.shopify.com/s/files/1/0744/6652/5362/files/Stories.png?v=1770650519\" style=\"max-width:60%\">\n  </div>\n\n</div>\n<style>\n@media(max-width:768px){.phone-mockup{display:none}}\n</style>",
+        "color_scheme": "background-1",
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     },
     "image_banner_cNFWxn": {
@@ -221,6 +201,7 @@
       "block_order": [
         "text_KLThjC"
       ],
+      "disabled": true,
       "custom_css": [],
       "name": "Image banner",
       "settings": {
@@ -250,7 +231,7 @@
         "margin_mobile": "",
         "padding_desktop": "20px 0px 20px 0px",
         "padding_mobile": "20px 0px 20px 0px",
-        "color_text": "#ffffff",
+        "color_text": "#4f4f4f",
         "heading": "",
         "heading_size": "h4",
         "description": "",
@@ -261,7 +242,7 @@
         "icon_3": "",
         "info_text_3": "",
         "contact_form_title": "Solicita una recogida",
-        "contact_form_des": "Luego te llamaremos para organizar una cita"
+        "contact_form_des": "Si estás en Madrid o Barcelona rellena este formulario para solicitar una recogida, luego te llamaremos para coordinar una cita."
       }
     }
   },
@@ -270,7 +251,7 @@
     "image_banner_xNQEjU",
     "custom_liquid_34pkTA",
     "logo_swip_MGzb9J",
-    "text_image_rGyVhg",
+    "custom_liquid_TPDCKe",
     "image_banner_cNFWxn",
     "contact_form_section_E4VBwF"
   ]
