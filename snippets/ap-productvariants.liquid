@@ -23,7 +23,7 @@
             assign option_name_setting = settings.option_name | upcase
         %}
         {% if variant_type == 'dropdown' %}
-        <div class="ap-productform__option-selector">
+        <div class="ap-productform__option-selector" data-option-index="{{ option_index }}">
             <div class="ap-productform__option-info">
                 <span class="ap-productform__option-name">{{ option.name }}:</span>
                 <span id="option-{{ section.id }}-{{ option_index }}-value" class="ap-productform__option-value">{{ option.values[0] }}</span>
@@ -39,7 +39,7 @@
 
         {% else %}
             {% if option_name == option_name_setting and settings.filter_color_enable and color_variant != 'default' %}
-                <div class="ap-productform__option-selector" data-selector-type="color">
+                <div class="ap-productform__option-selector" data-selector-type="color" data-option-index="{{ option_index }}">
                     <div class="ap-productform__option-info">
                         <span class="ap-productform__option-name">{{ option.name }}:</span>
                         <span id="option-{{ section.id }}-{{ option_index }}-value" class="ap-productform__option-value">{{ option.values[0] }}</span>
@@ -264,7 +264,7 @@
                     </div>
                 </div>
             {% else %}
-                <div class="ap-productform__option-selector" data-selector-type="block">
+                <div class="ap-productform__option-selector" data-selector-type="block" data-option-index="{{ option_index }}">
                     <div class="ap-productform__option-info">
                         <span class="ap-productform__option-name">{{ option.name }}:</span>
                         <span id="option-{{ section.id }}-{{ option_index }}-value" class="ap-productform__option-value">{{ option.values[0] }}</span>
@@ -432,33 +432,31 @@
                             endfor
 
 
-                            comment
-                              Trouve un prix "référence" pour cette valeur d'option en se basant sur la combinaison
-                              actuelle (option1/2/3 sélectionnées) — logique alignée avec votre désactivation.
-                            endcomment
-                            assign option_price = blank
-                            assign _found_price = false
-                            for v in product.variants
-                              if _found_price == false
-                                case option.position
-                                  when 1
-                                    if v.option1 == value
-                                      assign option_price = v.price
-                                      assign _found_price = true
-                                    endif
-                                  when 2
-                                    if v.option1 == product.selected_or_first_available_variant.option1 and v.option2 == value
-                                      assign option_price = v.price
-                                      assign _found_price = true
-                                    endif
-                                  when 3
-                                    if v.option1 == product.selected_or_first_available_variant.option1 and v.option2 == product.selected_or_first_available_variant.option2 and v.option3 == value
-                                      assign option_price = v.price
-                                      assign _found_price = true
-                                    endif
-                                endcase
-                              endif
-                            endfor
+                            if show_variant_prices
+                                assign option_price = blank
+                                assign _found_price = false
+                                for v in product.variants
+                                  if _found_price == false
+                                    case option.position
+                                      when 1
+                                        if v.option1 == value
+                                          assign option_price = v.price
+                                          assign _found_price = true
+                                        endif
+                                      when 2
+                                        if v.option1 == product.selected_or_first_available_variant.option1 and v.option2 == value
+                                          assign option_price = v.price
+                                          assign _found_price = true
+                                        endif
+                                      when 3
+                                        if v.option1 == product.selected_or_first_available_variant.option1 and v.option2 == product.selected_or_first_available_variant.option2 and v.option3 == value
+                                          assign option_price = v.price
+                                          assign _found_price = true
+                                        endif
+                                    endcase
+                                  endif
+                                endfor
+                            endif
                             -%}
                             <div class="block-swatch {% if option_disabled %}is-disabled{% endif %}">
                                 {% if option_index == 1 %}
@@ -473,10 +471,9 @@
 
 
                                 <label class="block-swatch__item" for="option-{{ section.id }}-{{ option_index }}-{{ forloop.index }}">
-                                  {{ value }}
-                                  {%- if option_price != blank -%}
-                                  <br>
-                                    <span class="ap-option-price"><b>{{ option_price | money }}</b></span>
+                                  <span class="block-swatch__value">{{ value }}</span>
+                                  {%- if show_variant_prices and option_price != blank -%}
+                                    <span class="block-swatch__price" data-variant-price>{{ option_price | money }}</span>
                                   {%- endif -%}
                                 </label>
                             </div>

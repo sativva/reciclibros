@@ -320,7 +320,13 @@
                       {%endif %}
       
                       {%- when 'product_variants' -%}
-                        {%- render 'ap-productvariants', product: product show_size_chart: true color_variant: block.settings.color_variant variant_type: block.settings.variant_type -%}
+                        {%- render 'ap-productvariants',
+                          product: product
+                          show_size_chart: true
+                          color_variant: block.settings.color_variant
+                          variant_type: block.settings.variant_type
+                          show_variant_prices: block.settings.show_variant_prices
+                        -%}
                       
                       {%- when 'quantity_selector' -%}
                         <div class="quantity_wrapper">
@@ -755,6 +761,12 @@
           ],
           "default": "default",
           "label": "Color variant"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_variant_prices",
+          "default": true,
+          "label": "Afficher le prix dans les boutons"
         }
       ]
     },

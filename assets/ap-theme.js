@@ -9029,6 +9029,7 @@
       this.apollo.on("change", '[name^="option"]', this._evtOnChangedOption.bind(this));
       this.masterSelector.addEventListener("change", this._evtOnMasterChangedSelector.bind(this));
       this._updateDisableSelectors();
+      this._updateOptionPriceLabels();
       this.selectVariant(this.selectedVariant["id"]);
     }
     get selectedVariant() {
@@ -9049,6 +9050,8 @@
         id = this._getFirstMatchingAvailableVariant()["id"];
       }
       if (((_a = this.selectedVariant) == null ? void 0 : _a.id) === id) {
+        this._updateDisableSelectors();
+        this._updateOptionPriceLabels();
         return;
       }
       this.masterSelector.value = id;
@@ -9073,6 +9076,7 @@
         );
       }
       this._updateDisableSelectors();
+      this._updateOptionPriceLabels();
       triggerEvent(this.masterSelector.form, "variant:changed", {
         variant: this.selectedVariant,
       });
@@ -9239,6 +9243,42 @@
           }
         });
       }
+    }
+    _updateOptionPriceLabels() {
+      if (!this.optionSelectors || !this.product) {
+        return;
+      }
+      let currencyFormat = window.themeVariables.settings.moneyFormat;
+      if (window.themeVariables.settings.currencyCodeEnabled) {
+        currencyFormat = window.themeVariables.settings.moneyWithCurrencyFormat;
+      }
+      const selectedOptions = this._getSelectedOptionValues();
+      this.optionSelectors.forEach((selector, selectorIndex) => {
+        const optionIndexAttr = selector.getAttribute("data-option-index");
+        const optionIndex = optionIndexAttr ? parseInt(optionIndexAttr, 10) - 1 : selectorIndex;
+        selector.querySelectorAll(".block-swatch").forEach((swatch) => {
+          const input = swatch.querySelector('input[name^="option"]');
+          if (!input) {
+            return;
+          }
+          const priceEl = swatch.querySelector("[data-variant-price]");
+          if (!priceEl) {
+            return;
+          }
+          const value = input.value;
+          const desiredOptions = selectedOptions.slice(0);
+          desiredOptions[optionIndex] = value;
+          let variant = this.product["variants"].find((variant2) => {
+            return variant2["options"].every((opt, idx) => opt === desiredOptions[idx]);
+          });
+          if (!variant) {
+            variant = this.product["variants"].find(
+              (variant2) => variant2["options"][optionIndex] === value
+            );
+          }
+          priceEl.textContent = variant ? apMoneyFormat(variant["price"], currencyFormat) : "";
+        });
+      });
     }
   };
   window.customElements.define("ap-productvariants", ApProductVariants);
