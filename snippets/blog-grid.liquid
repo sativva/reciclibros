@@ -37,7 +37,7 @@
 
                         {%- if section.settings.show_date -%}
                             <span class="blog-date">
-                                {{ article.published_at | date: "%d %b, %Y" }}
+                                {{ article.published_at | date: format: 'short' }}
                             </span>
                         {%- endif -%}
 
