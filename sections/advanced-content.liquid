@@ -453,20 +453,6 @@
                         object-position: {{ block.settings.position_image_mb }};
                       }
                     }
-                    @media (min-width: 768px) and (max-width: 1199px) {
-                    #img-{{ block.id }}.ap-imagetextblock {
-                     min-height: auto;
-                     height: auto;
-                     aspect-ratio: 16 / 9; /* ou 4 / 3 selon ta bannière */
-                     }
-
-                     #img-{{ block.id }} .adv-list-image {
-                     width: 100%;
-                     height: 100%;
-                      object-fit: cover;
-                     }
-                    }
-
                   </style>
 
                   {%-liquid
