@@ -438,9 +438,9 @@
                         margin: {{ block.settings.margin_inner }};
                       } 
                     }     
-                    #img-{{ block.id }}.ap-imagetextblock {
-                    aspect-ratio: 16 / 9;
-                    min-height: auto;
+                    #img-{{ block.id }} {
+                      --img-height : {%- if block.settings.height_img == 'default-img' -%} auto {%- else -%}{{ block.settings.height_img }}px {%- endif -%};
+                      --img-height-mb : {%- if block.settings.height_img_mobile == 'default-img' -%} auto {%- else -%}{{ block.settings.height_img_mobile }}px {%- endif -%};
                     }
                     #img-{{ block.id }}.ap-imagetextblock {
                       min-height: var(--img-height);
