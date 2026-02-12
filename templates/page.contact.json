@@ -286,6 +286,23 @@
         "text_color": "#282828"
       }
     },
+    "recently_viewed_products_8Q6eqw": {
+      "type": "recently-viewed-products",
+      "name": "Recently viewed products",
+      "settings": {
+        "heading": "Productos que recién has visto",
+        "heading_size": 4,
+        "tab_description": "",
+        "text_align": "left",
+        "products_to_show": 10,
+        "products_per_row_mobile_sm": 3,
+        "products_per_row_desktop": 6,
+        "margin_desktop": "",
+        "margin_mobile": "",
+        "padding_desktop": "20px 0px 0px 20px",
+        "padding_mobile": "20px 0px 0px 20px"
+      }
+    },
     "main": {
       "type": "main-page",
       "disabled": true,
@@ -445,6 +462,7 @@
     "text_with_icon_entVTf",
     "rich_text_Y6qWRr",
     "rich_text_Mpzd6a",
+    "recently_viewed_products_8Q6eqw",
     "main",
     "form",
     "text_with_icon_2_AKA9kL",
