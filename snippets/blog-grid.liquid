@@ -26,7 +26,7 @@
                             {%- if article.tags.size > 0 -%}
                             {% assign tag = article.tags[0] %}
                             <span class="blog-tag">
-                                <span class="title-blog">IN</span>
+                                <span class="title-blog">EN</span>
                                 <a class="article-item__category tag-content fw-bold"
                                     href="{{ blog.url }}/tagged/{{ tag | handle }}">
                                     {{ tag }}
@@ -37,13 +37,13 @@
 
                         {%- if section.settings.show_date -%}
                             <span class="blog-date">
-                                {{ article.published_at | date: "%b %d, %Y" }}
+                                {{ article.published_at | date: "%d %b, %Y" }}
                             </span>
                         {%- endif -%}
 
                         {%- if section.settings.show_author -%}   
                             <span class="blog-author">
-                                <span class="title-blog">By</span>
+                                <span class="title-blog">Por</span>
                                 <span class="author fw-bold">{{ article.author }}</span>
                             </span>
                         {%- endif -%}
