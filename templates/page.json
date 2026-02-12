@@ -244,6 +244,23 @@
         "contact_form_title": "¿Quieres donar tus libros?",
         "contact_form_des": "Si estás en Madrid o Barcelona rellena este formulario para solicitar una recogida, luego te llamaremos para coordinar una cita."
       }
+    },
+    "recently_viewed_products_PxHKKj": {
+      "type": "recently-viewed-products",
+      "name": "Recently viewed products",
+      "settings": {
+        "heading": "Productos que recién has visto",
+        "heading_size": 4,
+        "tab_description": "",
+        "text_align": "left",
+        "products_to_show": 10,
+        "products_per_row_mobile_sm": 3,
+        "products_per_row_desktop": 6,
+        "margin_desktop": "",
+        "margin_mobile": "",
+        "padding_desktop": "20px 0px 0px 20px",
+        "padding_mobile": ""
+      }
     }
   },
   "order": [
@@ -253,6 +270,7 @@
     "logo_swip_MGzb9J",
     "custom_liquid_TPDCKe",
     "image_banner_cNFWxn",
-    "contact_form_section_E4VBwF"
+    "contact_form_section_E4VBwF",
+    "recently_viewed_products_PxHKKj"
   ]
 }
