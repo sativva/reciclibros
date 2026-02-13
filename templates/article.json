@@ -31,6 +31,7 @@
         },
         "blog_aboutus_K7RgMX": {
           "type": "blog-aboutus",
+          "disabled": true,
           "settings": {
             "description": "To be the industry leader, globally recognized for effective & efficient solutions. To provide innovative solutions delivering quality, excellence and speed."
           }
@@ -61,11 +62,12 @@
         "96ce13c5-3720-4f03-9e42-5f492870f98b": {
           "type": "banner",
           "settings": {
-            "title": "",
+            "featured_image": "shopify://shop_images/FF6400.png",
+            "title": "Recibe nuestra newsletter",
             "color_title": "#ffffff",
-            "description": "",
+            "description": "Recibe inspiración literaria , ofertas a precios reducidos y noticias para democratizar el libro de ocasión.",
             "color_description": "#ffffff",
-            "button1_label": "",
+            "button1_label": "Suscribirme",
             "link1": ""
           }
         }
