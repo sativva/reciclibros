@@ -413,29 +413,4 @@ ap-comparebutton {
   overflow: visible;
 }
 
-@media screen and (max-width: 749px) {
-  .predictive-search,
-  .search-drawer__content,
-  .drawer__inner {
-    width: 100%;
-    max-width: 100%;
-    left: 0;
-    right: 0;
-    transform: none !important;
-  }
-
-  .predictive-search__results {
-    width: 100%;
-    box-sizing: border-box;
-    overflow-x: hidden;
-  }
-  @media screen and (max-width: 749px) {
-  .predictive-search__item-heading {
-    text-transform: none !important;
-    word-break: break-word;
-  }
-}
-
-}
-
 
