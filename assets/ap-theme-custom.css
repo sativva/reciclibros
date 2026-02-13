@@ -413,23 +413,5 @@ ap-comparebutton {
   overflow: visible;
 }
 
-/* 4. Mobile : scroll horizontal autorisé pour les tabs si plus de boutons que la largeur */
-@media screen and (max-width: 749px) {
-  #shopify-section-predictive-search ap-scrollablecontent {
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch; /* scroll fluide sur mobile */
-  }
-
-  #shopify-section-predictive-search .ap-navtabs__item-list {
-    padding-left: 0.5rem; /* garde un petit espace à gauche sur mobile */
-  }
-}
-
-/* 5. Desktop : ajuste légèrement l'espace à gauche si nécessaire */
-@media screen and (min-width: 750px) {
-  #shopify-section-predictive-search .ap-navtabs__item-list {
-    padding-left: 0.5rem;
-  }
-}
 
 
