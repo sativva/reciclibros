@@ -391,3 +391,8 @@ ap-comparebutton {
 .ap-linkbar__title {
   display: none!important
 }
+/* ===== Décalage correct du header des tabs dans predictive search Apollo ===== */
+#shopify-section-predictive-search .ap-navtabs__item-list {
+  padding-left: 1rem; /* décale tous les boutons vers la droite */
+}
+
