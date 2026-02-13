@@ -212,7 +212,7 @@
                         </li>
                     </ul>
                   </div>
-{% comment %}
+
                 {%- when 'banner' -%}
                   <div class="article-banner-img-text">
                     <div class="article-banner-image">
@@ -242,7 +242,7 @@
                       {% endif %}
                     </div>
                   </div>
-{% endcomment %}
+
                 {%- when 'tags' -%}
                   <div class="article__tags">
                     <span class="article__tags-label heading heading--small title_block-blog">{{ 'blogs.article.tags' | t }}</span>
@@ -254,7 +254,7 @@
                       {%- endfor -%}
                     </ul>
                   </div>
-{% comment %}
+
                 {%- when 'blog-aboutus' -%}
                   <div class="blog-aboutus">
                     <h4 class="title_block-blog">{{ 'blogs.article.title_blog_about' | t }}</h4>
@@ -276,7 +276,7 @@
                       {{ block.settings.description }}
                     </div>
                   </div>
-{% endcomment %}
+
               {%- endcase -%}
             {%- endfor -%}
 
