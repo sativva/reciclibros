@@ -413,34 +413,21 @@ ap-comparebutton {
   overflow: visible;
 }
 
-/* ===== APOLLO Mobile Predictive Search - Fix panneau décalé à droite ===== */
 @media screen and (max-width: 749px) {
-
-  /* Cible le vrai conteneur du predictive search dans l'overlay mobile */
-  #shopify-section-predictive-search {
-    width: 100vw !important;
-    max-width: 100vw !important;
-    left: 0 !important;
-    right: auto !important;
-    margin-left: 0 !important;
-    padding-left: 0 !important;
+  .predictive-search,
+  .search-modal__content,
+  .drawer__inner {
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    right: 0;
     transform: none !important;
+  }
+
+  .predictive-search__results {
+    width: 100%;
     box-sizing: border-box;
-  }
-
-  /* Très important : corrige le container interne Apollo */
-  #shopify-section-predictive-search > div {
-    width: 100% !important;
-    max-width: 100vw !important;
-    margin: 0 !important;
-    padding-left: 0 !important;
-    transform: none !important;
-  }
-
-  /* Ajoute juste un espace interne pour que PRODUCTOS soit visible */
-  #shopify-section-predictive-search .ap-navtabs__item-list {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
+    overflow-x: hidden;
   }
 }
 
