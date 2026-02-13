@@ -363,7 +363,7 @@
                   {%- endfor -%}
                 {%- endif -%}
                 {%- if section.settings.blog_show_author -%}
-                  <span class="article__meta-item article__author">By <b>{{ article.author }}</b></span>
+                  <span class="article__meta-item article__author">Por <b>{{ article.author }}</b></span>
                 {%- endif -%}
                 {%- if section.settings.blog_show_date -%}
                   <span class="article__meta-item article__date">{{ article.published_at | time_tag: format: 'date' }}</span>
