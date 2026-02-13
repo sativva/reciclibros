@@ -38,6 +38,7 @@
         },
         "47f23791-91b9-4285-82d6-1f2f15225b9c": {
           "type": "categories",
+          "disabled": true,
           "settings": {
             "article_text": "Tips & Tricks",
             "article_link": "shopify://blogs/news",
@@ -80,7 +81,6 @@
         "d887c308-5061-4f24-9e3b-6922c8f5aa06",
         "96ce13c5-3720-4f03-9e42-5f492870f98b"
       ],
-      "disabled": true,
       "settings": {
         "blog_show_tags": true,
         "blog_show_date": true,
