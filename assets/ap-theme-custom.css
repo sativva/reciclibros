@@ -391,25 +391,3 @@ ap-comparebutton {
 .ap-linkbar__title {
   display: none!important
 }
-/* ===== Fix texte coupé dans Predictive Search Apollo ===== */
-
-/* 1. Faire en sorte que le scrollable tabs n’écrase pas le texte */
-#shopify-section-predictive-search ap-scrollablecontent,
-#shopify-section-predictive-search ap-scrollablecontent .ap-navtabs__scroller-inner {
-  overflow: visible !important;
-  mask: none !important;
-  -webkit-mask: none !important;
-}
-
-/* 2. Ne pas couper les items produits */
-#shopify-section-predictive-search .line-item,
-#shopify-section-predictive-search .line-item__content-wrapper {
-  overflow: visible !important;
-  padding-left: 1rem !important; /* ajuste si nécessaire */
-}
-
-/* 3. Supprimer margin/padding négatif qui pourrait couper le premier caractère */
-#shopify-section-predictive-search .predictive-search__ap-productlist {
-  margin-left: 0 !important;
-  padding-left: 0 !important;
-}
