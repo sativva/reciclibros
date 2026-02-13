@@ -428,7 +428,7 @@ ap-comparebutton {
 
   /* Premier bouton : s'assure qu'il n'est pas coupé */
   #shopify-section-predictive-search .ap-navtabs__item:first-child {
-    margin-left: 1.2rem; /* ajuster si besoin */
+    margin-left: 2.2rem; /* ajuster si besoin */
   }
 
   /* Tous les boutons : texte visible et pas coupé */
