@@ -438,7 +438,6 @@ ap-comparebutton {
   }
 }
 
-
 /* 5. Desktop : ajuste légèrement l'espace à gauche si nécessaire */
 @media screen and (min-width: 750px) {
   #shopify-section-predictive-search .ap-navtabs__item-list {
