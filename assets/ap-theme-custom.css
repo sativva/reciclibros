@@ -413,5 +413,37 @@ ap-comparebutton {
   overflow: visible;
 }
 
+/* ===== Fix mobile Apollo Predictive Search ===== */
+@media screen and (max-width: 749px) {
+  /* Scrollable content : aligné à gauche et scroll horizontal activé */
+  #shopify-section-predictive-search ap-scrollablecontent,
+  #shopify-section-predictive-search ap-scrollablecontent .ap-navtabs__scroller-inner {
+    transform: translateX(0) !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding-left: 0.5rem; /* petit espace à gauche */
+    mask: none !important;
+    -webkit-mask: none !important;
+  }
+
+  /* Premier bouton : s'assure qu'il n'est pas coupé */
+  #shopify-section-predictive-search .ap-navtabs__item:first-child {
+    margin-left: 0.5rem; /* ajuster si besoin */
+  }
+
+  /* Tous les boutons : texte visible et pas coupé */
+  #shopify-section-predictive-search .ap-navtabs__item {
+    white-space: nowrap;
+    overflow: visible;
+  }
+}
+
+
+/* 5. Desktop : ajuste légèrement l'espace à gauche si nécessaire */
+@media screen and (min-width: 750px) {
+  #shopify-section-predictive-search .ap-navtabs__item-list {
+    padding-left: 0.5rem;
+  }
+}
 
 
