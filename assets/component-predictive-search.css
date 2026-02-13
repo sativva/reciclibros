@@ -134,7 +134,7 @@ predictive-search[loading] .predictive-search__results-list:first-child {
 }
 
 .predictive-search__item-heading {
-  margin: 0;
+  margin: 1;
 }
 
 .predictive-search__item .price {
