@@ -2,7 +2,7 @@
   display: none;
   position: absolute;
   top: calc(100% + 0.1rem);
-  left: 1;
+  left: -0.1rem;
   border-width: var(--popup-border-width);
   border-style: solid;
   border-color: rgba(var(--color-foreground), var(--popup-border-opacity));
