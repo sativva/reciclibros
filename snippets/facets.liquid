@@ -389,7 +389,7 @@
     {%- endif -%}
   {%- endif -%}
   {% comment %}  Drawer and mobile filter {% endcomment %}
-  <menu-drawer  id="ap-facetfilters" class="mobile-facets__wrapper{% if filter_type == 'horizontal' or filter_type == 'vertical' %} medium-hide large-up-hide{% endif %}" data-breakpoint="mobile">
+  <menu-drawer class="mobile-facets__wrapper{% if filter_type == 'horizontal' or filter_type == 'vertical' %} medium-hide large-up-hide{% endif %}" data-breakpoint="mobile">
     <details class="mobile-facets__disclosure disclosure-has-popup">
       <summary class="mobile-facets__open-wrapper focus-offset">
         <span class="mobile-facets__open{% if filter_type == 'drawer' and enable_filtering == false %} medium-hide large-up-hide{% endif %}">
