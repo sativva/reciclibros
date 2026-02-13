@@ -112,7 +112,7 @@
                   </div>
                 </div>
                 {%- if section.settings.blog_show_author -%}
-                  <span class="article__meta-item article__author">By {{ article.author }}</span>
+                  <span class="article__meta-item article__author">Por {{ article.author }}</span>
                 {%- endif -%}
                 {%- if section.settings.blog_show_date -%}
                   <time class="article__meta-item article__date">{{ article.published_at | time_tag: format: 'date' }}</time>
@@ -254,7 +254,7 @@
                       {%- endfor -%}
                     </ul>
                   </div>
-
+{% comment %}
                 {%- when 'blog-aboutus' -%}
                   <div class="blog-aboutus">
                     <h4 class="title_block-blog">{{ 'blogs.article.title_blog_about' | t }}</h4>
@@ -276,7 +276,7 @@
                       {{ block.settings.description }}
                     </div>
                   </div>
-
+{% endcomment %}
               {%- endcase -%}
             {%- endfor -%}
 
