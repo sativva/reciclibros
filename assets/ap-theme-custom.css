@@ -421,7 +421,7 @@ ap-comparebutton {
     transform: translateX(0) !important;
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch;
-    padding-left: 0.5rem; /* petit espace à gauche */
+    padding-left: 1.5rem; /* petit espace à gauche */
     mask: none !important;
     -webkit-mask: none !important;
   }
