@@ -103,7 +103,7 @@
         "tab_description": "",
         "text_align": "left",
         "products_to_show": 8,
-        "products_per_row_mobile_sm": 1,
+        "products_per_row_mobile_sm": 3,
         "products_per_row_desktop": 6,
         "margin_desktop": "20px 20px 20px 20px",
         "margin_mobile": "",
