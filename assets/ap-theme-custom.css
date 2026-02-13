@@ -429,6 +429,13 @@ ap-comparebutton {
     box-sizing: border-box;
     overflow-x: hidden;
   }
+  @media screen and (max-width: 749px) {
+  .predictive-search__item-heading {
+    text-transform: none !important;
+    word-break: break-word;
+  }
+}
+
 }
 
 
