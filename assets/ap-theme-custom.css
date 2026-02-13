@@ -415,7 +415,7 @@ ap-comparebutton {
 
 @media screen and (max-width: 749px) {
   .predictive-search,
-  .search-modal__content,
+  .search-drawer__content,
   .drawer__inner {
     width: 100%;
     max-width: 100%;
