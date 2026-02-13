@@ -391,3 +391,7 @@ ap-comparebutton {
 .ap-linkbar__title {
   display: none!important
 }
+.ap-navtabs__scroller,
+.ap-navtabs__scroller-inner {
+  overflow: visible !important;
+}
