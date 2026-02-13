@@ -179,10 +179,25 @@ class PredictiveSearch extends HTMLElement {
     this.setLiveRegionText(this.querySelector('[data-predictive-search-live-region-count-value]').textContent);
   }
 
-  getResultsMaxHeight() {
-    this.resultsMaxHeight = window.innerHeight - document.querySelector('.shopify-section--header').getBoundingClientRect().bottom;
-    return this.resultsMaxHeight;
+getResultsMaxHeight() {
+  // Si dans un drawer (mobile)
+  const drawer = this.closest('.drawer, .menu-drawer, .search-modal');
+  
+  if (drawer) {
+    const drawerRect = drawer.getBoundingClientRect();
+    this.resultsMaxHeight = window.innerHeight - drawerRect.top - 20;
+  } else {
+    const header = document.querySelector('.shopify-section--header');
+    if (header) {
+      this.resultsMaxHeight = window.innerHeight - header.getBoundingClientRect().bottom;
+    } else {
+      this.resultsMaxHeight = window.innerHeight * 0.7;
+    }
   }
+
+  return this.resultsMaxHeight;
+}
+
 
   open() {
     this.predictiveSearchResults.style.maxHeight = this.resultsMaxHeight || `${this.getResultsMaxHeight()}px`;
