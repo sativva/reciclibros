@@ -412,11 +412,4 @@ ap-comparebutton {
   white-space: nowrap;    /* empêche le texte de se couper */
   overflow: visible;
 }
-/* Masquer toutes les navigations flèches du media produit */
-.product__media-ap-nextprev,
-button.product__media-ap-nextprev,
-.product__media button[data-action="next"],
-.product__media button[data-action="prev"] {
-  display: none !important;
-}
 
