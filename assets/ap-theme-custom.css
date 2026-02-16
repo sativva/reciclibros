@@ -413,4 +413,10 @@ ap-comparebutton {
   overflow: visible;
 }
 
+@media (max-width: 999px) {
+  .pswp__prev-next-buttons {
+    display: none !important;
+  }
+}
+
 
