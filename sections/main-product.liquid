@@ -276,6 +276,15 @@
   }
 
   {%- endif -%}
+  
+@media (max-width: 999px) {
+  /* Hide product gallery arrows on mobile - Forest theme */
+  .product__media button,
+  .product__media .icon--nav-arrow-left,
+  .product__media .icon--nav-arrow-right {
+    display: none !important;
+  }
+}
 
 </style>
 <script>
