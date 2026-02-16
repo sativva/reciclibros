@@ -412,4 +412,12 @@ ap-comparebutton {
   white-space: nowrap;    /* empêche le texte de se couper */
   overflow: visible;
 }
+.add-to-cart.sold-out {
+  background-color: #e5e5e5;
+  color: #999;
+  border-color: #e5e5e5;
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.6;
+}
 
