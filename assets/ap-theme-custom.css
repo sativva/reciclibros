@@ -412,8 +412,11 @@ ap-comparebutton {
   white-space: nowrap;    /* empêche le texte de se couper */
   overflow: visible;
 }
-/* Masquer les flèches du slider produit (theme Forest) */
+/* Supprimer les flèches du slider produit - mobile + desktop (Theme Forest) */
 .product__media-ap-nextprev {
   display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
