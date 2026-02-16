@@ -209,24 +209,25 @@
                                                 </div>
                                             </span>
                                         </button>
-                                        <button type="submit" class="product-item__quick-buy-button hd-no-touch">
-                                        <span class="visually-hidden">
-                                            {% render 'icon-addcart' %}
-                                        </span>
-                                        <svg focusable="false" width="22" height="21" class="icon icon--quick-buy   " fill="none" viewBox="0 0 22 21">
-                                            <path d="M12 4H3L2 20H18C17.7517 16.0273 17.375 10 17.375 10" stroke="currentColor" stroke-width="2"></path>
-                                            <path d="M7 7V7C7 8.65685 8.34315 10 10 10V10C11.6569 10 13 8.65685 13 7V7" stroke="currentColor" stroke-width="2"></path>
-                                            <path d="M18 0V8M14 4H22" stroke="currentColor" stroke-width="2"></path>
-                                        </svg>
-                                        </button>
-                                    </form>
-                                {%- else -%}
-                                    <button class="sold-out">
-                                         {% comment %}{% render 'icon-addcart' %} {% endcomment %}
-                                        <span class="ml-2">
-                                            Agotado
-                                        </span>
-                                    </button>
+<button 
+  type="submit" 
+  class="product-item__quick-buy-button hd-no-touch {% unless product.available %}sold-out{% endunless %}"
+  {% unless product.available %}disabled{% endunless %}
+>
+  <span class="visually-hidden">
+    {% render 'icon-addcart' %}
+  </span>
+  <svg focusable="false" width="22" height="21" class="icon icon--quick-buy" fill="none" viewBox="0 0 22 21">
+    <path d="M12 4H3L2 20H18C17.7517 16.0273 17.375 10 17.375 10" stroke="currentColor" stroke-width="2"></path>
+    <path d="M7 7V7C7 8.65685 8.34315 10 10 10V10C11.6569 10 13 8.65685 13 7V7" stroke="currentColor" stroke-width="2"></path>
+    <path d="M18 0V8M14 4H22" stroke="currentColor" stroke-width="2"></path>
+  </svg>
+
+  {% unless product.available %}
+    <span class="ml-2">Agotado</span>
+  {% endunless %}
+</button>
+
                                 {%- endif -%}
                             </div>
                             <span class="text-name">
