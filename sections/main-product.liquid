@@ -276,12 +276,13 @@
   }
 
   {%- endif -%}
+/* REMOVE PRODUCT ZOOM ARROWS ON MOBILE - FOREST THEME */
+@media screen and (max-width: 999px) {
+  .pswp__prev-next-buttons.hd-pocket {
+    display: none !important;
+  }
   
-@media (max-width: 999px) {
-  /* Hide product gallery arrows on mobile - Forest theme */
-  .product__media button,
-  .product__media .icon--nav-arrow-left,
-  .product__media .icon--nav-arrow-right {
+  .pswp__button.ap-nextap-buttonprev {
     display: none !important;
   }
 }
@@ -664,6 +665,7 @@
         </div>
       </div>
     </div>
+   
   </ap-productzoomimage>
   {%- for media in product.media -%}
     {%- if media.media_type != "image" -%}
