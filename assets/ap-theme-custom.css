@@ -311,11 +311,6 @@
 * {
   text-transform: none !important;
 }
-@media (max-width: 768px) {
-  body * {
-    text-transform: none !important;
-  }
-}
 
 /* Bouton "Cart" du mini cart : gris + souligné */
 .mini-cart .cart-button {
