@@ -12943,18 +12943,4 @@ ul.user-block {
     height: 12px;
     transform: translateY(-50%);
   }
-}
-/* Supprime visuellement pastille sold out*/
-.label--subdued {
-  display: none !important;
-
-  /* Supprime visuellement compare */
-.btn-compare,
-ap-comparebutton {
-  display: none !important;
-}
-/* Désactiver les majuscules forcées */
-* {
-  text-transform: none !important;
-}
 
