@@ -412,4 +412,11 @@ ap-comparebutton {
   white-space: nowrap;    /* empêche le texte de se couper */
   overflow: visible;
 }
+/* Masquer toutes les flèches du slider produit partout */
+.product__media-ap-nextprev {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
 
