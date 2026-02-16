@@ -639,7 +639,7 @@
             </svg>
           </button>
         </div>
- {% endcomment %}
+ 
         <div class="pswp__dots-nav-wrapper hd-lap-and-up">
           <button class="tap-area tap-area--large" data-action="pswp-prev">
             <span class="visually-hidden">Previous</span>
@@ -661,8 +661,8 @@
         </div>
       </div>
     </div>
-   
   </ap-productzoomimage>
+     {% endcomment %}
   {%- for media in product.media -%}
     {%- if media.media_type != "image" -%}
       <ap-contentmodal only-once="" id="popup-product-{{ section.id }}-{{ media.id }}" class="modal modal-full modal-video">
