@@ -609,7 +609,7 @@
       </div>
     </div>
   </section>
-   {% comment %}
+  
   <ap-productzoomimage product-handle="{{ product.handle }}" id="product-{{ section.id }}-{{ product.id }}-zoom" class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="pswp__bg"></div>
     <div class="pswp__scroll-wrap">
@@ -663,7 +663,7 @@
       </div>
     </div>
   </ap-productzoomimage>
-     {% endcomment %}
+ 
   {%- for media in product.media -%}
     {%- if media.media_type != "image" -%}
       <ap-contentmodal only-once="" id="popup-product-{{ section.id }}-{{ media.id }}" class="modal modal-full modal-video">
