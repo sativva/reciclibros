@@ -57,5 +57,40 @@ ap-comparebutton {
 .ap-linkbar__title {
   display: none!important
 }
+/* Bouton "Cart" du mini cart : gris + souligné */
+.mini-cart .cart-button {
+  background: transparent !important;
+  color: #9ca3af; /* gris doux */
+  text-decoration: underline;
+  border: none;
+  box-shadow: none;
+}
+
+/* Hover */
+.mini-cart .cart-button:hover {
+  color: #6b7280; /* gris un peu plus foncé */
+  text-decoration: underline;
+}
+a.cart-button {
+  display: block;
+  text-align: center;
+  padding: 12px 0;
+}
+/* Add to Cart Product Page 50% */
+.ap-productform__buy-buttons--single {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.ap-productform__buy-buttons--single .ap-productform__add-button {
+  grid-column: 1 / 2;
+}
+
+/*Aligner wishlist page produit à gauche*/
+.single_variation_wrap {
+  display: flex;
+  justify-content: flex-start !important;
+}
 
 /* END  */
