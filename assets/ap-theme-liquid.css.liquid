@@ -124,5 +124,26 @@ button[aria-disabled="true"]::before,
 button[aria-disabled="true"]::after {
   display: none !important;
 }
+/* ===== Apollo Predictive Search : Fix texte coupé des tabs ===== */
+
+/* 1. Conteneur scrollable : annule le translate qui masque le début du premier bouton */
+#shopify-section-predictive-search ap-scrollablecontent .ap-navtabs__scroller-inner {
+  transform: translateX(0) !important; /* force le scroll à gauche 0 */
+  overflow: visible !important;        /* s'assure que le contenu n'est pas masqué */
+  mask: none !important;
+  -webkit-mask: none !important;
+  padding-left: 0.5rem;                /* espace léger à gauche */
+}
+
+/* 2. Premier bouton : petit offset pour éviter que le texte touche le bord */
+#shopify-section-predictive-search .ap-navtabs__item:first-child {
+  margin-left: 1.2rem;  /* ajuste si besoin */
+}
+
+/* 3. Tous les boutons : s'assurer qu'ils ne sont pas coupés et restent alignés */
+#shopify-section-predictive-search .ap-navtabs__item {
+  white-space: nowrap;    /* empêche le texte de se couper */
+  overflow: visible;
+}
 
 /* END  */
