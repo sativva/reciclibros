@@ -92,5 +92,37 @@ a.cart-button {
   display: flex;
   justify-content: flex-start !important;
 }
+/* Bouton AGOTADO - état désactivé */
+button[disabled],
+button[aria-disabled="true"] {
+  background-color: #F2F2F2 !important;
+  color: #000000 !important;
+  cursor: not-allowed;
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+/* Aucune interaction possible */
+button[disabled]:hover,
+button[disabled]:active,
+button[disabled]:focus,
+button[disabled]:focus-visible,
+button[aria-disabled="true"]:hover,
+button[aria-disabled="true"]:active,
+button[aria-disabled="true"]:focus,
+button[aria-disabled="true"]:focus-visible {
+  background-color: #F2F2F2 !important;
+  color: #000000 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Supprime aussi les effets via pseudo-éléments */
+button[disabled]::before,
+button[disabled]::after,
+button[aria-disabled="true"]::before,
+button[aria-disabled="true"]::after {
+  display: none !important;
+}
 
 /* END  */
