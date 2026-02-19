@@ -479,6 +479,52 @@ a.product__text {
 .product--no-media .price {
   text-align: center;
 }
+/* ===== QUICK VIEW DRAWER ALIGN FIX ===== */
+
+/* 1. Met les variants sur une seule ligne */
+.ap-productform variant-radios,
+.ap-productform variant-selects,
+.ap-productform__input {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  max-width: 100%;
+}
+
+/* Supprime le full width qui casse l'alignement */
+.ap-productform__input {
+  flex: initial;
+  margin-bottom: 1rem;
+}
+
+/* 2. Ligne quantity + add to cart */
+.ap-productform__buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* 3. Quantity selector compact */
+.ap-productform__quantity {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+/* 4. Bouton Añadir aligné avec la quantité */
+.ap-productform__submit {
+  margin: 0;
+  flex: 1;
+  height: 48px; /* ajuste à la hauteur de ton quantity */
+}
+
+/* Optionnel : pills variants bien alignées */
+.ap-productform__input input[type="radio"] + label {
+  margin: 0 0.5rem 0 0;
+}
+
 
 /* Product media */
 .ap-product-media-list video {
