@@ -298,7 +298,7 @@
 {% render 'product-sticky', product: product %}
 
 <div class="container">
-      {% render 'breadcrumb', product: product %}
+     {% comment %} {% render 'breadcrumb', product: product %} {% endcomment %}
       <!-- PRODUCT TOP PART -->
       <div class="wp-main-product">
         <div class="main-product product--thumbnails-{{ section.settings.thumbnails_position }}">
