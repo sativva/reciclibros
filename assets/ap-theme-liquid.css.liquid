@@ -152,14 +152,34 @@ button[aria-disabled="true"]::after {
   visibility: hidden !important;
   pointer-events: none !important;
 }
+/* Niveaux 2 et 3 du menu catégories */
+.categories-nav_mega,
 .categories-nav_mega > ul,
 .meganav__nav--third-level {
-  max-height: 80vh;       /* hauteur max pour scroll vertical */
+  max-height: 80vh;       /* limite la hauteur à 80% de la fenêtre */
   overflow-y: auto;        /* scroll vertical si nécessaire */
   overflow-x: hidden;      /* pas de scroll horizontal */
-  padding-right: 10px;     /* espace scrollbar */
+  padding-right: 10px;     /* espace pour la scrollbar */
   box-sizing: border-box;
 }
+
+/* Optional: ajouter un style pour les scrollbars sur desktop */
+.categories-nav_mega::-webkit-scrollbar,
+.meganav__nav--third-level::-webkit-scrollbar {
+  width: 8px;
+}
+
+.categories-nav_mega::-webkit-scrollbar-thumb,
+.meganav__nav--third-level::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+
+.categories-nav_mega::-webkit-scrollbar-track,
+.meganav__nav--third-level::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 
 
 /* END  */
