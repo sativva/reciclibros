@@ -24,7 +24,8 @@
       ],
       "custom_css": [
         "[data-block-handle=\"breadcrumb\"] nav {gap: 10px;}",
-        "[data-block-handle=\"breadcrumb\"] {margin-left: 30px;}"
+        "[data-block-handle=\"breadcrumb\"] {margin-left: 30px;}",
+        "[data-block-handle=\"breadcrumb\"] {display: flex; justify-content: center; margin: 20px auto 0 auto;}"
       ],
       "settings": {
         "include_margins": true
@@ -61,7 +62,8 @@
           "type": "product_variants",
           "settings": {
             "variant_type": "grid",
-            "color_variant": "default"
+            "color_variant": "default",
+            "show_variant_prices": true
           }
         },
         "quantity_selector": {
