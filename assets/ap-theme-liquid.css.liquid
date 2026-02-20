@@ -152,24 +152,6 @@ button[aria-disabled="true"]::after {
   visibility: hidden !important;
   pointer-events: none !important;
 }
-/* Drawer principal : scrollable */
-#categories-menu-drawer {
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* hauteur totale de la fenêtre */
-}
-
-#categories-menu-drawer .drawer__content {
-  flex: 1 1 auto; /* prend tout l’espace restant */
-  overflow-y: auto; /* scroll vertical activé */
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Sous-menus (collapsibles ou mega menu) : pas de scroll ici */
-#categories-menu-drawer ap-contentcollapsible,
-#categories-menu-drawer .categories-nav_mega {
-  overflow: visible;
-}
 
 
 /* END  */
