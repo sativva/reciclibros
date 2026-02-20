@@ -152,6 +152,18 @@ button[aria-disabled="true"]::after {
   visibility: hidden !important;
   pointer-events: none !important;
 }
+/* Drawer menu categories scrollable */
+#categories-menu-drawer .drawer__content {
+  max-height: 80vh;        /* limite la hauteur à 80% de la fenêtre */
+  overflow-y: auto;         /* active le scroll vertical */
+  -webkit-overflow-scrolling: touch; /* scroll fluide sur mobile */
+}
+
+/* Optionnel : pour que les sous-menus aient aussi du scroll */
+#categories-menu-drawer .categories-nav-wrapper {
+  max-height: 80vh;
+  overflow-y: auto;
+}
 
 
 /* END  */
