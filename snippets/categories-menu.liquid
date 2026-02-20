@@ -92,4 +92,24 @@
           </svg>Account </a>
       </div>
     </div>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const menuDrawer = document.getElementById('categories-menu-drawer');
+  
+  // Quand le menu s'ouvre
+  menuDrawer.addEventListener('ap-drawer-open', () => {
+    // focus sur le menu pour scroll clavier
+    menuDrawer.focus();
+
+    // empêcher le scroll de la page derrière
+    document.body.style.overflow = 'hidden';
+  });
+
+  // Quand le menu se ferme
+  menuDrawer.addEventListener('ap-drawer-close', () => {
+    document.body.style.overflow = '';
+  });
+});
+</script>
+
 </categories-menu>
