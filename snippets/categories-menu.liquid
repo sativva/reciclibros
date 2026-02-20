@@ -92,29 +92,4 @@
           </svg>Account </a>
       </div>
     </div>
-    <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const menuDrawer = document.getElementById('categories-menu-drawer');
-
-  if (!menuDrawer) return;
-
-  menuDrawer.setAttribute('tabindex', '-1'); // rendre focusable
-
-  const observer = new MutationObserver(mutations => {
-    mutations.forEach(mutation => {
-      if (mutation.attributeName === 'class') {
-        if (menuDrawer.classList.contains('is-open')) {
-          menuDrawer.focus();          // focus clavier sur menu
-          document.body.style.overflow = 'hidden'; // bloque scroll page
-        } else {
-          document.body.style.overflow = ''; // réactive scroll page
-        }
-      }
-    });
-  });
-
-  observer.observe(menuDrawer, { attributes: true });
-});
-</script>
-
 </categories-menu>
