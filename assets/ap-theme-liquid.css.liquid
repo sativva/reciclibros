@@ -152,19 +152,6 @@ button[aria-disabled="true"]::after {
   visibility: hidden !important;
   pointer-events: none !important;
 }
-/* Bloc principal et sous-menus scrollables */
-.categories-nav-main,
-.collapsible-mega,
-.collapsible-mega_child {
-  max-height: 80vh; /* limite la hauteur à l'écran */
-  overflow-y: auto;  /* scroll vertical si trop long */
-  overscroll-behavior: contain; /* empêche le scroll de passer derrière */
-}
-
-/* Petite amélioration visuelle */
-.collapsible-mega, .collapsible-mega_child {
-  padding-right: 10px; /* pour scrollbar pas collée au texte */
-}
 
 
 /* END  */
