@@ -92,47 +92,4 @@
           </svg>Account </a>
       </div>
     </div>
-    <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const menuDrawer = document.getElementById('categories-menu-drawer');
-  const openBtn = document.querySelector('[ap-controlsaria="categories-menu-drawer"]');
-  const closeBtn = menuDrawer.querySelector('.drawer__close-button');
-
-  if (!menuDrawer || !openBtn || !closeBtn) return;
-
-  // Fonction pour ouvrir le menu
-  const openMenu = () => {
-    menuDrawer.classList.add('is-open');
-    menuDrawer.setAttribute('tabindex', '-1');
-    menuDrawer.focus();
-    document.body.style.overflow = 'hidden'; // bloque scroll page
-  };
-
-  // Fonction pour fermer le menu
-  const closeMenu = () => {
-    menuDrawer.classList.remove('is-open');
-    document.body.style.overflow = '';
-  };
-
-  // Clic sur le bouton pour ouvrir
-  openBtn.addEventListener('click', e => {
-    e.preventDefault();
-    openMenu();
-  });
-
-  // Clic sur le bouton fermer
-  closeBtn.addEventListener('click', e => {
-    e.preventDefault();
-    closeMenu();
-  });
-
-  // Fermer avec ESC
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && menuDrawer.classList.contains('is-open')) {
-      closeMenu();
-    }
-  });
-});
-</script>
-
 </categories-menu>
