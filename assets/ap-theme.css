@@ -5542,7 +5542,7 @@ img.article-item__image {
   color: var(--primary);
 }
 /* CSS PRODUCT */
-div[title="Add to Wishlist"] {
+div[title="Guardar en favoritos"] {
   position: absolute;
   top: 10px;
   right: 10px;
