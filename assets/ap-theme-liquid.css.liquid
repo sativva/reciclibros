@@ -152,6 +152,16 @@ button[aria-disabled="true"]::after {
   visibility: hidden !important;
   pointer-events: none !important;
 }
+/* Chaque sous-menu scrollable verticalement */
+.categories-nav-main > .categories-nav__item .collapsible,
+.collapsible-mega,
+.collapsible-mega_child {
+  max-height: 80vh;       /* hauteur max à 80% de la fenêtre */
+  overflow-y: auto;        /* scroll vertical si le contenu dépasse */
+  overflow-x: hidden;      /* pas de scroll horizontal */
+  padding-right: 10px;     /* espace pour la scrollbar */
+  box-sizing: border-box;  /* padding inclus dans la largeur */
+}
 
 
 /* END  */
