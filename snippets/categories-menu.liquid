@@ -85,3 +85,16 @@
     </div>
   </div>
 </categories-menu>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.js-toggle-submenu').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const nextList = btn.nextElementSibling;
+      if (nextList) {
+        nextList.style.display = nextList.style.display === 'none' ? 'block' : 'none';
+      }
+    });
+  });
+});
+</script>
