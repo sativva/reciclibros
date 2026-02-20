@@ -152,6 +152,14 @@ button[aria-disabled="true"]::after {
   visibility: hidden !important;
   pointer-events: none !important;
 }
+.categories-nav_mega > ul,
+.meganav__nav--third-level {
+  max-height: 80vh;       /* hauteur max pour scroll vertical */
+  overflow-y: auto;        /* scroll vertical si nécessaire */
+  overflow-x: hidden;      /* pas de scroll horizontal */
+  padding-right: 10px;     /* espace scrollbar */
+  box-sizing: border-box;
+}
 
 
 /* END  */
