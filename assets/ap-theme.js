@@ -10789,3 +10789,45 @@ function toggleTopButton() {
     });
   }
 })();
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const links = document.querySelectorAll('.has-children');
+  const backButton = document.getElementById('menuBackButton');
+  const title = document.getElementById('menuTitle');
+
+  let historyStack = [];
+
+  links.forEach(link => {
+    link.addEventListener('click', function () {
+      const targetId = this.dataset.target;
+      const targetLevel = document.getElementById(targetId);
+
+      if (!targetLevel) return;
+
+      const currentLevel = document.querySelector('.menu-level.is-active');
+
+      historyStack.push(currentLevel);
+      currentLevel.classList.remove('is-active');
+      targetLevel.classList.add('is-active');
+
+      backButton.classList.add('active');
+      title.textContent = this.innerText.trim();
+    });
+  });
+
+  backButton.addEventListener('click', function () {
+    const currentLevel = document.querySelector('.menu-level.is-active');
+    const previousLevel = historyStack.pop();
+
+    if (previousLevel) {
+      currentLevel.classList.remove('is-active');
+      previousLevel.classList.add('is-active');
+    }
+
+    if (historyStack.length === 0) {
+      backButton.classList.remove('active');
+      title.textContent = 'Catégories';
+    }
+  });
+});
+</script>
