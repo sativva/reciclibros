@@ -1084,13 +1084,18 @@
     },
     "content_for_index": [],
     "blocks": {
-      "4804304946286255945": {
-        "type": "shopify://apps/avada-cookie-consent/blocks/app-embed/deacc407-65bc-4a4e-84d9-f90e9e492cf3",
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
         "settings": {}
       },
-      "14060646107696862457": {
-        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+      "2153490007123654574": {
+        "type": "shopify://apps/consentmo-gdpr/blocks/gdpr_cookie_consent/4fbe573f-a377-4fea-9801-3ee0858cae41",
+        "disabled": false,
+        "settings": {}
+      },
+      "15048993943116965467": {
+        "type": "shopify://apps/consentmo-gdpr/blocks/ada_compliance/4fbe573f-a377-4fea-9801-3ee0858cae41",
         "disabled": false,
         "settings": {}
       }
