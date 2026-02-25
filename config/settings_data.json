@@ -551,7 +551,7 @@
           "menu_banner_classic_pyFdfj": {
             "type": "menu-banner-classic",
             "settings": {
-              "menu_title": "Home",
+              "menu_title": "categorias",
               "menu_width": "container",
               "menu_column": 5,
               "enable_menu_banner": true,
