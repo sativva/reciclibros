@@ -230,7 +230,7 @@
     "product_carousel_mJCmn9": {
       "type": "product-carousel",
       "settings": {
-        "setwidthout": "container",
+        "setwidthout": "full",
         "background-color": "#ffffff",
         "text_with_product": false,
         "heading_color": "#282828",
