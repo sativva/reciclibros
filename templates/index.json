@@ -9,6 +9,103 @@
  */
 {
   "sections": {
+    "slideshow_bQACgj": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_hYkAPJ": {
+          "type": "slide",
+          "settings": {
+            "image_1": "shopify://shop_images/BANNIERE_1.png",
+            "position_image_mb": "center",
+            "color_subheading": "",
+            "subheading": "Tell your brand's story through images",
+            "heading": "Image slide",
+            "description": "Description / HTML",
+            "color_des": "",
+            "button1_label": "Button label",
+            "link1": "",
+            "style_btn": "btn-base",
+            "button2_label": "Button label",
+            "link2": "",
+            "style_btn_2": "btn-base",
+            "slide_morecontent": "",
+            "box_size": "medium",
+            "box_align": "center",
+            "text_align": "left",
+            "heading_color": "#FFFFFF",
+            "text_color": "#FFFFFF",
+            "color_btn": "",
+            "bg_btn": "",
+            "color_btn_hover": "",
+            "bg_btn_hover": "",
+            "button_opacity": 10,
+            "blocks_overlay_color": "#000000",
+            "overlay_opacity": 1
+          }
+        },
+        "slide_inhWaL": {
+          "type": "slide",
+          "settings": {
+            "position_image_mb": "center",
+            "color_subheading": "",
+            "subheading": "Tell your brand's story through images",
+            "heading": "Image slide",
+            "description": "Description / HTML",
+            "color_des": "",
+            "button1_label": "Button label",
+            "link1": "",
+            "style_btn": "btn-base",
+            "button2_label": "Button label",
+            "link2": "",
+            "style_btn_2": "btn-base",
+            "slide_morecontent": "",
+            "box_size": "medium",
+            "box_align": "center",
+            "text_align": "left",
+            "heading_color": "#FFFFFF",
+            "text_color": "#FFFFFF",
+            "color_btn": "",
+            "bg_btn": "",
+            "color_btn_hover": "",
+            "bg_btn_hover": "",
+            "button_opacity": 10,
+            "blocks_overlay_color": "#000000",
+            "overlay_opacity": 1
+          }
+        }
+      },
+      "block_order": [
+        "slide_hYkAPJ",
+        "slide_inhWaL"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "setwidthout": "full",
+        "setwidthout_content": "container",
+        "progress_bar_color": "#FFFFFF",
+        "bg_btn_arrow": "",
+        "color_btn_arrow": "#FFFFFF",
+        "autoplay_duration": 5,
+        "background_color": "#282828",
+        "slideshow_height": "slideshow--desktop-670",
+        "slideshow_height_mobile": "mobile--slideshow-500",
+        "auto_play": true,
+        "show_dot": true,
+        "show_btn": true,
+        "show_bg_content": true,
+        "slide_font_size": 100,
+        "slide_font_weight": "400",
+        "slide_font_transform": "none",
+        "slide_font_lineheight": "1.2",
+        "slide_font_spacing": "0",
+        "margin_desktop": "",
+        "margin_tablet": "",
+        "social_facebook": "",
+        "social_tw": "",
+        "social_pinterest": "",
+        "social_linkedin": ""
+      }
+    },
     "advanced_content_YmFiFW": {
       "type": "advanced-content",
       "blocks": {
@@ -719,6 +816,7 @@
     }
   },
   "order": [
+    "slideshow_bQACgj",
     "advanced_content_YmFiFW",
     "product_carousel_mJCmn9",
     "image_banner_p8qhQF",

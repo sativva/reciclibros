@@ -196,7 +196,7 @@
     "cart_notes_enable": false,
     "cart_coupon_enable": false,
     "cart_shipping_enable": false,
-    "minicart_content_display": "center",
+    "minicart_content_display": "top",
     "enable_free_shipping": true,
     "min_total_cart": "15",
     "free_shipping_free_label": "¡Tienes entrega gratuita!",
