@@ -86,7 +86,7 @@
         "b7d23da0-3873-4f9a-b9c6-9df8bcd72f92": {
           "type": "payment",
           "settings": {
-            "bg_color": "#f6f6f6",
+            "bg_color": "rgba(0,0,0,0)",
             "image": "shopify://shop_images/Medios_de_pago_62a59b55-a622-475e-8f4a-f30c3407a427.png"
           }
         },
