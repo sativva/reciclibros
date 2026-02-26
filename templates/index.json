@@ -71,9 +71,9 @@
             "bg_btn": "",
             "color_btn_hover": "",
             "bg_btn_hover": "",
-            "button_opacity": 10,
-            "blocks_overlay_color": "#000000",
-            "overlay_opacity": 1
+            "button_opacity": 0,
+            "blocks_overlay_color": "rgba(0,0,0,0)",
+            "overlay_opacity": 0
           }
         },
         "slide_e8BgKq": {
@@ -103,9 +103,9 @@
             "bg_btn": "",
             "color_btn_hover": "",
             "bg_btn_hover": "",
-            "button_opacity": 10,
-            "blocks_overlay_color": "#000000",
-            "overlay_opacity": 1
+            "button_opacity": 0,
+            "blocks_overlay_color": "rgba(0,0,0,0)",
+            "overlay_opacity": 0
           }
         }
       },
