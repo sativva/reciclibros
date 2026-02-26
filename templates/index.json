@@ -615,7 +615,7 @@
         "service_697jbn"
       ],
       "settings": {
-        "fullwidth": false,
+        "fullwidth": true,
         "background-color": "",
         "margin_desktop": "0 0 80px",
         "margin_tablet": "",
