@@ -124,7 +124,7 @@
         "autoplay_duration": 5,
         "background_color": "rgba(0,0,0,0)",
         "slideshow_height": "slideshow--desktop-550",
-        "slideshow_height_mobile": "full",
+        "slideshow_height_mobile": "mobile--slideshow-250",
         "auto_play": true,
         "show_dot": false,
         "show_btn": true,
