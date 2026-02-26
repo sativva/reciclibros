@@ -254,11 +254,11 @@
         "arrow_heading": false,
         "dots": true,
         "nowrap": false,
-        "margin_desktop": "0 0 80px",
-        "margin_tablet": "",
-        "margin_mobile": "",
-        "padding_desktop": "",
-        "padding_mobile": ""
+        "margin_desktop": "20px 20px 20px 20px",
+        "margin_tablet": "20px 20px 20px 20px",
+        "margin_mobile": "20px 20px 20px 20px",
+        "padding_desktop": "20px 20px 20px 20px",
+        "padding_mobile": "20px 20px 20px 20px"
       }
     },
     "image_banner_p8qhQF": {
