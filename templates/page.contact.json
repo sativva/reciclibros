@@ -45,7 +45,7 @@
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "fullwidth": false,
+        "fullwidth": true,
         "margin_desktop": "20px 0px 0px 0px",
         "margin_tablet": "20px 0px 0px 0px",
         "margin_mobile": "0px 0px 0px 0px",
