@@ -47,6 +47,38 @@
         "slide_inhWaL": {
           "type": "slide",
           "settings": {
+            "image_1": "shopify://shop_images/Donacion.png",
+            "position_image_mb": "center",
+            "color_subheading": "",
+            "subheading": "Tell your brand's story through images",
+            "heading": "Image slide",
+            "description": "Description / HTML",
+            "color_des": "",
+            "button1_label": "Button label",
+            "link1": "",
+            "style_btn": "btn-base",
+            "button2_label": "Button label",
+            "link2": "",
+            "style_btn_2": "btn-base",
+            "slide_morecontent": "",
+            "box_size": "medium",
+            "box_align": "center",
+            "text_align": "left",
+            "heading_color": "#ffffff",
+            "text_color": "#ffffff",
+            "color_btn": "",
+            "bg_btn": "",
+            "color_btn_hover": "",
+            "bg_btn_hover": "",
+            "button_opacity": 10,
+            "blocks_overlay_color": "#000000",
+            "overlay_opacity": 1
+          }
+        },
+        "slide_e8BgKq": {
+          "type": "slide",
+          "settings": {
+            "image_1": "shopify://shop_images/Newsletter.png",
             "position_image_mb": "center",
             "color_subheading": "",
             "subheading": "Tell your brand's story through images",
@@ -77,7 +109,8 @@
       },
       "block_order": [
         "slide_hYkAPJ",
-        "slide_inhWaL"
+        "slide_inhWaL",
+        "slide_e8BgKq"
       ],
       "name": "t:sections.slideshow.presets.name",
       "settings": {
