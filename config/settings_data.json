@@ -614,7 +614,7 @@
           "menu_banner_cEfRWU"
         ],
         "settings": {
-          "fullwidth": false,
+          "fullwidth": true,
           "sticky_header": true,
           "transparent_header": false,
           "header_background": "#ffffff",
