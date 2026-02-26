@@ -636,7 +636,7 @@
         "style_btn_bottom": "btn-base",
         "layout": "style-1",
         "no_gutter": false,
-        "padding_inner": "80px 124px 95px",
+        "padding_inner": "20px 20px 20px 20px",
         "padding_inner_tablet": "60px 20px",
         "bg_content": "#f9f5f0",
         "padding_inner_item": "",
