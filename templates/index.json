@@ -116,8 +116,8 @@
       ],
       "name": "t:sections.slideshow.presets.name",
       "settings": {
-        "setwidthout": "container",
-        "setwidthout_content": "container",
+        "setwidthout": "full",
+        "setwidthout_content": "full",
         "progress_bar_color": "#ffffff",
         "bg_btn_arrow": "",
         "color_btn_arrow": "#ffffff",
