@@ -811,7 +811,7 @@
     "blog_carousel_ejLGDi": {
       "type": "blog-carousel",
       "settings": {
-        "setwidthout": "container",
+        "setwidthout": "full",
         "margin_desktop": "80px 0 90px",
         "margin_mobile": "40px 0",
         "padding_desktop": "",
