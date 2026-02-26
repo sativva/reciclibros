@@ -48,6 +48,7 @@
           "type": "slide",
           "settings": {
             "image_1": "shopify://shop_images/Donacion.png",
+            "image_mobile": "shopify://shop_images/Donar.png",
             "position_image_mb": "center",
             "color_subheading": "",
             "subheading": "Tell your brand's story through images",
@@ -79,6 +80,7 @@
           "type": "slide",
           "settings": {
             "image_1": "shopify://shop_images/Newsletter.png",
+            "image_mobile": "shopify://shop_images/Newsletter_87b7a1ce-f944-4544-83ee-18e69a4f708b.png",
             "position_image_mb": "center",
             "color_subheading": "",
             "subheading": "Tell your brand's story through images",
