@@ -812,7 +812,7 @@
       "type": "blog-carousel",
       "settings": {
         "setwidthout": "full",
-        "margin_desktop": "80px 0 90px",
+        "margin_desktop": "80px 20px 90px 20px",
         "margin_mobile": "40px 0",
         "padding_desktop": "",
         "padding_mobile": "",
