@@ -556,9 +556,9 @@
         "arrow_heading": false,
         "dots": true,
         "nowrap": false,
-        "margin_desktop": "0 0 80px",
-        "margin_tablet": "",
-        "margin_mobile": "0 0 40px",
+        "margin_desktop": "20px 20px 80px 20px",
+        "margin_tablet": "20px 20px 80px 20px",
+        "margin_mobile": "20px 20px 80px 20px",
         "padding_desktop": "",
         "padding_mobile": ""
       }
