@@ -211,7 +211,8 @@
       "name": "Image banner",
       "settings": {
         "setwidthout": "container",
-        "featured_image": "shopify://shop_images/BANNIERE_2.png",
+        "featured_image": "shopify://shop_images/App.png",
+        "image_mobile": "shopify://shop_images/appli.png",
         "height_img": "default-img",
         "height_img_mobile": "default-img",
         "margin_desktop": "",
