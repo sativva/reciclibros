@@ -189,6 +189,19 @@
     width: 100% !important;
     object-fit: cover !important;
   }
+  /* Slide full clickable link */
+.slide-full-link {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.slideshow__slide-inner {
+  position: relative;
+}
 }
 {%- endstyle -%}
 
@@ -205,6 +218,9 @@
               {%- when 'slide' -%}
                 <ap-slideshowitem ap-revealvisibility="" id="block-{{ block.id }}" class="slideshow__slide {% if block.settings.image_2 %}slideshow__slide--split{% endif %} slideshow__slide--sweep" {% if forloop.first %}style="visibility: visible;"{% else %}style="visibility: hidden;"{% endif %} {% if forloop.index > 1 %}hidden=""{% endif %}>
                   <div class="slideshow__slide-inner">
+                   {% if block.settings.slide_link != blank %}
+                   <a href="{{ block.settings.slide_link }}" class="slide-full-link" aria-label="Slide link"></a>
+                   {% endif %}
                     {% if block.settings.image_1 %}
                       <div class="slideshow__image-wrapper slideshow__image-wrapper--first">
                         <img src="{{ block.settings.image_1 | image_url: width: 3000 }}" 
