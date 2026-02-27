@@ -174,19 +174,15 @@
 .slideshow__slide {
   height: var(--slideshow-height)
 }
-/* Fix: prevent banner cropping */
-#shopify-section-{{ section.id }} .slideshow__slide {
-  height: auto !important;
+/* Fix crop banner without breaking slider */
+#shopify-section-{{ section.id }} .slideshow__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
 }
 
 #shopify-section-{{ section.id }} .slideshow__image-wrapper {
-  height: auto !important;
-}
-
-#shopify-section-{{ section.id }} .slideshow__image {
-  width: 100%;
-  height: auto !important;
-  object-fit: contain !important;
+  height: 100%;
 }
 {%- endstyle -%}
 
