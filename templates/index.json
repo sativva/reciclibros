@@ -29,7 +29,7 @@
             "button2_label": "",
             "link2": "",
             "style_btn_2": "btn-base",
-            "slide_morecontent": "",
+            "slide_morecontent": "<a href=\"https://reciclibros-v2.myshopify.com/pages/donar-o-vender#app\" class=\"slide-full-link\"></a>",
             "box_size": "medium",
             "box_align": "center",
             "text_align": "left",
