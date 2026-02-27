@@ -83,7 +83,7 @@
           "settings": {
             "image_1": "shopify://shop_images/Newsletter.png",
             "image_mobile": "shopify://shop_images/Newsletter_87b7a1ce-f944-4544-83ee-18e69a4f708b.png",
-            "slide_link": "",
+            "slide_link": "https://reciclibros-v2.myshopify.com/#newsletter",
             "position_image_mb": "center",
             "color_subheading": "",
             "subheading": "",
