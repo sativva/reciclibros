@@ -145,7 +145,6 @@
   .mobile--slideshow-full{
     --slideshow-height: 100vh !important;
   }
-
   #shopify-section-{{ section.id }} .slide__heading {
     font-size: 38px;
   }
@@ -174,6 +173,20 @@
 
 .slideshow__slide {
   height: var(--slideshow-height)
+}
+/* Fix: prevent banner cropping */
+#shopify-section-{{ section.id }} .slideshow__slide {
+  height: auto !important;
+}
+
+#shopify-section-{{ section.id }} .slideshow__image-wrapper {
+  height: auto !important;
+}
+
+#shopify-section-{{ section.id }} .slideshow__image {
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important;
 }
 {%- endstyle -%}
 
