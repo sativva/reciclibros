@@ -213,6 +213,7 @@
         "setwidthout": "container",
         "featured_image": "shopify://shop_images/App.png",
         "image_mobile": "shopify://shop_images/appli.png",
+        "banner_link": "https://reciclibros-v2.myshopify.com/pages/donar-o-vender#app",
         "height_img": "default-img",
         "height_img_mobile": "default-img",
         "margin_desktop": "",
