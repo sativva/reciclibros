@@ -457,7 +457,7 @@
         "text_align": "left",
         "show_count": false,
         "perviewDesktop": 6,
-        "spaceBetween": 20,
+        "spaceBetween": 10,
         "arrows": true,
         "arrow_heading": false,
         "dots": false,
