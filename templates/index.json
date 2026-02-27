@@ -50,7 +50,7 @@
           "settings": {
             "image_1": "shopify://shop_images/Donacion.png",
             "image_mobile": "shopify://shop_images/Donar.png",
-            "slide_link": "",
+            "slide_link": "https://reciclibros-v2.myshopify.com/pages/donar-o-vender#formulario",
             "position_image_mb": "center",
             "color_subheading": "",
             "subheading": "",
