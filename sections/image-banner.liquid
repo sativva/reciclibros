@@ -97,22 +97,25 @@
     <banner-content reveal-on-scroll="" class="wrapper-banner-content">
       <div class="banner-content has-overlay">
         <div class="banner-image">
-            {% if section.settings.featured_image != blank %}
-                <img class="banner-list-image object-fit-cover" reveal="" loading="lazy" 
-                sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
-                alt="" 
-                src="{{ section.settings.featured_image | image_url: width: section.settings.featured_image.width }}" 
-                data-srcset="{%- if section.settings.featured_image.width >= 3000 -%}{{ section.settings.featured_image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
-                    {{ section.settings.featured_image | image_url }} {{ section.settings.featured_image.width }}w"
-                src="{{ section.settings.featured_image | image_url: width: 1500 }}"
-                height="{{ section.settings.featured_image.height }}"
-                width="{{ section.settings.featured_image.width }}">
+{% if section.settings.featured_image != blank %}
+  <picture>
+    {% if section.settings.image_mobile != blank %}
+      <!-- Image mobile (<= 767px) -->
+      <source 
+        media="(max-width: 767px)" 
+        srcset="{{ section.settings.image_mobile | image_url: width: 1200 }}">
+    {% endif %}
 
-              {% if section.settings.image_mobile %}
-                  <img src="{{ section.settings.image_mobile | image_url: width: 3000 }}"
-                    data-srcset="{{ section.settings.image_mobile | image_url: width: 400 }} 400w, {{ section.settings.image_mobile | image_url: width: 500 }} 500w, {{ section.settings.image_mobile | image_url: width: 600 }} 600w, {{ section.settings.image_mobile | image_url: width: 700 }} 700w, {{ section.settings.image_mobile | image_url: width: 800 }} 800w, {{ section.settings.image_mobile | image_url: width: 900 }} 900w, {{ section.settings.image_mobile | image_url: width: 1000 }} 1000w, {{ section.settings.image_mobile | image_url: width: 1200 }} 1200w, {{ section.settings.image_mobile | image_url: width: 3000 }} 1400w" 
-                    loading="lazy" draggable="false" class="imagebanner__img object-fit-cover hd-desk" sizes="100vw" width="3000" height="4204">
-              {% endif %}
+    <!-- Image desktop -->
+    <img 
+      class="banner-list-image object-fit-cover"
+      loading="lazy"
+      src="{{ section.settings.featured_image | image_url: width: 2000 }}"
+      width="{{ section.settings.featured_image.width }}"
+      height="{{ section.settings.featured_image.height }}"
+      alt="">
+  </picture>
+{% else %}
             {% else %}
                 <div class="banner-list-image">
                 {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
