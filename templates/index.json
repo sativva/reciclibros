@@ -17,7 +17,7 @@
           "settings": {
             "image_1": "shopify://shop_images/App.png",
             "image_mobile": "shopify://shop_images/appli.png",
-            "slide_link": "shopify://pages/donar-o-vender",
+            "slide_link": "https://reciclibros-v2.myshopify.com/pages/donar-o-vender#app",
             "position_image_mb": "center",
             "color_subheading": "",
             "subheading": "",
