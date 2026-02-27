@@ -120,7 +120,7 @@
         "setwidthout_content": "full",
         "progress_bar_color": "#ffffff",
         "bg_btn_arrow": "",
-        "color_btn_arrow": "#000000",
+        "color_btn_arrow": "#ffffff",
         "autoplay_duration": 5,
         "background_color": "rgba(0,0,0,0)",
         "slideshow_height": "slideshow--desktop-550",
