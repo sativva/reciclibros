@@ -114,6 +114,9 @@
         "slide_inhWaL",
         "slide_e8BgKq"
       ],
+      "custom_css": [
+        ".slide-full-link {position: absolute; inset: 0; z-index: 2; display: block;}"
+      ],
       "name": "t:sections.slideshow.presets.name",
       "settings": {
         "setwidthout": "full",
