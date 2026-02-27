@@ -95,6 +95,9 @@
     </header>
     {% endif %}
     <banner-content reveal-on-scroll="" class="wrapper-banner-content">
+      {% if section.settings.banner_link != blank %}
+       <a href="{{ section.settings.banner_link }}" class="banner-link-wrapper">
+      {% endif %}
       <div class="banner-content has-overlay">
         <div class="banner-image">
 {% if section.settings.featured_image != blank %}
@@ -275,6 +278,11 @@
       "type": "image_picker",
       "id": "image_mobile",
       "label": "Image mobile"
+    },
+    {
+      "type": "url",
+     "id": "banner_link",
+     "label": "Lien de la bannière"
     },
     {
       "type": "select",
