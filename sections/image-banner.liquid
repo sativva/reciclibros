@@ -239,6 +239,9 @@
           {% endcase %}
         {% endfor %}
       </div>
+      {% if section.settings.banner_link != blank %}
+  </a>
+{% endif %}
     </banner-content>
   </div>
 </section>
