@@ -170,20 +170,26 @@
     --slideshow-height: 100vh;
   }
 }
-
-.slideshow__slide {
-  height: var(--slideshow-height)
+/* Adaptive height for banners (fix white space on short images) */
+#shopify-section-{{ section.id }} .slideshow__slide {
+  height: auto !important;
 }
-/* Fix crop banner without breaking slider */
-#shopify-section-{{ section.id }} .slideshow__image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain !important;
+
+#shopify-section-{{ section.id }} .slideshow__slide-inner {
+  height: auto !important;
 }
 
 #shopify-section-{{ section.id }} .slideshow__image-wrapper {
-  height: 100%;
+  height: auto !important;
 }
+
+#shopify-section-{{ section.id }} .slideshow__image {
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block;
+}
+
 {%- endstyle -%}
 
 {% render 'section-style' %}
