@@ -132,7 +132,7 @@
         "show_upsell": false,
         "upsell_limit": 5,
         "padding_top": 24,
-        "padding_bottom": 20
+        "padding_bottom": 0
       }
     },
     "b4b2e57a-b15e-4f11-b27e-b0500d52dc70": {
