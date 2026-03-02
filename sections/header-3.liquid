@@ -83,13 +83,92 @@
   {% endif %}
 
   /* CATEGORY */
-  {% if section.settings.enable_categories %}
+  {% if section.settings.enable_categories and section.settings.categories_desktop_drawer == false %}
     @media (min-width: 1200px) {
       body.index .header .menu-categories #categories-menu-drawer {
         top: 100%;
         opacity: 1;
         visibility: visible;
         transform: translateY(40px);
+      }
+    }
+  {% endif %}
+  {% if section.settings.categories_desktop_drawer %}
+    @media (min-width: 1200px) {
+      #shopify-section-{{ section.id }} .menu-categories #categories-menu-drawer {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        max-height: 100vh;
+        width: 89vw;
+        max-width: 410px;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        transform: translate(calc(var(--transform-logical-flip) * 100%));
+        visibility: hidden;
+        opacity: 1;
+        display: flex;
+        z-index: 999;
+        transition: transform 0.6s cubic-bezier(0.75, 0, 0.175, 1),
+          visibility 0.6s cubic-bezier(0.75, 0, 0.175, 1);
+      }
+      [dir="ltr"] #shopify-section-{{ section.id }} .menu-categories #categories-menu-drawer {
+        right: 0;
+        left: auto;
+      }
+      [dir="rtl"] #shopify-section-{{ section.id }} .menu-categories #categories-menu-drawer {
+        left: 0;
+        right: auto;
+      }
+      #shopify-section-{{ section.id }} .menu-categories #categories-menu-drawer[open] {
+        transform: translate(0);
+        visibility: visible;
+      }
+      #shopify-section-{{ section.id }} .menu-categories #categories-menu-drawer::before {
+        content: none;
+      }
+      #shopify-section-{{ section.id }} .menu-categories:after {
+        content: none;
+      }
+      #shopify-section-{{ section.id }} .menu-categories .drawer__header--shadowed {
+        display: flex;
+      }
+      #shopify-section-{{ section.id }} .menu-categories .drawer__footer {
+        display: block;
+      }
+      #shopify-section-{{ section.id }} .menu-categories .drawer__content {
+        padding: 8px 30px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        position: static;
+      }
+      #shopify-section-{{ section.id }} .menu-categories .drawer__content > .categories-nav > .categories-nav__item:before {
+        content: none;
+      }
+      #shopify-section-{{ section.id }} .menu-categories .categories-nav .collapsible {
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
+      }
+      #shopify-section-{{ section.id }} .menu-categories .categories-nav .collapsible[open] {
+        height: auto;
+        overflow: visible;
+        visibility: visible;
+      }
+      #shopify-section-{{ section.id }} .menu-categories .collapsible-mega,
+      #shopify-section-{{ section.id }} .menu-categories .collapsible-mega_child {
+        display: block;
+        position: static;
+        left: auto;
+        top: auto;
+        background-color: transparent;
+        box-shadow: none;
+        width: 100%;
+      }
+      #shopify-section-{{ section.id }} .menu-categories .collapsible-mega_child {
+        padding: 0;
       }
     }
   {% endif %}
@@ -482,7 +561,14 @@
       "label": "Show Categories",
       "info": "Hidden animation hover",
       "default": false
-    }, 
+    },
+    {
+      "type": "checkbox",
+      "id": "categories_desktop_drawer",
+      "label": "Use drawer for categories on desktop",
+      "info": "Apply the mobile drawer behavior on desktop.",
+      "default": false
+    },
     {
       "type": "header",
       "content": "Icon Search"
