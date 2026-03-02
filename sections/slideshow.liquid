@@ -174,22 +174,22 @@
 .slideshow__slide {
   height: var(--slideshow-height)
 }
-/* Fix crop banner without breaking slider */
+/* Perfect ratio banner (no crop, no white, responsive) */
 @media screen and (min-width: 990px) {
+
   .slideshow,
-  .slideshow__slide,
-  .slideshow__media {
-    height: 300px !important;
-    min-height: 300px !important;
-    max-height: 300px !important;
+  .slideshow__slide {
+    aspect-ratio: 1352 / 300;
+    height: auto !important;
+    min-height: unset !important;
+    max-height: unset !important;
   }
 
-.slideshow__image {
-  height: 100% !important;
-  width: 100% !important;
-  object-fit: contain !important;
-  object-position: center center !important;
-  background: #fff;
+  .slideshow__image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
 }
   }
   /* Slide full clickable link */
