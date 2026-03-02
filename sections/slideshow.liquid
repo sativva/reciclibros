@@ -174,9 +174,8 @@
 .slideshow__slide {
   height: var(--slideshow-height)
 }
-/* Perfect ratio banner (no crop, no white, responsive) */
+/* Desktop banner ratio (1352x300) */
 @media screen and (min-width: 990px) {
-
   .slideshow,
   .slideshow__slide {
     aspect-ratio: 1352 / 300;
@@ -191,7 +190,23 @@
     object-fit: cover !important;
   }
 }
+
+/* Mobile banner ratio (430x430) */
+@media screen and (max-width: 989px) {
+  .slideshow,
+  .slideshow__slide {
+    aspect-ratio: 1 / 1; /* 430x430 = carré */
+    height: auto !important;
+    min-height: unset !important;
+    max-height: unset !important;
   }
+
+  .slideshow__image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+}
   /* Slide full clickable link */
 .slide-full-link {
   position: absolute;
