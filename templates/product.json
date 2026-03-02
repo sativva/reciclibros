@@ -254,7 +254,7 @@
         "text_align": "left",
         "products_per_row_desktop": 6,
         "products_to_show": 10,
-        "margin_desktop": "20px 20px 20px 20px",
+        "margin_desktop": "0px 20px 20px 20px",
         "margin_mobile": "0 0 40px",
         "padding_desktop": "",
         "padding_mobile": ""
