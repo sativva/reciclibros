@@ -121,22 +121,41 @@
                   <td class="line-item__quantity line-item__quantity--block text--center hd-phone">
                     <line-item-quantity>
                       <div class="ap-quantityselector ap-quantityselector--small">
-                        {% assign pre_quantity = item.quantity | minus: 1 %}
-                        <a href="/cart/change?quantity={{ pre_quantity }}&line={{ forloop.index }}" class="ap-quantityselector__button" aria-label="Decrease quantity" data-no-instant="">
-                            <svg focusable="false" width="8" height="2" class="icon icon--minus   " viewBox="0 0 8 2">
-                                <path fill="currentColor" d="M0 0h8v2H0z"></path>
-                            </svg>
-                        </a>
+  <button 
+    type="submit"
+    name="updates[]"
+    value="{{ item.quantity | minus: 1 }}"
+    class="ap-quantityselector__button"
+    aria-label="Decrease quantity">
+    <svg focusable="false" width="8" height="2" class="icon icon--minus" viewBox="0 0 8 2">
+      <path fill="currentColor" d="M0 0h8v2H0z"></path>
+    </svg>
+  </button>
 
-                        <input is="ap-inputnumber" class="ap-quantityselector__input text--xsmall" autocomplete="off" type="text" inputmode="numeric" name="updates[]" data-line="{{ forloop.index }}" value="{{ item.quantity }}" size="2" aria-label="Change quantity">
-                        {% assign next_quantity = item.quantity | plus: 1 %}
-                        <a href="/cart/change?quantity={{ next_quantity }}&line={{ forloop.index }}" class="ap-quantityselector__button" aria-label="Increase quantity" data-no-instant="">
-                            <svg focusable="false" width="8" height="8" class="icon icon--plus   " viewBox="0 0 8 8">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3 5v3h2V5h3V3H5V0H3v3H0v2h3z" fill="currentColor"></path>
-                            </svg>
-                        </a>
-                      </div>
-                      <a href="{{ item.url_to_remove }}&quantity=0" class="line-item__remove-button link text--subdued text--xxsmall" data-no-instant="">Borrar</a>
+  <input 
+    is="ap-inputnumber"
+    class="ap-quantityselector__input text--xsmall"
+    autocomplete="off"
+    type="number"
+    inputmode="numeric"
+    name="updates[]"
+    data-line="{{ forloop.index }}"
+    value="{{ item.quantity }}"
+    size="2"
+    min="0">
+
+  <button 
+    type="submit"
+    name="updates[]"
+    value="{{ item.quantity | plus: 1 }}"
+    class="ap-quantityselector__button"
+    aria-label="Increase quantity">
+    <svg focusable="false" width="8" height="8" class="icon icon--plus" viewBox="0 0 8 8">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M3 5v3h2V5h3V3H5V0H3v3H0v2h3z" fill="currentColor"></path>
+    </svg>
+  </button>
+</div>
+                      <a href="{{ item.url_to_remove }}" class="line-item__remove-button link text--subdued text--xxsmall" data-no-instant="">Borrar</a>
                     </line-item-quantity>
                   </td>
                   <td class="line-item__price-list-container text--right hd-phone">
