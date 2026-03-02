@@ -85,7 +85,6 @@
         },
         "b7d23da0-3873-4f9a-b9c6-9df8bcd72f92": {
           "type": "payment",
-          "disabled": true,
           "settings": {
             "bg_color": "rgba(0,0,0,0)",
             "image": "shopify://shop_images/Newsletter.png"
