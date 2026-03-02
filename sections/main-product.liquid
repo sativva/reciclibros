@@ -465,7 +465,7 @@
 
                       {%- when 'payment' -%}
                         <div style="background-color: {{ block.settings.bg_color }};" class="product-payment">
-                          <div class="product-payment-title">{{ 'products.product.payment' | t }}</div>
+                        {%comment%}  <div class="product-payment-title">{{ 'products.product.payment' | t }}</div>{%endcomment%}
                           <div class="product-payment-image">
                             {% if  block.settings.image != blank %}
                               <img loading="lazy" 
