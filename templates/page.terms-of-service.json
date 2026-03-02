@@ -15,12 +15,11 @@
         "setwidthout": "full",
         "padding_top": 80,
         "padding_bottom": 80,
-        "height": 300,
+        "height": 10,
         "margin_desktop": "0 0 60px",
-        "bg_img": "shopify://shop_images/Mask_group_6_1_354d40a1-79a3-4446-ada8-0951b665ccea.jpg",
-        "background_color": "#e1e1e1",
-        "color_title": "#ffffff",
-        "color_breadcrumb": "#ffffff"
+        "background_color": "#D5ECE5",
+        "color_title": "#000000",
+        "color_breadcrumb": "#000000"
       }
     }
   },

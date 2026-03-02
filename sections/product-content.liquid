@@ -88,6 +88,48 @@
   }
 }
 {%- endif -%}
+
+/* ===== BOOK SPECS TABLE DESIGN (DESKTOP + TABLET + MOBILE) ===== */
+#shopify-section-{{ section.id }} .book-specs {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+#shopify-section-{{ section.id }} .book-specs th,
+#shopify-section-{{ section.id }} .book-specs td {
+  padding: 16px 24px; /* garde les mêmes espacements partout */
+  text-align: left;
+  vertical-align: middle;
+  border: none;
+}
+
+/* Colonne gauche (labels) toujours alignée comme desktop */
+#shopify-section-{{ section.id }} .book-specs th {
+  width: 40%;
+  font-weight: 600;
+  color: #333;
+  padding-right: 32px; /* espace entre gauche et droite */
+}
+
+/* Zebra stripes gris/blanc (respectées aussi dans le collapsible mobile) */
+#shopify-section-{{ section.id }} .book-specs tbody tr:nth-child(odd) {
+  background-color: #f5f5f5;
+}
+
+#shopify-section-{{ section.id }} .book-specs tbody tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+/* IMPORTANT : le thème réduit le padding dans .collapsible sur mobile,
+   on le neutralise pour garder EXACTEMENT le même design */
+@media (max-width: 999px) {
+  #shopify-section-{{ section.id }} .collapsible .book-specs th,
+  #shopify-section-{{ section.id }} .collapsible .book-specs td {
+    padding: 16px 24px !important;
+  }
+}
+
 </style>
 <section class="container">
   <div class="wp-product-content">

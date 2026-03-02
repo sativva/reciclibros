@@ -24,7 +24,8 @@
       ],
       "custom_css": [
         "[data-block-handle=\"breadcrumb\"] nav {gap: 10px;}",
-        "[data-block-handle=\"breadcrumb\"] {margin-left: 30px;}"
+        "[data-block-handle=\"breadcrumb\"] {margin-left: 30px;}",
+        "[data-block-handle=\"breadcrumb\"] {display: flex; justify-content: center; margin: 20px auto 0 auto;}"
       ],
       "settings": {
         "include_margins": true
@@ -61,7 +62,8 @@
           "type": "product_variants",
           "settings": {
             "variant_type": "grid",
-            "color_variant": "default"
+            "color_variant": "default",
+            "show_variant_prices": true
           }
         },
         "quantity_selector": {
@@ -84,7 +86,7 @@
         "b7d23da0-3873-4f9a-b9c6-9df8bcd72f92": {
           "type": "payment",
           "settings": {
-            "bg_color": "#f6f6f6",
+            "bg_color": "rgba(0,0,0,0)",
             "image": "shopify://shop_images/Medios_de_pago_62a59b55-a622-475e-8f4a-f30c3407a427.png"
           }
         },
@@ -209,7 +211,9 @@
       "name": "Image banner",
       "settings": {
         "setwidthout": "container",
-        "featured_image": "shopify://shop_images/BANNIERE_2.png",
+        "featured_image": "shopify://shop_images/App.png",
+        "image_mobile": "shopify://shop_images/appli.png",
+        "banner_link": "https://reciclibros-v2.myshopify.com/pages/donar-o-vender#app",
         "height_img": "default-img",
         "height_img_mobile": "default-img",
         "margin_desktop": "",

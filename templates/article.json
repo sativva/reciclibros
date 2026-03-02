@@ -31,12 +31,14 @@
         },
         "blog_aboutus_K7RgMX": {
           "type": "blog-aboutus",
+          "disabled": true,
           "settings": {
             "description": "To be the industry leader, globally recognized for effective & efficient solutions. To provide innovative solutions delivering quality, excellence and speed."
           }
         },
         "47f23791-91b9-4285-82d6-1f2f15225b9c": {
           "type": "categories",
+          "disabled": true,
           "settings": {
             "article_text": "Tips & Tricks",
             "article_link": "shopify://blogs/news",
@@ -61,6 +63,7 @@
         "96ce13c5-3720-4f03-9e42-5f492870f98b": {
           "type": "banner",
           "settings": {
+            "featured_image": "shopify://shop_images/Newsletter_87b7a1ce-f944-4544-83ee-18e69a4f708b.png",
             "title": "",
             "color_title": "#ffffff",
             "description": "",

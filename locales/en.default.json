@@ -170,10 +170,10 @@
   "products": {
     "product": {
       "tags": "Tags : ",
-      "categories": "Categorías : ",
+      "categories": "Categories : ",
       "add_to_cart": "Añadir",
       "quickview": "Vista rápida",
-      "wishlist": "Sumar a tu wishlist",
+      "wishlist": "Guardar en favoritos",
       "compare": "comparar",
       "choose_options": "Choose options",
       "choose_product_options": "Choose options for {{ product_name }}",

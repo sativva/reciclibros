@@ -117,7 +117,7 @@
   }
   @media (max-width: 576px) {
     .quantity_wrapper button#AddToCart {
-      flex: unset;
+      flex: 1;
     }
     .main-product {
       padding-bottom: 0;
@@ -208,7 +208,7 @@
     margin-bottom: 23px;
   }
   .product-payment-title {
-    font-size: 14px;
+    font-size: 18px;
     line-height: 18px;
     margin-bottom: 10px;
     font-family: var(--hd-font-family);
@@ -271,11 +271,17 @@
       display: block!important;
     }
     .quantity_wrapper {
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
     }
   }
 
   {%- endif -%}
+  
+@media screen and (max-width: 999px) {
+  .product__media .dots-nav {
+    display: none !important;
+  }
+}
 
 </style>
 <script>
@@ -292,7 +298,7 @@
 {% render 'product-sticky', product: product %}
 
 <div class="container">
-      {% render 'breadcrumb', product: product %}
+     {% comment %} {% render 'breadcrumb', product: product %} {% endcomment %}
       <!-- PRODUCT TOP PART -->
       <div class="wp-main-product">
         <div class="main-product product--thumbnails-{{ section.settings.thumbnails_position }}">
@@ -359,7 +365,7 @@
                             data-action="add" data-id="{{ product.id }}" alt="Add to wishlist">
                             {% render 'icon-wishlist' %}
                             <span class="text-name">
-                              Add to wishlist
+                              Guardar en favoritos
                             </span>
                           </ap-wishlistbutton>
                         </div>
@@ -603,6 +609,7 @@
       </div>
     </div>
   </section>
+  
   <ap-productzoomimage product-handle="{{ product.handle }}" id="product-{{ section.id }}-{{ product.id }}-zoom" class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="pswp__bg"></div>
     <div class="pswp__scroll-wrap">
@@ -633,7 +640,7 @@
             </svg>
           </button>
         </div>
-
+ 
         <div class="pswp__dots-nav-wrapper hd-lap-and-up">
           <button class="tap-area tap-area--large" data-action="pswp-prev">
             <span class="visually-hidden">Previous</span>
@@ -656,6 +663,7 @@
       </div>
     </div>
   </ap-productzoomimage>
+ 
   {%- for media in product.media -%}
     {%- if media.media_type != "image" -%}
       <ap-contentmodal only-once="" id="popup-product-{{ section.id }}-{{ media.id }}" class="modal modal-full modal-video">

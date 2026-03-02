@@ -36,7 +36,7 @@
               </a>
             {% endif %}
             <span class="article__nav-item article__nav-item--current">
-              <span class="article__nav-item-label text--strong hd-pocket hd-lap">Reading</span>
+              <span class="article__nav-item-label text--strong hd-pocket hd-lap">Leyendo</span>
               <span class="article__nav-item-title">{{ article.title | escape }}</span>
             </span>
             {% if blog.next_article %}
@@ -112,7 +112,7 @@
                   </div>
                 </div>
                 {%- if section.settings.blog_show_author -%}
-                  <span class="article__meta-item article__author">By {{ article.author }}</span>
+                  <span class="article__meta-item article__author">Por {{ article.author }}</span>
                 {%- endif -%}
                 {%- if section.settings.blog_show_date -%}
                   <time class="article__meta-item article__date">{{ article.published_at | time_tag: format: 'date' }}</time>
@@ -363,7 +363,7 @@
                   {%- endfor -%}
                 {%- endif -%}
                 {%- if section.settings.blog_show_author -%}
-                  <span class="article__meta-item article__author">By <b>{{ article.author }}</b></span>
+                  <span class="article__meta-item article__author">Por <b>{{ article.author }}</b></span>
                 {%- endif -%}
                 {%- if section.settings.blog_show_date -%}
                   <span class="article__meta-item article__date">{{ article.published_at | time_tag: format: 'date' }}</span>
@@ -451,7 +451,7 @@
                     </svg>
                     <span class="nav-content">
                       <span class="reader-text">
-                        Previous article 
+                        Árticulo anterior
                       </span>
                       <span class="title">
                         {{ blog.previous_article.title }}
@@ -469,7 +469,7 @@
                         fill="#E0E0E0" />
                     </svg>
                     <span class="nav-content">
-                      <span class="reader-text">Next article </span>
+                      <span class="reader-text"> Árticulo siguiente </span>
                       <span class="title">{{ blog.next_article.title }}</span>
                     </span>
                   </a>

@@ -24,7 +24,8 @@
       ],
       "custom_css": [
         "[data-block-handle=\"breadcrumb\"] nav {gap: 10px;}",
-        "[data-block-handle=\"breadcrumb\"] {margin-left: 30px;}"
+        "[data-block-handle=\"breadcrumb\"] {margin-left: 30px;}",
+        "[data-block-handle=\"breadcrumb\"] {display: flex; justify-content: center; margin: 20px auto 0 auto}"
       ],
       "settings": {
         "include_margins": true
@@ -103,9 +104,9 @@
         "tab_description": "",
         "text_align": "left",
         "products_to_show": 8,
-        "products_per_row_mobile_sm": 1,
+        "products_per_row_mobile_sm": 3,
         "products_per_row_desktop": 6,
-        "margin_desktop": "20px 20px 20px 20px",
+        "margin_desktop": "",
         "margin_mobile": "",
         "padding_desktop": "",
         "padding_mobile": ""

@@ -552,7 +552,7 @@
             "type": "menu-banner-classic",
             "settings": {
               "menu_title": "Home",
-              "menu_width": "container",
+              "menu_width": "container-fluid",
               "menu_column": 5,
               "enable_menu_banner": true,
               "image_size": "auto",
@@ -614,7 +614,7 @@
           "menu_banner_cEfRWU"
         ],
         "settings": {
-          "fullwidth": false,
+          "fullwidth": true,
           "sticky_header": true,
           "transparent_header": false,
           "header_background": "#ffffff",
@@ -1082,6 +1082,28 @@
         }
       }
     },
-    "content_for_index": []
+    "content_for_index": [],
+    "blocks": {
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      },
+      "2153490007123654574": {
+        "type": "shopify://apps/consentmo-gdpr/blocks/gdpr_cookie_consent/4fbe573f-a377-4fea-9801-3ee0858cae41",
+        "disabled": false,
+        "settings": {}
+      },
+      "15048993943116965467": {
+        "type": "shopify://apps/consentmo-gdpr/blocks/ada_compliance/4fbe573f-a377-4fea-9801-3ee0858cae41",
+        "disabled": false,
+        "settings": {}
+      },
+      "11349500561483629931": {
+        "type": "shopify://apps/notify-me/blocks/app-embed/b399b727-6c85-44fc-9e21-63114bd72054",
+        "disabled": false,
+        "settings": {}
+      }
+    }
   }
 }

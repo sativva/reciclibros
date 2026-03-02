@@ -110,7 +110,7 @@
                         {% render 'icon-wishlist' %}
                     </ap-wishlistbutton>
                     <span class="text-name d-none">
-                        Add to wishlist   
+                        Guardar en favoritos   
                     </span>
                 </div>
 
@@ -134,7 +134,7 @@
                             </div>
                         </div>
                         <span class="text-name d-lg-block d-none">
-                            Quick view
+                            Vista rápida
                         </span>
                     </div>
                     {%- comment -%} Cacher compare button
@@ -222,15 +222,15 @@
                                     </form>
                                 {%- else -%}
                                     <button class="sold-out">
-                                        {% render 'icon-addcart' %}
+                                         {% comment %}{% render 'icon-addcart' %} {% endcomment %}
                                         <span class="ml-2">
-                                            Sold out
+                                            Agotado
                                         </span>
                                     </button>
                                 {%- endif -%}
                             </div>
                             <span class="text-name">
-                                Add to cart
+                                Añadir
                             </span>
                         </div>
                     </div>
