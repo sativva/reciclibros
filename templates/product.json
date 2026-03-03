@@ -45,6 +45,11 @@
           "type": "title",
           "settings": {}
         },
+        "judge_me_reviews_preview_badge_37D837": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        },
         "price": {
           "type": "price",
           "settings": {}
@@ -85,9 +90,10 @@
         },
         "b7d23da0-3873-4f9a-b9c6-9df8bcd72f92": {
           "type": "payment",
+          "disabled": true,
           "settings": {
             "bg_color": "rgba(0,0,0,0)",
-            "image": "shopify://shop_images/Medios_de_pago_62a59b55-a622-475e-8f4a-f30c3407a427.png"
+            "image": "shopify://shop_images/Newsletter.png"
           }
         },
         "d2dc3fb0-828b-419d-831c-f2f77453e516": {
@@ -109,6 +115,7 @@
       "block_order": [
         "vendor",
         "title",
+        "judge_me_reviews_preview_badge_37D837",
         "price",
         "1393b77e-a8c0-433b-89a8-43bc490e6816",
         "375e1ccb-99cc-41e5-813c-45a1a57566be",
@@ -132,7 +139,7 @@
         "show_upsell": false,
         "upsell_limit": 5,
         "padding_top": 24,
-        "padding_bottom": 20
+        "padding_bottom": 0
       }
     },
     "b4b2e57a-b15e-4f11-b27e-b0500d52dc70": {
@@ -254,7 +261,7 @@
         "text_align": "left",
         "products_per_row_desktop": 6,
         "products_to_show": 10,
-        "margin_desktop": "20px 20px 20px 20px",
+        "margin_desktop": "0px 20px 20px 20px",
         "margin_mobile": "0 0 40px",
         "padding_desktop": "",
         "padding_mobile": ""

@@ -9,18 +9,18 @@
     width: 48%;
   }
   .main-product {
-    margin: 0;
-    gap: 70px;
-    max-width: 1440px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 70px;
+  margin: 0;
+  gap: 70px;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
   }
   .wp-main-product {
     padding: 0 15px 0;
     background-color: #fff;
     border-radius: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   .ap-productform {
     row-gap: 0;
@@ -465,7 +465,7 @@
 
                       {%- when 'payment' -%}
                         <div style="background-color: {{ block.settings.bg_color }};" class="product-payment">
-                          <div class="product-payment-title">{{ 'products.product.payment' | t }}</div>
+                        {%comment%}  <div class="product-payment-title">{{ 'products.product.payment' | t }}</div>{%endcomment%}
                           <div class="product-payment-image">
                             {% if  block.settings.image != blank %}
                               <img loading="lazy" 
@@ -1002,7 +1002,7 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
+      "default": 20
     }
   ]
 }
