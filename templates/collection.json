@@ -25,7 +25,7 @@
       "custom_css": [
         "[data-block-handle=\"breadcrumb\"] nav {gap: 10px;}",
         "[data-block-handle=\"breadcrumb\"] {margin-left: 30px;}",
-        "[data-block-handle=\"breadcrumb\"] {display: flex; justify-content: left; margin: 20px auto 20px 30px;}"
+        "[data-block-handle=\"breadcrumb\"] {display: flex; justify-content: left; margin: 20px auto 20px 40px;}"
       ],
       "settings": {
         "include_margins": true
