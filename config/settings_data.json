@@ -642,6 +642,7 @@
           "menu": "secundary-menu",
           "menu_categories": "main-menu",
           "enable_categories": false,
+          "categories_desktop_drawer": true,
           "icon_search": "icon-text",
           "enable_localization": true,
           "enable_localization_currency": true,
