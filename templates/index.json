@@ -807,7 +807,7 @@
         "spaceBetween": 30,
         "arrows": false,
         "dots": false,
-        "margin_desktop": "",
+        "margin_desktop": "0 20px 0 20px",
         "margin_mobile": "",
         "padding_desktop": "",
         "padding_mobile": ""
