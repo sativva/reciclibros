@@ -149,7 +149,9 @@
             {% endif %}  
           {%- endfor -%}
         </ap-flickitycarousel>
-          {% comment %} Cacher le Zoom <button is="toggle-button" ap-controlsaria="product-{{ section.id }}-{{ product.id }}-zoom" ap-expanded-aria="false" class="tap-area product__zoom-button" >
+          {% comment %} Cacher le Zoom 
+           
+          <button is="toggle-button" ap-controlsaria="product-{{ section.id }}-{{ product.id }}-zoom" ap-expanded-aria="false" class="tap-area product__zoom-button" >
             <span class="visually-hidden">Zoom</span>
             <svg fill="none" focusable="false" width="14" height="14" class="icon icon--image-zoom   " viewBox="0 0 14 14">
               <path d="M9.50184 9.50184C11.4777 7.52595 11.5133 4.358 9.58134 2.42602C7.64936 0.494037 4.48141 0.529632 2.50552 2.50552C0.529632 4.48141 0.494037 7.64936 2.42602 9.58134C4.358 11.5133 7.52595 11.4777 9.50184 9.50184ZM9.50184 9.50184L13 13" stroke="currentColor" stroke-width="2"></path>
