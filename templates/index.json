@@ -748,10 +748,10 @@
         "author_item_gUtz8a": {
           "type": "author-item",
           "settings": {
-            "heading": "Camelia Doe",
-            "mini_collection": "family",
+            "heading": "Carlos Ruiz Zafón",
+            "mini_collection": "carlos-ruiz-zafon",
             "limit_product": 3,
-            "button1_label": "view full bio\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>"
+            "button1_label": "Ver todo\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>"
           }
         },
         "author_item_6HAMmd": {
@@ -788,15 +788,14 @@
         "author_item_4axnNi",
         "author_item_WLnkkP"
       ],
-      "disabled": true,
       "settings": {
-        "setwidthout": "container",
+        "setwidthout": "full",
         "background-color": "#ffffff",
         "heading_color": "#000000",
         "text_color": "#282828",
         "sub_heading": "",
-        "tab_heading": "Featured authors",
-        "tab_heading_size": 3,
+        "tab_heading": "Autores destacados",
+        "tab_heading_size": 4,
         "tab_description": "",
         "btn_text": "",
         "btn_link": "",
@@ -804,7 +803,7 @@
         "text_align": "center",
         "heading_size_2": "p",
         "style_btn_item": "btn-outline",
-        "perviewDesktop": 4,
+        "perviewDesktop": 6,
         "spaceBetween": 30,
         "arrows": false,
         "dots": false,
