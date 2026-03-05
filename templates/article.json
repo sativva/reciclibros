@@ -87,7 +87,7 @@
         "blog_show_date": true,
         "blog_show_author": true,
         "blog_show_share": false,
-        "share_label": "Share",
+        "share_label": "Comparte",
         "blog_show_comment": true,
         "show_mail": false,
         "heading": "Join Us",
