@@ -277,7 +277,7 @@
             "padding_desktop": "",
             "text_align": "left",
             "heading": "Servicios",
-            "menu": "",
+            "menu": "footer-servicios",
             "heading_2": "",
             "menu_2": "",
             "heading_size": "h6"
