@@ -52,8 +52,23 @@
                     data-label="{{ 'customer.orders.order_number' | t }}"
                   >
                     <a href="{{ order.customer_url }}" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">
-                      {{ order.name }}
-                    </a>
+  {{ order.name }}
+</a>
+
+<div style="margin-top:6px;">
+  <a 
+    href="/pages/contact-service-client
+    ?order_name={{ order.name | url_encode }}
+    &order_id={{ order.id }}
+    &email={{ customer.email | url_encode }}
+    &first_name={{ customer.first_name | url_encode }}
+    &last_name={{ customer.last_name | url_encode }}"
+    class="link underlined-link"
+    style="font-size: 13px;"
+  >
+    ¿Un problema con tu pedido?
+  </a>
+</div>
                   </td>
                   <td headers="RowOrder ColumnDate" role="cell" data-label="{{ 'customer.orders.date' | t }}">
                     {{ order.created_at | time_tag: format: 'date' }}
