@@ -15,110 +15,63 @@
         "setwidthout": "full",
         "padding_top": 80,
         "padding_bottom": 80,
-        "height": 300,
+        "height": 10,
         "margin_desktop": "0 0 60px",
-        "background_color": "#e1e1e1",
-        "color_title": "#ffffff",
-        "color_breadcrumb": "#ffffff"
+        "background_color": "#D5ECE5",
+        "color_title": "#000000",
+        "color_breadcrumb": "#666666"
       }
     },
-    "banner_grid_TXxBJW": {
-      "type": "banner-grid",
+    "rich_text_CyxAmc": {
+      "type": "rich-text",
       "blocks": {
-        "banner_grid_RyKWn9": {
-          "type": "banner-grid",
+        "heading_fBHEXc": {
+          "type": "heading",
+          "disabled": true,
           "settings": {
-            "width": "33%",
-            "background_color": "",
-            "color_title": "",
-            "padding_inner": "",
-            "heading_title": "",
-            "heading": "",
-            "description": "",
-            "description_2": "",
-            "button1_label": "",
-            "link1": "",
-            "button2_label": "",
-            "link2": "",
-            "text_align": "left",
-            "position_text": "mid-center"
+            "heading": "Talk about your brand",
+            "heading_size": "h4"
           }
         },
-        "banner_grid_J39BH4": {
-          "type": "banner-grid",
+        "text_Nf7dnc": {
+          "type": "text",
           "settings": {
-            "width": "33%",
-            "background_color": "",
-            "color_title": "",
-            "padding_inner": "",
-            "heading_title": "",
-            "heading": "",
-            "description": "",
-            "description_2": "",
-            "button1_label": "",
-            "link1": "",
-            "button2_label": "",
-            "link2": "",
-            "text_align": "left",
-            "position_text": "mid-center"
+            "text": "<p>Utiliza el siguiente formulario de contacto para enviarnos un mensaje.<br/><br/>Este formulario te pone directamente en contacto con el equipo de Reciclibros, que estará encantado de ayudarle.<br/><br/>No obstante, ten en cuenta que la mayoría de las preguntas que pueda tener sobre nuestro sitio web se tratan en nuestra sección de ayuda. Le invitamos a consultarla si aún no lo has hecho haciendo clic <a href=\"/pages/faq\" title=\"Preguntas Frecuentes\">aquí</a>.<br/><br/>Por otra parte, si su pregunta se refiere a un pedido ya realizado en nuestro sitio web, le invitamos a ponerse en contacto con nosotros a través de su espacio de cliente haciendo clic <a href=\"https://shopify.com/74466525362/account\" title=\"Mi cuenta\">aquí</a>.<br/><br/>Para cualquier otra solicitud, puede utilizar el formulario que aparece a continuación.</p>"
           }
         },
-        "banner_grid_kXhhqr": {
-          "type": "banner-grid",
+        "button_8FpfaW": {
+          "type": "button",
+          "disabled": true,
           "settings": {
-            "width": "33%",
-            "background_color": "",
-            "color_title": "",
-            "padding_inner": "",
-            "heading_title": "",
-            "heading": "",
-            "description": "",
-            "description_2": "",
-            "button1_label": "",
-            "link1": "",
-            "button2_label": "",
-            "link2": "",
-            "text_align": "left",
-            "position_text": "mid-center"
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
           }
         }
       },
       "block_order": [
-        "banner_grid_RyKWn9",
-        "banner_grid_J39BH4",
-        "banner_grid_kXhhqr"
+        "heading_fBHEXc",
+        "text_Nf7dnc",
+        "button_8FpfaW"
       ],
-      "name": "Banner grid",
+      "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "setwidthout": "full",
-        "background-color": "#ffffff",
+        "fullwidth": false,
         "margin_desktop": "",
-        "margin_tablet_large": "0px 0px 0px 0px",
+        "margin_tablet": "",
         "margin_mobile": "",
+        "content_alignment": "center",
         "padding_desktop": "",
-        "padding_tablet_lager": "0px 0px 0px 0px",
         "padding_mobile": "",
+        "border_width": "0px 0px 0px",
+        "bg_color_content": "#ffffff",
+        "border_color": "#000000",
+        "sub_color": "#282828",
         "heading_color": "#282828",
-        "text_color": "#282828",
-        "sub_heading": "",
-        "tab_heading": "Vende tus libros de forma rápida y sencilla con la app Reciclibros",
-        "tab_heading_size": 4,
-        "tab_description": "",
-        "btn_text": "",
-        "btn_link": "",
-        "style_btn": "btn-base",
-        "text_align": "left",
-        "distance_col": "15",
-        "color_title_center": "",
-        "color_description": "",
-        "color_btn": "",
-        "bg_btn": "",
-        "color_btn_hover": "",
-        "bg_btn_hover": "",
-        "heading_size_2": "h3",
-        "position_btn_bottom": true,
-        "style_btn_item": "btn-base",
-        "style_btn_2": "btn-base"
+        "text_color": "#282828"
       }
     },
     "image_banner_PVJwzp": {
@@ -159,6 +112,7 @@
       "name": "Image banner",
       "settings": {
         "setwidthout": "full",
+        "banner_link": "",
         "height_img": "550",
         "height_img_mobile": "450",
         "margin_desktop": "",
@@ -172,62 +126,11 @@
         "overlay": "#000000",
         "overlay_opacity": 1
       }
-    },
-    "rich_text_CyxAmc": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_fBHEXc": {
-          "type": "heading",
-          "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h4"
-          }
-        },
-        "text_Nf7dnc": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
-          }
-        },
-        "button_8FpfaW": {
-          "type": "button",
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_fBHEXc",
-        "text_Nf7dnc",
-        "button_8FpfaW"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "fullwidth": false,
-        "margin_desktop": "",
-        "margin_tablet": "",
-        "margin_mobile": "",
-        "content_alignment": "center",
-        "padding_desktop": "",
-        "padding_mobile": "",
-        "border_width": "0px 0px 0px",
-        "bg_color_content": "#fff",
-        "border_color": "#000",
-        "sub_color": "#282828",
-        "heading_color": "#282828",
-        "text_color": "#282828"
-      }
     }
   },
   "order": [
     "main",
-    "banner_grid_TXxBJW",
-    "image_banner_PVJwzp",
-    "rich_text_CyxAmc"
+    "rich_text_CyxAmc",
+    "image_banner_PVJwzp"
   ]
 }
