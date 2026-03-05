@@ -79,8 +79,8 @@
       "name": "Contact form",
       "settings": {
         "setwidthout": "full",
-        "background-color": "#ff6400",
-        "margin_desktop": "40px",
+        "background-color": "#ffd1b3",
+        "margin_desktop": "50px",
         "margin_mobile": "",
         "padding_desktop": "",
         "padding_mobile": "",
