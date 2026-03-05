@@ -45,26 +45,16 @@
             <tbody role="rowgroup">
               {%- for order in customer.orders -%}
                 <tr role="row">
-<td
-  id="RowOrder"
-  role="cell"
-  headers="ColumnOrder"
-  data-label="{{ 'customer.orders.order_number' | t }}"
->
-
-  <div>
-    <a href="{{ order.customer_url }}" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">
-      {{ order.name }}
-    </a>
-  </div>
-
-  <div style="margin-top:4px;">
-    <a href="/pages/contact-service-client?order_name={{ order.name | url_encode }}&email={{ customer.email | url_encode }}">
-      Contacter le service client
-    </a>
-  </div>
-
-</td>
+                  <td
+                    id="RowOrder"
+                    role="cell"
+                    headers="ColumnOrder"
+                    data-label="{{ 'customer.orders.order_number' | t }}"
+                  >
+                    <a href="{{ order.customer_url }}" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">
+                      {{ order.name }}
+                    </a>
+                  </td>
                   <td headers="RowOrder ColumnDate" role="cell" data-label="{{ 'customer.orders.date' | t }}">
                     {{ order.created_at | time_tag: format: 'date' }}
                   </td>
