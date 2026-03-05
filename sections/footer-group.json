@@ -96,7 +96,7 @@
       ],
       "settings": {
         "setwidthout": "container",
-        "background-color": "#ffffff",
+        "background-color": "#ff6400",
         "background_image": "shopify://shop_images/FF6400.png",
         "heading_color": "#ffffff",
         "text_color": "#ffffff",

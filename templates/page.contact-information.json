@@ -74,63 +74,34 @@
         "text_color": "#282828"
       }
     },
-    "image_banner_PVJwzp": {
-      "type": "image-banner",
-      "blocks": {
-        "text_BGFxFm": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "setwidthout": "full",
-            "text_align": "left",
-            "position_text": "mid-center",
-            "padding_inner": "",
-            "heading_title": "Heading title",
-            "color_title": "",
-            "heading": "Heading",
-            "heading_size": "h2",
-            "color_title_center": "",
-            "description": "",
-            "description_2": "",
-            "color_description": "",
-            "title_countdown": "Title Count Down",
-            "time_picker": "23:00",
-            "date_picker": "30-12-2225",
-            "button1_label": "",
-            "color_btn": "",
-            "bg_btn": "",
-            "color_btn_hover": "",
-            "bg_btn_hover": "",
-            "link1": "",
-            "style_btn": "btn-base"
-          }
-        }
-      },
-      "block_order": [
-        "text_BGFxFm"
-      ],
-      "name": "Image banner",
+    "contact_form_section_at_PaWJxg": {
+      "type": "contact-form-section-at",
+      "name": "Contact form",
       "settings": {
-        "setwidthout": "full",
-        "banner_link": "",
-        "height_img": "550",
-        "height_img_mobile": "450",
+        "setwidthout": "container",
+        "background-color": "#ff6400",
         "margin_desktop": "",
-        "margin_tablet": "",
         "margin_mobile": "",
-        "tab_heading": "Welcome to our store",
-        "tab_heading_size": 2,
-        "tab_description": "",
-        "heading_color": "",
-        "text_color": "",
-        "overlay": "#000000",
-        "overlay_opacity": 1
+        "padding_desktop": "",
+        "padding_mobile": "",
+        "color_text": "#fff",
+        "heading": "Send a message",
+        "heading_size": "h4",
+        "description": "Just fill out the form here and we'll get back to you as soon as possible.",
+        "icon": "",
+        "info_text": "",
+        "icon_2": "",
+        "info_text_2": "",
+        "icon_3": "",
+        "info_text_3": "",
+        "contact_form_title": "Make Appointment",
+        "contact_form_des": "Auto Service Manager will then contact you to confirm your appointment via email or phone."
       }
     }
   },
   "order": [
     "main",
     "rich_text_CyxAmc",
-    "image_banner_PVJwzp"
+    "contact_form_section_at_PaWJxg"
   ]
 }
