@@ -83,32 +83,26 @@
     <input class="field__input" type="email" id="ContactForm-email" name="contact[email]" required>
   </div>
 
-  <div class="field">
-    <label class="field__label-top" for="ContactForm-phone">Teléfono *</label>
-    <input class="field__input" type="tel" id="ContactForm-phone" name="contact[phone]" required>
+  <div class="field full-width">
+    <label class="field__label-top" for="ContactForm-subject">Asunto *</label>
+    <input
+      class="field__input"
+      type="text"
+      id="ContactForm-subject"
+      name="contact[Objet]"
+      required
+    >
   </div>
 
   <div class="field full-width">
-    <label class="field__label-top" for="ContactForm-direccion">Dirección *</label>
-    <input class="field__input" type="text" id="ContactForm-direccion" name="contact[direccion]" required>
-  </div>
-
-  <div class="field">
-    <label class="field__label-top" for="ContactForm-cp">Código postal *</label>
-    <input class="field__input" type="number" id="ContactForm-cp" name="contact[codigo_postal]" min="10000" max="99999" required>
-  </div>
-
-  <div class="field">
-    <label class="field__label-top" for="ContactForm-ciudad">Ciudad *</label>
-    <input class="field__input" type="text" id="ContactForm-ciudad" name="contact[ciudad]" required>
-  </div>
-
-  <div class="field full-width">
-    <label class="field__label-top" for="ContactForm-libros">
-      Número de libros *
-      <span class="field__hint">(mínimo 50 libros)</span>
-    </label>
-    <input class="field__input" type="number" id="ContactForm-libros" name="contact[numero_libros]" min="50" required>
+    <label class="field__label-top" for="ContactForm-message">Mensaje *</label>
+    <textarea
+      class="field__input"
+      rows="6"
+      id="ContactForm-message"
+      name="contact[body]"
+      required
+    ></textarea>
   </div>
 
 </div>
