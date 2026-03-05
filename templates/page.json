@@ -222,7 +222,7 @@
       }
     },
     "contact_form_section_E4VBwF": {
-      "type": "contact-form-section",
+      "type": "contact-form-section-recogida",
       "name": "Contact form section",
       "settings": {
         "setwidthout": "container",
