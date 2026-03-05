@@ -1,4 +1,4 @@
-<categories-menu id="categories-menu-drawer" class="drawer drawer--from-right">
+<categories-menu id="categories-menu-drawer" class="drawer {% if section.settings.categories_desktop_drawer %}drawer--from-left{% else %}drawer--from-right{% endif %}">
     <span class="drawer__overlay"></span>
     <div class="drawer__header drawer__header--shadowed">
       <button type="button" class="drawer__close-button drawer__close-button--block tap-area" data-action="close" title="Close">
@@ -25,7 +25,7 @@
                         </div>
                         <span class="animated-plus"></span>
                     </button>
-                    <ap-contentcollapsible id="categories-menu-{{ menu_index }}" class="collapsible collapsible-mega">
+                    <ap-contentcollapsible id="categories-menu-{{ menu_index }}" class="collapsible collapsible-mega"{% if section.settings.categories_desktop_drawer %} animate-items{% endif %}>
                       <ul class="categories-nav list--unstyled categories-nav_mega" role="list">
                           {%- for childlink in link.links -%}
                             <li class="categories-nav__item drawer__nav-item categories-nav__item_mega mega-existed">
@@ -44,7 +44,7 @@
                                   <span class="animated-plus"></span>
                                 </button>
 
-                                <ap-contentcollapsible id="categories-menu-1_1-{{ menu_index }}-{{ forloop.index }}" class="collapsible collapsible-mega_child">
+                                <ap-contentcollapsible id="categories-menu-1_1-{{ menu_index }}-{{ forloop.index }}" class="collapsible collapsible-mega_child"{% if section.settings.categories_desktop_drawer %} animate-items{% endif %}>
                                   <ul class="categories-nav list--unstyled meganav__nav meganav__nav--third-level">
                                     {%- for grandchildlink in childlink.links -%}
                                     <li>

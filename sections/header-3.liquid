@@ -106,7 +106,7 @@
         margin: 0;
         border-radius: 0;
         box-shadow: none;
-        transform: translate(calc(var(--transform-logical-flip) * 100%));
+        transform: translate(calc(var(--transform-logical-flip) * -100%));
         visibility: hidden;
         opacity: 1;
         display: flex;
@@ -115,12 +115,20 @@
           visibility 0.6s cubic-bezier(0.75, 0, 0.175, 1);
       }
       [dir="ltr"] #shopify-section-{{ section.id }} .menu-categories #categories-menu-drawer {
+        left: 0;
+        right: auto;
+      }
+      [dir="rtl"] #shopify-section-{{ section.id }} .menu-categories #categories-menu-drawer {
         right: 0;
         left: auto;
       }
-      [dir="rtl"] #shopify-section-{{ section.id }} .menu-categories #categories-menu-drawer {
-        left: 0;
+      [dir="ltr"] #shopify-section-{{ section.id }} .menu-categories #categories-menu-drawer .drawer__overlay {
+        left: 100%;
         right: auto;
+      }
+      [dir="rtl"] #shopify-section-{{ section.id }} .menu-categories #categories-menu-drawer .drawer__overlay {
+        right: 100%;
+        left: auto;
       }
       #shopify-section-{{ section.id }} .menu-categories #categories-menu-drawer[open] {
         transform: translate(0);
@@ -138,14 +146,27 @@
       #shopify-section-{{ section.id }} .menu-categories .drawer__footer {
         display: block;
       }
+      #shopify-section-{{ section.id }} .menu-categories .drawer__header--shadowed {
+        justify-content: end;
+      }
       #shopify-section-{{ section.id }} .menu-categories .drawer__content {
         padding: 8px 30px;
         overflow-y: auto;
         overflow-x: hidden;
         position: static;
       }
+      #shopify-section-{{ section.id }} .menu-categories .drawer__content > .categories-nav > .categories-nav__item {
+        padding: 0;
+        border-bottom: none;
+      }
       #shopify-section-{{ section.id }} .menu-categories .drawer__content > .categories-nav > .categories-nav__item:before {
         content: none;
+      }
+      #shopify-section-{{ section.id }} .menu-categories .categories-nav__link_main {
+        padding: 8px 0;
+      }
+      #shopify-section-{{ section.id }} .menu-categories .collapsible-mega_child .categories-meganav__link {
+        padding: 8px 20px;
       }
       #shopify-section-{{ section.id }} .menu-categories .categories-nav .collapsible {
         height: 0;
