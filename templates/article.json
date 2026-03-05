@@ -64,6 +64,7 @@
           "type": "banner",
           "settings": {
             "featured_image": "shopify://shop_images/Newsletter_87b7a1ce-f944-4544-83ee-18e69a4f708b.png",
+            "banner_link": "#newsletter",
             "title": "",
             "color_title": "#ffffff",
             "description": "",
