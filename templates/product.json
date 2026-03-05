@@ -25,7 +25,7 @@
       "custom_css": [
         "[data-block-handle=\"breadcrumb\"] nav {gap: 10px;}",
         "[data-block-handle=\"breadcrumb\"] {margin-left: 30px;}",
-        "[data-block-handle=\"breadcrumb\"] {display: flex; justify-content: center; margin: 20px auto 0 auto;}"
+        "[data-block-handle=\"breadcrumb\"] {display: flex; justify-content: left; margin: 20px auto 20px 40px;}"
       ],
       "settings": {
         "include_margins": true
@@ -128,12 +128,13 @@
         "3906805c-dd1d-47bb-905f-c7609da7417d",
         "share"
       ],
+      "custom_css": [],
       "settings": {
         "media_type": "without-thumbnails",
         "thumbnails_position": "left",
         "carousel_page_dots": false,
         "carousel_prevnextbuttons": false,
-        "enable_video_looping": true,
+        "enable_video_looping": false,
         "show_cosselling": false,
         "crossell_limit": 5,
         "show_upsell": false,
