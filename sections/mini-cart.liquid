@@ -115,6 +115,10 @@
                                     </div>
     
                                     <a href="{{ item.url_to_remove }}&quantity=0" class="line-item__remove-button link text--subdued text--xxsmall" data-no-instant="">{{ 'general.cart.remove' | t }}</a>
+                                    <div class="line-item__error" role="alert" hidden>
+                                        {% render 'icon-error' %}
+                                        <small class="line-item__error-text"></small>
+                                    </div>
                                 </line-item-quantity>
                             </div>
             
@@ -290,4 +294,3 @@
   "class": "shopify-section--mini-cart"
 }
 {% endschema %}
-

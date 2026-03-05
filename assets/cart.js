@@ -58,6 +58,7 @@ class CartItems extends HTMLElement {
 
   updateQuantity(line, quantity, name) {
     this.enableLoading(line);
+    this.clearLineItemError(line);
 
     const body = JSON.stringify({
       line,
@@ -72,6 +73,17 @@ class CartItems extends HTMLElement {
       })
       .then((state) => {
         const parsedState = JSON.parse(state);
+        const hasError =
+          parsedState.errors ||
+          (parsedState.status && parsedState.status !== 200) ||
+          !parsedState.sections;
+        if (hasError) {
+          this.renderLineItemError(line, parsedState);
+          this.hideLineItemOverlays(line);
+          this.disableLoading();
+          return;
+        }
+
         this.classList.toggle('is-empty', parsedState.item_count === 0);
         const cartDrawerWrapper = document.querySelector('ap-cartdrawer');
         const cartFooter = document.getElementById('main-cart-footer');
@@ -108,12 +120,14 @@ class CartItems extends HTMLElement {
     if (this.currentItemCount === itemCount) {
       const lineItemError = document.getElementById(`Line-item-error-${line}`) || document.getElementById(`CartDrawer-LineItemError-${line}`);
       const quantityElement = document.getElementById(`Quantity-${line}`) || document.getElementById(`Drawer-quantity-${line}`);
-      lineItemError
-        .querySelector('.cart-item__error-text')
-        .innerHTML = window.cartStrings.quantityError.replace(
-          '[quantity]',
-          quantityElement.value
-        );
+      if (lineItemError && quantityElement) {
+        lineItemError
+          .querySelector('.cart-item__error-text')
+          .innerHTML = window.cartStrings.quantityError.replace(
+            '[quantity]',
+            quantityElement.value
+          );
+      }
     }
 
     this.currentItemCount = itemCount;
@@ -149,6 +163,47 @@ class CartItems extends HTMLElement {
   disableLoading() {
     const mainCartItems = document.getElementById('main-cart-items') || document.getElementById('CartDrawer-CartItems');
     mainCartItems.classList.remove('cart__items--disabled');
+  }
+
+  hideLineItemOverlays(line) {
+    const cartItemElements = this.querySelectorAll(`#CartItem-${line} .loading-overlay`);
+    const cartDrawerItemElements = this.querySelectorAll(`#CartDrawer-Item-${line} .loading-overlay`);
+    [...cartItemElements, ...cartDrawerItemElements].forEach((overlay) => overlay.classList.add('hidden'));
+  }
+
+  clearLineItemError(line) {
+    const lineItemError = document.getElementById(`Line-item-error-${line}`) || document.getElementById(`CartDrawer-LineItemError-${line}`);
+    if (!lineItemError) return;
+    const errorText = lineItemError.querySelector('.cart-item__error-text');
+    if (errorText) errorText.textContent = '';
+  }
+
+  renderLineItemError(line, parsedState) {
+    const lineItemError = document.getElementById(`Line-item-error-${line}`) || document.getElementById(`CartDrawer-LineItemError-${line}`);
+    if (!lineItemError) return;
+    const errorText = lineItemError.querySelector('.cart-item__error-text');
+    if (!errorText) return;
+
+    let message = '';
+    if (parsedState && parsedState.errors) {
+      if (typeof parsedState.errors === 'string') {
+        message = parsedState.errors;
+      } else if (Array.isArray(parsedState.errors)) {
+        message = parsedState.errors.join(' ');
+      } else if (typeof parsedState.errors === 'object') {
+        message = Object.values(parsedState.errors).join(' ');
+      }
+    }
+    if (!message && parsedState && parsedState.description) message = parsedState.description;
+    if (!message && parsedState && parsedState.message) message = parsedState.message;
+
+    const quantityElement = document.getElementById(`Quantity-${line}`) || document.getElementById(`Drawer-quantity-${line}`);
+    if (!message && quantityElement) {
+      message = window.cartStrings.quantityError.replace('[quantity]', quantityElement.value);
+    }
+    if (!message) message = window.cartStrings.error;
+
+    errorText.innerHTML = message;
   }
 }
 

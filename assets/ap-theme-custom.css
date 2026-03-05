@@ -415,3 +415,26 @@ ap-comparebutton {
 }
 
 
+.line-item__error {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-top: 0.8rem;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+.line-item__error[hidden] {
+  display: none;
+}
+
+.line-item__error .icon-error {
+  flex-shrink: 0;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: 0.2rem;
+}
+
+.line-item__error-text {
+  display: inline-block;
+}
