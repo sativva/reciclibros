@@ -33,58 +33,63 @@
         "padding_bottom": 20
       }
     },
-    "image_banner_6pPjRx": {
-      "type": "image-banner",
+    "collapsible_content_pMXpxJ": {
+      "type": "collapsible-content",
       "blocks": {
-        "text_R4jWmH": {
-          "type": "text",
-          "disabled": true,
+        "collapsible_row_N7WnXJ": {
+          "type": "collapsible_row",
           "settings": {
-            "setwidthout": "full",
-            "text_align": "left",
-            "position_text": "mid-center",
-            "padding_inner": "",
-            "heading_title": "Heading title",
-            "color_title": "",
-            "heading": "Heading",
-            "heading_size": "h2",
-            "color_title_center": "",
-            "description": "",
-            "description_2": "",
-            "color_description": "",
-            "title_countdown": "Title Count Down",
-            "time_picker": "23:00",
-            "date_picker": "30-12-2225",
-            "button1_label": "",
-            "color_btn": "",
-            "bg_btn": "",
-            "color_btn_hover": "",
-            "bg_btn_hover": "",
-            "link1": "",
-            "style_btn": "btn-base"
+            "heading": "Collapsible row",
+            "icon": "chat_bubble",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_jPrbFz": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "chat_bubble",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_iWzfA3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "chat_bubble",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_QqDxYm": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "chat_bubble",
+            "row_content": "",
+            "page": ""
           }
         }
       },
       "block_order": [
-        "text_R4jWmH"
+        "collapsible_row_N7WnXJ",
+        "collapsible_row_jPrbFz",
+        "collapsible_row_iWzfA3",
+        "collapsible_row_QqDxYm"
       ],
-      "name": "Image banner",
+      "name": "t:sections.collapsible_content.presets.name",
       "settings": {
-        "setwidthout": "full",
-        "featured_image": "shopify://shop_images/App.png",
-        "banner_link": "",
-        "height_img": "default-img",
-        "height_img_mobile": "450",
-        "margin_desktop": "",
-        "margin_tablet": "",
-        "margin_mobile": "",
-        "tab_heading": "",
-        "tab_heading_size": 2,
-        "tab_description": "",
-        "heading_color": "",
-        "text_color": "",
-        "overlay": "#000000",
-        "overlay_opacity": 1
+        "heading_color": "#282828",
+        "caption": "",
+        "heading": "Comprar libros",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "layout": "none",
+        "open_first_collapsible_row": false,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "37965532-19cc-42e6-aca6-c53a66c39838": {
@@ -383,7 +388,7 @@
   "order": [
     "main",
     "custom_liquid_6nY3Dp",
-    "image_banner_6pPjRx",
+    "collapsible_content_pMXpxJ",
     "37965532-19cc-42e6-aca6-c53a66c39838",
     "c9ac342e-90ec-46bc-8fa1-c42bdb86c1ab",
     "collapsible_content_kc4nib",
