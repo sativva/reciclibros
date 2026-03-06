@@ -413,6 +413,55 @@
         "padding_top": 0,
         "padding_bottom": 60
       }
+    },
+    "collapsible_content_LTXdp3": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_7kiNeE": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cómo puedo donar mis libros?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Recogemos tus libros nuevos o de segunda mano, siempre que estén en buen estado y puedan ser leídos y disfrutados por otros. También aceptamos donaciones de otros productos culturales como CD´s, DVD´s y vinilos siempre y cuando estén su caja original. </p><p>Los libros que no aceptamos son: </p><ul><li>Libros en mal estado</li><li>Libros con contenido obsoleto como libros de texto, diccionarios y enciclopedias, libros de colección, revistas y periódicos, guías de viaje y libros en idiomas extranjeros. </li></ul><p>Tenemos un servicio de recogida gratuito a partir de 50 libros en la Comunidad de Madrid y Barcelona capital. </p><p>Puedes rellenar <a href=\"https://reciclibros-v2.myshopify.com/pages/donar-o-vender#formulario\" title=\"Formulario donación\">nuestro formulario</a> de donación y te contactaremos por teléfono o correo electrónico para agendar una cita</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_XUCKMb": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Es posible dejar los libros directamente en nuestras instalaciones?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Tenemos un almacén en Madrid donde podrás venir a donar tus libros: </p><p>Calle Nerja 3 posterior</p><p>28045 Arganzuela, Madrid</p><p>Te recomendamos contactar con nosotros por teléfono para confirmar el horario. </p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_pXGwCQ": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "chat_bubble",
+            "row_content": "",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_7kiNeE",
+        "collapsible_row_XUCKMb",
+        "collapsible_row_pXGwCQ"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "heading_color": "#282828",
+        "caption": "",
+        "heading": "Donar mis libros",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "layout": "none",
+        "open_first_collapsible_row": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -422,6 +471,7 @@
     "37965532-19cc-42e6-aca6-c53a66c39838",
     "c9ac342e-90ec-46bc-8fa1-c42bdb86c1ab",
     "collapsible_content_kc4nib",
-    "collapsible_content_CGhYPr"
+    "collapsible_content_CGhYPr",
+    "collapsible_content_LTXdp3"
   ]
 }
