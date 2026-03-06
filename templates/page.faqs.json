@@ -57,9 +57,9 @@
         "collapsible_row_iWzfA3": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Collapsible row",
+            "heading": "¿Qué hacer en caso de error en el precio de un libro?",
             "icon": "chat_bubble",
-            "row_content": "",
+            "row_content": "<p>Los precios de los libros que vendemos se fijan automáticamente y, en ocasiones, se producen errores. Con más de 300 000 títulos en stock, ¡no siempre podemos controlarlo todo! Si quieres comprar un libro, pero te parece que el precio es erróneo, <strong>no dudes en ponerte en contacto con nosotros</strong> a través de esta página del <a href=\"/pages/contactarnos\" title=\"Contactarnos\">formulario de contacto</a> y verificaremos si es posible modificar el precio.</p>",
             "page": ""
           }
         },
