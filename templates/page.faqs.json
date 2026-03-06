@@ -89,6 +89,15 @@
             "row_content": "<p>A continuación te explicamos cómo proceder para modificar tu pedido según cada caso.</p><p><strong>Cancelar un artículo</strong></p><p>Si tu pedido consta de varios artículos, no es posible cancelar el pedido parcialmente.</p><p><strong>Cancelar un pedido</strong></p><p>Si nuestro equipo aún no ha preparado tu pedido, puedes enviarnos una solicitud de cancelación.</p><p>Puede ponerte en contacto con nosotros a través del formulario de contacto indicando el número de pedido que quieres anular.</p><p><strong>Modificar mi dirección de entrega</strong></p><p>Si nuestro equipo aún no ha preparado tu pedido, puedes enviarnos una solicitud de modificación de la dirección de envío.<br/>Puedes ponerte en contacto con nosotros a través del formulario de contacto indicando el número de pedido y la nueva dirección. </p>",
             "page": ""
           }
+        },
+        "collapsible_row_Tkkpyt": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Mi pedido no ha llegado, ¿qué hago?",
+            "icon": "chat_bubble",
+            "row_content": "<p>A continuación te detallamos las posibles situaciones que puedes encontrar: </p><p><strong>Mi pedido está en proceso de entrega, pero el seguimiento no se mueve.</strong></p><p>¡No te preocupes! Si el seguimiento no se mueve desde hace menos de 48 horas, probablemente se trate de un pequeño retraso o de una demora ocasional debido a un fin de semana o un día festivo.</p><p>Si han pasado más de 48 horas, no dudes en ponerte en contacto con nosotros a través del formulario de contacto.</p><p><strong>Mi pedido aparece como «Envío pre registrado en los sistemas de Correos pendiente de depósito».</strong></p><p>Hay un breve lapso de tiempo entre el momento en que enviamos tu pedido y el momento en que el seguimiento se activa. Por lo general, el seguimiento se activa al día siguiente de entregar el paquete al transportista.</p><p>Si has recibido nuestro correo electrónico de confirmación de envío, pero el seguimiento sigue sin estar activo en la página web del transportista 48h después de la recepción de este correo, no dudes en ponerte en contacto con nosotros.</p>",
+            "page": ""
+          }
         }
       },
       "block_order": [
@@ -97,7 +106,8 @@
         "collapsible_row_iWzfA3",
         "collapsible_row_QqDxYm",
         "collapsible_row_fAcCtz",
-        "collapsible_row_L7j9GR"
+        "collapsible_row_L7j9GR",
+        "collapsible_row_Tkkpyt"
       ],
       "name": "t:sections.collapsible_content.presets.name",
       "settings": {
