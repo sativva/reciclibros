@@ -48,9 +48,9 @@
         "collapsible_row_jPrbFz": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Collapsible row",
+            "heading": "¿Podéis enviar fotos de un libro en stock?",
             "icon": "chat_bubble",
-            "row_content": "",
+            "row_content": "<p>Dado que nuestros libros no se almacenan en nuestras instalaciones, lamentablemente<strong> no podemos enviar fotos.</strong></p>",
             "page": ""
           }
         },
