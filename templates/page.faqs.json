@@ -132,6 +132,16 @@
         "padding_bottom": 36
       }
     },
+    "custom_liquid_jzCMQr": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div id=\"venderlibros\"></div>",
+        "color_scheme": "background-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "37965532-19cc-42e6-aca6-c53a66c39838": {
       "type": "collapsible-content",
       "blocks": {
@@ -479,6 +489,7 @@
     "custom_liquid_6nY3Dp",
     "custom_liquid_p3ENVy",
     "collapsible_content_pMXpxJ",
+    "custom_liquid_jzCMQr",
     "37965532-19cc-42e6-aca6-c53a66c39838",
     "c9ac342e-90ec-46bc-8fa1-c42bdb86c1ab",
     "collapsible_content_kc4nib",
