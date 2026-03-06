@@ -438,9 +438,9 @@
         "collapsible_row_pXGwCQ": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Collapsible row",
+            "heading": "¿Es posible añadir libros para donar en un paquete de venta?",
             "icon": "chat_bubble",
-            "row_content": "",
+            "row_content": "<p>Lamentablemente, no. Los libros donados y vendidos se tratan de forma diferente, por lo que te rogamos que no los mezcles (ya que esto podría bloquear el procesamiento de su venta).</p>",
             "page": ""
           }
         }
