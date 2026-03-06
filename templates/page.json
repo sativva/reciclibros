@@ -62,6 +62,7 @@
       "settings": {
         "setwidthout": "container",
         "featured_image": "shopify://shop_images/banniere_donar_vender.png",
+        "banner_link": "",
         "height_img": "300",
         "height_img_mobile": "350",
         "margin_desktop": "",
@@ -207,6 +208,7 @@
       "settings": {
         "setwidthout": "container",
         "featured_image": "shopify://shop_images/mockup-app_820fe282-6e2b-4da6-a9ce-d54d8b3e9b98.png",
+        "banner_link": "",
         "height_img": "550",
         "height_img_mobile": "450",
         "margin_desktop": "20px 20px 20px 20px",
