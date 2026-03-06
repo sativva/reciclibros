@@ -36,6 +36,15 @@
     "collapsible_content_pMXpxJ": {
       "type": "collapsible-content",
       "blocks": {
+        "collapsible_row_fAcCtz": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cómo devolver un artículo?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Si has recibido el producto hace menos de 15 días, puedes obtener un reembolso sin condiciones.</p><p>Para recibir el reembolso, te invitamos a devolver tu pedido a la siguiente dirección:</p><p>RecycLivre Iberica S,L,</p><p>Calle Nerja 3, local 1,</p><p>28045 Madrid</p><p>Los gastos de devolución serán a tu cargo. El reembolso se realiza en la misma forma de pago con la que efectuaste la compra.</p><p><strong>El producto no se corresponde con lo que esperabas (incidencia)</strong></p><p>En caso de incidencia con el producto, te invitamos a ponerte en contacto con nosotros a través de tu cuenta de cliente, en la sección «Historial de pedidos». En los 3 puntos al lado de tu pedido puedes elegir \"reportar una incendencia\"</p><p><strong>Otro motivo</strong></p><p>Si el motivo de la devolución es otro, también puedes ponerte en contacto con nosotros a través de <a href=\"/pages/contactarnos\" title=\"Contactarnos\">nuestra página de contacto</a>.</p><p>Para facilitar la tramitación de tu solicitud, te rogamos que nos facilites toda la información útil (correo electrónico, nombre, número de pedido, detalles de tu solicitud).</p><p>Tramitamos todas las solicitudes recibidas a través de este formulario y siempre intentamos encontrar una solución lo antes posible.</p>",
+            "page": ""
+          }
+        },
         "collapsible_row_N7WnXJ": {
           "type": "collapsible_row",
           "settings": {
@@ -74,6 +83,7 @@
         }
       },
       "block_order": [
+        "collapsible_row_fAcCtz",
         "collapsible_row_N7WnXJ",
         "collapsible_row_jPrbFz",
         "collapsible_row_iWzfA3",
