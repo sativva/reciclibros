@@ -66,9 +66,9 @@
         "collapsible_row_QqDxYm": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Collapsible row",
+            "heading": "¿Qué métodos de pago hay disponibles en Reciclibros?",
             "icon": "chat_bubble",
-            "row_content": "",
+            "row_content": "<p>En Reciclibros aceptamos todas las tarjetas bancarias así como Apple Pay y Google Pay</p>",
             "page": ""
           }
         }
