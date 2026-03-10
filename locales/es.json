@@ -149,7 +149,8 @@
       "tags": "Tags",
       "tags_2": "Tags",
       "title_blog": "Nuevas publicaciones",
-      "title_blog_about": "Acerca de la empresa"
+      "title_blog_about": "Acerca de la empresa",
+      "comment_des": "Tu dirección de correo electrónico no será publicada"
     }
   },
   "onboarding": {
@@ -213,7 +214,9 @@
       "in_stock": "Disponible",
       "out_stock": "No disponible",
       "hurry_up": "¡Corre que vuela! La oferta se termina en:",
-      "new": "Nuevo"
+      "new": "Nuevo",
+      "tags": "Tags",
+      "compare": "Comparar"
     },
     "modal": {
       "label": "Galería multimedia"
