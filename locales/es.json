@@ -34,7 +34,9 @@
         "snapchat": "Snapchat",
         "youtube": "YouTube",
         "vimeo": "Vimeo",
-        "tiktok": "TikTok"
+        "tiktok": "TikTok",
+        "tw": "Twitter",
+        "linkedin": "LinkedIn"
       }
     },
     "continue_shopping": "Seguir comprando",
@@ -69,7 +71,9 @@
       "conditions": "terminos y condiciones",
       "save": "Guardar",
       "policy": "Los costes de envío se calculan en la pantalla de pago",
-      "marquee": ""
+      "marquee": "",
+      "note": "Añadir una nota",
+      "add_note": "Añadir una nota"
     },
     "share": {
       "copy_to_clipboard": "Copiar enlace",
