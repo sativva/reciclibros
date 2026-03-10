@@ -34,7 +34,7 @@
     "breadcrumb_blog_zgRwqA": {
       "type": "breadcrumb-blog",
       "settings": {
-        "setwidthout": "full",
+        "setwidthout": "container-fluid",
         "padding_top": 35,
         "padding_bottom": 35,
         "height": 100,
