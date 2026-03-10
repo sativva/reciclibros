@@ -15,11 +15,11 @@
         "setwidthout": "full",
         "padding_top": 0,
         "padding_bottom": 0,
-        "height": 160,
+        "height": 100,
         "margin_desktop": "",
         "background_color": "#ffffff",
         "color_title": "#000000",
-        "color_breadcrumb": "#999999"
+        "color_breadcrumb": "#ffffff"
       }
     },
     "image_banner_xNQEjU": {
