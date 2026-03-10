@@ -37,7 +37,7 @@
         "setwidthout": "container-fluid",
         "padding_top": 35,
         "padding_bottom": 35,
-        "height": 200,
+        "height": 100,
         "margin_desktop": "0 0 40px",
         "background_color": "#d5ece5",
         "color_title": "#000000",
