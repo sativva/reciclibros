@@ -25,7 +25,7 @@
       "custom_css": [
         "[data-block-handle=\"breadcrumb\"] nav {gap: 10px;}",
         "[data-block-handle=\"breadcrumb\"] {margin-left: 30px;}",
-        "[data-block-handle=\"breadcrumb\"] {display: flex; justify-content: left; margin: 20px auto 20px 40px;}"
+        "[data-block-handle=\"breadcrumb\"] {display: flex; justify-content: left; margin: 10px auto 10px 30px;}"
       ],
       "settings": {
         "include_margins": true
@@ -34,7 +34,7 @@
     "main": {
       "type": "main-page",
       "settings": {
-        "setwidthout": "full",
+        "setwidthout": "container-fluid",
         "padding_top": 35,
         "padding_bottom": 0,
         "height": 100,
