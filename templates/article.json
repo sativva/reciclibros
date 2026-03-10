@@ -9,6 +9,28 @@
  */
 {
   "sections": {
+    "17731506754f2682b6": {
+      "type": "apps",
+      "blocks": {
+        "power_plus_breadcrumb_VBAtqc": {
+          "type": "shopify://apps/power-plus/blocks/breadcrumb/64c1060f-32d4-4613-bfc8-5c08d73fbde9",
+          "settings": {
+            "home": "Home"
+          }
+        }
+      },
+      "block_order": [
+        "power_plus_breadcrumb_VBAtqc"
+      ],
+      "custom_css": [
+        "[data-block-handle=\"breadcrumb\"] nav {gap: 10px;}",
+        "[data-block-handle=\"breadcrumb\"] {margin-left: 30px;}",
+        "[data-block-handle=\"breadcrumb\"] {display: flex; justify-content: left; margin: 10px auto 10px 30px;}"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
     "breadcrumb_blog_eYqJJw": {
       "type": "breadcrumb-blog",
       "settings": {
@@ -19,7 +41,7 @@
         "margin_desktop": "0 0 40px",
         "background_color": "#d5ece5",
         "color_title": "#000000",
-        "color_breadcrumb": "#000000"
+        "color_breadcrumb": "#D5ECE5"
       }
     },
     "main": {
@@ -96,6 +118,7 @@
     }
   },
   "order": [
+    "17731506754f2682b6",
     "breadcrumb_blog_eYqJJw",
     "main"
   ]
