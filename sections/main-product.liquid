@@ -358,6 +358,11 @@
                       
                       {%- when 'product_description' -%}
                         <div class="product-description">{{ product.description }}</div>
+
+                         <!-- Tags invisibles pour la recherche -->
+                         <div style="display:none;">
+                           {{ product.tags | join: ' ' }}
+                           </div>
                       
                       {%- when 'wishlist-compare' -%}
                         <div class="single_variation_wrap">
