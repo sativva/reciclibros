@@ -76,7 +76,11 @@
             {% if block.settings.image != blank %}
                 <div class="swiper-slide">
                   <div class="logoswip-item mx-auto overflow-hidden" style="width: {{ section.settings.width_image }}%;">
-                    <a style="padding-top:{{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%;" href="{{ block.settings.link_logo | default: '#' }}" class="d-block">
+                    {% if block.settings.link_logo != blank %}
+                     <a style="padding-top:{{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%;" href="{{ block.settings.link_logo }}" class="d-block">
+                     {% else %}
+                     <div style="padding-top:{{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%;" class="d-block">
+                     {% endif %}
                       {% assign img_url = block.settings.image | image_url: width: 1 | replace: 'width=1', 'width={width}' %}
                       <img class="ap-logolist__image"
                         src="{{ block.settings.image | image_url: width: block.settings.image.width }}" 
@@ -89,7 +93,11 @@
                         loading="lazy"
                         width="{{ block.settings.image.width }}"
                         height="{{ block.settings.image.height }}">
-                    </a>
+                    {% if block.settings.link_logo != blank %}
+                     </a>
+                    {% else %}
+                    </div>
+                    {% endif %}
                   </div>
                 </div>
             {% else %}
