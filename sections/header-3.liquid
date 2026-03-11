@@ -58,7 +58,12 @@
       max-width: {{ section.settings.logo_width }}px;
     }
   }
-  
+  /* Masquer le bouton Catégories sur mobile */
+@media screen and (max-width: 740px) {
+  .menu-categories > button[ap-controlsaria="categories-menu-drawer"] {
+    display: none !important;
+  }
+}
   
   /* HEADER transparent */
   .header[transparent=""]:hover {
