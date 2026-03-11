@@ -75,10 +75,6 @@
           "type": "quantity_selector",
           "settings": {}
         },
-        "sw_back_in_stock_product_restore_email_7FxRhb": {
-          "type": "shopify://apps/sw-back-in-stock/blocks/product-restore-email/b190bced-3b7b-47da-a05f-6ea4821c3a77",
-          "settings": {}
-        },
         "83916474-fbe9-46c1-afd0-c761ee898dc6": {
           "type": "wishlist-compare",
           "settings": {}
@@ -125,7 +121,6 @@
         "375e1ccb-99cc-41e5-813c-45a1a57566be",
         "b8da14d9-fa65-4645-913b-4e91ff632b94",
         "quantity_selector",
-        "sw_back_in_stock_product_restore_email_7FxRhb",
         "83916474-fbe9-46c1-afd0-c761ee898dc6",
         "457532d6-4c43-4150-aef0-c4eab3d86aa7",
         "b7d23da0-3873-4f9a-b9c6-9df8bcd72f92",
