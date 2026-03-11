@@ -357,12 +357,15 @@
                         {%- render 'product-stock', product: product -%}
                       
                       {%- when 'product_description' -%}
-                        <div class="product-description">{{ product.description }}</div>
+                       <div class="product-description">
+                       {% if product.description != blank %}
+                        {{ product.description }}
+                       {% endif %}
 
-                         <!-- Tags invisibles pour la recherche -->
-                         <div style="display:none;">
-                           {{ product.tags | join: ' ' }}
-                           </div>
+                      <span style="display:none" aria-hidden="true">
+                      {{ product.tags | join: ' ' }}
+                       </span>
+                       </div>
                       
                       {%- when 'wishlist-compare' -%}
                         <div class="single_variation_wrap">
