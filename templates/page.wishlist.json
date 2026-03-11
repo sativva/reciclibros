@@ -9,13 +9,35 @@
  */
 {
   "sections": {
+    "17732448626124750f": {
+      "type": "apps",
+      "blocks": {
+        "power_plus_breadcrumb_46CAgz": {
+          "type": "shopify://apps/power-plus/blocks/breadcrumb/64c1060f-32d4-4613-bfc8-5c08d73fbde9",
+          "settings": {
+            "home": "Home"
+          }
+        }
+      },
+      "block_order": [
+        "power_plus_breadcrumb_46CAgz"
+      ],
+      "custom_css": [
+        "[data-block-handle=\"breadcrumb\"] nav {gap: 10px;}",
+        "[data-block-handle=\"breadcrumb\"] {margin-left: 30px;}",
+        "[data-block-handle=\"breadcrumb\"] {display: flex; justify-content: left; margin: 10px auto 10px 30px;}"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
-        "setwidthout": "full",
-        "padding_top": 0,
+        "setwidthout": "container-fluid",
+        "padding_top": 35,
         "padding_bottom": 0,
-        "height": 150,
+        "height": 100,
         "margin_desktop": "",
         "background_color": "#D5ECE5",
         "color_title": "#000000",
@@ -24,6 +46,7 @@
     }
   },
   "order": [
+    "17732448626124750f",
     "main"
   ]
 }
