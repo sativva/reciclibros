@@ -12,10 +12,14 @@
     "main": {
       "type": "main-page",
       "settings": {
+        "setwidthout": "full",
         "padding_top": 0,
         "padding_bottom": 0,
-        "bg_img": "shopify://shop_images/Mask_group_2_1_296c8746-0255-4182-865b-7d93972b80d2.png",
-        "background_color": "#282828"
+        "height": 150,
+        "margin_desktop": "",
+        "background_color": "#D5ECE5",
+        "color_title": "#000000",
+        "color_breadcrumb": "#D5ECE5"
       }
     }
   },
