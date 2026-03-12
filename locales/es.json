@@ -50,7 +50,7 @@
       "search": "Búsqueda",
       "popular": "Más vendido",
       "all_product": "Todos los productos",
-      "all_collection": "Todas las colecciones ",
+      "all_collection": "Todas las categorías ",
       "contact": "Contacto",
       "blog": "Blog",
       "information": "Información",
@@ -356,7 +356,7 @@
       "view_all": "Ver todo"
     },
     "collection_template": {
-      "title": "Colección",
+      "title": "Categoría",
       "empty": "No se encontró ningún producto",
       "use_fewer_filters_html": "Usa menos filtros o <a class=\"{{ class }}\" href=\"{{ link }}\">elimínalos todos</a>"
     },
@@ -526,6 +526,9 @@
         "close_notice_label": "Cerrar",
         "expand_notice_label": "Ver más"
       }
+    },
+    "page_titles": {
+      "collections": "Categorías"
     }
   }
 }
