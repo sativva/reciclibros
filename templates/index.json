@@ -365,10 +365,10 @@
         "collection_iMtfyD": {
           "type": "collection",
           "settings": {
-            "collection": "ficcion-poesia-teatro-teatro",
+            "collection": "ficcion-literatura",
             "bg_content": "#ffffff",
             "image": "shopify://shop_images/Teatro.png",
-            "title": "Teatro",
+            "title": "Literatura",
             "button1_label": ""
           }
         },
