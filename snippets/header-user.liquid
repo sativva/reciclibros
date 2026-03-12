@@ -7,9 +7,11 @@
             <li>
                 <a href="/account" title="My Account">{{ 'general.users.hello' | t }} {{ customer.first_name }}</a>
             </li>
+            {% comment %}
             <li>
                 <a href="/account/register" title="{{ 'general.users.register' | t }}">{{ 'general.users.register' | t }}</a>
             </li>
+            {% endcomment %}
             <li>
                 <a href="/account/logout" title="{{ 'general.users.logout' | t }}">{{ 'general.users.logout' | t }}</a>
             </li>
