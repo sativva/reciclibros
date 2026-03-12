@@ -544,7 +544,7 @@
         "heading_color": "#282828",
         "text_color": "#282828",
         "sub_heading": "",
-        "tab_heading": "Precios mini",
+        "tab_heading": "Libros a menos de 5€",
         "tab_heading_size": 4,
         "tab_description": "",
         "btn_text": "Ver todo\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>",
