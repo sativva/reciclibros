@@ -529,6 +529,14 @@
       "delivery_options": {
         "pickup_point_method_definition": "Envío a un punto de recogida",
         "pickup_point_map_title": "Mapa de puntos de recogida"
+      },
+      "pickup_point": {
+        "title": "Punto de recogida",
+        "selector_tabs": "Selector de punto de recogida ",
+        "no_pickup_points_near_you": "No se encontró ningun punto de recogida cerca de la dirección seleccionada",
+        "no_pickup_points_near_location": "No se encontró ningun punto de recogida cerca de tu ubicación",
+        "no_pickup_points_found": "No se encontraron puntos de recogida",
+        "waiting_on_pickup_point_location_notice": "Buscando puntos de recogida..."
       }
     },
     "page_titles": {
