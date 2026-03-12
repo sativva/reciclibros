@@ -529,6 +529,11 @@
     },
     "page_titles": {
       "collections": "Categorías"
+    },
+    "collections": {
+      "sorting": {
+        "manual": "Predeterminado"
+      }
     }
   }
 }
