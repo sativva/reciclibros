@@ -9,6 +9,28 @@
  */
 {
   "sections": {
+    "177331569161127cbf": {
+      "type": "apps",
+      "blocks": {
+        "power_plus_breadcrumb_rQhwnU": {
+          "type": "shopify://apps/power-plus/blocks/breadcrumb/64c1060f-32d4-4613-bfc8-5c08d73fbde9",
+          "settings": {
+            "home": "Home"
+          }
+        }
+      },
+      "block_order": [
+        "power_plus_breadcrumb_rQhwnU"
+      ],
+      "custom_css": [
+        "[data-block-handle=\"breadcrumb\"] nav {gap: 10px;}",
+        "[data-block-handle=\"breadcrumb\"] {margin-left: 30px;}",
+        "[data-block-handle=\"breadcrumb\"] {display: flex; justify-content: left; margin: 10px auto 10px 30px;}"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
     "main": {
       "type": "main-page",
       "disabled": true,
@@ -495,6 +517,7 @@
     }
   },
   "order": [
+    "177331569161127cbf",
     "main",
     "custom_liquid_6nY3Dp",
     "custom_liquid_p3ENVy",
