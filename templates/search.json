@@ -12,7 +12,7 @@
     "main": {
       "type": "main-search",
       "settings": {
-        "setwidthout": "container-fluid"
+        "setwidthout": "full"
       }
     }
   },
