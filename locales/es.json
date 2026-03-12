@@ -525,6 +525,10 @@
         "close_modal_label": "Cerrar",
         "close_notice_label": "Cerrar",
         "expand_notice_label": "Ver más"
+      },
+      "delivery_options": {
+        "pickup_point_method_definition": "Envío a un punto de recogida",
+        "pickup_point_map_title": "Mapa de puntos de recogida"
       }
     },
     "page_titles": {
