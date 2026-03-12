@@ -13,12 +13,15 @@
     <ul class="mobile-nav list--unstyled mobile-nav_title" role="list">
 
       {%- assign categories_menu = section.settings.menu_categories -%}
+
       {%- if categories_menu != blank -%}
         {%- for link in categories_menu.links -%}
+
           {% assign menu_index = forloop.index %}
+
           <li class="mobile-nav__item" data-level="1">
 
-            {%- if link.links != blank -%}
+            {% if link.links != blank %}
 
               <button is="toggle-button"
                 class="mobile-nav__link"
@@ -33,19 +36,24 @@
               </button>
 
               <ap-contentcollapsible id="mobile-cat-{{ menu_index }}" class="collapsible">
+
                 <ul class="mobile-nav list--unstyled c-1" role="list">
+
                   {%- for childlink in link.links -%}
+
                     <li class="mobile-nav__item drawer__nav-item">
 
-                      {%- if childlink.links != blank -%}
+                      {% if childlink.links != blank %}
+
                         {% assign grandchild_list_handle = childlink.title | handleize %}
+
                         <button is="toggle-button"
-                          class="mobile-nav__link"
+                          class="drawer__nav-link drawer__nav-link--split"
                           ap-controlsaria="mobile-cat-1_1-{{ menu_index }}-{{ forloop.index }}"
                           ap-expanded-aria="false">
 
                           <a href="{{ childlink.url }}"
-                            class="meganav__link drawer__nav-link drawer__nav-link--split{% if childlink.active %} meganav__link--active{% endif %}"
+                            class="meganav__link{% if childlink.active %} meganav__link--active{% endif %}"
                             id="DrawerLabel-{{ grandchild_list_handle }}"
                             {% if childlink.active %} aria-current="page"{% endif %}>
 
@@ -59,9 +67,13 @@
                         </button>
 
                         <ap-contentcollapsible id="mobile-cat-1_1-{{ menu_index }}-{{ forloop.index }}" class="collapsible">
+
                           <ul class="mobile-nav list--unstyled meganav__nav meganav__nav--third-level">
+
                             {%- for grandchildlink in childlink.links -%}
+
                               <li>
+
                                 <a href="{{ grandchildlink.url }}"
                                   class="meganav__link{% if grandchildlink.active %} meganav__link--active{% endif %}"
                                   {% if grandchildlink.active %} aria-current="page"{% endif %}>
@@ -70,12 +82,16 @@
                                   {%- render 'processMenuLabel', itemName: grandchildlink.title -%}
 
                                 </a>
+
                               </li>
+
                             {%- endfor -%}
+
                           </ul>
+
                         </ap-contentcollapsible>
 
-                      {%- else -%}
+                      {% else %}
 
                         <a href="{{ childlink.url }}"
                           class="drawer__nav-link meganav__link{% if childlink.active %} meganav__link--active{% endif %}"
@@ -86,14 +102,17 @@
 
                         </a>
 
-                      {%- endif -%}
+                      {% endif %}
 
                     </li>
+
                   {%- endfor -%}
+
                 </ul>
+
               </ap-contentcollapsible>
 
-            {%- else -%}
+            {% else %}
 
               <a class="header__linklist-link link--animated {% if link.current %}menu-item--active{% endif %}" href="{{ link.url }}">
 
@@ -102,14 +121,18 @@
 
               </a>
 
-            {%- endif -%}
+            {% endif %}
 
           </li>
+
         {%- endfor -%}
 
-        <li class="mobile-nav__item"><hr style="opacity:.15;margin:10px 0;"></li>
+        <li class="mobile-nav__item">
+          <hr style="opacity:.15;margin:10px 0;">
+        </li>
 
       {%- endif -%}
+
 
       {%- for link in section.settings.menu.links -%}
 
@@ -117,7 +140,7 @@
 
         <li class="mobile-nav__item" data-level="1">
 
-          {%- if link.links != blank -%}
+          {% if link.links != blank %}
 
             <button is="toggle-button"
               class="mobile-nav__link"
@@ -139,17 +162,17 @@
 
                   <li class="mobile-nav__item drawer__nav-item">
 
-                    {%- if childlink.links != blank -%}
+                    {% if childlink.links != blank %}
 
                       {% assign grandchild_list_handle = childlink.title | handleize %}
 
                       <button is="toggle-button"
-                        class="mobile-nav__link"
+                        class="drawer__nav-link drawer__nav-link--split"
                         ap-controlsaria="mobile-menu-1_1-{{ menu_index }}-{{ forloop.index }}"
                         ap-expanded-aria="false">
 
                         <a href="{{ childlink.url }}"
-                          class="meganav__link drawer__nav-link drawer__nav-link--split{% if childlink.active %} meganav__link--active{% endif %}"
+                          class="meganav__link{% if childlink.active %} meganav__link--active{% endif %}"
                           id="DrawerLabel-{{ grandchild_list_handle }}"
                           {% if childlink.active %} aria-current="page"{% endif %}>
 
@@ -169,6 +192,7 @@
                           {%- for grandchildlink in childlink.links -%}
 
                             <li>
+
                               <a href="{{ grandchildlink.url }}"
                                 class="meganav__link{% if grandchildlink.active %} meganav__link--active{% endif %}"
                                 {% if grandchildlink.active %} aria-current="page"{% endif %}>
@@ -177,6 +201,7 @@
                                 {%- render 'processMenuLabel', itemName: grandchildlink.title -%}
 
                               </a>
+
                             </li>
 
                           {%- endfor -%}
@@ -185,7 +210,7 @@
 
                       </ap-contentcollapsible>
 
-                    {%- else -%}
+                    {% else %}
 
                       <a href="{{ childlink.url }}"
                         class="drawer__nav-link meganav__link{% if childlink.active %} meganav__link--active{% endif %}"
@@ -196,7 +221,7 @@
 
                       </a>
 
-                    {%- endif -%}
+                    {% endif %}
 
                   </li>
 
@@ -206,7 +231,7 @@
 
             </ap-contentcollapsible>
 
-          {%- else -%}
+          {% else %}
 
             <a class="header__linklist-link link--animated {% if link.current %}menu-item--active{% endif %}" href="{{ link.url }}">
 
@@ -215,7 +240,7 @@
 
             </a>
 
-          {%- endif -%}
+          {% endif %}
 
         </li>
 
