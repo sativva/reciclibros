@@ -5741,6 +5741,7 @@ div[title="Add to Wishlist"] {
 .btn-compare.active .icon-product svg,
 .btn-wishlist.active .icon-product svg {
   color: #FF6400;
+  stroke:none
 }
 .btn-addcart .icon-product svg {
   width: 8px;
