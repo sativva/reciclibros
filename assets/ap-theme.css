@@ -5759,7 +5759,6 @@ div[title="Add to Wishlist"] {
 }
 .btn-service .active path,
 .btn-service .active:hover path {
-  stroke: #ff0000;
 }
 .drawer--quick-buy .ap-text-loaderbutton {
   display: inline;
