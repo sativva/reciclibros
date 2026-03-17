@@ -551,5 +551,10 @@
         "manual": "Predeterminado"
       }
     }
+  },
+  "customer_accounts": {
+    "order_details": {
+      "marketing_checkbox_label": "Quiero recibir novedades y ofertas por correo electrónico "
+    }
   }
 }
