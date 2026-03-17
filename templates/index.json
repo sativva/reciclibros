@@ -581,7 +581,7 @@
             "service_icon": "",
             "title_small": "",
             "title": "Cuidar el medioambiente",
-            "description": "135 000 es el número de árboles que habría sido necesario talar para producir libros nuevos frente a la venta de libros usados que vende Reciclibros.",
+            "description": "Gracias a la venta de libros usados de Reciclibros, se ha evitado la tala de 135.000 árboles que habrían sido necesarios para producir libros nuevos.",
             "button1_label": "",
             "link1": ""
           }
@@ -595,7 +595,7 @@
             "service_icon": "",
             "title_small": "",
             "title": "Apoyar proyectos sociales",
-            "description": "Nuestro almacén, situado en Vallecas (Madrid), emplea a personas con discapacidad, a las que se les acompaña en su reinserción laboral duradera a lo largo de toda su carrera.",
+            "description": "Nuestro almacén, ubicado en Vallecas (Madrid), da empleo a personas con discapacidad, a quienes apoyamos y acompañamos en su camino hacia una integración laboral estable y duradera.",
             "button1_label": "",
             "link1": ""
           }
@@ -608,8 +608,8 @@
             "featured_image": "shopify://shop_images/Picto_assoenvironnementale.png",
             "service_icon": "",
             "title_small": "",
-            "title": "Redistribuir",
-            "description": "Desde su creación, Reciclibros ha donado parte de sus ingresos netos a asociaciones culturales y conservación de la naturaleza.",
+            "title": "Contribuir",
+            "description": "Desde su creación, Reciclibros destina parte de sus ingresos netos al apoyo de asociaciones culturales y de conservación de la naturaleza.",
             "button1_label": "",
             "link1": ""
           }
