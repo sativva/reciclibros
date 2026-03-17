@@ -541,6 +541,9 @@
       "marketing": {
         "accept_marketing_checkbox_label": "Quiero recibir novedades y ofertas por correo electrónico ",
         "accept_sms_checkbox_label": "Quiero recibir novedades y ofertas por correo electrónico por SMS"
+      },
+      "customer_account": {
+        "save_my_information_label": "Guardar mi información para hacer más rápida la próxima consulta"
       }
     },
     "page_titles": {
