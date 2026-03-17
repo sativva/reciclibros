@@ -273,7 +273,7 @@
       "type": "recently-viewed-products",
       "name": "Recently viewed products",
       "settings": {
-        "heading": "Productos que recién has visto",
+        "heading": "Libros vistos recientemente",
         "heading_size": 4,
         "tab_description": "",
         "text_align": "left",
