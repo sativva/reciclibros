@@ -537,6 +537,10 @@
         "no_pickup_points_near_location": "No se encontró ningun punto de recogida cerca de tu ubicación",
         "no_pickup_points_found": "No se encontraron puntos de recogida",
         "waiting_on_pickup_point_location_notice": "Buscando puntos de recogida..."
+      },
+      "marketing": {
+        "accept_marketing_checkbox_label": "Quiero recibir novedades y ofertas por correo electrónico ",
+        "accept_sms_checkbox_label": "Quiero recibir novedades y ofertas por correo electrónico por SMS"
       }
     },
     "page_titles": {
