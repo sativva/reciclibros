@@ -41,7 +41,7 @@
         "margin_desktop": "0 0 60px",
         "background_color": "#d5ece5",
         "color_title": "#000000",
-        "color_breadcrumb": "#D5ECE5"
+        "color_breadcrumb": "#d5ece5"
       }
     },
     "rich_text_CyxAmc": {
@@ -58,7 +58,7 @@
         "text_Nf7dnc": {
           "type": "text",
           "settings": {
-            "text": "<p>Utiliza el siguiente formulario de contacto para enviarnos un mensaje.<br/><br/>Este formulario te pone directamente en contacto con el equipo de Reciclibros, que estará encantado de ayudarte.<br/><br/>No obstante, ten en cuenta que la mayoría de las preguntas que puedas tener sobre nuestro sitio web se tratan en nuestra sección de ayuda. Te invitamos a consultarla si aún no lo has hecho haciendo clic <a href=\"/pages/faq\" title=\"Preguntas Frecuentes\">aquí</a>.<br/><br/>Por otra parte, si tu pregunta se refiere a un pedido ya realizado en nuestro sitio web, te invitamos a ponerte en contacto con nosotros a través de tu espacio de cliente haciendo clic <a href=\"https://shopify.com/74466525362/account\" title=\"Mi cuenta\">aquí</a>.</p><p>Por fin si quieres donar tus libros y solicitar una recogida puedes hacerlo rellenando este <a href=\"https://reciclibros-v2.myshopify.com/pages/donar-o-vender#formulario\" title=\"Formulario de donación\">formulario</a>. <br/><br/>Para cualquier otra solicitud, puedes utilizar el formulario que aparece a continuación.</p>"
+            "text": "<p>¿Tienes algo que contarnos? Usa este formulario y tu mensaje llegará directo al equipo de Reciclibros, que estará encantado de ayudarte.<br/><br/>Antes de escribirnos, quizá encuentres la respuesta en nuestro apartado de <strong>preguntas frecuentes</strong>. Échale un vistazo pinchando <a href=\"/pages/faq\" title=\"Preguntas Frecuentes\">aquí</a>.<br/><br/>Si es sobre <strong>un pedido </strong>que has realizado en Reciclibros, lo mejor es contactarnos desde tu <strong>espacio de cliente</strong> pinchando <a href=\"https://shopify.com/74466525362/account\" title=\"Mi cuenta\">aquí</a>.</p><p>Si quieres <strong>donar tus libros y solicitar una recogida</strong> puedes hacerlo rellenando este <a href=\"https://reciclibros-v2.myshopify.com/pages/donar-o-vender#formulario\" title=\"Formulario de donación\">formulario</a>. <br/><br/>Para cualquier otra consulta, utiliza el formulario que encontrarás a continuación ¡Nos encantará leerte!</p>"
           }
         },
         "button_8FpfaW": {
