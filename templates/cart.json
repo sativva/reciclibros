@@ -22,7 +22,7 @@
       "type": "main-cart-footer",
       "settings": {
         "enable_payment_methods": true,
-        "payment_methods_label": "Aceptamos",
+        "payment_methods_label": "Métodos de pago",
         "payment_methods_image": "shopify://shop_images/Medios_de_pago_62a59b55-a622-475e-8f4a-f30c3407a427.png"
       }
     },
