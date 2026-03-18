@@ -256,7 +256,7 @@
         "spaceBetween": 20,
         "arrows": true,
         "arrow_heading": false,
-        "dots": true,
+        "dots": false,
         "nowrap": false,
         "margin_desktop": "20px 20px 20px 20px",
         "margin_tablet": "20px 20px 20px 20px",
