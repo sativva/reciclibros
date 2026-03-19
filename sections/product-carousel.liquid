@@ -29,38 +29,76 @@
     width: 75%;
   }
 }
-/* STYLE DES BOUTONS SWIPER */
-.swiper-button-prev,
-.swiper-button-next {
+/* BASE (copie du slider) */
+.ap-swiper .swiper-button-prev,
+.ap-swiper .swiper-button-next {
   background-color: #ffffff;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  color: #000;
+  border: none;
+
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+
   display: flex;
   align-items: center;
   justify-content: center;
 
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  transition: all 0.3s ease;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  z-index: 2;
+  transition: all 0.4s ease;
+
+  opacity: 0;
+  visibility: hidden;
 }
 
-/* Icône */
-.swiper-button-prev svg,
-.swiper-button-next svg {
-  color: #000;
-  width: 18px;
-  height: 18px;
+/* POSITION INITIALE (comme slider) */
+.ap-swiper .swiper-button-prev {
+  left: 90px;
 }
 
-/* HOVER */
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-  background-color: #ff6400; /* ton orange */
+.ap-swiper .swiper-button-next {
+  right: 90px;
 }
 
-.swiper-button-prev:hover svg,
-.swiper-button-next:hover svg {
+/* APPARITION AU HOVER */
+.ap-swiper:hover .swiper-button-prev,
+.ap-swiper:hover .swiper-button-next {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* SLIDE IN (animation comme slider) */
+.ap-swiper:hover .swiper-button-prev {
+  left: 50px;
+}
+
+.ap-swiper:hover .swiper-button-next {
+  right: 50px;
+}
+
+/* HOVER ORANGE */
+.ap-swiper .swiper-button-prev:hover,
+.ap-swiper .swiper-button-next:hover {
+  background-color: #ff6a00; /* ton orange */
   color: #ffffff;
+}
+
+/* ICÔNE */
+.ap-swiper .swiper-button-prev svg,
+.ap-swiper .swiper-button-next svg {
+  width: 20px;
+  height: 20px;
+  color: currentColor;
+}
+
+/* SUPPRIMER flèches par défaut swiper */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  display: none;
 }
 </style>
 
