@@ -1,6 +1,450 @@
+{% doc %}
+  @prompt
+    Créer un bandeau de filtres horizontal sur la page de recherche qui utilise les filtres natifs de Shopify (définis via l'app Search & Discovery). Le bandeau doit afficher 4 filtres en ligne horizontalement : Estado, Autor, Precio et Edición. Les options de chaque filtre doivent être récupérées dynamiquement depuis les filtres Shopify natifs (collection.filters ou search.filters) exactement comme ils sont configurés dans Search & Discovery, avec leurs valeurs réelles. Chaque filtre doit avoir un menu déroulant. Quand un filtre est sélectionné, la page doit se mettre à jour pour afficher les produits filtrés. Le style doit être épuré et s'intégrer au thème existant., Pour les prix tu peux mettre des tranches de prix de 5 en 5 ?
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-search-filters-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    background-color: {{ block.settings.background_color }};
+    border: 1px solid {{ block.settings.border_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    padding: {{ block.settings.padding_vertical }}px {{ block.settings.padding_horizontal }}px;
+  }
+
+  .ai-search-filters__container-{{ ai_gen_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: {{ block.settings.filter_gap }}px;
+    align-items: center;
+  }
+
+  .ai-search-filters__filter-{{ ai_gen_id }} {
+    position: relative;
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .ai-search-filters__label-{{ ai_gen_id }} {
+    display: block;
+    font-size: {{ block.settings.label_font_size }}px;
+    font-weight: {{ block.settings.label_font_weight }};
+    color: {{ block.settings.label_color }};
+    margin-bottom: 8px;
+  }
+
+  .ai-search-filters__select-{{ ai_gen_id }} {
+    width: 100%;
+    padding: 12px 40px 12px 16px;
+    font-size: {{ block.settings.select_font_size }}px;
+    color: {{ block.settings.select_text_color }};
+    background-color: {{ block.settings.select_bg_color }};
+    border: 1px solid {{ block.settings.select_border_color }};
+    border-radius: {{ block.settings.select_border_radius }}px;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666666' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    transition: border-color 0.2s ease;
+  }
+
+  .ai-search-filters__select-{{ ai_gen_id }}:hover {
+    border-color: {{ block.settings.select_border_hover_color }};
+  }
+
+  .ai-search-filters__select-{{ ai_gen_id }}:focus {
+    outline: none;
+    border-color: {{ block.settings.select_border_focus_color }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-search-filters__container-{{ ai_gen_id }} {
+      flex-direction: column;
+    }
+
+    .ai-search-filters__filter-{{ ai_gen_id }} {
+      width: 100%;
+    }
+  }
+{% endstyle %}
+
+<search-filters-{{ ai_gen_id }}
+  class="ai-search-filters-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <form class="ai-search-filters__container-{{ ai_gen_id }}" id="ai-filter-form-{{ ai_gen_id }}">
+    {% liquid
+      if search.filters.size > 0
+        assign filters_array = search.filters
+      elsif collection.filters.size > 0
+        assign filters_array = collection.filters
+      else
+        assign filters_array = null
+      endif
+    %}
+
+    {% if filters_array != null %}
+      {% for filter in filters_array %}
+        {% liquid
+          assign filter_label = filter.label
+          assign show_filter = false
+          assign is_price_filter = false
+
+          if block.settings.filter_1_label != blank and filter_label == block.settings.filter_1_label
+            assign show_filter = true
+          elsif block.settings.filter_2_label != blank and filter_label == block.settings.filter_2_label
+            assign show_filter = true
+          elsif block.settings.filter_3_label != blank and filter_label == block.settings.filter_3_label
+            assign show_filter = true
+            assign is_price_filter = true
+          elsif block.settings.filter_4_label != blank and filter_label == block.settings.filter_4_label
+            assign show_filter = true
+          endif
+        %}
+
+        {% if show_filter %}
+          <div class="ai-search-filters__filter-{{ ai_gen_id }}">
+            <label class="ai-search-filters__label-{{ ai_gen_id }}" for="filter-{{ filter.param_name }}-{{ ai_gen_id }}">
+              {{ filter.label }}
+            </label>
+            <select
+              class="ai-search-filters__select-{{ ai_gen_id }}"
+              id="filter-{{ filter.param_name }}-{{ ai_gen_id }}"
+              name="{{ filter.param_name }}"
+              data-filter-param="{{ filter.param_name }}"
+              {% if is_price_filter %}data-is-price="true"{% endif %}
+            >
+              <option value="">Todos</option>
+              
+              {% if is_price_filter and filter.type == 'price_range' %}
+                {% assign min_price = filter.range_min | divided_by: 100.0 %}
+                {% assign max_price = filter.range_max | divided_by: 100.0 %}
+                {% assign current_min = filter.min_value.value | divided_by: 100.0 %}
+                {% assign current_max = filter.max_value.value | divided_by: 100.0 %}
+                
+                {% for i in (0..20) %}
+                  {% assign range_start = i | times: 5 %}
+                  {% assign range_end = range_start | plus: 5 %}
+                  
+                  {% if range_start < max_price %}
+                    {% assign range_start_cents = range_start | times: 100 %}
+                    {% assign range_end_cents = range_end | times: 100 %}
+                    {% assign is_selected = false %}
+                    
+                    {% if current_min == range_start and current_max == range_end %}
+                      {% assign is_selected = true %}
+                    {% endif %}
+                    
+                    <option
+                      value="{{ range_start_cents }}-{{ range_end_cents }}"
+                      {% if is_selected %}selected{% endif %}
+                    >
+                      {{ range_start }}€ - {{ range_end }}€
+                    </option>
+                  {% endif %}
+                {% endfor %}
+                
+                {% if max_price > 100 %}
+                  {% assign over_100_cents = 10000 %}
+                  {% assign is_selected_over = false %}
+                  {% if current_min >= 100 %}
+                    {% assign is_selected_over = true %}
+                  {% endif %}
+                  <option
+                    value="{{ over_100_cents }}-{{ filter.range_max }}"
+                    {% if is_selected_over %}selected{% endif %}
+                  >
+                    Más de 100€
+                  </option>
+                {% endif %}
+              {% else %}
+                {% for value in filter.values %}
+                  <option
+                    value="{{ value.value }}"
+                    {% if value.active %}selected{% endif %}
+                  >
+                    {{ value.label }}
+                    {% if value.count and block.settings.show_count %}
+                      ({{ value.count }})
+                    {% endif %}
+                  </option>
+                {% endfor %}
+              {% endif %}
+            </select>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      <div class="ai-search-filters__empty-{{ ai_gen_id }}" style="width: 100%; text-align: center; padding: 20px; color: #999;">
+        Configura los filtros en la app Search & Discovery para que aparezcan aquí
+      </div>
+    {% endif %}
+  </form>
+</search-filters-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class SearchFilters{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.form = this.querySelector('#ai-filter-form-{{ ai_gen_id }}');
+        this.selects = this.querySelectorAll('.ai-search-filters__select-{{ ai_gen_id }}');
+      }
+
+      connectedCallback() {
+        if (this.form) {
+          this.setupEventListeners();
+        }
+      }
+
+      setupEventListeners() {
+        this.selects.forEach((select) => {
+          select.addEventListener('change', this.handleFilterChange.bind(this));
+        });
+      }
+
+      handleFilterChange(event) {
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(url.search);
+
+        this.selects.forEach((select) => {
+          const paramName = select.dataset.filterParam;
+          const value = select.value;
+          const isPriceFilter = select.dataset.isPrice === 'true';
+
+          if (value) {
+            if (isPriceFilter && value.includes('-')) {
+              const [min, max] = value.split('-');
+              params.set(paramName + '.gte', min);
+              params.set(paramName + '.lte', max);
+            } else {
+              params.delete(paramName + '.gte');
+              params.delete(paramName + '.lte');
+              params.set(paramName, value);
+            }
+          } else {
+            params.delete(paramName);
+            params.delete(paramName + '.gte');
+            params.delete(paramName + '.lte');
+          }
+        });
+
+        params.delete('page');
+
+        url.search = params.toString();
+        window.location.href = url.toString();
+      }
+    }
+
+    customElements.define('search-filters-{{ ai_gen_id }}', SearchFilters{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Filtros de búsqueda",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Filtros"
+    },
+    {
+      "type": "paragraph",
+      "content": "Introduce los nombres exactos de los filtros configurados en Search & Discovery"
+    },
+    {
+      "type": "text",
+      "id": "filter_1_label",
+      "label": "Filtro 1",
+      "default": "Estado"
+    },
+    {
+      "type": "text",
+      "id": "filter_2_label",
+      "label": "Filtro 2",
+      "default": "Autor"
+    },
+    {
+      "type": "text",
+      "id": "filter_3_label",
+      "label": "Filtro 3 (Precio)",
+      "default": "Precio",
+      "info": "Este filtro mostrará rangos de 5€ en 5€"
+    },
+    {
+      "type": "text",
+      "id": "filter_4_label",
+      "label": "Filtro 4",
+      "default": "Edición"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_count",
+      "label": "Mostrar contador de productos",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Ancho en escritorio",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "filter_gap",
+      "label": "Espacio entre filtros",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Padding vertical",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Padding horizontal",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Radio del borde",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Color del borde",
+      "default": "#e2e2e2"
+    },
+    {
+      "type": "header",
+      "content": "Etiquetas"
+    },
+    {
+      "type": "range",
+      "id": "label_font_size",
+      "label": "Tamaño de fuente",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "label_font_weight",
+      "label": "Peso de fuente",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Selectores"
+    },
+    {
+      "type": "range",
+      "id": "select_font_size",
+      "label": "Tamaño de fuente",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "select_border_radius",
+      "label": "Radio del borde",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "select_text_color",
+      "label": "Color del texto",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "select_bg_color",
+      "label": "Color de fondo",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "select_border_color",
+      "label": "Color del borde",
+      "default": "#e2e2e2"
+    },
+    {
+      "type": "color",
+      "id": "select_border_hover_color",
+      "label": "Color del borde (hover)",
+      "default": "#ff6400"
+    },
+    {
+      "type": "color",
+      "id": "select_border_focus_color",
+      "label": "Color del borde (focus)",
+      "default": "#ff6400"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Filtros de búsqueda"
+    }
+  ]
+}
 {% endschema %}
