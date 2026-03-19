@@ -9,6 +9,44 @@
  */
 {
   "sections": {
+    "blocks_4UThQM": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_a3b7123_KyPAwg": {
+          "type": "ai_gen_block_a3b7123",
+          "settings": {
+            "filter_1_label": "Estado",
+            "filter_2_label": "Autor",
+            "filter_3_label": "Precio",
+            "filter_4_label": "Edición",
+            "show_count": true,
+            "desktop_width_percent": 100,
+            "filter_gap": 16,
+            "padding_vertical": 20,
+            "padding_horizontal": 20,
+            "border_radius": 8,
+            "background_color": "#ffffff",
+            "border_color": "#e2e2e2",
+            "label_font_size": 14,
+            "label_font_weight": "600",
+            "label_color": "#000000",
+            "select_font_size": 14,
+            "select_border_radius": 4,
+            "select_text_color": "#666666",
+            "select_bg_color": "#ffffff",
+            "select_border_color": "#e2e2e2",
+            "select_border_hover_color": "#ff6400",
+            "select_border_focus_color": "#ff6400"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_a3b7123_KyPAwg"
+      ],
+      "name": "Filtros de búsqueda",
+      "settings": {}
+    },
     "main": {
       "type": "main-search",
       "settings": {
@@ -17,6 +55,7 @@
     }
   },
   "order": [
+    "blocks_4UThQM",
     "main"
   ]
 }
