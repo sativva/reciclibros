@@ -29,33 +29,38 @@
     width: 75%;
   }
 }
-/* BASE (copie du slider) */
+/* ===== RESET + STYLE IDENTIQUE AU SLIDER ===== */
 .ap-swiper .swiper-button-prev,
 .ap-swiper .swiper-button-next {
-  background-color: #ffffff;
-  color: #000;
-  border: none;
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 20px !important;
 
-  width: 60px;
-  height: 60px;
-  border-radius: 20px;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: none !important;
 
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
+
+  padding: 0 !important;
+  min-width: unset !important;
 
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 
   z-index: 2;
-  transition: all 0.4s ease;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 
   opacity: 0;
   visibility: hidden;
+  transition: all 0.4s ease;
 }
 
-/* POSITION INITIALE (comme slider) */
+/* ===== POSITION INITIALE ===== */
 .ap-swiper .swiper-button-prev {
   left: 90px;
 }
@@ -64,41 +69,38 @@
   right: 90px;
 }
 
-/* APPARITION AU HOVER */
-.ap-swiper:hover .swiper-button-prev,
-.ap-swiper:hover .swiper-button-next {
+/* ===== APPARITION AU HOVER ===== */
+.ap-swiper:hover .swiper-button-prev {
+  left: 50px;
   opacity: 1;
   visibility: visible;
 }
 
-/* SLIDE IN (animation comme slider) */
-.ap-swiper:hover .swiper-button-prev {
-  left: 50px;
-}
-
 .ap-swiper:hover .swiper-button-next {
   right: 50px;
+  opacity: 1;
+  visibility: visible;
 }
 
-/* HOVER ORANGE */
+/* ===== HOVER ORANGE ===== */
 .ap-swiper .swiper-button-prev:hover,
 .ap-swiper .swiper-button-next:hover {
-  background-color: #ff6a00; /* ton orange */
-  color: #ffffff;
+  background-color: #ff6a00 !important;
+  color: #ffffff !important;
 }
 
-/* ICÔNE */
+/* ===== TAILLE ICÔNE ===== */
 .ap-swiper .swiper-button-prev svg,
 .ap-swiper .swiper-button-next svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   color: currentColor;
 }
 
-/* SUPPRIMER flèches par défaut swiper */
-.swiper-button-prev::after,
-.swiper-button-next::after {
-  display: none;
+/* ===== SUPPRIME LES FLÈCHES PAR DÉFAUT SWIPER ===== */
+.ap-swiper .swiper-button-prev::after,
+.ap-swiper .swiper-button-next::after {
+  display: none !important;
 }
 </style>
 
