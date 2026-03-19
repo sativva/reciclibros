@@ -12,24 +12,23 @@
   #shopify-section-{{ section.id }} .ap-productlist__inner {
     gap: calc(var(--container-distance) + var(--container-distance)) 0;
   }
-/* ≥ 768px */
 @media screen and (min-width: 741px) {
-  #shopify-section-{{ section.id }} .ap-productlist__inner {
-    grid-template-columns: repeat(4, 1fr) !important;
+  #shopify-section-{{ section.id }} {
+    --section-products-per-row: 4;
   }
 }
 
 /* ≥ 1024px */
 @media screen and (min-width: 1024px) {
-  #shopify-section-{{ section.id }} .ap-productlist__inner {
-    grid-template-columns: repeat(5, 1fr) !important;
+  #shopify-section-{{ section.id }} {
+    --section-products-per-row: 5;
   }
 }
 
 /* ≥ 1400px */
 @media screen and (min-width: 1400px) {
-  #shopify-section-{{ section.id }} .ap-productlist__inner {
-    grid-template-columns: repeat(6, 1fr) !important;
+  #shopify-section-{{ section.id }} {
+    --section-products-per-row: 6;
   }
 }
     }/*
