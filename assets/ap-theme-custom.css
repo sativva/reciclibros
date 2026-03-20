@@ -277,6 +277,7 @@
   .p-sm-30 {
     padding: 30px;
   }
+}
 .book-specs {
   width: 100%;
   border-collapse: collapse;
@@ -437,4 +438,16 @@ ap-comparebutton {
 
 .line-item__error-text {
   display: inline-block;
+}
+
+@media (max-width: 767px) {
+  .main-cart__item .line-item__quantity.hd-phone {
+    display: table-cell !important;
+  }
+
+  .line-item-table .line-item,
+  .line-item,
+  .mobile-nav__item {
+    display: flex !important;
+  }
 }

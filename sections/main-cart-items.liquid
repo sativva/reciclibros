@@ -118,7 +118,7 @@
                       </div>
                     </div>
                   </td>
-                  <td class="line-item__quantity line-item__quantity--block text--center hd-phone">
+                  <td class="line-item__quantity line-item__quantity--block text--center">
                     <line-item-quantity>
                       <div class="ap-quantityselector ap-quantityselector--small">
                         {% assign pre_quantity = item.quantity | minus: 1 %}
@@ -137,6 +137,10 @@
                         </a>
                       </div>
                       <a href="{{ item.url_to_remove }}" class="line-item__remove-button link text--subdued text--xxsmall" data-no-instant="">Borrar</a>
+                      <div class="line-item__error" role="alert" hidden>
+                        {% render 'icon-error' %}
+                        <small class="line-item__error-text"></small>
+                      </div>
                     </line-item-quantity>
                   </td>
                   <td class="line-item__price-list-container text--right hd-phone">
