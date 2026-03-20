@@ -193,7 +193,7 @@
                         </div>
 
                         <div class="service-add-cart w-100">
-                            <div title="Add to cart" class="btn-service btn-addcart">
+                            <div title="Añadir a la cesta" class="btn-service btn-addcart">
                                 {%- if product.selected_or_first_available_variant.available -%}
                                     <form method="post" action="/cart/add" id="ap-productform-{{ section.id }}-{{ product.id }}" accept-charset="UTF-8" class="shopify-ap-productform" enctype="multipart/form-data" is="ap-productform">
                                         <input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓">
