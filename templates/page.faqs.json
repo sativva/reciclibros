@@ -9,6 +9,28 @@
  */
 {
   "sections": {
+    "177331569161127cbf": {
+      "type": "apps",
+      "blocks": {
+        "power_plus_breadcrumb_rQhwnU": {
+          "type": "shopify://apps/power-plus/blocks/breadcrumb/64c1060f-32d4-4613-bfc8-5c08d73fbde9",
+          "settings": {
+            "home": "Home"
+          }
+        }
+      },
+      "block_order": [
+        "power_plus_breadcrumb_rQhwnU"
+      ],
+      "custom_css": [
+        "[data-block-handle=\"breadcrumb\"] nav {gap: 10px;}",
+        "[data-block-handle=\"breadcrumb\"] {margin-left: 30px;}",
+        "[data-block-handle=\"breadcrumb\"] {display: flex; justify-content: left; margin: 10px auto 10px 30px;}"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
     "main": {
       "type": "main-page",
       "disabled": true,
@@ -21,6 +43,125 @@
         "background_color": "#222222",
         "color_title": "#ffffff",
         "color_breadcrumb": "#ffffff"
+      }
+    },
+    "custom_liquid_6nY3Dp": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n.custom-help-section {\n  text-align: center;\n  margin: 40px 0;\n  color:#282828\n}\n\n.custom-help-title {\n  font-size: 22px;\n  margin-bottom: 20px;\n  font-weight: 600;\n}\n\n.custom-buttons-wrapper {\n  display: flex;\n  justify-content: center;\n  gap: 16px;\n  flex-wrap: wrap;\n}\n\n.custom-button {\n  border: 2px solid #ff6400;\n  color: #ff6400;\n  text-decoration: none;\n  padding: 14px 28px;\n  font-weight: 600;\n  border-radius: 8px;\n  background: transparent;\n  transition: all 0.3s ease;\n  display: inline-block;\n}\n\n.custom-button:hover {\n  background-color: #ff6400;\n  color: #ffffff;\n}\n</style>\n\n<div class=\"custom-help-section\">\n  <div class=\"custom-help-title\">\n    ¿En qué te podemos ayudar?\n  </div>\n\n  <div class=\"custom-buttons-wrapper\">\n    <a href=\"https://reciclibros-v2.myshopify.com/pages/faq#comprarlibros\" class=\"custom-button\">\n      Comprar libros\n    </a>\n\n    <a href=\"https://reciclibros-v2.myshopify.com/pages/faq#venderlibros\" class=\"custom-button\">\n      Vender libros\n    </a>\n\n    <a href=\"https://reciclibros-v2.myshopify.com/pages/faq#donarlibros\" class=\"custom-button\">\n      Donar libros \n    </a>\n  </div>\n</div>",
+        "color_scheme": "background-1",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "custom_liquid_p3ENVy": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div id=\"comprarlibros\"></div>",
+        "color_scheme": "background-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "collapsible_content_pMXpxJ": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_N7WnXJ": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Qué significa el estado de los libros en Reciclibros?",
+            "icon": "chat_bubble",
+            "row_content": "<p>En Reciclibros, controlamos sistemáticamente todos los libros que se ponen a la venta. Esto nos permite descartar aquellos que están en mal estado y ofrecerte los libros en las mejores condiciones posibles.</p><p>Después de cada control, asignamos un estado al libro. A continuación, encontrará el significado de cada estado.</p><p><strong><br/>- Clasificación del estado y su significado</strong></p><p>El estado de los libros de segunda mano vendidos por Reciclibros puede variar, por lo que siempre especificamos su estado en la ficha del libro: aceptable, bueno, muy bueno o como nuevo.</p><p>Dado que los libros no se almacenan en las mismas instalaciones que nuestro servicio de atención al cliente, no podemos proporcionarle fotos ni más detalles sobre el estado de un libro en stock.</p><p>A continuación encontrarás el detalle de lo que significa cada estado:</p><p><em>• </em><strong>Como nuevo</strong>: el libro se puede regalar. La cubierta, el lomo, las esquinas y las páginas interiores pueden presentar defectos mínimos. Sobrecubierta original presente. Todo ello sin manchas ni rasgaduras. Sin notas, marcas, inscripciones y anotaciones manuscritas.</p><p><em>• </em><strong>Muy bueno: </strong>el libro se puede regalar. Libro en excelente estado con pequeños defectos en la cubierta, el lomo, las esquinas y las páginas interiores. Puede faltar la sobrecubierta. Sin notas, marcas, inscripciones y anotaciones manuscritas en las páginas de lectura.</p><p><em>• </em><strong>Bueno:</strong> la cubierta, el lomo, las esquinas y las páginas interiores pueden estar dañadas (por ejemplo: esquinas rozadas, ligeras marcas de desgaste). Puede faltar la sobrecubierta. Puede haber pasajes subrayados y algunas notas al margen que no afectan a la lectura del texto. Puede haber una dedicatoria o el nombre de un propietario anterior en la guarda. Las páginas del libro pueden estar amarillentas.</p><p><em>• </em><strong>Aceptable:</strong> ideal para libros que se llevan a todas partes (vacaciones en la playa, en la montaña, etc.). La cubierta, el lomo, las esquinas y las páginas interiores presentan defectos visibles, a menudo pronunciados, que no afectan a la lectura. Puede faltar la sobrecubierta. Puede haber pasajes subrayados y algunas notas en los márgenes que no afectan a la lectura del texto. Puede haber una dedicatoria o el nombre de un propietario anterior en la guarda. Las páginas del libro pueden estar amarillentas.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_jPrbFz": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Podéis enviar fotos de un libro en stock?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Dado que nuestros libros no se almacenan en nuestras instalaciones, lamentablemente<strong> no podemos enviar fotos.</strong></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_iWzfA3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Qué hacer en caso de error en el precio de un libro?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Los precios de los libros que vendemos se fijan automáticamente y, en ocasiones, se producen errores. Con más de 300 000 títulos en stock, ¡no siempre podemos controlarlo todo! Si quieres comprar un libro, pero te parece que el precio es erróneo, <strong>no dudes en ponerte en contacto con nosotros</strong> a través de esta página del <a href=\"/pages/contactarnos\" title=\"Contactarnos\">formulario de contacto</a> y verificaremos si es posible modificar el precio.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_QqDxYm": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Qué métodos de pago hay disponibles en Reciclibros?",
+            "icon": "chat_bubble",
+            "row_content": "<p>En Reciclibros aceptamos todas las tarjetas bancarias así como Apple Pay y Google Pay</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_fAcCtz": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cómo devolver un artículo?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Si has recibido el producto hace menos de 15 días, puedes obtener un reembolso sin condiciones.</p><p>Para recibir el reembolso, te invitamos a devolver tu pedido a la siguiente dirección:</p><p>RecycLivre Iberica S,L,</p><p>Calle Nerja 3, local 1,</p><p>28045 Madrid</p><p>Los gastos de devolución serán a tu cargo. El reembolso se realiza en la misma forma de pago con la que efectuaste la compra.</p><p><strong>El producto no se corresponde con lo que esperabas (incidencia)</strong></p><p>En caso de incidencia con el producto, te invitamos a ponerte en contacto con nosotros a través de tu cuenta de cliente, en la sección «Historial de pedidos». En los 3 puntos al lado de tu pedido puedes elegir \"reportar una incendencia\"</p><p><strong>Otro motivo</strong></p><p>Si el motivo de la devolución es otro, también puedes ponerte en contacto con nosotros a través de <a href=\"/pages/contactarnos\" title=\"Contactarnos\">nuestra página de contacto</a>.</p><p>Para facilitar la tramitación de tu solicitud, te rogamos que nos facilites toda la información útil (correo electrónico, nombre, número de pedido, detalles de tu solicitud).</p><p>Tramitamos todas las solicitudes recibidas a través de este formulario y siempre intentamos encontrar una solución lo antes posible.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_L7j9GR": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Es posible modificar un pedido ya validado?",
+            "icon": "chat_bubble",
+            "row_content": "<p>A continuación te explicamos cómo proceder para modificar tu pedido según cada caso.</p><p><strong>Cancelar un artículo</strong></p><p>Si tu pedido consta de varios artículos, no es posible cancelar el pedido parcialmente.</p><p><strong>Cancelar un pedido</strong></p><p>Si nuestro equipo aún no ha preparado tu pedido, puedes enviarnos una solicitud de cancelación.</p><p>Puede ponerte en contacto con nosotros a través del formulario de contacto indicando el número de pedido que quieres anular.</p><p><strong>Modificar mi dirección de entrega</strong></p><p>Si nuestro equipo aún no ha preparado tu pedido, puedes enviarnos una solicitud de modificación de la dirección de envío.<br/>Puedes ponerte en contacto con nosotros a través del formulario de contacto indicando el número de pedido y la nueva dirección. </p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_Tkkpyt": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Mi pedido no ha llegado, ¿qué hago?",
+            "icon": "chat_bubble",
+            "row_content": "<p>A continuación te detallamos las posibles situaciones que puedes encontrar: </p><p><strong>Mi pedido está en proceso de entrega, pero el seguimiento no se mueve.</strong></p><p>¡No te preocupes! Si el seguimiento no se mueve desde hace menos de 48 horas, probablemente se trate de un pequeño retraso o de una demora ocasional debido a un fin de semana o un día festivo.</p><p>Si han pasado más de 48 horas, no dudes en ponerte en contacto con nosotros a través del formulario de contacto.</p><p><strong>Mi pedido aparece como «Envío pre registrado en los sistemas de Correos pendiente de depósito».</strong></p><p>Hay un breve lapso de tiempo entre el momento en que enviamos tu pedido y el momento en que el seguimiento se activa. Por lo general, el seguimiento se activa al día siguiente de entregar el paquete al transportista.</p><p>Si has recibido nuestro correo electrónico de confirmación de envío, pero el seguimiento sigue sin estar activo en la página web del transportista 48h después de la recepción de este correo, no dudes en ponerte en contacto con nosotros.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_N7WnXJ",
+        "collapsible_row_jPrbFz",
+        "collapsible_row_iWzfA3",
+        "collapsible_row_QqDxYm",
+        "collapsible_row_fAcCtz",
+        "collapsible_row_L7j9GR",
+        "collapsible_row_Tkkpyt"
+      ],
+      "name": "Comprar libros",
+      "settings": {
+        "heading_color": "#282828",
+        "caption": "",
+        "heading": "Comprar libros",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "layout": "none",
+        "open_first_collapsible_row": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "custom_liquid_jzCMQr": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div id=\"venderlibros\"></div>",
+        "color_scheme": "background-1",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "37965532-19cc-42e6-aca6-c53a66c39838": {
@@ -132,7 +273,7 @@
       "settings": {
         "heading_color": "#282828",
         "caption": "",
-        "heading": "Condiciones de compra",
+        "heading": "Vender mis libros",
         "heading_size": "h2",
         "heading_alignment": "left",
         "layout": "none",
@@ -200,7 +341,7 @@
       "settings": {
         "heading_color": "#282828",
         "caption": "",
-        "heading": "Envío",
+        "heading": "Vender mis libros - envío",
         "heading_size": "h2",
         "heading_alignment": "left",
         "layout": "none",
@@ -258,7 +399,7 @@
       "settings": {
         "heading_color": "#282828",
         "caption": "",
-        "heading": "Pago",
+        "heading": "Vender mis libros - pago",
         "heading_size": "h2",
         "heading_alignment": "left",
         "layout": "none",
@@ -306,7 +447,7 @@
       "settings": {
         "heading_color": "#282828",
         "caption": "",
-        "heading": "Mi Cuenta",
+        "heading": "Vender mis libros -  mi cuenta",
         "heading_size": "h2",
         "heading_alignment": "left",
         "layout": "none",
@@ -314,13 +455,79 @@
         "padding_top": 0,
         "padding_bottom": 60
       }
+    },
+    "custom_liquid_Hm3pzM": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div id=\"donarlibros\"></div>",
+        "color_scheme": "background-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "collapsible_content_LTXdp3": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_7kiNeE": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cómo puedo donar mis libros?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Recogemos tus libros nuevos o de segunda mano, siempre que estén en buen estado y puedan ser leídos y disfrutados por otros. También aceptamos donaciones de otros productos culturales como CD´s, DVD´s y vinilos siempre y cuando estén su caja original. </p><p>Los libros que no aceptamos son: </p><ul><li>Libros en mal estado</li><li>Libros con contenido obsoleto como libros de texto, diccionarios y enciclopedias, libros de colección, revistas y periódicos, guías de viaje y libros en idiomas extranjeros. </li></ul><p>Tenemos un servicio de recogida gratuito a partir de 50 libros en la Comunidad de Madrid y Barcelona capital. </p><p>Puedes rellenar <a href=\"https://reciclibros-v2.myshopify.com/pages/donar-o-vender#formulario\" title=\"Formulario donación\">nuestro formulario</a> de donación y te contactaremos por teléfono o correo electrónico para agendar una cita</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_XUCKMb": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Es posible dejar los libros directamente en nuestras instalaciones?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Tenemos un almacén en Madrid donde podrás venir a donar tus libros: </p><p>Calle Nerja 3 posterior</p><p>28045 Arganzuela, Madrid</p><p>Te recomendamos contactar con nosotros por teléfono para confirmar el horario. </p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_pXGwCQ": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Es posible añadir libros para donar en un paquete de venta?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Lamentablemente, no. Los libros donados y vendidos se tratan de forma diferente, por lo que te rogamos que no los mezcles (ya que esto podría bloquear el procesamiento de su venta).</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_7kiNeE",
+        "collapsible_row_XUCKMb",
+        "collapsible_row_pXGwCQ"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "heading_color": "#282828",
+        "caption": "",
+        "heading": "Donar mis libros",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "layout": "none",
+        "open_first_collapsible_row": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
+    "177331569161127cbf",
     "main",
+    "custom_liquid_6nY3Dp",
+    "custom_liquid_p3ENVy",
+    "collapsible_content_pMXpxJ",
+    "custom_liquid_jzCMQr",
     "37965532-19cc-42e6-aca6-c53a66c39838",
     "c9ac342e-90ec-46bc-8fa1-c42bdb86c1ab",
     "collapsible_content_kc4nib",
-    "collapsible_content_CGhYPr"
+    "collapsible_content_CGhYPr",
+    "custom_liquid_Hm3pzM",
+    "collapsible_content_LTXdp3"
   ]
 }

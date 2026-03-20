@@ -1,0 +1,1202 @@
+{% doc %}
+  @prompt
+    Create a vertical filter section for the search results page that displays on the left side of the results. The filters should match the exact same filters and styling used on the collection pages, including all filter types (availability, price, product type, vendor, variants, tags, etc.) and maintaining the same visual design and layout as the collection page filters.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-search-filters-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding }}px;
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-search-filters__header-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid {{ block.settings.border_color }};
+  }
+
+  .ai-search-filters__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: {{ block.settings.title_weight }};
+    color: {{ block.settings.title_color }};
+    margin: 0;
+    text-transform: {{ block.settings.title_transform }};
+  }
+
+  .ai-search-filters__clear-{{ ai_gen_id }} {
+    background: none;
+    border: none;
+    color: {{ block.settings.clear_color }};
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+  }
+
+  .ai-search-filters__clear-{{ ai_gen_id }}:hover {
+    color: {{ block.settings.clear_hover_color }};
+  }
+
+  .ai-search-filters__group-{{ ai_gen_id }} {
+    margin-bottom: 24px;
+    border-bottom: 1px solid {{ block.settings.border_color }};
+    padding-bottom: 20px;
+  }
+
+  .ai-search-filters__group-{{ ai_gen_id }}:last-child {
+    border-bottom: none;
+  }
+
+  .ai-search-filters__group-header-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 12px 0;
+    user-select: none;
+  }
+
+  .ai-search-filters__group-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.filter_title_size }}px;
+    font-weight: {{ block.settings.filter_title_weight }};
+    color: {{ block.settings.filter_title_color }};
+    margin: 0;
+    text-transform: {{ block.settings.filter_title_transform }};
+  }
+
+  .ai-search-filters__toggle-icon-{{ ai_gen_id }} {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+    color: {{ block.settings.filter_title_color }};
+  }
+
+  .ai-search-filters__toggle-icon-{{ ai_gen_id }}.active {
+    transform: rotate(180deg);
+  }
+
+  .ai-search-filters__group-content-{{ ai_gen_id }} {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .ai-search-filters__group-content-{{ ai_gen_id }}.active {
+    max-height: 1000px;
+    padding-top: 12px;
+  }
+
+  .ai-search-filters__option-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+
+  .ai-search-filters__checkbox-{{ ai_gen_id }} {
+    width: 18px;
+    height: 18px;
+    border: 2px solid {{ block.settings.checkbox_border_color }};
+    border-radius: {{ block.settings.checkbox_radius }}px;
+    margin-right: 10px;
+    cursor: pointer;
+    flex-shrink: 0;
+    accent-color: {{ block.settings.checkbox_active_color }};
+  }
+
+  .ai-search-filters__label-{{ ai_gen_id }} {
+    font-size: {{ block.settings.option_text_size }}px;
+    color: {{ block.settings.option_text_color }};
+    cursor: pointer;
+    flex-grow: 1;
+  }
+
+  .ai-search-filters__count-{{ ai_gen_id }} {
+    font-size: 12px;
+    color: {{ block.settings.count_color }};
+    margin-left: auto;
+  }
+
+  .ai-search-filters__price-inputs-{{ ai_gen_id }} {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .ai-search-filters__price-input-{{ ai_gen_id }} {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid {{ block.settings.input_border_color }};
+    border-radius: {{ block.settings.input_radius }}px;
+    font-size: 14px;
+    color: {{ block.settings.option_text_color }};
+  }
+
+  .ai-search-filters__price-input-{{ ai_gen_id }}:focus {
+    outline: none;
+    border-color: {{ block.settings.checkbox_active_color }};
+  }
+
+  .ai-search-filters__color-swatch-{{ ai_gen_id }} {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 2px solid {{ block.settings.border_color }};
+    flex-shrink: 0;
+  }
+
+  .ai-search-filters__active-filters-{{ ai_gen_id }} {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid {{ block.settings.border_color }};
+  }
+
+  .ai-search-filters__active-title-{{ ai_gen_id }} {
+    font-size: 14px;
+    font-weight: 600;
+    color: {{ block.settings.filter_title_color }};
+    margin-bottom: 12px;
+  }
+
+  .ai-search-filters__active-tags-{{ ai_gen_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .ai-search-filters__tag-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background-color: {{ block.settings.tag_bg_color }};
+    color: {{ block.settings.tag_text_color }};
+    border-radius: {{ block.settings.tag_radius }}px;
+    font-size: 13px;
+  }
+
+  .ai-search-filters__tag-remove-{{ ai_gen_id }} {
+    background: none;
+    border: none;
+    color: {{ block.settings.tag_text_color }};
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 767px) {
+    .ai-search-filters-{{ ai_gen_id }} {
+      padding: {{ block.settings.mobile_padding }}px;
+    }
+
+    .ai-search-filters__title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.mobile_title_size }}px;
+    }
+  }
+{% endstyle %}
+
+<search-filters-{{ ai_gen_id }}
+  class="ai-search-filters-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-search-filters__header-{{ ai_gen_id }}">
+    <h3 class="ai-search-filters__title-{{ ai_gen_id }}">{{ block.settings.heading }}</h3>
+    <button
+      class="ai-search-filters__clear-{{ ai_gen_id }}"
+      data-clear-all
+    >
+      {{ block.settings.clear_text }}
+    </button>
+  </div>
+
+  {% if block.settings.show_availability %}
+    <div class="ai-search-filters__group-{{ ai_gen_id }}">
+      <div
+        class="ai-search-filters__group-header-{{ ai_gen_id }}"
+        data-filter-toggle
+      >
+        <h4 class="ai-search-filters__group-title-{{ ai_gen_id }}">{{ block.settings.availability_label }}</h4>
+        <svg
+          class="ai-search-filters__toggle-icon-{{ ai_gen_id }} active"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="ai-search-filters__group-content-{{ ai_gen_id }} active">
+        <label class="ai-search-filters__option-{{ ai_gen_id }}">
+          <input
+            type="checkbox"
+            class="ai-search-filters__checkbox-{{ ai_gen_id }}"
+            data-filter="availability"
+            value="in-stock"
+          >
+          <span class="ai-search-filters__label-{{ ai_gen_id }}">In stock</span>
+        </label>
+        <label class="ai-search-filters__option-{{ ai_gen_id }}">
+          <input
+            type="checkbox"
+            class="ai-search-filters__checkbox-{{ ai_gen_id }}"
+            data-filter="availability"
+            value="out-of-stock"
+          >
+          <span class="ai-search-filters__label-{{ ai_gen_id }}">Out of stock</span>
+        </label>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if block.settings.show_price %}
+    <div class="ai-search-filters__group-{{ ai_gen_id }}">
+      <div
+        class="ai-search-filters__group-header-{{ ai_gen_id }}"
+        data-filter-toggle
+      >
+        <h4 class="ai-search-filters__group-title-{{ ai_gen_id }}">{{ block.settings.price_label }}</h4>
+        <svg
+          class="ai-search-filters__toggle-icon-{{ ai_gen_id }} active"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="ai-search-filters__group-content-{{ ai_gen_id }} active">
+        <div class="ai-search-filters__price-inputs-{{ ai_gen_id }}">
+          <input
+            type="number"
+            class="ai-search-filters__price-input-{{ ai_gen_id }}"
+            placeholder="Min"
+            data-price-min
+          >
+          <input
+            type="number"
+            class="ai-search-filters__price-input-{{ ai_gen_id }}"
+            placeholder="Max"
+            data-price-max
+          >
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if block.settings.show_product_type %}
+    <div class="ai-search-filters__group-{{ ai_gen_id }}">
+      <div
+        class="ai-search-filters__group-header-{{ ai_gen_id }}"
+        data-filter-toggle
+      >
+        <h4 class="ai-search-filters__group-title-{{ ai_gen_id }}">{{ block.settings.product_type_label }}</h4>
+        <svg
+          class="ai-search-filters__toggle-icon-{{ ai_gen_id }} active"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="ai-search-filters__group-content-{{ ai_gen_id }} active">
+        {% for i in (1..5) %}
+          {% assign type_key = 'product_type_' | append: i %}
+          {% assign type_value = block.settings[type_key] %}
+          {% if type_value != blank %}
+            <label class="ai-search-filters__option-{{ ai_gen_id }}">
+              <input
+                type="checkbox"
+                class="ai-search-filters__checkbox-{{ ai_gen_id }}"
+                data-filter="product_type"
+                value="{{ type_value }}"
+              >
+              <span class="ai-search-filters__label-{{ ai_gen_id }}">{{ type_value }}</span>
+            </label>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if block.settings.show_vendor %}
+    <div class="ai-search-filters__group-{{ ai_gen_id }}">
+      <div
+        class="ai-search-filters__group-header-{{ ai_gen_id }}"
+        data-filter-toggle
+      >
+        <h4 class="ai-search-filters__group-title-{{ ai_gen_id }}">{{ block.settings.vendor_label }}</h4>
+        <svg
+          class="ai-search-filters__toggle-icon-{{ ai_gen_id }} active"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="ai-search-filters__group-content-{{ ai_gen_id }} active">
+        {% for i in (1..5) %}
+          {% assign vendor_key = 'vendor_' | append: i %}
+          {% assign vendor_value = block.settings[vendor_key] %}
+          {% if vendor_value != blank %}
+            <label class="ai-search-filters__option-{{ ai_gen_id }}">
+              <input
+                type="checkbox"
+                class="ai-search-filters__checkbox-{{ ai_gen_id }}"
+                data-filter="vendor"
+                value="{{ vendor_value }}"
+              >
+              <span class="ai-search-filters__label-{{ ai_gen_id }}">{{ vendor_value }}</span>
+            </label>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if block.settings.show_tags %}
+    <div class="ai-search-filters__group-{{ ai_gen_id }}">
+      <div
+        class="ai-search-filters__group-header-{{ ai_gen_id }}"
+        data-filter-toggle
+      >
+        <h4 class="ai-search-filters__group-title-{{ ai_gen_id }}">{{ block.settings.tags_label }}</h4>
+        <svg
+          class="ai-search-filters__toggle-icon-{{ ai_gen_id }} active"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="ai-search-filters__group-content-{{ ai_gen_id }} active">
+        {% for i in (1..8) %}
+          {% assign tag_key = 'tag_' | append: i %}
+          {% assign tag_value = block.settings[tag_key] %}
+          {% if tag_value != blank %}
+            <label class="ai-search-filters__option-{{ ai_gen_id }}">
+              <input
+                type="checkbox"
+                class="ai-search-filters__checkbox-{{ ai_gen_id }}"
+                data-filter="tag"
+                value="{{ tag_value }}"
+              >
+              <span class="ai-search-filters__label-{{ ai_gen_id }}">{{ tag_value }}</span>
+            </label>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if block.settings.show_color %}
+    <div class="ai-search-filters__group-{{ ai_gen_id }}">
+      <div
+        class="ai-search-filters__group-header-{{ ai_gen_id }}"
+        data-filter-toggle
+      >
+        <h4 class="ai-search-filters__group-title-{{ ai_gen_id }}">{{ block.settings.color_label }}</h4>
+        <svg
+          class="ai-search-filters__toggle-icon-{{ ai_gen_id }} active"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="ai-search-filters__group-content-{{ ai_gen_id }} active">
+        {% for i in (1..6) %}
+          {% assign color_name_key = 'color_name_' | append: i %}
+          {% assign color_value_key = 'color_value_' | append: i %}
+          {% assign color_name = block.settings[color_name_key] %}
+          {% assign color_value = block.settings[color_value_key] %}
+          {% if color_name != blank %}
+            <label class="ai-search-filters__option-{{ ai_gen_id }}">
+              <input
+                type="checkbox"
+                class="ai-search-filters__checkbox-{{ ai_gen_id }}"
+                data-filter="color"
+                value="{{ color_name }}"
+              >
+              <span
+                class="ai-search-filters__color-swatch-{{ ai_gen_id }}"
+                style="background-color: {{ color_value }};"
+              ></span>
+              <span class="ai-search-filters__label-{{ ai_gen_id }}">{{ color_name }}</span>
+            </label>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div
+    class="ai-search-filters__active-filters-{{ ai_gen_id }}"
+    data-active-filters
+    style="display: none;"
+  >
+    <div class="ai-search-filters__active-title-{{ ai_gen_id }}">Active filters:</div>
+    <div
+      class="ai-search-filters__active-tags-{{ ai_gen_id }}"
+      data-active-tags
+    ></div>
+  </div>
+</search-filters-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class SearchFilters{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.activeFilters = new Map();
+      }
+
+      connectedCallback() {
+        this.setupEventListeners();
+        this.loadFiltersFromURL();
+      }
+
+      setupEventListeners() {
+        const toggles = this.querySelectorAll('[data-filter-toggle]');
+        toggles.forEach((toggle) => {
+          toggle.addEventListener('click', () => {
+            const content = toggle.nextElementSibling;
+            const icon = toggle.querySelector('.ai-search-filters__toggle-icon-{{ ai_gen_id }}');
+            content.classList.toggle('active');
+            icon.classList.toggle('active');
+          });
+        });
+
+        const checkboxes = this.querySelectorAll('.ai-search-filters__checkbox-{{ ai_gen_id }}');
+        checkboxes.forEach((checkbox) => {
+          checkbox.addEventListener('change', () => {
+            this.handleFilterChange(checkbox);
+          });
+        });
+
+        const priceMin = this.querySelector('[data-price-min]');
+        const priceMax = this.querySelector('[data-price-max]');
+        if (priceMin && priceMax) {
+          let priceTimeout;
+          const handlePriceChange = () => {
+            clearTimeout(priceTimeout);
+            priceTimeout = setTimeout(() => {
+              this.handlePriceFilter(priceMin.value, priceMax.value);
+            }, 500);
+          };
+          priceMin.addEventListener('input', handlePriceChange);
+          priceMax.addEventListener('input', handlePriceChange);
+        }
+
+        const clearAll = this.querySelector('[data-clear-all]');
+        if (clearAll) {
+          clearAll.addEventListener('click', () => {
+            this.clearAllFilters();
+          });
+        }
+      }
+
+      handleFilterChange(checkbox) {
+        const filterType = checkbox.dataset.filter;
+        const filterValue = checkbox.value;
+
+        if (checkbox.checked) {
+          if (!this.activeFilters.has(filterType)) {
+            this.activeFilters.set(filterType, []);
+          }
+          this.activeFilters.get(filterType).push(filterValue);
+        } else {
+          const filters = this.activeFilters.get(filterType);
+          if (filters) {
+            const index = filters.indexOf(filterValue);
+            if (index > -1) {
+              filters.splice(index, 1);
+            }
+            if (filters.length === 0) {
+              this.activeFilters.delete(filterType);
+            }
+          }
+        }
+
+        this.updateActiveFiltersDisplay();
+        this.applyFilters();
+      }
+
+      handlePriceFilter(min, max) {
+        if (min || max) {
+          this.activeFilters.set('price', { min, max });
+        } else {
+          this.activeFilters.delete('price');
+        }
+        this.updateActiveFiltersDisplay();
+        this.applyFilters();
+      }
+
+      updateActiveFiltersDisplay() {
+        const activeFiltersContainer = this.querySelector('[data-active-filters]');
+        const activeTagsContainer = this.querySelector('[data-active-tags]');
+
+        if (this.activeFilters.size === 0) {
+          activeFiltersContainer.style.display = 'none';
+          return;
+        }
+
+        activeFiltersContainer.style.display = 'block';
+        activeTagsContainer.innerHTML = '';
+
+        this.activeFilters.forEach((values, type) => {
+          if (type === 'price') {
+            const tag = this.createFilterTag(`Price: ${values.min || '0'} - ${values.max || '∞'}`, type, null);
+            activeTagsContainer.appendChild(tag);
+          } else {
+            values.forEach((value) => {
+              const tag = this.createFilterTag(value, type, value);
+              activeTagsContainer.appendChild(tag);
+            });
+          }
+        });
+      }
+
+      createFilterTag(label, type, value) {
+        const tag = document.createElement('div');
+        tag.className = 'ai-search-filters__tag-{{ ai_gen_id }}';
+        tag.innerHTML = `
+          ${label}
+          <button class="ai-search-filters__tag-remove-{{ ai_gen_id }}" data-remove-filter="${type}" data-filter-value="${value || ''}">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        `;
+
+        tag.querySelector('button').addEventListener('click', () => {
+          this.removeFilter(type, value);
+        });
+
+        return tag;
+      }
+
+      removeFilter(type, value) {
+        if (type === 'price') {
+          this.activeFilters.delete('price');
+          const priceMin = this.querySelector('[data-price-min]');
+          const priceMax = this.querySelector('[data-price-max]');
+          if (priceMin) priceMin.value = '';
+          if (priceMax) priceMax.value = '';
+        } else {
+          const filters = this.activeFilters.get(type);
+          if (filters) {
+            const index = filters.indexOf(value);
+            if (index > -1) {
+              filters.splice(index, 1);
+            }
+            if (filters.length === 0) {
+              this.activeFilters.delete(type);
+            }
+          }
+
+          const checkbox = this.querySelector(`[data-filter="${type}"][value="${value}"]`);
+          if (checkbox) {
+            checkbox.checked = false;
+          }
+        }
+
+        this.updateActiveFiltersDisplay();
+        this.applyFilters();
+      }
+
+      clearAllFilters() {
+        this.activeFilters.clear();
+
+        const checkboxes = this.querySelectorAll('.ai-search-filters__checkbox-{{ ai_gen_id }}');
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+
+        const priceMin = this.querySelector('[data-price-min]');
+        const priceMax = this.querySelector('[data-price-max]');
+        if (priceMin) priceMin.value = '';
+        if (priceMax) priceMax.value = '';
+
+        this.updateActiveFiltersDisplay();
+        this.applyFilters();
+      }
+
+      applyFilters() {
+        const params = new URLSearchParams(window.location.search);
+        
+        this.activeFilters.forEach((values, type) => {
+          if (type === 'price') {
+            if (values.min) params.set('price_min', values.min);
+            if (values.max) params.set('price_max', values.max);
+          } else {
+            params.set(type, values.join(','));
+          }
+        });
+
+        const newURL = `${window.location.pathname}?${params.toString()}`;
+        window.history.pushState({}, '', newURL);
+
+        this.dispatchEvent(new CustomEvent('filters-changed', {
+          detail: { filters: this.activeFilters },
+          bubbles: true
+        }));
+      }
+
+      loadFiltersFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        
+        params.forEach((value, key) => {
+          if (key === 'price_min' || key === 'price_max') {
+            const priceFilter = this.activeFilters.get('price') || {};
+            if (key === 'price_min') {
+              priceFilter.min = value;
+              const input = this.querySelector('[data-price-min]');
+              if (input) input.value = value;
+            } else {
+              priceFilter.max = value;
+              const input = this.querySelector('[data-price-max]');
+              if (input) input.value = value;
+            }
+            this.activeFilters.set('price', priceFilter);
+          } else {
+            const values = value.split(',');
+            this.activeFilters.set(key, values);
+            values.forEach((val) => {
+              const checkbox = this.querySelector(`[data-filter="${key}"][value="${val}"]`);
+              if (checkbox) {
+                checkbox.checked = true;
+              }
+            });
+          }
+        });
+
+        this.updateActiveFiltersDisplay();
+      }
+    }
+
+    customElements.define('search-filters-{{ ai_gen_id }}', SearchFilters{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Search filters",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Filter results"
+    },
+    {
+      "type": "text",
+      "id": "clear_text",
+      "label": "Clear all text",
+      "default": "Clear all"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Padding",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding",
+      "label": "Mobile padding",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Filter options"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_availability",
+      "label": "Show availability filter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "availability_label",
+      "label": "Availability label",
+      "default": "Availability"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Show price filter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "price_label",
+      "label": "Price label",
+      "default": "Price"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_type",
+      "label": "Show product type filter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "product_type_label",
+      "label": "Product type label",
+      "default": "Product type"
+    },
+    {
+      "type": "text",
+      "id": "product_type_1",
+      "label": "Product type 1"
+    },
+    {
+      "type": "text",
+      "id": "product_type_2",
+      "label": "Product type 2"
+    },
+    {
+      "type": "text",
+      "id": "product_type_3",
+      "label": "Product type 3"
+    },
+    {
+      "type": "text",
+      "id": "product_type_4",
+      "label": "Product type 4"
+    },
+    {
+      "type": "text",
+      "id": "product_type_5",
+      "label": "Product type 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor filter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "vendor_label",
+      "label": "Vendor label",
+      "default": "Brand"
+    },
+    {
+      "type": "text",
+      "id": "vendor_1",
+      "label": "Vendor 1"
+    },
+    {
+      "type": "text",
+      "id": "vendor_2",
+      "label": "Vendor 2"
+    },
+    {
+      "type": "text",
+      "id": "vendor_3",
+      "label": "Vendor 3"
+    },
+    {
+      "type": "text",
+      "id": "vendor_4",
+      "label": "Vendor 4"
+    },
+    {
+      "type": "text",
+      "id": "vendor_5",
+      "label": "Vendor 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "label": "Show tags filter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tags_label",
+      "label": "Tags label",
+      "default": "Tags"
+    },
+    {
+      "type": "text",
+      "id": "tag_1",
+      "label": "Tag 1"
+    },
+    {
+      "type": "text",
+      "id": "tag_2",
+      "label": "Tag 2"
+    },
+    {
+      "type": "text",
+      "id": "tag_3",
+      "label": "Tag 3"
+    },
+    {
+      "type": "text",
+      "id": "tag_4",
+      "label": "Tag 4"
+    },
+    {
+      "type": "text",
+      "id": "tag_5",
+      "label": "Tag 5"
+    },
+    {
+      "type": "text",
+      "id": "tag_6",
+      "label": "Tag 6"
+    },
+    {
+      "type": "text",
+      "id": "tag_7",
+      "label": "Tag 7"
+    },
+    {
+      "type": "text",
+      "id": "tag_8",
+      "label": "Tag 8"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_color",
+      "label": "Show color filter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "color_label",
+      "label": "Color label",
+      "default": "Color"
+    },
+    {
+      "type": "text",
+      "id": "color_name_1",
+      "label": "Color 1 name"
+    },
+    {
+      "type": "color",
+      "id": "color_value_1",
+      "label": "Color 1 value",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "color_name_2",
+      "label": "Color 2 name"
+    },
+    {
+      "type": "color",
+      "id": "color_value_2",
+      "label": "Color 2 value",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "color_name_3",
+      "label": "Color 3 name"
+    },
+    {
+      "type": "color",
+      "id": "color_value_3",
+      "label": "Color 3 value",
+      "default": "#FF0000"
+    },
+    {
+      "type": "text",
+      "id": "color_name_4",
+      "label": "Color 4 name"
+    },
+    {
+      "type": "color",
+      "id": "color_value_4",
+      "label": "Color 4 value",
+      "default": "#0000FF"
+    },
+    {
+      "type": "text",
+      "id": "color_name_5",
+      "label": "Color 5 name"
+    },
+    {
+      "type": "color",
+      "id": "color_value_5",
+      "label": "Color 5 value",
+      "default": "#00FF00"
+    },
+    {
+      "type": "text",
+      "id": "color_name_6",
+      "label": "Color 6 name"
+    },
+    {
+      "type": "color",
+      "id": "color_value_6",
+      "label": "Color 6 value",
+      "default": "#FFFF00"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_size",
+      "label": "Mobile title size",
+      "min": 14,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Title weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "title_transform",
+      "label": "Title transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "capitalize", "label": "Capitalize" },
+        { "value": "uppercase", "label": "Uppercase" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "filter_title_size",
+      "label": "Filter title size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "filter_title_weight",
+      "label": "Filter title weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "filter_title_transform",
+      "label": "Filter title transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "capitalize", "label": "Capitalize" },
+        { "value": "uppercase", "label": "Uppercase" }
+      ],
+      "default": "capitalize"
+    },
+    {
+      "type": "range",
+      "id": "option_text_size",
+      "label": "Option text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "filter_title_color",
+      "label": "Filter title",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "option_text_color",
+      "label": "Option text",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#e2e2e2"
+    },
+    {
+      "type": "color",
+      "id": "clear_color",
+      "label": "Clear button",
+      "default": "#ff6400"
+    },
+    {
+      "type": "color",
+      "id": "clear_hover_color",
+      "label": "Clear button hover",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "checkbox_border_color",
+      "label": "Checkbox border",
+      "default": "#e2e2e2"
+    },
+    {
+      "type": "color",
+      "id": "checkbox_active_color",
+      "label": "Checkbox active",
+      "default": "#ff6400"
+    },
+    {
+      "type": "color",
+      "id": "count_color",
+      "label": "Count",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "Input border",
+      "default": "#e2e2e2"
+    },
+    {
+      "type": "color",
+      "id": "tag_bg_color",
+      "label": "Tag background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "tag_text_color",
+      "label": "Tag text",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "checkbox_radius",
+      "label": "Checkbox radius",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "input_radius",
+      "label": "Input radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "tag_radius",
+      "label": "Tag radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Search filters"
+    }
+  ]
+}
+{% endschema %}

@@ -9,14 +9,21 @@
  */
 {
   "sections": {
+    "blocks_4UThQM": {
+      "type": "_blocks",
+      "disabled": true,
+      "name": "Filtros de búsqueda",
+      "settings": {}
+    },
     "main": {
       "type": "main-search",
       "settings": {
-        "setwidthout": "container-fluid"
+        "setwidthout": "full"
       }
     }
   },
   "order": [
+    "blocks_4UThQM",
     "main"
   ]
 }

@@ -58,7 +58,26 @@
       max-width: {{ section.settings.logo_width }}px;
     }
   }
-  
+ 
+  /* Masquer le bouton Catégories sur mobile */
+@media screen and (max-width: 740px) {
+  .menu-categories > button[ap-controlsaria="categories-menu-drawer"] {
+    display: none !important;
+  }
+}
+  /* Espace menu secondaire */
+.mobile-secondary-menu{
+  margin-top:30px;
+  padding-top:20px;
+}
+.mobile-secondary-menu .header__linklist-link{
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+.mobile-secondary-menu li{
+  border-bottom: none !important;
+}
   /* HEADER transparent */
   .header[transparent=""]:hover {
     background-color: var(--header-background);

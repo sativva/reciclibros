@@ -92,7 +92,7 @@ a.cart-button {
   display: flex;
   justify-content: flex-start !important;
 }
-/* Bouton AGOTADO - état désactivé */
+/* Bouton AGOTADO - état désactivé sur fiche produit */
 button[disabled],
 button[aria-disabled="true"] {
   background-color: #F2F2F2 !important;
@@ -154,4 +154,16 @@ button[aria-disabled="true"]::after {
 }
 ap-productzoomimage {
   display: none !important;
+}
+/*Bouton sold out en grille grisé et sans icon*/
+button.sold-out {
+  background-color: #F2F2F2 !important; /* gris plus clair */
+  color: #000000 !important;
+  border-radius: var(--button-border-radius)!important; /* garde l'effet arrondi (ou mets 4px / 8px selon ton thème) */
+  border: none !important; /* évite les styles moches par défaut */
+  outline: none !important;
+}
+
+button.sold-out svg {
+  display: none;
 }

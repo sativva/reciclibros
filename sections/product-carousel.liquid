@@ -29,6 +29,79 @@
     width: 75%;
   }
 }
+/* ===== RESET + STYLE IDENTIQUE AU SLIDER ===== */
+.ap-swiper .swiper-button-prev,
+.ap-swiper .swiper-button-next {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 20px !important;
+
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: none !important;
+
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 !important;
+  min-width: unset !important;
+
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  z-index: 2;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+}
+/*Flèches comme sur le slider*/
+/* ===== POSITION INITIALE ===== */
+.ap-swiper .swiper-button-prev {
+  left: 90px;
+}
+
+.ap-swiper .swiper-button-next {
+  right: 90px;
+}
+
+/* ===== APPARITION AU HOVER ===== */
+.ap-swiper:hover .swiper-button-prev {
+  left: 50px;
+  opacity: 1;
+  visibility: visible;
+}
+
+.ap-swiper:hover .swiper-button-next {
+  right: 50px;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===== HOVER ORANGE ===== */
+.ap-swiper .swiper-button-prev:hover,
+.ap-swiper .swiper-button-next:hover {
+  background-color: #ff6a00 !important;
+  color: #ffffff !important;
+}
+
+/* ===== TAILLE ICÔNE ===== */
+.ap-swiper .swiper-button-prev svg,
+.ap-swiper .swiper-button-next svg {
+  width: 22px;
+  height: 22px;
+  color: currentColor;
+}
+
+/* ===== SUPPRIME LES FLÈCHES PAR DÉFAUT SWIPER ===== */
+.ap-swiper .swiper-button-prev::after,
+.ap-swiper .swiper-button-next::after {
+  display: none !important;
+}
 </style>
 
 <section class="section-{{ section.id }}">

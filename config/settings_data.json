@@ -200,7 +200,7 @@
     "enable_free_shipping": true,
     "min_total_cart": "15",
     "free_shipping_free_label": "¡Tienes entrega gratuita!",
-    "free_shipping_label": "Gastes %% más y obtén entrega gratuita!",
+    "free_shipping_label": "Gasta %% más y obtén entrega gratuita!",
     "color_btn_custom": "#ffffff",
     "background_color_custom": "#d32300",
     "color_border_custom": "#d32300",

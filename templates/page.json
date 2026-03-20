@@ -9,17 +9,39 @@
  */
 {
   "sections": {
+    "177315002593daf8a1": {
+      "type": "apps",
+      "blocks": {
+        "power_plus_breadcrumb_zrGGJx": {
+          "type": "shopify://apps/power-plus/blocks/breadcrumb/64c1060f-32d4-4613-bfc8-5c08d73fbde9",
+          "settings": {
+            "home": "Home"
+          }
+        }
+      },
+      "block_order": [
+        "power_plus_breadcrumb_zrGGJx"
+      ],
+      "custom_css": [
+        "[data-block-handle=\"breadcrumb\"] nav {gap: 10px;}",
+        "[data-block-handle=\"breadcrumb\"] {margin-left: 30px;}",
+        "[data-block-handle=\"breadcrumb\"] {display: flex; justify-content: left; margin: 10px auto 10px 30px;}"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
-        "setwidthout": "full",
-        "padding_top": 0,
+        "setwidthout": "container-fluid",
+        "padding_top": 35,
         "padding_bottom": 0,
-        "height": 160,
+        "height": 100,
         "margin_desktop": "",
         "background_color": "#ffffff",
         "color_title": "#000000",
-        "color_breadcrumb": "#999999"
+        "color_breadcrumb": "#ffffff"
       }
     },
     "image_banner_xNQEjU": {
@@ -62,6 +84,7 @@
       "settings": {
         "setwidthout": "container",
         "featured_image": "shopify://shop_images/banniere_donar_vender.png",
+        "banner_link": "",
         "height_img": "300",
         "height_img_mobile": "350",
         "margin_desktop": "",
@@ -81,7 +104,7 @@
       "custom_css": [],
       "name": "t:sections.custom-liquid.presets.name",
       "settings": {
-        "custom_liquid": "{% assign banner_image = 'banniere_donar_vender.png' | file_img_url: 'master' %}\n\n{% assign btn1_bg = '#ff6400' %}\n{% assign btn1_hover = '#FFD1B3' %}\n{% assign btn2_bg = '#ffffff' %}\n{% assign btn2_hover = '#f2f2f2' %}\n{% assign btn_text_color_1 = '#ffffff' %}\n{% assign btn_text_color_2 = '#000000' %}\n\n<div class=\"cta-banner\">\n  <img\n    src=\"{{ banner_image }}\"\n    alt=\"Donar Vender\"\n    class=\"cta-banner-img\"\n    loading=\"lazy\"\n  >\n\n  <div class=\"cta-overlay\"></div>\n\n  <div class=\"dual-buttons\">\n    <a href=\"#app\" class=\"dual-btn btn-1\">Vender</a>\n    <a href=\"#formulario\" class=\"dual-btn btn-2\">Donar</a>\n  </div>\n</div>\n\n<style>\n/* Container */\n.cta-banner {\n  position: relative;\n  display: inline-block;\n  width: 100%;\n  max-width: 100%;\n}\n\n/* Image = taille native */ .cta-banner-img { display: block; width: auto; max-width: 100%; height: auto; }\n\n.cta-banner-img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover; /* remplit sans déformer */\n}\n\n\n/* Overlay */\n.cta-overlay {\n  position: absolute;\n  inset: 0;\n  background: rgba(0, 0, 0, 0.15);\n}\n\n/* Boutons bas-gauche */\n.dual-buttons {\n  position: absolute;\n  bottom: 100px;\n  left: 100px;\n  display: flex;\n  gap: 12px;\n  z-index: 2;\n}\n\n/* Boutons */\n.dual-btn {\n  padding: 14px 48px;\n  font-size: 14px;\n  font-weight: 600;\n  text-decoration: none;\n  border-radius: 4px;\n  transition: background-color 0.25s ease, color 0.25s ease;\n}\n\n/* Bouton 1 */\n.btn-1 {\n  background-color: {{ btn1_bg }};\n  color: {{ btn_text_color_1 }};\n}\n\n.btn-1:hover {\n  background-color: {{ btn1_hover }};\n}\n\n/* Bouton 2 */\n.btn-2 {\n  background-color: {{ btn2_bg }};\n  color: {{ btn_text_color_2 }};\n  border: 1px solid #ddd;\n}\n\n.btn-2:hover {\n  background-color: {{ btn2_hover }};\n}\n\n/* Mobile */\n@media (max-width: 768px) {\n  .dual-buttons {\n    left: 20px;\n    right: 20px;\n    bottom: 20px;\n    flex-direction: row;\n  }\n\n  .dual-btn {\n    width: 100%;\n    text-align: center;\n  }\n}\n</style>",
+        "custom_liquid": "{% assign banner_image = 'banniere_donar_vender.png' | file_img_url: 'master' %}\n\n{% assign btn1_bg = '#ff6400' %}\n{% assign btn1_hover = '#FFD1B3' %}\n{% assign btn2_bg = '#ffffff' %}\n{% assign btn2_hover = '#f2f2f2' %}\n{% assign btn_text_color_1 = '#ffffff' %}\n{% assign btn_text_color_2 = '#000000' %}\n\n<div class=\"cta-banner\">\n  <img\n    src=\"{{ banner_image }}\"\n    alt=\"Donar Vender\"\n    class=\"cta-banner-img\"\n    loading=\"lazy\"\n  >\n\n  <div class=\"cta-overlay\"></div>\n\n  <div class=\"dual-buttons\">\n    <a href=\"#app\" class=\"dual-btn btn-1\">Vender</a>\n    <a href=\"#formulario\" class=\"dual-btn btn-2\">Donar</a>\n  </div>\n</div>\n\n<style>\n/* Container */\n.cta-banner {\n  position: relative;\n  display: inline-block;\n  width: 100%;\n  max-width: 100%;\n}\n\n/* Image = taille native */ .cta-banner-img { display: block; width: auto; max-width: 100%; height: auto; }\n\n.cta-banner-img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover; /* remplit sans déformer */\n}\n\n\n/* Overlay */\n.cta-overlay {\n  position: absolute;\n  inset: 0;\n  background: rgba(0, 0, 0, 0.15);\n}\n\n/* Boutons bas-gauche */\n.dual-buttons {\n  position: absolute;\n  bottom: 100px;\n  left: 100px;\n  display: flex;\n  gap: 12px;\n  z-index: 2;\n}\n\n/* Boutons */\n.dual-btn {\n  padding: 14px 48px;\n  font-size: 14px;\n  font-weight: 600;\n  text-decoration: none;\n  border-radius: 4px;\n  transition: background-color 0.25s ease, color 0.25s ease;\n}\n\n/* Bouton 1 */\n.btn-1 {\n  background-color: {{ btn1_bg }};\n  color: {{ btn_text_color_1 }};\n}\n\n.btn-1:hover {\n  background-color: {{ btn1_hover }};\n}\n\n/* Bouton 2 */\n.btn-2 {\n  background-color: {{ btn2_bg }};\n  color: {{ btn_text_color_2 }};\n  border: 1px solid #ddd;\n}\n\n.btn-2:hover {\n  background-color: {{ btn2_hover }};\n}\n\n/* Mobile */\n@media (max-width: 768px) {\n  .dual-buttons {\n    left: 20px;\n    right: 20px;\n    bottom: 20px;\n    flex-direction: row;\n  }\n\n  .dual-btn {\n    width: 100%;\n    text-align: center;\n  }\n}\n\n</style>",
         "color_scheme": "background-1",
         "padding_top": 0,
         "padding_bottom": 0
@@ -93,28 +116,28 @@
         "logo_xFfdrY": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/Capture_d_ecran_2025-12-16_18-07-48_0c81b186-4bb0-4f2b-95c4-ea8a07b65250.png",
+            "image": "shopify://shop_images/Codigo_de_barras.png",
             "link_logo": ""
           }
         },
         "logo_MnFRgg": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/Capture_d_ecran_2025-12-16_18-08-38.png",
+            "image": "shopify://shop_images/Billete.png",
             "link_logo": ""
           }
         },
         "logo_yqNztV": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/Capture_d_ecran_2025-12-16_18-08-51.png",
+            "image": "shopify://shop_images/caja.png",
             "link_logo": ""
           }
         },
         "logo_kcwXHQ": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/Capture_d_ecran_2025-12-16_18-09-05.png",
+            "image": "shopify://shop_images/Dinerito.png",
             "link_logo": ""
           }
         }
@@ -160,7 +183,7 @@
       "custom_css": [],
       "name": "Custom Liquid app",
       "settings": {
-        "custom_liquid": "<div id=\"app\"></div>\n<div style=\"max-width:1200px;margin:auto;display:flex;gap:40px;align-items:center;flex-wrap:wrap\">\n\n  <!-- GAUCHE -->\n  <div style=\"flex:1;min-width:300px;padding:40px\">\n\n<h2 style=\"font-family:'Francois One';sans-serif; color:#4f4f4f;font-weight:500;font-size:36px;line-height:1.1;margin:0 0 32px\">\n  Vender tus libros es fácil y rápido\n</h2>\n\n\n    {% assign features = \n      \"https://cdn.shopify.com/s/files/1/0744/6652/5362/files/picto_tout-va-bien.svg?v=1770650816|Fácil de usar|Descárgate la app Reciclibros, regístrate y empieza a ganar dinero escaneando tus libros.###\n       https://cdn.shopify.com/s/files/1/0744/6652/5362/files/cadenas.svg?v=1770650816|Precios fijos|Te ofrecemos un precio de compra al instante, visible en cuanto escaneas tus libros.###\n       https://cdn.shopify.com/s/files/1/0744/6652/5362/files/Expedition.svg?v=1770650816|Envío gratuito y asegurado|Una vez finalizada tu venta, puedes solicitar una recogida totalmente gratuita.\"\n      | split: \"###\" \n    %}\n\n    {% for f in features %}\n      {% assign item = f | split: \"|\" %}\n      <div style=\"display:flex;gap:14px;margin-bottom:22px;color:#4f4f4f\">\n        <img src=\"{{ item[0] }}\" style=\"width:52px;height:52px\">\n        <div>\n          <div style=\"font-weight:600;margin-bottom:4px\">{{ item[1] }}</div>\n          <div style=\"font-size:16px;color:color:#4f4f4f\">{{ item[2] }}</div>\n        </div>\n      </div>\n    {% endfor %}\n\n    <div style=\"display:flex;gap:16px;margin-top:32px;margin-left:42px;flex-wrap:wrap\">\n      <a href=\"https://play.google.com/store/apps/details?id=com.reciclibros.app&hl=es_PY\"><img src=\"https://cdn.shopify.com/s/files/1/0744/6652/5362/files/Google_Store.png?v=1770654323\" style=\"height:40px\"></a>\n      <a href=\"https://apps.apple.com/es/app/reciclibros-vende-tus-libros/id1610564048\"><img src=\"https://cdn.shopify.com/s/files/1/0744/6652/5362/files/App_store.png?v=1770654316\" style=\"height:40px\"></a>\n    </div>\n  </div>\n\n  <!-- DROITE -->\n  <div class=\"phone-mockup\"style=\"flex:1;min-width:280px;text-align:center\">\n    <img src=\"https://cdn.shopify.com/s/files/1/0744/6652/5362/files/Stories.png?v=1770650519\" style=\"max-width:60%\">\n  </div>\n\n</div>\n<style>\n@media(max-width:768px){.phone-mockup{display:none}}\n</style>",
+        "custom_liquid": "<div id=\"app\"></div>\n<div style=\"max-width:1200px;margin:auto;display:flex;gap:40px;align-items:center;flex-wrap:wrap\">\n\n  <!-- GAUCHE -->\n  <div style=\"flex:1;min-width:300px;padding:40px\">\n\n<h2 style=\"font-family:'Francois One';sans-serif; color:#4f4f4f;font-weight:500;font-size:36px;line-height:1.1;margin:0 0 32px\">\n  Vender tus libros es fácil y rápido\n</h2>\n\n\n    {% assign features = \n      \"https://cdn.shopify.com/s/files/1/0744/6652/5362/files/picto_tout-va-bien.svg?v=1773762437|Fácil de usar|Descárgate la app Reciclibros, regístrate y empieza a ganar dinero escaneando tus libros.###\n       https://cdn.shopify.com/s/files/1/0744/6652/5362/files/cadenas.svg?v=1773762423|Precios fijos|Te ofrecemos un precio de compra al instante, visible en cuanto escaneas tus libros.###\n       https://cdn.shopify.com/s/files/1/0744/6652/5362/files/Expedition.svg?v=1773762454|Envío gratuito y asegurado|Una vez finalizada tu venta, puedes solicitar una recogida totalmente gratuita.\"\n      | split: \"###\" \n    %}\n\n    {% for f in features %}\n      {% assign item = f | split: \"|\" %}\n      <div style=\"display:flex;gap:14px;margin-bottom:22px;color:#4f4f4f\">\n        <img src=\"{{ item[0] }}\" style=\"width:52px;height:52px\">\n        <div>\n          <div style=\"font-weight:600;margin-bottom:4px\">{{ item[1] }}</div>\n          <div style=\"font-size:16px;color:color:#4f4f4f\">{{ item[2] }}</div>\n        </div>\n      </div>\n    {% endfor %}\n\n    <div style=\"display:flex;gap:16px;margin-top:32px;margin-left:42px;flex-wrap:wrap\">\n      <a href=\"https://play.google.com/store/apps/details?id=com.reciclibros.app&hl=es_PY\"><img src=\"https://cdn.shopify.com/s/files/1/0744/6652/5362/files/Google_Store.png?v=1770654323\" style=\"height:40px\"></a>\n      <a href=\"https://apps.apple.com/es/app/reciclibros-vende-tus-libros/id1610564048\"><img src=\"https://cdn.shopify.com/s/files/1/0744/6652/5362/files/App_store.png?v=1770654316\" style=\"height:40px\"></a>\n    </div>\n  </div>\n\n  <!-- DROITE -->\n  <div class=\"phone-mockup\"style=\"flex:1;min-width:280px;text-align:center\">\n    <img src=\"https://cdn.shopify.com/s/files/1/0744/6652/5362/files/Stories.png?v=1770650519\" style=\"max-width:60%\">\n  </div>\n\n</div>\n<style>\n@media(max-width:768px){.phone-mockup{display:none}}\n</style>",
         "color_scheme": "background-1",
         "padding_top": 40,
         "padding_bottom": 52
@@ -207,6 +230,7 @@
       "settings": {
         "setwidthout": "container",
         "featured_image": "shopify://shop_images/mockup-app_820fe282-6e2b-4da6-a9ce-d54d8b3e9b98.png",
+        "banner_link": "",
         "height_img": "550",
         "height_img_mobile": "450",
         "margin_desktop": "20px 20px 20px 20px",
@@ -222,7 +246,7 @@
       }
     },
     "contact_form_section_E4VBwF": {
-      "type": "contact-form-section",
+      "type": "contact-form-section-recogida",
       "name": "Contact form section",
       "settings": {
         "setwidthout": "container",
@@ -242,14 +266,14 @@
         "icon_3": "",
         "info_text_3": "",
         "contact_form_title": "¿Quieres donar tus libros?",
-        "contact_form_des": "Si estás en Madrid o Barcelona rellena este formulario para solicitar una recogida, luego te llamaremos para coordinar una cita."
+        "contact_form_des": "¿Estás en Madrid o Barcelona? Rellena este formulario y nos pondremos en contacto contigo cuanto antes para programar la recogida."
       }
     },
     "recently_viewed_products_PxHKKj": {
       "type": "recently-viewed-products",
       "name": "Recently viewed products",
       "settings": {
-        "heading": "Productos que recién has visto",
+        "heading": "Libros vistos recientemente",
         "heading_size": 4,
         "tab_description": "",
         "text_align": "left",
@@ -264,6 +288,7 @@
     }
   },
   "order": [
+    "177315002593daf8a1",
     "main",
     "image_banner_xNQEjU",
     "custom_liquid_34pkTA",

@@ -256,13 +256,13 @@
         "spaceBetween": 20,
         "arrows": true,
         "arrow_heading": false,
-        "dots": true,
+        "dots": false,
         "nowrap": false,
         "margin_desktop": "20px 20px 20px 20px",
         "margin_tablet": "20px 20px 20px 20px",
-        "margin_mobile": "20px 20px 20px 20px",
-        "padding_desktop": "20px 20px 20px 20px",
-        "padding_mobile": "20px 20px 20px 20px"
+        "margin_mobile": "20px 20px 30px 20px",
+        "padding_desktop": "20px 20px 30px 20px",
+        "padding_mobile": "20px 20px 30px 20px"
       }
     },
     "image_banner_p8qhQF": {
@@ -338,7 +338,7 @@
             "collection": "comic-y-novela-grafica",
             "bg_content": "#ffffff",
             "image": "shopify://shop_images/Comic_hombre.png",
-            "title": "Comic y novela gráfica",
+            "title": "Cómic y novela gráfica",
             "button1_label": ""
           }
         },
@@ -365,10 +365,10 @@
         "collection_iMtfyD": {
           "type": "collection",
           "settings": {
-            "collection": "ficcion-poesia-teatro-teatro",
+            "collection": "ficcion-literatura",
             "bg_content": "#ffffff",
             "image": "shopify://shop_images/Teatro.png",
-            "title": "Teatro",
+            "title": "Literatura",
             "button1_label": ""
           }
         },
@@ -544,7 +544,7 @@
         "heading_color": "#282828",
         "text_color": "#282828",
         "sub_heading": "",
-        "tab_heading": "Precios mini",
+        "tab_heading": "Libros a menos de 5€",
         "tab_heading_size": 4,
         "tab_description": "",
         "btn_text": "Ver todo\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"13\" viewBox=\"0 0 8 13\" fill=\"none\">\n    <path d=\"M7.46484 6.28516C7.72005 6.59505 7.72005 6.90495 7.46484 7.21484L2.21484 12.4648C1.90495 12.7201 1.59505 12.7201 1.28516 12.4648C1.02995 12.1549 1.02995 11.8451 1.28516 11.5352L6.07031 6.75L1.28516 1.96484C1.02995 1.65495 1.02995 1.34505 1.28516 1.03516C1.59505 0.779948 1.90495 0.779948 2.21484 1.03516L7.46484 6.28516Z\" fill=\"currentColor\"/>\n</svg>",
@@ -558,9 +558,9 @@
         "limit": 10,
         "perviewDesktop": 6,
         "spaceBetween": 30,
-        "arrows": false,
+        "arrows": true,
         "arrow_heading": false,
-        "dots": true,
+        "dots": false,
         "nowrap": false,
         "margin_desktop": "40px 20px 80px 20px",
         "margin_tablet": "40px 20px 80px 20px",
@@ -581,7 +581,7 @@
             "service_icon": "",
             "title_small": "",
             "title": "Cuidar el medioambiente",
-            "description": "135 000 es el número de árboles que habría sido necesario talar para producir libros nuevos frente a la venta de libros usados que vende Reciclibros.",
+            "description": "Gracias a la venta de libros usados de Reciclibros, se ha evitado la tala de 135.000 árboles que habrían sido necesarios para producir libros nuevos.",
             "button1_label": "",
             "link1": ""
           }
@@ -595,7 +595,7 @@
             "service_icon": "",
             "title_small": "",
             "title": "Apoyar proyectos sociales",
-            "description": "Nuestro almacén, situado en Vallecas (Madrid), emplea a personas con discapacidad, a las que se les acompaña en su reinserción laboral duradera a lo largo de toda su carrera.",
+            "description": "Nuestro almacén, ubicado en Vallecas (Madrid), da empleo a personas con discapacidad, a quienes apoyamos y acompañamos en su camino hacia una integración laboral estable y duradera.",
             "button1_label": "",
             "link1": ""
           }
@@ -608,8 +608,8 @@
             "featured_image": "shopify://shop_images/Picto_assoenvironnementale.png",
             "service_icon": "",
             "title_small": "",
-            "title": "Redistribuir",
-            "description": "Desde su creación, Reciclibros ha donado parte de sus ingresos netos a asociaciones culturales y conservación de la naturaleza.",
+            "title": "Contribuir",
+            "description": "Desde su creación, Reciclibros destina parte de sus ingresos netos al apoyo de asociaciones culturales y de conservación de la naturaleza.",
             "button1_label": "",
             "link1": ""
           }
@@ -857,6 +857,79 @@
         "show_view_all": false,
         "style_btn_item": "btn-base"
       }
+    },
+    "1773936773f27719f6": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_a3b7123_KVQYqn": {
+          "type": "ai_gen_block_a3b7123",
+          "settings": {
+            "filter_1_label": "Estado",
+            "filter_2_label": "Autor",
+            "filter_3_label": "Precio",
+            "filter_4_label": "Edición",
+            "show_count": true,
+            "desktop_width_percent": 100,
+            "filter_gap": 16,
+            "padding_vertical": 20,
+            "padding_horizontal": 20,
+            "border_radius": 8,
+            "background_color": "#ffffff",
+            "border_color": "#e2e2e2",
+            "label_font_size": 14,
+            "label_font_weight": "600",
+            "label_color": "#000000",
+            "select_font_size": 14,
+            "select_border_radius": 4,
+            "select_text_color": "#666666",
+            "select_bg_color": "#ffffff",
+            "select_border_color": "#e2e2e2",
+            "select_border_hover_color": "#ff6400",
+            "select_border_focus_color": "#ff6400"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_a3b7123_KVQYqn"
+      ],
+      "settings": {}
+    },
+    "1773937202db11d5f5": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_8ba627a_PhrCNH": {
+          "type": "ai_gen_block_8ba627a",
+          "settings": {
+            "filter_1_label": "Estado",
+            "filter_2_label": "Autor",
+            "filter_3_label": "Precio",
+            "filter_4_label": "Edición",
+            "desktop_width_percent": 100,
+            "filter_gap": 16,
+            "padding_vertical": 20,
+            "padding_horizontal": 20,
+            "border_radius": 0,
+            "background_color": "#ffffff",
+            "border_color": "#e2e2e2",
+            "label_font_size": 14,
+            "label_font_weight": "600",
+            "label_color": "#000000",
+            "select_font_size": 14,
+            "select_text_color": "#666666",
+            "select_bg_color": "#ffffff",
+            "select_border_color": "#e2e2e2",
+            "select_border_hover_color": "#ff6400",
+            "select_border_focus_color": "#ff6400",
+            "select_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_8ba627a_PhrCNH"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -870,6 +943,8 @@
     "service_KNBar8",
     "banner_grid_3rgPQD",
     "featured_author_ALP3Fy",
-    "blog_carousel_ejLGDi"
+    "blog_carousel_ejLGDi",
+    "1773936773f27719f6",
+    "1773937202db11d5f5"
   ]
 }

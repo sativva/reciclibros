@@ -34,7 +34,7 @@
           "type": "heading",
           "settings": {
             "width": "25%",
-            "heading": "Recibe nuestra newsletter",
+            "heading": "Suscríbete a nuestra newsletter",
             "tab_heading_size": 4,
             "description": ""
           }
@@ -43,7 +43,7 @@
           "type": "html",
           "settings": {
             "width": "col",
-            "code": "Recibe inspiración literaria, ofertas a precios reducidos y noticias para democratizar el libro de ocasión."
+            "code": "Únete al club de los que leen más y pagan menos: inspiración literaria, descuentos especiales y mucho más"
           }
         },
         "email_form_6eUyqz": {
@@ -96,7 +96,7 @@
       ],
       "settings": {
         "setwidthout": "container",
-        "background-color": "#ffffff",
+        "background-color": "#ff6400",
         "background_image": "shopify://shop_images/FF6400.png",
         "heading_color": "#ffffff",
         "text_color": "#ffffff",
@@ -251,7 +251,7 @@
             "padding_desktop": "",
             "text_align": "left",
             "heading": "Reciclibros",
-            "menu": "",
+            "menu": "footer-reciclibros",
             "heading_2": "",
             "menu_2": "",
             "heading_size": "h6"
@@ -277,7 +277,7 @@
             "padding_desktop": "",
             "text_align": "left",
             "heading": "Servicios",
-            "menu": "",
+            "menu": "footer-servicios",
             "heading_2": "",
             "menu_2": "",
             "heading_size": "h6"

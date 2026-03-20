@@ -107,7 +107,7 @@
 
                 <div title="Add to Wishlist">
                     <div class="d-flex flex-row-reverse align-items-center w-100">
-                        <ap-wishlistbutton  class="btn-service btn-wishlist {% if template =='page.wishlist' %}deletewishlist{% endif %}" data-action="add" data-id="{{ product.id }}" alt="Add to wishlist">
+                        <ap-wishlistbutton  class="btn-service btn-wishlist {% if template =='page.wishlist' %}deletewishlist{% endif %}" data-action="add" data-id="{{ product.id }}" alt="Guardar en favoritos">
                             {% render 'icon-wishlist' %}
                         </ap-wishlistbutton>
                         <span class="text-name d-none">
@@ -226,13 +226,13 @@
                                     <button class="sold-out">
                                         {% render 'icon-addcart' %}
                                         <span class="ml-2">
-                                            Sold out
+                                            Agotado
                                         </span>
                                     </button>
                                 {%- endif -%}
                             </div>
                             <span class="text-name">
-                                Add to cart
+                                Añadir
                             </span>
                         </div>
                     </div>
