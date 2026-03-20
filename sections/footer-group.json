@@ -103,7 +103,7 @@
         "button_background": "rgba(0,0,0,0)",
         "button_color": "#ff6400",
         "background_button_hover": "#ffffff",
-        "margin_desktop": "75px 0 75px",
+        "margin_desktop": "10px 0 0px",
         "margin_tablet": "",
         "margin_mobile": "10px 0",
         "padding_desktop": "30px 30px 30px 30px",
