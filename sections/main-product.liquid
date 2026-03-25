@@ -362,7 +362,7 @@
                       {%- when 'wishlist-compare' -%}
                         <div class="single_variation_wrap">
                           <ap-wishlistbutton class="btn-variation btn-wishlist"
-                            data-action="add" data-id="{{ product.id }}" alt="Guardar en favoritos">
+                            data-action="add" data-id="{{ product.id }}" alt="Guardar en favoritos" onclick="setTimeout(() => location.reload(), 800)">
                             {% render 'icon-wishlist' %}
                             <span class="text-name">
                               Guardar en favoritos
