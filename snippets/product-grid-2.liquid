@@ -107,7 +107,7 @@
 
                 <div title="Guardar en Favoritos">
                     <div class="d-flex flex-row-reverse align-items-center w-100">
-                        <ap-wishlistbutton  class="btn-service btn-wishlist {% if template =='page.wishlist' %}deletewishlist{% endif %}" data-action="add" data-id="{{ product.id }}" alt="Guardar en favoritos">
+                        <ap-wishlistbutton  class="btn-service btn-wishlist {% if template =='page.wishlist' %}deletewishlist{% endif %}" data-action="add" data-id="{{ product.id }}" alt="Guardar en favoritos" onclick="setTimeout(() => location.reload(), 800)">
                             {% render 'icon-wishlist' %}
                         </ap-wishlistbutton>
                         <span class="text-name d-none">
