@@ -113,7 +113,7 @@
           {%- assign sort_by = search.sort_by | default: search.default_sort_by -%}
 
           <ap-productfacet section-id="{{ section.id }}" class="ap-productfacet">
-            {% render 'product-filter', collection: search sort_by: sort_by %}
+            {% render 'product-filter', sort_by: sort_by %}
             
             <div id="facet-main" class="ap-productfacet__main anchor" role="region" aria-live="polite">
               <div class="ap-productfacet__meta-bar anchor">
