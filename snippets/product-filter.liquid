@@ -1,3 +1,11 @@
+{% if template contains 'search' %}
+  {%- assign filter_object = search -%}
+  {%- assign clear_url = '?q=' | append: search.terms | append: '&options%5Bprefix%5D=last' -%}
+{% else %}
+  {%- assign filter_object = collection -%}
+  {%- assign clear_url = collection.url -%}
+{% endif %}
+
 <div class="ap-productfacet__aside"> 
     <div class="ap-productfacet_aside__categories">
  {% if collection %}
@@ -54,7 +62,7 @@
               
             <header class="drawer__header hd-lap-and-up">
                 <p class="drawer__title heading h6">Filtros<span class="ap-productfacet__active-count"></span></p>
-                <a class="drawer__header-action link text--subdued" data-action="clear-filters" href="{{ collection.url }}">Borrar todo</a>
+                <a class="drawer__header-action link text--subdued" data-action="clear-filters" href="{{ clear_url }}">Borrar todo</a>
                 <button type="button" class="drawer__close-button tap-area" data-action="close" title="Close">
                     <svg focusable="false" width="14" height="14" class="icon icon--close   " viewBox="0 0 14 14">
                         <path d="M13 13L1 1M13 1L1 13" stroke="currentColor" stroke-width="2" fill="none"></path>
@@ -70,7 +78,7 @@
                     <input type="hidden" name="option[unavailable_products]" value="last">
                     <div class="ap-productfacet__active-list tag-list hd-phone">
                         {% liquid assign remove_all_status = 0 %}
-                        {%- for filter in collection.filters -%}
+                        {%- for filter in filter_object.filters -%}
                             {%- for value in filter.active_values -%}
                                 <div class="tag">
                                     <a href="{{ value.url_to_remove }}" data-action="clear-filters" class="tag__icon tap-area" aria-label="Delete">
@@ -111,7 +119,7 @@
                     </div>
                     <div class="ap-productfacet__filter-list">
                         {% liquid assign remove_all_status = 0 %}
-                        {%- for filter in collection.filters -%}
+                        {%- for filter in filter_object.filters -%}
                             <div class="ap-productfacet__filter-item">
                                 <button type="button" is="toggle-button" class="collapsible-toggle text--strong" ap-controlsaria="{{ filter.param_name }}" ap-expanded-aria="true">
                                     {{ filter.label | escape | capitalize }}
