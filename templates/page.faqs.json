@@ -358,7 +358,7 @@
           "settings": {
             "heading": "¿Cómo recibiré el pago?",
             "icon": "chat_bubble",
-            "row_content": "<p>Los pagos se realizan mediante transferencia bancaria a una cuenta SEPA. Deberás indicar el IBAN, nombre y apellidos del titular de la cuenta en la aplicación Reciclibros.</p><p>El abono se efectuará en un plazo de 4 días laborables a partir de la validación de la venta si todos los libros enviados cumplen los criterios de compra, y en un plazo máximo de 6 días si se rechazan<br/>algunos libros.</p><p>Si algunos de tus libros no cumplen nuestros criterios de compra, te informaremos por correo electrónico.<br/>Dispones de 4 días para comunicarnos si aceptas esta nueva oferta a fin de recibir el pago. Si no tenemos noticias tuyas en este plazo, tu venta se tramitará y pagará en un plazo de 2 días laborables.</p>",
+            "row_content": "<p>Los pagos se realizan mediante transferencia bancaria a una cuenta SEPA. Deberás indicar el IBAN, nombre y apellidos del titular de la cuenta en la aplicación Reciclibros.</p><p>El abono se efectuará en un plazo de 48 horas hábiles a partir de las verificación del paquete en nuestros almacenes, si todos los libros enviados cumplen los criterios de compra, y en un plazo máximo de 6 días si se rechazan algunos libros.</p><p>Si algunos de tus libros no cumplen nuestros criterios de compra, te informaremos por correo electrónico.<br/>Dispones de 4 días para comunicarnos si aceptas esta nueva oferta a fin de recibir el pago. Si no tenemos noticias tuyas en este plazo, tu venta se tramitará y pagará en un plazo de 2 días laborables.</p>",
             "page": ""
           }
         },
