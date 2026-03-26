@@ -215,7 +215,7 @@
         "438737e4-ecc5-4b13-b45d-fb096dcd5c7d": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "¿Cómose calculan los precios?",
+            "heading": "¿Cómo se calculan los precios?",
             "icon": "chat_bubble",
             "row_content": "<p>Si el precio de compra propuesto te parece demasiado bajo puede deberse a varios factores: ya tenemos ese artículo en grandes cantidades, el valor del libro es demasiado bajo o es probable que tengamos dificultades para revenderlo. Recuerda que nosotros nos hacemos cargo de los gastos de envío y de los riesgos de reventa.</p>",
             "page": ""
@@ -224,7 +224,7 @@
         "d38673f8-faae-417a-a977-c22e15fce2ce": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "¿Porqué varía el precio de un día para otro?",
+            "heading": "¿Por qué varía el precio de un día para otro?",
             "icon": "chat_bubble",
             "row_content": "<p>Los precios se calculan a partir de datos que pueden cambiar de un día para otro: por ejemplo, si hemos vendido este libro a un precio más alto o más bajo, o si hemos puesto un ejemplar en stock y, por lo tanto, ya no tenemos espacio para un nuevo ejemplar.</p>",
             "page": ""
