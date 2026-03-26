@@ -39,6 +39,28 @@
   .mobile-toolbar {
     display: none;
   }
+
+  .ap-productfacet {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+  }
+
+  .ap-productfacet__aside {
+    width: 260px;
+    flex-shrink: 0;
+  }
+
+  .ap-productfacet__main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media screen and (max-width: 999px) {
+    .ap-productfacet__aside {
+      display: none;
+    }
+  }
 </style>
 
 <section id="main-search-section">
