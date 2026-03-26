@@ -1,4 +1,6 @@
 {% if template contains 'search' %}
+    Nombre de filtres : {{ search.filters.size }}
+  Termes : {{ search.terms }}
   {%- assign filter_object = search -%}
   {%- assign clear_url = '?q=' | append: search.terms | append: '&options%5Bprefix%5D=last' -%}
 {% else %}
