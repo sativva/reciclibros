@@ -107,7 +107,9 @@
                         {%- endfor -%}
 
                         {%- if template contains 'search' -%}
+                            {% if remove_all_status == 1 %}
                                 <a id="clear-all" href="" data-action="" class="tag-link link text--subdued">Borrar todo</a>
+                            {% endif %}
                         {% else %}
                             {% if remove_all_status == 1 %}
                                 <a href="{{ collection.url }}?sort_by={{ sort_by }}" data-action="" class="tag-link link text--subdued">Borrar todo</a>
