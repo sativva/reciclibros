@@ -324,7 +324,7 @@
                                                     </div>
                                                 {%- else -%}
                                                 {%- else -%}
-        {%- for value in filter.values -%}
+    {%- for value in filter.values -%}
         <div class="checkbox-container{% if forloop.index > 8 %} filter-show-more-item{% endif %}" {% if forloop.index > 8 %}style="display:none"{% endif %}>
             <input class="checkbox" type="checkbox" name="{{ filter.param_name }}" id="filter-{{ filter.param_name | escape }}-{{ forloop.index }}" value="{{ value.value }}" {% if value.active %}checked{% endif %} {% if value.count == 0 and value.active == false %}disabled=""{% endif %}>
             <label for="filter-{{ filter.param_name | escape }}-{{ forloop.index }}">{{ value.label | escape }} ({{ value.count }})</label>
