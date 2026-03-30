@@ -285,7 +285,7 @@
         "comment": "Comentario",
         "send": "Enviar mi solicitud",
         "post_success": "Gracias por contactarnos. Te responderemos lo antes posible.",
-        "error_heading": "Lo sentimos, hubo un error. Por favor revisa tu información e inténtalo de vuelta",
+        "error_heading": "Lo sentimos, hubo un error. Por favor, revisa tu información e inténtalo de nuevo.",
         "title": "Formulario de contacto",
         "send_message": "Enviar mi solicitud"
       }
