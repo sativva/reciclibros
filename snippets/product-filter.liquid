@@ -1,3 +1,13 @@
+<style>
+.filter-show-more-item.hidden {
+  display: none;
+}
+.filter-show-more-btn {
+  margin-top: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+</style>
 {% if template contains 'search' %}
   {%- assign filter_object = search -%}
   {%- assign clear_url = '?q=' | append: search.terms | append: '&options%5Bprefix%5D=last' -%}
