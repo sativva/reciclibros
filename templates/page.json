@@ -283,7 +283,7 @@
         "margin_desktop": "",
         "margin_mobile": "",
         "padding_desktop": "20px 0px 0px 20px",
-        "padding_mobile": ""
+        "padding_mobile": "20px 0px 0px 20px"
       }
     }
   },
