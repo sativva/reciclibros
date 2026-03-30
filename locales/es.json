@@ -558,6 +558,11 @@
   "customer_accounts": {
     "order_details": {
       "marketing_checkbox_label": "Quiero recibir novedades y ofertas por correo electrónico "
+    },
+    "account_information": {
+      "profile_card": {
+        "last_name": "Apellidos"
+      }
     }
   }
 }
