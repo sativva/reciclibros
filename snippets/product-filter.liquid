@@ -323,26 +323,13 @@
                                                         {%- endfor -%}
                                                     </div>
                                                 {%- else -%}
-                                                {%- else -%}
-    {%- for value in filter.values -%}
-        <div class="checkbox-container{% if forloop.index > 8 %} filter-show-more-item{% endif %}" {% if forloop.index > 8 %}style="display:none"{% endif %}>
-            <input class="checkbox" type="checkbox" name="{{ filter.param_name }}" id="filter-{{ filter.param_name | escape }}-{{ forloop.index }}" value="{{ value.value }}" {% if value.active %}checked{% endif %} {% if value.count == 0 and value.active == false %}disabled=""{% endif %}>
-            <label for="filter-{{ filter.param_name | escape }}-{{ forloop.index }}">{{ value.label | escape }} ({{ value.count }})</label>
-        </div>
-    {%- endfor -%}
-    {% if filter.values.size > 8 %}
-        <button type="button" class="filter-show-more-btn link text--subdued" onclick="
-            var items = this.closest('.collapsible__content').querySelectorAll('.filter-show-more-item');
-            var isHidden = items[0].style.display === 'none';
-            items.forEach(function(el){ el.style.display = isHidden ? '' : 'none'; });
-            this.querySelector('.label-more').style.display = isHidden ? 'none' : '';
-            this.querySelector('.label-less').style.display = isHidden ? '' : 'none';
-        ">
-            <span class="label-more">+ Ver más ({{ filter.values.size | minus: 8 }})</span>
-            <span class="label-less" style="display:none">- Ver menos</span>
-        </button>
-    {% endif %}
-{%- endif -%}
+                                                    {%- for value in filter.values -%}
+                                                        <div class="checkbox-container">
+                                                            <input class="checkbox" type="checkbox" name="{{ filter.param_name }}" id="filter-{{ filter.param_name | escape }}-{{ forloop.index }}" value="{{ value.value }}" {% if value.active %}checked{% endif %} {% if value.count == 0 and value.active == false %}disabled=""{% endif %}>
+                                                            <label for="filter-{{ filter.param_name | escape }}-{{ forloop.index }}">{{ value.label | escape }} ({{ value.count }})</label>
+                                                        </div>
+                                                    {%- endfor -%}
+                                                {%- endif -%}
                                             {% when 'price_range' %}
                                                 {% liquid
                                                     assign min_value_price = filter.min_value.value | default: 0 | divided_by: 100
