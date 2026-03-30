@@ -1,13 +1,3 @@
-<style>
-.filter-show-more-item.hidden {
-  display: none;
-}
-.filter-show-more-btn {
-  margin-top: 8px;
-  cursor: pointer;
-  font-size: 0.875rem;
-}
-</style>
 {% if template contains 'search' %}
   {%- assign filter_object = search -%}
   {%- assign clear_url = '?q=' | append: search.terms | append: '&options%5Bprefix%5D=last' -%}
@@ -333,20 +323,13 @@
                                                         {%- endfor -%}
                                                     </div>
                                                 {%- else -%}
-                                                    {%- else -%}
-    {%- for value in filter.values -%}
-        <div class="checkbox-container{% if forloop.index > 8 %} filter-show-more-item hidden{% endif %}">
-            <input class="checkbox" type="checkbox" name="{{ filter.param_name }}" id="filter-{{ filter.param_name | escape }}-{{ forloop.index }}" value="{{ value.value }}" {% if value.active %}checked{% endif %} {% if value.count == 0 and value.active == false %}disabled=""{% endif %}>
-            <label for="filter-{{ filter.param_name | escape }}-{{ forloop.index }}">{{ value.label | escape }} ({{ value.count }})</label>
-        </div>
-    {%- endfor -%}
-    {% if filter.values.size > 8 %}
-        <button type="button" class="filter-show-more-btn link text--subdued" data-filter-toggle>
-            <span class="label-more">+ Ver más ({{ filter.values.size | minus: 8 }})</span>
-            <span class="label-less" style="display:none">- Ver menos</span>
-        </button>
-    {% endif %}
-{%- endif -%}
+                                                    {%- for value in filter.values -%}
+                                                        <div class="checkbox-container">
+                                                            <input class="checkbox" type="checkbox" name="{{ filter.param_name }}" id="filter-{{ filter.param_name | escape }}-{{ forloop.index }}" value="{{ value.value }}" {% if value.active %}checked{% endif %} {% if value.count == 0 and value.active == false %}disabled=""{% endif %}>
+                                                            <label for="filter-{{ filter.param_name | escape }}-{{ forloop.index }}">{{ value.label | escape }} ({{ value.count }})</label>
+                                                        </div>
+                                                    {%- endfor -%}
+                                                {%- endif -%}
                                             {% when 'price_range' %}
                                                 {% liquid
                                                     assign min_value_price = filter.min_value.value | default: 0 | divided_by: 100
@@ -395,14 +378,3 @@
     </ap-safesticky>
 </div>
 </div>
-<script>
-document.querySelectorAll('[data-filter-toggle]').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    var items = btn.closest('.collapsible__content').querySelectorAll('.filter-show-more-item');
-    var isHidden = items[0].classList.contains('hidden');
-    items.forEach(function(el) { el.classList.toggle('hidden'); });
-    btn.querySelector('.label-more').style.display = isHidden ? 'none' : '';
-    btn.querySelector('.label-less').style.display = isHidden ? '' : 'none';
-  });
-});
-</script>
