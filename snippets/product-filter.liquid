@@ -385,3 +385,14 @@
     </ap-safesticky>
 </div>
 </div>
+<script>
+document.querySelectorAll('[data-filter-toggle]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var items = btn.closest('.collapsible__content').querySelectorAll('.filter-show-more-item');
+    var isHidden = items[0].classList.contains('hidden');
+    items.forEach(function(el) { el.classList.toggle('hidden'); });
+    btn.querySelector('.label-more').style.display = isHidden ? 'none' : '';
+    btn.querySelector('.label-less').style.display = isHidden ? '' : 'none';
+  });
+});
+</script>
