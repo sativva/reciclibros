@@ -40,12 +40,11 @@
   {%- endif -%}
 {%- endstyle -%}
 
-{%comment %}
 <section>
   {% if section.settings.breadcrumb_position == "1" %}
     {% render 'breadcrumb' %}
   {% endif %}
-{%endcomment %}
+  
   <div class="{{ section.settings.setwidthout }}">
     <ap-textoverlayimage reveal-on-scroll="" parallax="" class="image-overlay image-overlay--small ap-object-loaded">
       <div class="image-overlay__image-wrapper">
@@ -290,25 +289,29 @@
       "label": "t:sections.all.text_color.label"
     },
     {
-      "type": "header",
-      "content": "Breadcrumb"
+  "type": "header",
+  "content": "Breadcrumb"
+},
+{
+  "type": "select",
+  "id": "breadcrumb_position",
+  "options": [
+    {
+      "value": "0",
+      "label": "Hidden"
     },
     {
-      "type": "select",
-      "id": "breadcrumb_position",
-      "options": [
-        {
-          "value": "1",
-          "label": "t:sections.all.breadcrumb_position.options__1.label"
-        },
-        {
-          "value": "2",
-          "label": "t:sections.all.breadcrumb_position.options__2.label"
-        }
-      ],
-      "default": "1",
-      "label": "t:sections.all.breadcrumb_position.label"
+      "value": "1",
+      "label": "t:sections.all.breadcrumb_position.options__1.label"
     },
+    {
+      "value": "2",
+      "label": "t:sections.all.breadcrumb_position.options__2.label"
+    }
+  ],
+  "default": "0",
+  "label": "t:sections.all.breadcrumb_position.label"
+},
     {
       "type": "header",
       "content": "Shop bar"
