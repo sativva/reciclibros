@@ -40,11 +40,12 @@
   {%- endif -%}
 {%- endstyle -%}
 
+{%comment %}
 <section>
   {% if section.settings.breadcrumb_position == "1" %}
     {% render 'breadcrumb' %}
   {% endif %}
-
+{%endcomment %}
   <div class="{{ section.settings.setwidthout }}">
     <ap-textoverlayimage reveal-on-scroll="" parallax="" class="image-overlay image-overlay--small ap-object-loaded">
       <div class="image-overlay__image-wrapper">
