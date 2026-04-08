@@ -33,7 +33,6 @@
     },
     "banner": {
       "type": "main-collection-banner",
-      "disabled": true,
       "settings": {
         "setwidthout": "container",
         "content_box_size": "fill",
@@ -41,7 +40,7 @@
         "content_text_align": "center",
         "height": 10,
         "show_collection_image": false,
-        "show_description": false,
+        "show_description": true,
         "default_background_color": "#ffffff",
         "heading_color": "#ffffff",
         "heading_text_size": 6,
