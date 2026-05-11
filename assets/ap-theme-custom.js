@@ -184,15 +184,4 @@
   document.addEventListener("cart:refresh", stopErrorRefresh, true);
 })();
 
-    // Filtre disponibilité actif par défaut
-(function() {
-  const url = new URL(window.location.href);
-  const isCollectionOrSearch =
-    window.location.pathname.startsWith('/collections/') ||
-    window.location.pathname === '/search';
 
-  if (isCollectionOrSearch && !url.searchParams.has('filter.v.availability')) {
-    url.searchParams.set('filter.v.availability', '1');
-    window.location.replace(url.toString());
-  }
-})();
