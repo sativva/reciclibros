@@ -518,20 +518,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer="defer"></script>
-    
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const isCollection = window.location.pathname.startsWith('/collections/');
-    const hasFilter = window.location.search.includes('filter.v.availability');
-    
-    if (isCollection && !hasFilter) {
-      const sep = window.location.search ? '&' : '?';
-      window.location.replace(
-        window.location.pathname + window.location.search + sep + 'filter.v.availability=1'
-      );
-    }
-  });
-</script>
 
   </body>
 </html>
