@@ -66,7 +66,7 @@
       <div class="card__content">
         <div class="card__information">
           <h3 class="card__heading">
-            <a {% if card_collection == blank %} role="link" aria-disabled="true"{% else %} href="{{ card_collection.url }}?filter.v.availability=1"{% endif %} class="full-unstyled-link">
+            <a {% if card_collection == blank %} role="link" aria-disabled="true"{% else %} href="{{ card_collection.url }}"{% endif %} class="full-unstyled-link">
               {%- if card_collection.title != blank -%}
                 {{- card_collection.title | escape -}}
               {%- else -%}
@@ -87,7 +87,7 @@
       <div class="card__content">
         <div class="card__information">
           <h3 class="card__heading">
-            <a{% if card_collection == blank %} role="link" aria-disabled="true"{% else %} href="{{ card_collection.url }}?filter.v.availability=1"{% endif %} class="full-unstyled-link">
+            <a{% if card_collection == blank %} role="link" aria-disabled="true"{% else %} href="{{ card_collection.url }}"{% endif %} class="full-unstyled-link">
               {%- if card_collection.title != blank -%}
                 {{- card_collection.title | escape -}}
               {%- else -%}
