@@ -32,8 +32,12 @@
                               {%- if childlink.links != blank -%}
 
                                 {%- assign grandchild_list_handle = childlink.title | handleize -%}
+                                {%- assign nav_url_2 = childlink.url -%}
+                                {%- if childlink.url contains '/collections/' -%}
+                                  {%- assign nav_url_2 = childlink.url | append: '?filter.v.availability=1' -%}
+                                {%- endif -%}
                                 <button is="toggle-button" class="categories-nav__link_mega" ap-controlsaria="categories-menu-1_1-{{ menu_index }}-{{ forloop.index }}" ap-expanded-aria="false">
-                                  <a href="{{ childlink.url }}" 
+                                  <a href="{{ nav_url_2 }}" 
                                     class="categories-meganav__link drawer__nav-link drawer__nav-link--split{% if childlink.active %} meganav__link--active{% endif %}" 
                                     id="DrawerLabel-{{ grandchild_list_handle }}"
                                     {% if childlink.active %} aria-current="page"{% endif %}
@@ -47,8 +51,12 @@
                                 <ap-contentcollapsible id="categories-menu-1_1-{{ menu_index }}-{{ forloop.index }}" class="collapsible collapsible-mega_child"{% if section.settings.categories_desktop_drawer %} animate-items{% endif %}>
                                   <ul class="categories-nav list--unstyled meganav__nav meganav__nav--third-level">
                                     {%- for grandchildlink in childlink.links -%}
+                                    {%- assign nav_url_3 = grandchildlink.url -%}
+                                    {%- if grandchildlink.url contains '/collections/' -%}
+                                      {%- assign nav_url_3 = grandchildlink.url | append: '?filter.v.availability=1' -%}
+                                    {%- endif -%}
                                     <li>
-                                      <a href="{{ grandchildlink.url }}" class="categories-meganav__link{% if grandchildlink.active %} meganav__link--active{% endif %}"{% if grandchildlink.active %} aria-current="page"{% endif %}>
+                                      <a href="{{ nav_url_3 }}" class="categories-meganav__link{% if grandchildlink.active %} meganav__link--active{% endif %}"{% if grandchildlink.active %} aria-current="page"{% endif %}>
                                         {%- render 'processMenuTitle' , itemName: grandchildlink.title -%}
                                         {%- render 'processMenuLabel' , itemName: grandchildlink.title -%}
                                       </a>
@@ -58,7 +66,11 @@
                                 </ap-contentcollapsible>
 
                               {%- else -%}
-                                <a href="{{ childlink.url }}" 
+                                {%- assign nav_url_2 = childlink.url -%}
+                                {%- if childlink.url contains '/collections/' -%}
+                                  {%- assign nav_url_2 = childlink.url | append: '?filter.v.availability=1' -%}
+                                {%- endif -%}
+                                <a href="{{ nav_url_2 }}" 
                                   class="drawer__nav-link categories-meganav__link{% if childlink.active %} meganav__link--active{% endif %}"
                                   {% if childlink.active %} aria-current="page"{% endif %}
                                   >
@@ -73,7 +85,11 @@
 
                 {% else %}
 
-                    <a class="categories-nav__link_main link--animated {% if link.current %}menu-item--active{% endif %}" href="{{ link.url }}">
+                    {%- assign nav_url_1 = link.url -%}
+                    {%- if link.url contains '/collections/' -%}
+                      {%- assign nav_url_1 = link.url | append: '?filter.v.availability=1' -%}
+                    {%- endif -%}
+                    <a class="categories-nav__link_main link--animated {% if link.current %}menu-item--active{% endif %}" href="{{ nav_url_1 }}">
                         {%- render 'processMenuTitle' , itemName: link.title -%}
                         {%- render 'processMenuLabel' , itemName: link.title -%}
                     </a>
