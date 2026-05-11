@@ -518,6 +518,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer="defer"></script>
+    
+    // Filtre disponibilité actif par défaut
+(function() {
+  const url = new URL(window.location.href);
+  const isCollectionOrSearch =
+    window.location.pathname.startsWith('/collections/') ||
+    window.location.pathname === '/search';
+
+  if (isCollectionOrSearch && !url.searchParams.has('filter.v.availability')) {
+    url.searchParams.set('filter.v.availability', '1');
+    window.location.replace(url.toString());
+  }
+})();
 
   </body>
 </html>
