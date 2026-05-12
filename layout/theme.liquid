@@ -7,24 +7,38 @@
 <script>
   (function() {
     var path = window.location.pathname;
+    var isCollection = path.indexOf('/collections/') !== -1;
     var hasFilter = window.location.search.indexOf('filter.v.availability=1') !== -1;
-    var referrer = document.referrer;
-    var referrerSamePage = referrer.indexOf(path) !== -1;
-    var referrerHadFilter = referrer.indexOf('filter.v.availability=1') !== -1;
+    var userRemoved = sessionStorage.getItem('availability_removed') === path;
 
-    console.log('hasFilter:', hasFilter);
-    console.log('referrerSamePage:', referrerSamePage);
-    console.log('referrerHadFilter:', referrerHadFilter);
-    console.log('referrer:', referrer);
-    console.log('current:', window.location.href);
+    if (hasFilter) {
+      sessionStorage.removeItem('availability_removed');
+    }
 
-    if (!window.location.pathname.indexOf('/collections/') !== -1 || hasFilter) return;
-    if (referrerSamePage && referrerHadFilter) return;
+    if (isCollection && !hasFilter && !userRemoved) {
+      var sep = window.location.search ? '&' : '?';
+      window.location.replace(
+        path + window.location.search + sep + 'filter.v.availability=1'
+      );
+      return;
+    }
 
-    var sep = window.location.search ? '&' : '?';
-    window.location.replace(
-      path + window.location.search + sep + 'filter.v.availability=1'
-    );
+    // Intercepte les clics sur les liens de retrait de filtre
+    // On utilise mousedown au lieu de click — plus précoce, avant la navigation
+    document.addEventListener('mousedown', function(e) {
+      var link = e.target.closest('a');
+      if (!link) return;
+
+      var href = link.getAttribute('href') || '';
+      var isCollectionLink = href.indexOf('/collections/') !== -1;
+      var linkRemovesFilter = href.indexOf('filter.v.availability') === -1;
+      var currentlyHasFilter = window.location.search.indexOf('filter.v.availability=1') !== -1;
+
+      if (isCollectionLink && linkRemovesFilter && currentlyHasFilter) {
+        sessionStorage.setItem('availability_removed', path);
+      }
+    }, true);
+
   })();
 </script>
     <!-- Google Tag Manager -->
