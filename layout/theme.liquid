@@ -9,15 +9,21 @@
     var isCollection = window.location.pathname.indexOf('/collections/') !== -1;
     var hasFilter = window.location.search.indexOf('filter.v.availability') !== -1;
 
-    console.log('isCollection:', isCollection);
-    console.log('hasFilter:', hasFilter);
-
     if (isCollection && !hasFilter) {
       var sep = window.location.search ? '&' : '?';
       window.location.replace(
         window.location.pathname + window.location.search + sep + 'filter.v.availability=1'
       );
     }
+
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest('a');
+      if (!link) return;
+      var href = link.getAttribute('href') || '';
+      console.log('CLICK href:', href);
+      console.log('closest facet-remove:', !!link.closest('facet-remove'));
+      console.log('classList:', link.className);
+    });
   })();
 </script>
     <!-- Google Tag Manager -->
