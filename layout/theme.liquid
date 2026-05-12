@@ -4,38 +4,45 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}" dir="ltr">
   <head>
-    <script>
+ <script>
   (function() {
-    // Redirection invisible si filtre disponibilité absent
-    var isCollection = window.location.pathname.indexOf('/collections/') !== -1;
+    var path = window.location.pathname;
+    var isCollection = path.indexOf('/collections/') !== -1;
     var hasFilter = window.location.search.indexOf('filter.v.availability') !== -1;
-    var userRemoved = sessionStorage.getItem('availability_removed') === window.location.pathname;
+    var userRemoved = sessionStorage.getItem('availability_removed') === path;
 
+    // Redirection uniquement si pas de filtre ET utilisateur n'a pas retiré manuellement
     if (isCollection && !hasFilter && !userRemoved) {
       var sep = window.location.search ? '&' : '?';
       window.location.replace(
-        window.location.pathname + window.location.search + sep + 'filter.v.availability=1'
+        path + window.location.search + sep + 'filter.v.availability=1'
       );
+      return;
     }
 
-    // Détection du retrait volontaire du filtre disponibilité
+    // Reset du flag si le filtre est présent (l'utilisateur l'a remis)
+    if (hasFilter) {
+      sessionStorage.removeItem('availability_removed');
+    }
+
+    // Détection du retrait volontaire AVANT navigation
     document.addEventListener('click', function(e) {
       var link = e.target.closest('a');
       if (!link) return;
 
       var href = link.getAttribute('href') || '';
+      var currentlyHasAvailability = window.location.search.indexOf('filter.v.availability') !== -1;
 
-      // Lien qui retire spécifiquement le filtre disponibilité
-      var removesAvailability = href.indexOf('filter.v.availability') === -1
-        && link.closest('facet-remove') !== null
-        && document.location.search.indexOf('filter.v.availability') !== -1;
+      if (!currentlyHasAvailability) return;
 
-      // Lien "clear all" (results_url sans aucun filtre)
-      var isClearAll = link.classList.contains('active-facets__button-remove')
-        || link.classList.contains('mobile-facets__clear');
+      // Le lien destination ne contient plus filter.v.availability
+      var linkRemovesAvailability = href.indexOf('filter.v.availability') === -1
+        && (link.closest('facet-remove') !== null
+          || link.classList.contains('active-facets__button-remove')
+          || link.classList.contains('mobile-facets__clear'));
 
-      if (removesAvailability || isClearAll) {
-        sessionStorage.setItem('availability_removed', window.location.pathname);
+      if (linkRemovesAvailability) {
+        sessionStorage.setItem('availability_removed', path);
       }
     });
   })();
