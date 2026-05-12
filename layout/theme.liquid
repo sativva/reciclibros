@@ -6,26 +6,18 @@
   <head>
 <script>
   (function() {
-    var path = window.location.pathname;
-    var isCollection = path.indexOf('/collections/') !== -1;
+    var isCollection = window.location.pathname.indexOf('/collections/') !== -1;
     var hasFilter = window.location.search.indexOf('filter.v.availability') !== -1;
-    var userRemoved = sessionStorage.getItem('availability_removed');
 
-    console.log('--- AVAILABILITY FILTER DEBUG ---');
-    console.log('path:', path);
     console.log('isCollection:', isCollection);
     console.log('hasFilter:', hasFilter);
-    console.log('userRemoved (sessionStorage):', userRemoved);
-    console.log('match:', userRemoved === path);
 
-    document.addEventListener('click', function(e) {
-      var link = e.target.closest('a');
-      if (!link) return;
-      var href = link.getAttribute('href') || '';
-      console.log('CLICK sur lien:', href);
-      console.log('closest facet-remove:', link.closest('facet-remove'));
-      console.log('classList:', link.className);
-    });
+    if (isCollection && !hasFilter) {
+      var sep = window.location.search ? '&' : '?';
+      window.location.replace(
+        window.location.pathname + window.location.search + sep + 'filter.v.availability=1'
+      );
+    }
   })();
 </script>
     <!-- Google Tag Manager -->
