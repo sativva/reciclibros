@@ -4,6 +4,42 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}" dir="ltr">
   <head>
+    <script>
+  (function() {
+    // Redirection invisible si filtre disponibilité absent
+    var isCollection = window.location.pathname.indexOf('/collections/') !== -1;
+    var hasFilter = window.location.search.indexOf('filter.v.availability') !== -1;
+    var userRemoved = sessionStorage.getItem('availability_removed') === window.location.pathname;
+
+    if (isCollection && !hasFilter && !userRemoved) {
+      var sep = window.location.search ? '&' : '?';
+      window.location.replace(
+        window.location.pathname + window.location.search + sep + 'filter.v.availability=1'
+      );
+    }
+
+    // Détection du retrait volontaire du filtre disponibilité
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest('a');
+      if (!link) return;
+
+      var href = link.getAttribute('href') || '';
+
+      // Lien qui retire spécifiquement le filtre disponibilité
+      var removesAvailability = href.indexOf('filter.v.availability') === -1
+        && link.closest('facet-remove') !== null
+        && document.location.search.indexOf('filter.v.availability') !== -1;
+
+      // Lien "clear all" (results_url sans aucun filtre)
+      var isClearAll = link.classList.contains('active-facets__button-remove')
+        || link.classList.contains('mobile-facets__clear');
+
+      if (removesAvailability || isClearAll) {
+        sessionStorage.setItem('availability_removed', window.location.pathname);
+      }
+    });
+  })();
+</script>
     <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
