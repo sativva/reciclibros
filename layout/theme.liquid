@@ -4,46 +4,27 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}" dir="ltr">
   <head>
- <script>
+<script>
   (function() {
     var path = window.location.pathname;
     var isCollection = path.indexOf('/collections/') !== -1;
     var hasFilter = window.location.search.indexOf('filter.v.availability') !== -1;
-    var userRemoved = sessionStorage.getItem('availability_removed') === path;
+    var userRemoved = sessionStorage.getItem('availability_removed');
 
-    // Redirection uniquement si pas de filtre ET utilisateur n'a pas retiré manuellement
-    if (isCollection && !hasFilter && !userRemoved) {
-      var sep = window.location.search ? '&' : '?';
-      window.location.replace(
-        path + window.location.search + sep + 'filter.v.availability=1'
-      );
-      return;
-    }
+    console.log('--- AVAILABILITY FILTER DEBUG ---');
+    console.log('path:', path);
+    console.log('isCollection:', isCollection);
+    console.log('hasFilter:', hasFilter);
+    console.log('userRemoved (sessionStorage):', userRemoved);
+    console.log('match:', userRemoved === path);
 
-    // Reset du flag si le filtre est présent (l'utilisateur l'a remis)
-    if (hasFilter) {
-      sessionStorage.removeItem('availability_removed');
-    }
-
-    // Détection du retrait volontaire AVANT navigation
     document.addEventListener('click', function(e) {
       var link = e.target.closest('a');
       if (!link) return;
-
       var href = link.getAttribute('href') || '';
-      var currentlyHasAvailability = window.location.search.indexOf('filter.v.availability') !== -1;
-
-      if (!currentlyHasAvailability) return;
-
-      // Le lien destination ne contient plus filter.v.availability
-      var linkRemovesAvailability = href.indexOf('filter.v.availability') === -1
-        && (link.closest('facet-remove') !== null
-          || link.classList.contains('active-facets__button-remove')
-          || link.classList.contains('mobile-facets__clear'));
-
-      if (linkRemovesAvailability) {
-        sessionStorage.setItem('availability_removed', path);
-      }
+      console.log('CLICK sur lien:', href);
+      console.log('closest facet-remove:', link.closest('facet-remove'));
+      console.log('classList:', link.className);
     });
   })();
 </script>
