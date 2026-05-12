@@ -7,19 +7,20 @@
 <script>
   (function() {
     var path = window.location.pathname;
-    var isCollection = path.indexOf('/collections/') !== -1;
-    var hasFilter = window.location.search.indexOf('filter.v.availability') !== -1;
-
-    if (!isCollection || hasFilter) return;
-
-    // Si le referrer est la même collection avec le filtre = l'utilisateur l'a retiré
+    var hasFilter = window.location.search.indexOf('filter.v.availability=1') !== -1;
     var referrer = document.referrer;
     var referrerSamePage = referrer.indexOf(path) !== -1;
-    var referrerHadFilter = referrer.indexOf('filter.v.availability') !== -1;
+    var referrerHadFilter = referrer.indexOf('filter.v.availability=1') !== -1;
 
-    if (referrerSamePage && referrerHadFilter) return; // Ne pas remettre le filtre
+    console.log('hasFilter:', hasFilter);
+    console.log('referrerSamePage:', referrerSamePage);
+    console.log('referrerHadFilter:', referrerHadFilter);
+    console.log('referrer:', referrer);
+    console.log('current:', window.location.href);
 
-    // Sinon on arrive de l'extérieur, on ajoute le filtre
+    if (!window.location.pathname.indexOf('/collections/') !== -1 || hasFilter) return;
+    if (referrerSamePage && referrerHadFilter) return;
+
     var sep = window.location.search ? '&' : '?';
     window.location.replace(
       path + window.location.search + sep + 'filter.v.availability=1'
