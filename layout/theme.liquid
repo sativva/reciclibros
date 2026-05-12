@@ -6,24 +6,32 @@
   <head>
 <script>
   (function() {
-    var isCollection = window.location.pathname.indexOf('/collections/') !== -1;
+    var path = window.location.pathname;
+    var isCollection = path.indexOf('/collections/') !== -1;
     var hasFilter = window.location.search.indexOf('filter.v.availability') !== -1;
 
-    if (isCollection && !hasFilter) {
-      var sep = window.location.search ? '&' : '?';
-      window.location.replace(
-        window.location.pathname + window.location.search + sep + 'filter.v.availability=1'
-      );
+    // Si on vient d'une page avec le filtre et qu'il n'est plus là = l'utilisateur l'a retiré
+    var referrerHadFilter = document.referrer.indexOf('filter.v.availability') !== -1;
+    var referrerSamePath = document.referrer.indexOf(path) !== -1;
+
+    if (isCollection && !hasFilter && referrerHadFilter && referrerSamePath) {
+      // L'utilisateur vient de retirer le filtre manuellement
+      sessionStorage.setItem('availability_removed', path);
     }
 
-    document.addEventListener('click', function(e) {
-      var link = e.target.closest('a');
-      if (!link) return;
-      var href = link.getAttribute('href') || '';
-      console.log('CLICK href:', href);
-      console.log('closest facet-remove:', !!link.closest('facet-remove'));
-      console.log('classList:', link.className);
-    });
+    // Reset si l'utilisateur remet le filtre
+    if (hasFilter) {
+      sessionStorage.removeItem('availability_removed');
+    }
+
+    var userRemoved = sessionStorage.getItem('availability_removed') === path;
+
+    if (isCollection && !hasFilter && !userRemoved) {
+      var sep = window.location.search ? '&' : '?';
+      window.location.replace(
+        path + window.location.search + sep + 'filter.v.availability=1'
+      );
+    }
   })();
 </script>
     <!-- Google Tag Manager -->
