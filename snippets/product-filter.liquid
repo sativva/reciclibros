@@ -40,7 +40,11 @@
     <div class="ap-productfacet_aside__categories-list">
       {% for child in children_links %}
         {% if child.type == 'collection_link' %}
-          <a href="{{ child.url }}">
+          {%- assign child_nav_url = child.url -%}
+{%- if child.url contains '/collections/' -%}
+  {%- assign child_nav_url = child.url | append: '?filter.v.availability=1' -%}
+{%- endif -%}
+<a href="{{ child_nav_url }}">
             {{ child.title | escape }}
             <span class="count">
               ({{ child.object.products_count }})
