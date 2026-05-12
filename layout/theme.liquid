@@ -10,28 +10,20 @@
     var isCollection = path.indexOf('/collections/') !== -1;
     var hasFilter = window.location.search.indexOf('filter.v.availability') !== -1;
 
-    // Si on vient d'une page avec le filtre et qu'il n'est plus là = l'utilisateur l'a retiré
-    var referrerHadFilter = document.referrer.indexOf('filter.v.availability') !== -1;
-    var referrerSamePath = document.referrer.indexOf(path) !== -1;
+    if (!isCollection || hasFilter) return;
 
-    if (isCollection && !hasFilter && referrerHadFilter && referrerSamePath) {
-      // L'utilisateur vient de retirer le filtre manuellement
-      sessionStorage.setItem('availability_removed', path);
-    }
+    // Si le referrer est la même collection avec le filtre = l'utilisateur l'a retiré
+    var referrer = document.referrer;
+    var referrerSamePage = referrer.indexOf(path) !== -1;
+    var referrerHadFilter = referrer.indexOf('filter.v.availability') !== -1;
 
-    // Reset si l'utilisateur remet le filtre
-    if (hasFilter) {
-      sessionStorage.removeItem('availability_removed');
-    }
+    if (referrerSamePage && referrerHadFilter) return; // Ne pas remettre le filtre
 
-    var userRemoved = sessionStorage.getItem('availability_removed') === path;
-
-    if (isCollection && !hasFilter && !userRemoved) {
-      var sep = window.location.search ? '&' : '?';
-      window.location.replace(
-        path + window.location.search + sep + 'filter.v.availability=1'
-      );
-    }
+    // Sinon on arrive de l'extérieur, on ajoute le filtre
+    var sep = window.location.search ? '&' : '?';
+    window.location.replace(
+      path + window.location.search + sep + 'filter.v.availability=1'
+    );
   })();
 </script>
     <!-- Google Tag Manager -->
