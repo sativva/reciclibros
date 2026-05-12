@@ -24,7 +24,6 @@
     }
 
     // Intercepte les clics sur les liens de retrait de filtre
-    // On utilise mousedown au lieu de click — plus précoce, avant la navigation
     document.addEventListener('mousedown', function(e) {
       var link = e.target.closest('a');
       if (!link) return;
@@ -35,6 +34,19 @@
       var currentlyHasFilter = window.location.search.indexOf('filter.v.availability=1') !== -1;
 
       if (isCollectionLink && linkRemovesFilter && currentlyHasFilter) {
+        sessionStorage.setItem('availability_removed', path);
+      }
+    }, true);
+
+    // Intercepte la décoche de la checkbox disponibilité
+    document.addEventListener('change', function(e) {
+      var checkbox = e.target;
+      if (!checkbox || checkbox.type !== 'checkbox') return;
+
+      var isAvailability = checkbox.name && checkbox.name.indexOf('filter.v.availability') !== -1;
+      var currentlyHasFilter = window.location.search.indexOf('filter.v.availability=1') !== -1;
+
+      if (isAvailability && !checkbox.checked && currentlyHasFilter) {
         sessionStorage.setItem('availability_removed', path);
       }
     }, true);
