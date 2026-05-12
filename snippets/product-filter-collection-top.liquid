@@ -70,59 +70,65 @@
                     <div class="ap-productfacet_aside__categories hd-pocket">
                         <div class="collapsible-toggle ap-productfacet_aside__categories-title heading h6 ap-productfacet__filters-header">{{ section.settings.title_categories }}</div>
                         <div class="ap-productfacet_aside__categories-list">
-                            {% if section.settings.collection != blank %}
-                            <a href="{{ section.settings.collection }}">
-                                {{- section.settings.collection.title | escape -}}
-                                <span class="count">
-                                    ({{ section.settings.collection.products_count }})
-                                </span>
-                            </a>
-                            {% endif %}
+{% if section.settings.collection != blank %}
+{%- assign col1_url = section.settings.collection.url | append: '?filter.v.availability=1' -%}
+<a href="{{ col1_url }}">
+    {{- section.settings.collection.title | escape -}}
+    <span class="count">
+        ({{ section.settings.collection.products_count }})
+    </span>
+</a>
+{% endif %}
 
-                            {% if section.settings.collection2 != blank %}
-                            <a href="{{ section.settings.collection2 }}">
-                                {{- section.settings.collection2.title | escape -}}
-                                <span class="count">
-                                    ({{ section.settings.collection2.products_count }})
-                                </span>
-                            </a>
-                            {% endif %}
+{% if section.settings.collection2 != blank %}
+{%- assign col2_url = section.settings.collection2.url | append: '?filter.v.availability=1' -%}
+<a href="{{ col2_url }}">
+    {{- section.settings.collection2.title | escape -}}
+    <span class="count">
+        ({{ section.settings.collection2.products_count }})
+    </span>
+</a>
+{% endif %}
 
-                            {% if section.settings.collection3 != blank %}
-                            <a href="{{ section.settings.collection3 }}">
-                                {{- section.settings.collection3.title | escape -}}
-                                <span class="count">
-                                    ({{ section.settings.collection3.products_count }})
-                                </span>
-                            </a>
-                            {% endif %}
+{% if section.settings.collection3 != blank %}
+{%- assign col3_url = section.settings.collection3.url | append: '?filter.v.availability=1' -%}
+<a href="{{ col3_url }}">
+    {{- section.settings.collection3.title | escape -}}
+    <span class="count">
+        ({{ section.settings.collection3.products_count }})
+    </span>
+</a>
+{% endif %}
 
-                            {% if section.settings.collection4 != blank %}
-                            <a href="{{ section.settings.collection4 }}">
-                                {{- section.settings.collection4.title | escape -}}
-                                <span class="count">
-                                    ({{ section.settings.collection4.products_count }})
-                                </span>
-                            </a>
-                            {% endif %}
+{% if section.settings.collection4 != blank %}
+{%- assign col4_url = section.settings.collection4.url | append: '?filter.v.availability=1' -%}
+<a href="{{ col4_url }}">
+    {{- section.settings.collection4.title | escape -}}
+    <span class="count">
+        ({{ section.settings.collection4.products_count }})
+    </span>
+</a>
+{% endif %}
 
-                            {% if section.settings.collection5 != blank %}
-                            <a href="{{ section.settings.collection5 }}">
-                                {{- section.settings.collection5.title | escape -}}
-                                <span class="count">
-                                    ({{ section.settings.collection5.products_count }})
-                                </span>
-                            </a>
-                            {% endif %}
+{% if section.settings.collection5 != blank %}
+{%- assign col5_url = section.settings.collection5.url | append: '?filter.v.availability=1' -%}
+<a href="{{ col5_url }}">
+    {{- section.settings.collection5.title | escape -}}
+    <span class="count">
+        ({{ section.settings.collection5.products_count }})
+    </span>
+</a>
+{% endif %}
 
-                            {% if section.settings.collection6 != blank %}
-                            <a href="{{ section.settings.collection6 }}">
-                                {{- section.settings.collection6.title | escape -}}
-                                <span class="count">
-                                    ({{ section.settings.collection6.products_count }})
-                                </span>
-                            </a>
-                            {% endif %}
+{% if section.settings.collection6 != blank %}
+{%- assign col6_url = section.settings.collection6.url | append: '?filter.v.availability=1' -%}
+<a href="{{ col6_url }}">
+    {{- section.settings.collection6.title | escape -}}
+    <span class="count">
+        ({{ section.settings.collection6.products_count }})
+    </span>
+</a>
+{% endif %}
 
                         </div>
                     </div>
