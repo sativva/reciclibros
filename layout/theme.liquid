@@ -4,55 +4,6 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}" dir="ltr">
   <head>
-<script>
-  (function() {
-    var path = window.location.pathname;
-    var isCollection = path.indexOf('/collections/') !== -1;
-    var hasFilter = window.location.search.indexOf('filter.v.availability=1') !== -1;
-    var userRemoved = sessionStorage.getItem('availability_removed') === path;
-
-    if (hasFilter) {
-      sessionStorage.removeItem('availability_removed');
-    }
-
-    if (isCollection && !hasFilter && !userRemoved) {
-      var sep = window.location.search ? '&' : '?';
-      window.location.replace(
-        path + window.location.search + sep + 'filter.v.availability=1'
-      );
-      return;
-    }
-
-    // Intercepte les clics sur les liens de retrait de filtre
-    document.addEventListener('mousedown', function(e) {
-      var link = e.target.closest('a');
-      if (!link) return;
-
-      var href = link.getAttribute('href') || '';
-      var isCollectionLink = href.indexOf('/collections/') !== -1;
-      var linkRemovesFilter = href.indexOf('filter.v.availability') === -1;
-      var currentlyHasFilter = window.location.search.indexOf('filter.v.availability=1') !== -1;
-
-      if (isCollectionLink && linkRemovesFilter && currentlyHasFilter) {
-        sessionStorage.setItem('availability_removed', path);
-      }
-    }, true);
-
-    // Intercepte la décoche de la checkbox disponibilité
-    document.addEventListener('change', function(e) {
-      var checkbox = e.target;
-      if (!checkbox || checkbox.type !== 'checkbox') return;
-
-      var isAvailability = checkbox.name && checkbox.name.indexOf('filter.v.availability') !== -1;
-      var currentlyHasFilter = window.location.search.indexOf('filter.v.availability=1') !== -1;
-
-      if (isAvailability && !checkbox.checked && currentlyHasFilter) {
-        sessionStorage.setItem('availability_removed', path);
-      }
-    }, true);
-
-  })();
-</script>
     <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
