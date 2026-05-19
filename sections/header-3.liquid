@@ -214,7 +214,7 @@
   {% endif %}
   
   /* Bouton Donar o Vender */
-  .header__btn-donar {
+.header__btn-donar {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -223,11 +223,12 @@
   padding: 8px 18px;
   font-family: 'Work Sans', sans-serif;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700; /* gras */
   color: #333333;
   text-decoration: none;
   white-space: nowrap;
   flex-shrink: 0;
+  margin: 0 auto; /* équidistance */
   transition: border-color 0.2s ease, color 0.2s ease;
 }
 
@@ -269,8 +270,12 @@
                 
                   {%- comment -%} Bouton Donar o Vender {%- endcomment -%}
                   <a href="/pages/donar-o-vender" class="header__btn-donar hd-pocket hd-lap">
-                  <span class="header__btn-donar-icon">↻</span>
-                  Donar o vender
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="1 4 1 10 7 10"></polyline>
+                    <polyline points="23 20 23 14 17 14"></polyline>
+                    <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
+                   </svg>
+                  Donar o vender mis libros
                   </a>
 
                 {% render 'search-header' %}
