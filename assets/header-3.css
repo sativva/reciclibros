@@ -29,7 +29,7 @@
   .header__logo {
     flex: 1 1 auto;
     max-width: max-content;
-    margin-right: 104px;
+    margin-right: 40px;
   }
   .menu-categories {
     flex: 1 1 auto;
@@ -37,12 +37,15 @@
   }
   .header-search {
     flex: 1 1 0;
-    margin-right: 112px;
+    margin-right: 40px;
   }
   .header__secondary-links {
     gap: 20px;
     flex: 1 1 auto;
     max-width: max-content;
+  }
+    .header__btn-donar {
+    margin-right: 40px;
   }
 }
 
