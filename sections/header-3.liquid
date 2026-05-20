@@ -187,10 +187,15 @@
       #shopify-section-{{ section.id }} .menu-categories .collapsible-mega_child .categories-meganav__link {
         padding: 8px 20px;
       }
-      #shopify-section-{{ section.id }} .menu-categories .categories-nav .collapsible:not([open]) {
-       height: 0 !important;
-       overflow: hidden !important;
-        visibility: hidden !important;
+      #shopify-section-{{ section.id }} .menu-categories .categories-nav .collapsible {
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
+      }
+      #shopify-section-{{ section.id }} .menu-categories .categories-nav .collapsible[open] {
+        height: auto;
+        overflow: visible;
+        visibility: visible;
       }
       #shopify-section-{{ section.id }} .menu-categories .collapsible-mega,
       #shopify-section-{{ section.id }} .menu-categories .collapsible-mega_child {
