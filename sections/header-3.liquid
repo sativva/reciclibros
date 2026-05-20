@@ -371,33 +371,6 @@
     document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
     document.documentElement.style.setProperty('--header-height-without-bottom-nav', headerHeightWithoutBottomNav + 'px');
   });
-(() => {
-  document.addEventListener('DOMContentLoaded', () => {
-    if (window.innerWidth < 1200) return;
-
-    document.querySelectorAll('#categories-menu-drawer [is="toggle-button"]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const targetId = btn.getAttribute('ap-controlsaria');
-        const target = document.getElementById(targetId);
-        if (!target) return;
-
-        const isOpen = btn.getAttribute('ap-expanded-aria') === 'true';
-
-        if (isOpen) {
-          setTimeout(() => {
-            target.querySelectorAll('ap-contentcollapsible').forEach(child => {
-              child.removeAttribute('open');
-              child.style.cssText = 'height:0!important;overflow:hidden!important;visibility:hidden!important;';
-              const childBtn = document.querySelector(`[ap-controlsaria="${child.id}"]`);
-              if (childBtn) childBtn.setAttribute('ap-expanded-aria', 'false');
-            });
-          }, 300);
-        }
-        // Ne rien faire à l'ouverture — laisser le composant gérer seul
-      });
-    });
-  });
-})();
 {% endjavascript %}
 
 <script type="application/ld+json">
