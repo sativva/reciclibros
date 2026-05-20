@@ -371,6 +371,31 @@
     document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
     document.documentElement.style.setProperty('--header-height-without-bottom-nav', headerHeightWithoutBottomNav + 'px');
   });
+  (() => {
+  document.addEventListener('DOMContentLoaded', () => {
+    // Uniquement sur desktop (>= 1200px comme défini dans ton CSS)
+    if (window.innerWidth < 1200) return;
+
+    document.querySelectorAll('#categories-menu-drawer [is="toggle-button"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('ap-controlsaria');
+        const target = document.getElementById(targetId);
+        if (!target) return;
+
+        const isOpen = btn.getAttribute('ap-expanded-aria') === 'true';
+
+        if (isOpen) {
+          // On ferme → forcer la fermeture de tous les enfants
+          target.querySelectorAll('ap-contentcollapsible[open]').forEach(child => {
+            child.removeAttribute('open');
+            const childBtn = document.querySelector(`[ap-controlsaria="${child.id}"]`);
+            if (childBtn) childBtn.setAttribute('ap-expanded-aria', 'false');
+          });
+        }
+      });
+    });
+  });
+})();
 {% endjavascript %}
 
 <script type="application/ld+json">
