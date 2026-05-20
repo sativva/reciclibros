@@ -371,7 +371,7 @@
     document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
     document.documentElement.style.setProperty('--header-height-without-bottom-nav', headerHeightWithoutBottomNav + 'px');
   });
-  (() => {
+(() => {
   document.addEventListener('DOMContentLoaded', () => {
     if (window.innerWidth < 1200) return;
 
@@ -384,22 +384,20 @@
         const isOpen = btn.getAttribute('ap-expanded-aria') === 'true';
 
         if (isOpen) {
-          target.querySelectorAll('ap-contentcollapsible[open]').forEach(child => {
+          // Fermer et masquer tous les collapsibles enfants
+          target.querySelectorAll('ap-contentcollapsible').forEach(child => {
             child.removeAttribute('open');
-            // Forcer height et visibility en inline pour contourner le CSS
-            child.style.height = '0';
-            child.style.overflow = 'hidden';
-            child.style.visibility = 'hidden';
-
+            child.style.cssText = 'height:0!important;overflow:hidden!important;visibility:hidden!important;';
             const childBtn = document.querySelector(`[ap-controlsaria="${child.id}"]`);
             if (childBtn) childBtn.setAttribute('ap-expanded-aria', 'false');
           });
+          // Forcer aussi le target lui-même
+          target.style.cssText = 'height:0!important;overflow:hidden!important;visibility:hidden!important;';
         } else {
-          // À l'ouverture, nettoyer les styles inline pour laisser le CSS reprendre
+          // Nettoyer les styles forcés sur le target et ses enfants
+          target.style.cssText = '';
           target.querySelectorAll('ap-contentcollapsible').forEach(child => {
-            child.style.height = '';
-            child.style.overflow = '';
-            child.style.visibility = '';
+            child.style.cssText = '';
           });
         }
       });
