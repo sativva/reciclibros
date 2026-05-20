@@ -641,6 +641,7 @@
           "logo_width": 150,
           "menu": "secundary-menu",
           "menu_categories": "main-menu",
+          "menu_mobile_secondary": "secondary-menu-mobile",
           "enable_categories": false,
           "categories_desktop_drawer": true,
           "icon_search": "icon-text",
