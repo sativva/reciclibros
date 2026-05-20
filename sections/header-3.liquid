@@ -384,7 +384,6 @@
         const isOpen = btn.getAttribute('ap-expanded-aria') === 'true';
 
         if (isOpen) {
-          // Laisser le composant fermer le parent, PUIS nettoyer les enfants
           setTimeout(() => {
             target.querySelectorAll('ap-contentcollapsible').forEach(child => {
               child.removeAttribute('open');
@@ -392,15 +391,9 @@
               const childBtn = document.querySelector(`[ap-controlsaria="${child.id}"]`);
               if (childBtn) childBtn.setAttribute('ap-expanded-aria', 'false');
             });
-          }, 50);
-        } else {
-          // À l'ouverture, nettoyer les styles forcés sur les enfants
-          setTimeout(() => {
-            target.querySelectorAll('ap-contentcollapsible').forEach(child => {
-              child.style.cssText = '';
-            });
-          }, 50);
+          }, 300);
         }
+        // Ne rien faire à l'ouverture — laisser le composant gérer seul
       });
     });
   });
