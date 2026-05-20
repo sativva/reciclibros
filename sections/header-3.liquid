@@ -384,21 +384,22 @@
         const isOpen = btn.getAttribute('ap-expanded-aria') === 'true';
 
         if (isOpen) {
-          // Fermer et masquer tous les collapsibles enfants
-          target.querySelectorAll('ap-contentcollapsible').forEach(child => {
-            child.removeAttribute('open');
-            child.style.cssText = 'height:0!important;overflow:hidden!important;visibility:hidden!important;';
-            const childBtn = document.querySelector(`[ap-controlsaria="${child.id}"]`);
-            if (childBtn) childBtn.setAttribute('ap-expanded-aria', 'false');
-          });
-          // Forcer aussi le target lui-même
-          target.style.cssText = 'height:0!important;overflow:hidden!important;visibility:hidden!important;';
+          // Laisser le composant fermer le parent, PUIS nettoyer les enfants
+          setTimeout(() => {
+            target.querySelectorAll('ap-contentcollapsible').forEach(child => {
+              child.removeAttribute('open');
+              child.style.cssText = 'height:0!important;overflow:hidden!important;visibility:hidden!important;';
+              const childBtn = document.querySelector(`[ap-controlsaria="${child.id}"]`);
+              if (childBtn) childBtn.setAttribute('ap-expanded-aria', 'false');
+            });
+          }, 50);
         } else {
-          // Nettoyer les styles forcés sur le target et ses enfants
-          target.style.cssText = '';
-          target.querySelectorAll('ap-contentcollapsible').forEach(child => {
-            child.style.cssText = '';
-          });
+          // À l'ouverture, nettoyer les styles forcés sur les enfants
+          setTimeout(() => {
+            target.querySelectorAll('ap-contentcollapsible').forEach(child => {
+              child.style.cssText = '';
+            });
+          }, 50);
         }
       });
     });
