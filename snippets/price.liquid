@@ -41,6 +41,8 @@
      {% endcomment %}
     {%- if variant.compare_at_price > variant.price -%}
       {% assign discount = variant.compare_at_price | minus: variant.price %}
+      {% assign variant = product.selected_or_first_available_variant %}
+      DEBUG → compare={{ variant.compare_at_price }} price={{ variant.price }}
       <span class="label label--highlight">Ahorras {{ discount | money }}</span>
     {% endif %}
   </div>
