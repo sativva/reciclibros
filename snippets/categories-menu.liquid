@@ -98,15 +98,8 @@
             </li>
         {%- endfor -%}
       </ul>
-    </div>
-    <div class="drawer__footer drawer__footer--tight drawer__footer--bordered" style="opacity: 1;">
-      <div class="categories-nav__footer">
-        <a class="icon-text" href="/account/login">
-          <svg focusable="false" width="18" height="17" class="icon icon--header-customer   " viewBox="0 0 18 17">
-            <circle cx="9" cy="5" r="4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></circle>
-            <path d="M1 17v0a4 4 0 014-4h8a4 4 0 014 4v0" fill="none" stroke="currentColor" stroke-width="2"></path>
-          </svg>Account </a>
-                <ul class="desktop-secondary-menu list--unstyled" role="list">
+
+      <ul class="desktop-secondary-menu list--unstyled" role="list">
   {%- for link in section.settings.menu_mobile_secondary.links -%}
 
     {%- assign nav_url = link.url -%}
@@ -123,6 +116,15 @@
 
   {%- endfor -%}
 </ul>
+
+    </div>
+    <div class="drawer__footer drawer__footer--tight drawer__footer--bordered" style="opacity: 1;">
+      <div class="categories-nav__footer">
+        <a class="icon-text" href="/account/login">
+          <svg focusable="false" width="18" height="17" class="icon icon--header-customer   " viewBox="0 0 18 17">
+            <circle cx="9" cy="5" r="4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></circle>
+            <path d="M1 17v0a4 4 0 014-4h8a4 4 0 014 4v0" fill="none" stroke="currentColor" stroke-width="2"></path>
+          </svg>Account </a>
       </div>
     </div>
 </categories-menu>
