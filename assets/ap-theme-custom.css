@@ -451,3 +451,11 @@ ap-comparebutton {
     display: flex !important;
   }
 }
+/* Drawer catégories desktop — resserre le menu secondaire */
+#categories-menu-drawer .mobile-secondary-menu .mobile-nav__item {
+  margin: 0;
+}
+#categories-menu-drawer .mobile-secondary-menu .header__linklist-link {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
