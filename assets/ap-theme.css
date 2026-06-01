@@ -12963,3 +12963,13 @@ ul.user-block {
     transform: translateY(-50%);
   }
 
+.desktop-secondary-menu {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color, #e5e5e5);
+}
+.desktop-secondary-menu__item { list-style: none; }
+.desktop-secondary-menu__item .header__linklist-link {
+  display: block;
+  padding: 10px 20px; /* aligne sur le padding de tes items catégories */
+}
