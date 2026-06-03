@@ -462,3 +462,13 @@ ap-comparebutton {
 
 /* Enlever le ahorras du prix barré */
 .ap-productmeta__label-list .label--highlight { display: none; }
+
+.block-swatch__compare {
+  display: block;          /* passe au-dessus au lieu d'à côté */
+  font-size: 0.75em;       /* plus petit */
+  line-height: 1;
+  text-decoration: line-through;
+  opacity: .55;
+  font-weight: 400;
+  margin-bottom: 1px;
+}
