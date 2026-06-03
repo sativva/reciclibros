@@ -459,3 +459,6 @@ ap-comparebutton {
   padding-top: 8px;
   padding-bottom: 8px;
 }
+
+/* Enlever le ahorras du prix barré */
+.ap-productmeta__label-list .label--highlight { display: none; }
