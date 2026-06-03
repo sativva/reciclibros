@@ -434,6 +434,7 @@
 
                             if show_variant_prices
                                 assign option_price = blank
+                                assign option_compare = blank
                                 assign _found_price = false
                                 for v in product.variants
                                   if _found_price == false
@@ -441,16 +442,19 @@
                                       when 1
                                         if v.option1 == value
                                           assign option_price = v.price
+                                          assign option_compare = v.compare_at_price
                                           assign _found_price = true
                                         endif
                                       when 2
                                         if v.option1 == product.selected_or_first_available_variant.option1 and v.option2 == value
                                           assign option_price = v.price
+                                          assign option_compare = v.compare_at_price
                                           assign _found_price = true
                                         endif
                                       when 3
                                         if v.option1 == product.selected_or_first_available_variant.option1 and v.option2 == product.selected_or_first_available_variant.option2 and v.option3 == value
                                           assign option_price = v.price
+                                          assign option_compare = v.compare_at_price
                                           assign _found_price = true
                                         endif
                                     endcase
@@ -473,7 +477,12 @@
                                 <label class="block-swatch__item" for="option-{{ section.id }}-{{ option_index }}-{{ forloop.index }}">
                                   <span class="block-swatch__value">{{ value }}</span>
                                   {%- if show_variant_prices and option_price != blank -%}
-                                    <span class="block-swatch__price" data-variant-price>{{ option_price | money }}</span>
+                                    <span class="block-swatch__price" data-variant-price>
+                                      {%- if option_compare != blank and option_compare > option_price -%}
+                                        <s class="block-swatch__compare">{{ option_compare | money }}</s>
+                                      {%- endif -%}
+                                      {{ option_price | money }}
+                                    </span>
                                   {%- endif -%}
                                 </label>
                             </div>
