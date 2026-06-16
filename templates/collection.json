@@ -43,7 +43,7 @@
         "show_description": true,
         "default_background_color": "#ffffff",
         "heading_color": "#000000",
-        "heading_text_size": 2,
+        "heading_text_size": 4,
         "text_color": "#000000",
         "breadcrumb_position": "0",
         "show_shop_bar": false,
