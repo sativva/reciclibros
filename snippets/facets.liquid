@@ -105,20 +105,6 @@
                         </facet-remove>
                       </div>
                     {%- endif -%}
-
-                    {% comment %}
-                      AJOUT — Champ de recherche interne au filtre (desktop / vertical).
-                      Affiché uniquement quand le filtre a plus de 10 valeurs, sur le
-                      même seuil que le bouton « Ver más ». Toutes les valeurs étant
-                      déjà rendues dans le DOM (y compris celles masquées par
-                      « Ver más »), la recherche couvre la liste complète.
-                    {% endcomment %}
-                    {%- if filter.values.size > 10 and filter_type == 'vertical' -%}
-                      <div class="facet-search">
-                        <input type="search" class="facet-search-input" placeholder="Buscar…" aria-label="Buscar en {{ filter.label | escape }}" autocomplete="off">
-                      </div>
-                    {%- endif -%}
-
                     <fieldset class="facets-wrap parent-wrap {% if filter_type == 'vertical' %} facets-wrap-vertical{% endif %}">
                       <legend class="visually-hidden">{{ filter.label | escape }}</legend>
                       <ul class="{% if filter_type != 'vertical' %} facets__list{% endif %} list-unstyled no-js-hidden" role="list">
@@ -473,19 +459,6 @@
                           {% render 'icon-arrow' %}
                           {{ filter.label | escape }}
                         </button>
-
-                        {% comment %}
-                          AJOUT — Champ de recherche interne au filtre (mobile / drawer).
-                          Affiché quand le filtre a plus de 10 valeurs. Sur mobile,
-                          Apollo rend déjà toutes les valeurs (pas de troncature
-                          « Ver más »), donc la recherche couvre toute la liste.
-                        {% endcomment %}
-                        {%- if filter.values.size > 10 -%}
-                          <div class="facet-search">
-                            <input type="search" class="facet-search-input" placeholder="Buscar…" aria-label="Buscar en {{ filter.label | escape }}" autocomplete="off">
-                          </div>
-                        {%- endif -%}
-
                         <ul class="mobile-facets__list list-unstyled" role="list">
                           {%- for value in filter.values -%}
                             <li class="mobile-facets__item list-menu__item">
@@ -761,31 +734,6 @@
       </form>
     </ap-facetfilters-form>
   {%- endif -%}
-
-  {% comment %}
-    ============================================================
-    AJOUT — Styles de la recherche interne aux filtres
-    ============================================================
-  {% endcomment %}
-  <style>
-    .facet-search { margin: 0 0 1rem; }
-    .facet-search-input {
-      width: 100%;
-      padding: 0.6rem 1rem;
-      border: 0.1rem solid rgba(var(--color-foreground), 0.2);
-      border-radius: var(--inputs-radius, 0.4rem);
-      font: inherit;
-      font-size: 1.4rem;
-    }
-    /* Pendant la recherche : on révèle ce qui était masqué par « Ver más » */
-    details.is-searching .show-more-item.hidden { display: block !important; }
-    /* … et on masque ce qui ne correspond pas à la saisie */
-    details.is-searching .facets__item.facet-nomatch,
-    .mobile-facets__details.is-searching .mobile-facets__item.facet-nomatch { display: none !important; }
-    /* On cache le bouton « Ver más / Ver menos » tant qu'une recherche est active */
-    details.is-searching show-more-button { display: none !important; }
-  </style>
-
   <script>
   document.addEventListener('DOMContentLoaded', function() {
     // Apply button pour drawer mobile
@@ -804,38 +752,5 @@
       });
     });
   });
-
-  // ============================================================
-  // AJOUT — Recherche interne aux filtres (Edición, Autor, etc.)
-  // ============================================================
-  (function () {
-    // Insensible à la casse ET aux accents (indispensable en ES)
-    const normalize = (s) =>
-      (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-
-    // Filtrage en direct. Écouteur DÉLÉGUÉ sur document : il continue de
-    // fonctionner après chaque re-rendu AJAX des facettes par Apollo
-    // (ap-facetfilters-form), sans avoir à re-binder quoi que ce soit.
-    document.addEventListener('input', function (e) {
-      if (!e.target.matches('.facet-search-input')) return;
-
-      const details = e.target.closest('details, .mobile-facets__details');
-      if (!details) return;
-
-      const q = normalize(e.target.value.trim());
-      details.classList.toggle('is-searching', q.length > 0);
-
-      // Cible les options desktop (.facets__item) ET mobiles (.mobile-facets__item)
-      details.querySelectorAll('.facets__item, .mobile-facets__item').forEach((item) => {
-        const match = !q || normalize(item.textContent).includes(q);
-        item.classList.toggle('facet-nomatch', !match);
-      });
-    });
-
-    // Entrée dans le champ ne doit pas soumettre le formulaire de filtres
-    document.addEventListener('keydown', function (e) {
-      if (e.target.matches('.facet-search-input') && e.key === 'Enter') e.preventDefault();
-    });
-  })();
-  </script>
+</script>
 </div>
