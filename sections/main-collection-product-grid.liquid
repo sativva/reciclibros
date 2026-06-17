@@ -383,7 +383,7 @@
 
         {%- paginate collection.products by products_per_page -%}
           
-          <ap-productlist class="ap-productfacet__ap-productlist ap-productlist anchor ap-object-loaded" stagger-apparition="">
+          <ap-productlist class="ap-productfacet__ap-productlist ap-productlist anchor ap-object-loaded">
             <div id="ap_productlist" class="ap-productlist__inner">
               {%- for product in collection.products -%}
                 {% render 'product-grid', product: product %}
