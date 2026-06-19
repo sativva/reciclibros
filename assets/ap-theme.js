@@ -3720,8 +3720,8 @@
         document.getElementById("no-wishlistdisplay").classList = "active";
         return;
       }
-      const response = await fetch(
-        `${window.themeVariables.routes.apDrawerSearchUrl}?q=${this.searchQueryString}&resources[limit]=10&resources[type]=product&section_id=${this.sectionId}`
+        const response = await fetch(
+        `${window.Shopify.routes.root}search?q=${encodeURIComponent(this.searchQueryString)}&type=product&section_id=${this.sectionId}`
       );
       const div = document.createElement("div");
       div.innerHTML = await response.text();
