@@ -33,9 +33,11 @@
     <ap-wishlistdisplay id="ap-wishlistdisplay" section-id="{{ section.id }}" class="section section--flush">
       <div class="ap-productlist__inner ap-productlist__inner--scroller ap-productlist__inner--desktop-no-scroller hide-scrollbar">
         {%- if search.performed -%}
-          {%- for product in search.results -%}
-            {% render 'product-grid', product: product %}
-          {%- endfor -%}
+          {%- paginate search.results by 50 -%}
+            {%- for product in search.results -%}
+              {% render 'product-grid', product: product %}
+            {%- endfor -%}
+          {%- endpaginate -%}
         {%- endif -%}
       </div>
     </ap-wishlistdisplay>
