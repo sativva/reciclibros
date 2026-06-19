@@ -32,12 +32,14 @@
   <div class="container">
     <ap-wishlistdisplay id="ap-wishlistdisplay" section-id="{{ section.id }}" class="section section--flush">
       <div class="ap-productlist__inner ap-productlist__inner--scroller ap-productlist__inner--desktop-no-scroller hide-scrollbar">
-        {%- for product in predictive_search.resources.products -%}
+        {%- if search.performed -%}
+          {%- for product in search.results -%}
             {% render 'product-grid', product: product %}
-        {% endfor %}
+          {%- endfor -%}
+        {%- endif -%}
       </div>
     </ap-wishlistdisplay>
-    
+
     <div id="no-wishlistdisplay">
       No tienes productos guardados en favoritos
     </div>
