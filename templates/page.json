@@ -35,12 +35,12 @@
       "type": "main-page",
       "settings": {
         "setwidthout": "container-fluid",
-        "padding_top": 35,
+        "padding_top": 0,
         "padding_bottom": 0,
-        "height": 100,
+        "height": 10,
         "margin_desktop": "",
         "background_color": "#ffffff",
-        "color_title": "#000000",
+        "color_title": "#333333",
         "color_breadcrumb": "#ffffff"
       }
     },
