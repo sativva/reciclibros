@@ -178,6 +178,16 @@
         "arrow_heading": false
       }
     },
+    "custom_liquid_fyVxMJ": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n  .rl-sell-cta-wrap { text-align: center; margin: 0.1rem 0 0.1rem; }\n  .rl-sell-cta {\n    display: inline-flex; align-items: center; gap: 8px;\n    background: #ff6400; color: #fff;\n    font-weight: 600; font-size: 17px; line-height: 1;\n    padding: 16px 34px; border-radius: 8px;\n    text-decoration: none; transition: background .15s ease;\n  }\n  .rl-sell-cta:hover { background: #e65a00; color: #fff; }\n  .rl-sell-cta svg { width: 18px; height: 18px; }\n</style>\n\n<div class=\"rl-sell-cta-wrap\">\n  <a href=\"https://venta.reciclibros.com\" class=\"rl-sell-cta\">\n    Empezar a vender\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"/><polyline points=\"12 5 19 12 12 19\"/></svg>\n  </a>\n</div>",
+        "color_scheme": "background-1",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "custom_liquid_TPDCKe": {
       "type": "custom-liquid",
       "custom_css": [],
@@ -293,6 +303,7 @@
     "image_banner_xNQEjU",
     "custom_liquid_34pkTA",
     "logo_swip_MGzb9J",
+    "custom_liquid_fyVxMJ",
     "custom_liquid_TPDCKe",
     "image_banner_cNFWxn",
     "contact_form_section_E4VBwF",
