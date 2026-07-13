@@ -472,3 +472,26 @@ ap-comparebutton {
   font-weight: 400;
   margin-bottom: 1px;
 }
+  .product-item__image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+  .label--promo-ribbon {
+    position: absolute;
+    top: 18px;
+    left: -34px;
+    width: 130px;
+    padding: 5px 0;
+    transform: rotate(-45deg);
+    background: #ff6400;
+    color: #ffffff;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    z-index: 2;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+}
