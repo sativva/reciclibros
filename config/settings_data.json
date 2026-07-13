@@ -138,7 +138,7 @@
     "new_label_enable": true,
     "new_label_day": 30,
     "sale_label_enable": true,
-    "sale_label_text": "Sale",
+    "sale_label_text": "Promo",
     "sale_label_layout": "text",
     "size_img": "0.71",
     "product_list_col_gap": 20,
