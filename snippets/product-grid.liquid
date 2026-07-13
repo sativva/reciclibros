@@ -7,27 +7,31 @@
             <div class="product-item__image-wrapper product-item__image-wrapper--multiple">
 
             {% if product.available == false or product.compare_at_price > product.price and product.available %}
-             <div class="product-item__label-list label-list label-list-sale">
-              {% if product.available == false %}
-             <span class="label label--subdued">{{ 'products.product.sold_out' | t }}</span>
-            {% endif %}
+          <div class="product-item__label-list label-list label-list-sale">
+            {% if product.available == false %}
+            <span class="label label--subdued">{{ 'products.product.sold_out' | t }}</span>
+         {% endif %}
          {% if product.compare_at_price > product.price and product.available %}
             {% if settings.sale_label_enable %}
-                {%- assign sale_percent = 0 -%}
-                {%- if product.price > 0 and product.compare_at_price > product.price -%}
-                    {%- assign sale_minus = product.compare_at_price | minus: product.price -%}
-                    {%- assign sale_percent = sale_minus | times: 100 | divided_by: product.compare_at_price -%}
-                {%- endif -%}
 
                 {% if settings.sale_label_layout == 'text' %}
-                    <div class="label label--highlight" aria-hidden="true">
-                        {{ settings.sale_label_text | default: 'sale' }}
+                    <div class="label--promo-ribbon" aria-hidden="true">
+                        {{ settings.sale_label_text | default: 'Promo' }}
                     </div>
-                {% elsif sale_percent > 0 and sale_percent < 100 %}
-                    <div class="label label--highlight" aria-hidden="true">
-                        -{{ sale_percent | append: '%' }}
-                    </div>
+                {% else %}
+                    {%- assign sale_percent = 0 -%}
+                    {%- if product.price > 0 -%}
+                        {%- assign sale_minus = product.compare_at_price | minus: product.price -%}
+                        {%- assign sale_percent = sale_minus | times: 100 | divided_by: product.compare_at_price -%}
+                    {%- endif -%}
+
+                    {% if sale_percent > 0 and sale_percent < 100 %}
+                        <div class="label--promo-ribbon" aria-hidden="true">
+                            -{{ sale_percent | append: '%' }}
+                        </div>
+                    {%- endif -%}
                 {%- endif -%}
+
             {%- endif -%}   
                         {% endif %}   
                         {% if settings.new_label_enable %}
