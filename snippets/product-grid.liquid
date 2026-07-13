@@ -1,4 +1,37 @@
 {% assign show_secondary_image = true %}
+
+{%- comment -%}
+  CSS du bandeau promo.
+  Idéalement, déplacer ce bloc <style> dans le fichier CSS global du thème
+  (Assets > theme.css ou équivalent) pour éviter qu'il soit dupliqué
+  à chaque carte produit rendue. Fonctionnel tel quel dans les deux cas.
+{%- endcomment -%}
+<style>
+  .product-item__image-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+  .label--promo-ribbon {
+    position: absolute;
+    top: 18px;
+    left: -34px;
+    width: 130px;
+    padding: 5px 0;
+    transform: rotate(-45deg);
+    background: #ff6400;
+    color: #ffffff;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    z-index: 2;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+  }
+</style>
+
 <product-item class="slider__item " reveal="" style="opacity: 1;" id="product-item-{{ product.id }}">
     <div class="product-item-bg_wrapper h-100" style="background-color: var(--background-product);position: relative;">
         <div class="product-item-wrapper">
@@ -6,34 +39,36 @@
         
             <div class="product-item__image-wrapper product-item__image-wrapper--multiple">
 
-            {% if product.available == false or product.compare_at_price > product.price and product.available %}
-          <div class="product-item__label-list label-list label-list-sale">
-            {% if product.available == false %}
-            <span class="label label--subdued">{{ 'products.product.sold_out' | t }}</span>
-         {% endif %}
-         {% if product.compare_at_price > product.price and product.available %}
-            {% if settings.sale_label_enable %}
-
-                {% if settings.sale_label_layout == 'text' %}
-                    <div class="label--promo-ribbon" aria-hidden="true">
-                        {{ settings.sale_label_text | default: 'Promo' }}
-                    </div>
-                {% else %}
-                    {%- assign sale_percent = 0 -%}
-                    {%- if product.price > 0 -%}
-                        {%- assign sale_minus = product.compare_at_price | minus: product.price -%}
-                        {%- assign sale_percent = sale_minus | times: 100 | divided_by: product.compare_at_price -%}
-                    {%- endif -%}
-
-                    {% if sale_percent > 0 and sale_percent < 100 %}
+                {%- comment -%}
+                  Bandeau promo : placé directement dans l'image-wrapper (et non dans
+                  .label-list) pour que son position:absolute se calcule par rapport
+                  au coin de l'image produit.
+                {%- endcomment -%}
+                {% if product.available and product.compare_at_price > product.price and settings.sale_label_enable %}
+                    {% if settings.sale_label_layout == 'text' %}
                         <div class="label--promo-ribbon" aria-hidden="true">
-                            -{{ sale_percent | append: '%' }}
+                            {{ settings.sale_label_text | default: 'Promo' }}
                         </div>
+                    {% else %}
+                        {%- assign sale_percent = 0 -%}
+                        {%- if product.price > 0 -%}
+                            {%- assign sale_minus = product.compare_at_price | minus: product.price -%}
+                            {%- assign sale_percent = sale_minus | times: 100 | divided_by: product.compare_at_price -%}
+                        {%- endif -%}
+
+                        {% if sale_percent > 0 and sale_percent < 100 %}
+                            <div class="label--promo-ribbon" aria-hidden="true">
+                                -{{ sale_percent | append: '%' }}
+                            </div>
+                        {%- endif -%}
                     {%- endif -%}
                 {%- endif -%}
 
-            {%- endif -%}   
-                        {% endif %}   
+                {% if product.available == false or product.compare_at_price > product.price and product.available %}
+                    <div class="product-item__label-list label-list label-list-sale">
+                        {% if product.available == false %}
+                            <span class="label label--subdued">{{ 'products.product.sold_out' | t }}</span>
+                        {% endif %}
                         {% if settings.new_label_enable %}
                             {%- liquid
                                 assign new = false 
