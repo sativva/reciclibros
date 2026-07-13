@@ -476,17 +476,17 @@ ap-comparebutton {
     position: relative;
     overflow: hidden;
 }
-  .label--promo-ribbon {
+.label--promo-ribbon {
     position: absolute;
-    top: 18px;
+    top: 22px;
     left: -34px;
-    width: 130px;
-    padding: 5px 0;
+    width: 140px;
+    padding: 6px 0;
     transform: rotate(-45deg);
     background: #ff6400;
     color: #ffffff;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
