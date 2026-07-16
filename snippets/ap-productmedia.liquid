@@ -46,6 +46,11 @@
   .product__media-item.d-show {
     opacity: 1;      
   }
+  @media (max-width: 999px) {
+  #ap_product_detail_media .product__media-item {
+    width: 100%;
+  }
+}
   {%- if section.settings.media_type == 'list' -%}
     .product__media-item{
       cursor: zoom-in;
