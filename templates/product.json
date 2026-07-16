@@ -131,7 +131,7 @@
       "custom_css": [],
       "settings": {
         "media_type": "without-thumbnails",
-        "thumbnails_position": "left",
+        "thumbnails_position": "bottom",
         "carousel_page_dots": false,
         "carousel_prevnextbuttons": false,
         "enable_video_looping": false,
