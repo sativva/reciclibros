@@ -321,7 +321,7 @@
 
             <div class="rl-cart-summary">
                 <div class="rl-cart-summary__row">
-                    <span>{{ cart.item_count }} {% if cart.item_count > 1 %}artículos{% else %}artículo{% endif %}</span>
+                    <span>{{ cart.item_count }} {% if cart.item_count > 1 %}productos{% else %}producto{% endif %}</span>
                     {%- if cart.total_price < cart.original_total_price -%}
                         <s class="rl-cart-summary__strike">{{ cart.original_total_price | money }}</s>
                     {%- endif -%}
