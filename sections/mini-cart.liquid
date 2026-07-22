@@ -71,6 +71,10 @@
         font-size: 20px;
         color: #333333;
     }
+
+    /* Espacement entre les deux boutons */
+    #mini-cart .checkout-button { margin: 0 0 8px; }
+    #mini-cart .cart-button { margin: 0; }
 </style>
 
 <ap-cartdrawer section="mini-cart" id="mini-cart" class="mini-cart drawer drawer--large">
@@ -81,11 +85,7 @@
                 <path d="M3 1h14l1 16H2L3 1z" fill="none" stroke="currentColor" stroke-width="2"></path>
                 <path d="M7 4v0a3 3 0 003 3v0a3 3 0 003-3v0" fill="none" stroke="currentColor" stroke-width="2"></path>
             </svg>
-            {%- if cart != empty -%}
-                {{ cart.item_count }} {{ 'general.cart.cart_item' | t }}
-            {% else %}
-                {{ 'sections.cart.title' | t }}
-            {% endif %}
+            Mi cesta
         </p>
   
         <button type="button" class="drawer__close-button tap-area" data-action="close" title="Close"><svg focusable="false" width="14" height="14" class="icon icon--close   " viewBox="0 0 14 14">
@@ -296,7 +296,7 @@
             </div>
 
             {%- comment -%} Umbral de envío gratis: alinéalo con el de 'ap-freeshippingbar' {%- endcomment -%}
-            {%- assign envio_gratis_desde = 3000 -%}
+            {%- assign envio_gratis_desde = 1 -%}
 
             {%- if cart.total_price >= envio_gratis_desde -%}
                 <div class="rl-cart-shipping">
@@ -325,16 +325,9 @@
                 </div>
             </div>
 
-            <p class="ajaxcart__policies">{{ 'general.cart.policy' | t }}</p>
-            <div class="ajaxcart-currency" data-currency-jsnotify="">
-				<div class="content">
-					<div class="marquee">
-						<marquee direction="left">
-                            {{ 'general.cart.marquee' | t }}
-                        </marquee>
-					</div>
-				</div>
-			</div>
+            {%- comment -%} Réactiver en retirant les balises comment ci-dessous {%- endcomment -%}
+            {%- comment -%}<p class="ajaxcart__policies">{{ 'general.cart.policy' | t }}</p>{%- endcomment -%}
+
             <div>
                 <p class="ajaxcart_terms_conditions d-none">
                     <input style="float:none; vertical-align: middle;" type="checkbox" class="agree_terms_conditions" id="agree_terms_conditions">
