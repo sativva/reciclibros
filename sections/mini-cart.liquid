@@ -2,6 +2,16 @@
     #mini-cart .product-item-meta {
         padding: 0;
     }
+    #mini-cart .rl-line-item__estado {
+        display: inline-block;
+        margin-top: 4px;
+        padding: 1px 8px;
+        background: #f0f2f5;
+        border-radius: 4px;
+        color: #4f4f4f;
+        font-size: 11px;
+        line-height: 1.5;
+    }
 
     /* --- Resumen carrito Reciclibros --- */
     #mini-cart .rl-cart-shipping {
@@ -140,7 +150,10 @@
                             </a>
                             <div class="line-item__info">
                                 <div class="product-item-meta">
-                                    <a href="{{ item.url }}" class="product-item-meta__title text--small">{{ item.title }}</a>
+                                    <a href="{{ item.url }}" class="product-item-meta__title text--small">{{ item.product.title }}</a>
+                                    {%- if item.variant.title and item.variant.title != 'Default Title' -%}
+                                        <span class="rl-line-item__estado">{{ item.variant.title }}</span>
+                                    {%- endif -%}
                                     <div class="product-item-meta__price-list-container text--small">
                                         <div class="price-list hd-tablet-and-up">
                                             <span class="price ">
