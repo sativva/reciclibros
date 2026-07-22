@@ -2,6 +2,75 @@
     #mini-cart .product-item-meta {
         padding: 0;
     }
+
+    /* --- Resumen carrito Reciclibros --- */
+    #mini-cart .rl-cart-shipping {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        margin-bottom: 12px;
+        background: #e8f1eb;
+        border-radius: 8px;
+        color: #006837;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1.2;
+    }
+    #mini-cart .rl-cart-shipping__check {
+        flex: 0 0 auto;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #006837;
+        position: relative;
+    }
+    #mini-cart .rl-cart-shipping__check::after {
+        content: "";
+        position: absolute;
+        top: 4px;
+        left: 6px;
+        width: 4px;
+        height: 8px;
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+    #mini-cart .rl-cart-summary {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 12px;
+        font-size: 14px;
+        color: #333333;
+    }
+    #mini-cart .rl-cart-summary__row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+    }
+    #mini-cart .rl-cart-summary__strike {
+        color: #999;
+        text-decoration: line-through;
+        white-space: nowrap;
+    }
+    #mini-cart .rl-cart-summary__row--discount { color: #4f4f4f; }
+    #mini-cart .rl-cart-summary__discount-amount {
+        color: #ff6400;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+    #mini-cart .rl-cart-summary__total {
+        display: flex;
+        justify-content: flex-end;
+        align-items: baseline;
+        gap: 8px;
+        padding-top: 8px;
+        border-top: 1px solid #dedede;
+        font-size: 20px;
+        color: #333333;
+    }
 </style>
 
 <ap-cartdrawer section="mini-cart" id="mini-cart" class="mini-cart drawer drawer--large">
@@ -225,10 +294,37 @@
                     </div>
                 {% endif %}
             </div>
-            <div class="ajaxcart__footer-price">
-                <span class="ajaxcart__subtotal-name">{{ 'general.cart.subtotal' | t }}</span>
-                <span class="ajaxcart__subtotal">{{ cart.total_price | money_with_currency }}</span>
+
+            {%- comment -%} Umbral de envío gratis: alinéalo con el de 'ap-freeshippingbar' {%- endcomment -%}
+            {%- assign envio_gratis_desde = 3000 -%}
+
+            {%- if cart.total_price >= envio_gratis_desde -%}
+                <div class="rl-cart-shipping">
+                    <span class="rl-cart-shipping__check" aria-hidden="true"></span>
+                    <span>¡Envío gratis!</span>
+                </div>
+            {%- endif -%}
+
+            <div class="rl-cart-summary">
+                <div class="rl-cart-summary__row">
+                    <span>{{ cart.item_count }} {% if cart.item_count > 1 %}artículos{% else %}artículo{% endif %}</span>
+                    {%- if cart.total_price < cart.original_total_price -%}
+                        <s class="rl-cart-summary__strike">{{ cart.original_total_price | money }}</s>
+                    {%- endif -%}
+                </div>
+
+                {%- for discount in cart.cart_level_discount_applications -%}
+                    <div class="rl-cart-summary__row rl-cart-summary__row--discount">
+                        <span>{{ discount.title }}</span>
+                        <span class="rl-cart-summary__discount-amount">-{{ discount.total_allocated_amount | money }}</span>
+                    </div>
+                {%- endfor -%}
+
+                <div class="rl-cart-summary__total">
+                    <span>Total : <strong>{{ cart.total_price | money }}</strong></span>
+                </div>
             </div>
+
             <p class="ajaxcart__policies">{{ 'general.cart.policy' | t }}</p>
             <div class="ajaxcart-currency" data-currency-jsnotify="">
 				<div class="content">
