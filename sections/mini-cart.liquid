@@ -73,8 +73,12 @@
     }
 
     /* Espacement entre les deux boutons */
-    #mini-cart .checkout-button { margin: 0 0 8px; }
-    #mini-cart .cart-button { margin: 0; }
+    #mini-cart .rl-cart-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    #mini-cart .rl-cart-actions .button { margin: 0 !important; }
 </style>
 
 <ap-cartdrawer section="mini-cart" id="mini-cart" class="mini-cart drawer drawer--large">
@@ -328,7 +332,7 @@
             {%- comment -%} Réactiver en retirant les balises comment ci-dessous {%- endcomment -%}
             {%- comment -%}<p class="ajaxcart__policies">{{ 'general.cart.policy' | t }}</p>{%- endcomment -%}
 
-            <div>
+            <div class="rl-cart-actions">
                 <p class="ajaxcart_terms_conditions d-none">
                     <input style="float:none; vertical-align: middle;" type="checkbox" class="agree_terms_conditions" id="agree_terms_conditions">
                     <label style="display:inline; float:none" for="agree">
