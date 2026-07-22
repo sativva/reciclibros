@@ -8,8 +8,8 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        padding: 10px 12px;
-        margin-bottom: 12px;
+        padding: 8px 12px;
+        margin-bottom: 8px;
         background: #e8f1eb;
         border-radius: 8px;
         color: #006837;
@@ -40,7 +40,7 @@
         display: flex;
         flex-direction: column;
         gap: 6px;
-        margin-bottom: 12px;
+        margin-bottom: 8px;
         font-size: 14px;
         color: #333333;
     }
@@ -76,9 +76,19 @@
     #mini-cart .rl-cart-actions {
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 4px;
     }
     #mini-cart .rl-cart-actions .button { margin: 0 !important; }
+    /* Le lien "Ver mi cesta" garde le padding d'un button--full : on le neutralise
+       (visuel du lien inchangé, on retire juste la hauteur superflue) */
+    #mini-cart .rl-cart-actions .cart-button {
+        padding-top: 6px !important;
+        padding-bottom: 0 !important;
+        min-height: 0 !important;
+    }
+    /* Cadre footer plus compact pour laisser de la place aux produits */
+    #mini-cart .mini-cart__drawer-footer { padding-top: 10px; padding-bottom: 12px; }
+    #mini-cart .ajaxcart__info_header { margin: 0; padding: 0; }
 </style>
 
 <ap-cartdrawer section="mini-cart" id="mini-cart" class="mini-cart drawer drawer--large">
