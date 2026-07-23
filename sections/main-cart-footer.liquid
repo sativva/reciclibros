@@ -1,3 +1,75 @@
+<style>
+    /* --- Resumen carrito Reciclibros (página /cart) --- */
+    #main-cart-footer .rl-cart-shipping {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        margin-bottom: 12px;
+        background: #e8f1eb;
+        border-radius: 8px;
+        color: #006837;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1.2;
+    }
+    #main-cart-footer .rl-cart-shipping__check {
+        flex: 0 0 auto;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #006837;
+        position: relative;
+    }
+    #main-cart-footer .rl-cart-shipping__check::after {
+        content: "";
+        position: absolute;
+        top: 4px;
+        left: 6px;
+        width: 4px;
+        height: 8px;
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+    #main-cart-footer .rl-cart-summary {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 12px;
+        font-size: 15px;
+        color: #333333;
+    }
+    #main-cart-footer .rl-cart-summary__row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+    }
+    #main-cart-footer .rl-cart-summary__strike {
+        color: #999;
+        text-decoration: line-through;
+        white-space: nowrap;
+    }
+    #main-cart-footer .rl-cart-summary__row--discount { color: #4f4f4f; }
+    #main-cart-footer .rl-cart-summary__discount-amount {
+        color: #ff6400;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+    #main-cart-footer .rl-cart-summary__total {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 8px;
+        padding-top: 10px;
+        border-top: 1px solid #dedede;
+        font-size: 20px;
+        color: #333333;
+    }
+    #main-cart-footer .rl-cart-summary__total strong { font-weight: 700; }
+</style>
+
 <div class="page-width{% if cart == empty %} is-empty{% endif %}" id="main-cart-footer" data-id="{{ section.id }}">
   <div class="container container--medium">
     <div class="cart__footer">
@@ -38,33 +110,39 @@
       <div class="cart__footer-right">
         <div class="cart__recap">
           <div class="cart__recap-block">
-            <div class="cart__total-container">
-              <span class="heading h6">{{ 'sections.cart.subtotal' | t }}</span>
-              <span class="heading h6">{{ cart.total_price | money_with_currency }}</span>
-            </div>
-            {%- if cart.cart_level_discount_applications.size > 0 -%}
-              <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
-                {%- for discount in cart.cart_level_discount_applications -%}
-                  <li class="discounts__discount discounts__discount--position">
-                    {%- render 'icon-discount' -%}
-                    {{ discount.title }}
-                    (-{{ discount.total_allocated_amount | money }})
-                  </li>
-                {%- endfor -%}
-              </ul>
+
+            {%- comment -%} Umbral de envío gratis: alinéalo con el de 'ap-freeshippingbar' {%- endcomment -%}
+            {%- assign envio_gratis_desde = 1 -%}
+
+            {%- if cart.total_price >= envio_gratis_desde -%}
+              <div class="rl-cart-shipping">
+                <span class="rl-cart-shipping__check" aria-hidden="true"></span>
+                <span>¡Envío gratis!</span>
+              </div>
             {%- endif -%}
 
-            <small class="tax-note caption-large rte">
-              {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
-                {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
-              {%- elsif cart.taxes_included -%}
-                {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
-              {%- elsif shop.shipping_policy.body != blank -%}
-                {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
-              {%- else -%}
-                {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
-              {%- endif -%}
-            </small>
+            <div class="rl-cart-summary">
+              <div class="rl-cart-summary__row">
+                <span>{{ cart.item_count }} {% if cart.item_count > 1 %}productos{% else %}producto{% endif %}</span>
+                {%- if cart.total_price < cart.original_total_price -%}
+                  <s class="rl-cart-summary__strike">{{ cart.original_total_price | money }}</s>
+                {%- endif -%}
+              </div>
+
+              {%- for discount in cart.cart_level_discount_applications -%}
+                <div class="rl-cart-summary__row rl-cart-summary__row--discount">
+                  <span>{{ discount.title }}</span>
+                  <span class="rl-cart-summary__discount-amount">-{{ discount.total_allocated_amount | money }}</span>
+                </div>
+              {%- endfor -%}
+
+              <div class="rl-cart-summary__total">
+                <span>Total</span>
+                <span><strong>{{ cart.total_price | money }}</strong></span>
+              </div>
+            </div>
+
+            <small class="tax-note caption-large rte">IVA incluido</small>
             
             <button id="bt_checkout" type="submit" class="cart__checkout-button checkout-button button button--primary button--full" name="checkout" >
               Ir al pago
