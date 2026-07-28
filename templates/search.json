@@ -15,6 +15,27 @@
       "name": "Filtros de búsqueda",
       "settings": {}
     },
+    "image_banner_QN6EgW": {
+      "type": "image-banner",
+      "name": "Image banner",
+      "settings": {
+        "setwidthout": "full",
+        "featured_image": "shopify://shop_images/Banniere_toute_petite.png",
+        "banner_link": "",
+        "height_img": "default-img",
+        "height_img_mobile": "default-img",
+        "margin_desktop": "",
+        "margin_tablet": "",
+        "margin_mobile": "",
+        "tab_heading": "",
+        "tab_heading_size": 2,
+        "tab_description": "",
+        "heading_color": "",
+        "text_color": "",
+        "overlay": "#000000",
+        "overlay_opacity": 1
+      }
+    },
     "main": {
       "type": "main-search",
       "settings": {
@@ -24,6 +45,7 @@
   },
   "order": [
     "blocks_4UThQM",
+    "image_banner_QN6EgW",
     "main"
   ]
 }
