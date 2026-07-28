@@ -48,48 +48,130 @@
   margin-left: 20px;
 }
 
+/* --- Bandeau de recherche compact (rl-) --- */
+#main-search-section .page-header--secondary {
+  padding-top: 32px;
+  padding-bottom: 24px;
+}
+#main-search-section .rl-search-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 24px;
+  flex-wrap: wrap;
+  text-align: left;
+}
+#main-search-section .rl-search-title {
+  font-size: clamp(22px, 4vw, 32px);
+  line-height: 1.1;
+  margin: 0;
+}
+#main-search-section .rl-search-count {
+  font-size: 15px;
+  color: #4f4f4f;
+  margin: 6px 0 0;
+}
+#main-search-section .rl-search-refine {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  width: 100%;
+  max-width: 280px;
+  padding: 6px 16px;
+  background: #fff;
+  border: 1px solid #dedede;
+  border-radius: 24px;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+#main-search-section .rl-search-refine:focus-within {
+  border-color: #ff6400;
+  box-shadow: 0 0 0 3px rgba(255, 100, 0, .12);
+}
+#main-search-section .rl-search-refine__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: #9a9a9a;
+  cursor: pointer;
+}
+#main-search-section .rl-search-refine__input {
+  flex: 1;
+  min-width: 0;
+  height: auto;
+  padding: 2px 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  box-shadow: none;
+  font-size: 14px;
+}
+#main-search-section .rl-navtabs-hidden {
+  display: none !important;
+}
+
+/* Compteur de la meta-bar : masqué visuellement, conservé pour les lecteurs d'écran */
+#main-search-section .ap-productfacet__meta-bar {
+  justify-content: flex-end;
+}
+#main-search-section .ap-productfacet__meta-bar-item--count {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media screen and (max-width: 740px) {
+  #main-search-section .rl-search-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #main-search-section .rl-search-refine {
+    max-width: none;
+  }
+}
+
 </style>
 
 <section id="main-search-section">
   <div class="page-header  page-header--secondary">
-    <div class="page-header__text-wrapper container">
-      <h1 class="heading h2">{{ 'templates.search.main_title' | t }} "{{ search.terms | escape }}"</h1>
-      <form class="main-search__form" action="/search" method="get">
+    <div class="page-header__text-wrapper container rl-search-header">
+      <div class="rl-search-header__text">
+        <h1 class="heading rl-search-title">{{ 'templates.search.main_title' | t }} "{{ search.terms | escape }}"</h1>
+        <p class="rl-search-count">
+          {{ search.results_count }} {% if search.results_count == 1 %}libro{% else %}libros{% endif %}
+        </p>
+      </div>
+
+      <form class="rl-search-refine" action="/search" method="get" role="search">
         <input type="hidden" name="type" value="product">
         <input type="hidden" name="options[prefix]" value="last">
         <input type="hidden" name="options[unavailable_products]" value="last">
-        <button class="main-search__submit tap-area" type="submit">
-          <svg focusable="false" width="18" height="18" class="icon icon--header-search   " viewBox="0 0 18 18">
+        <button class="rl-search-refine__submit tap-area" type="submit" aria-label="Buscar">
+          <svg focusable="false" width="16" height="16" class="icon icon--header-search" viewBox="0 0 18 18" aria-hidden="true">
             <path d="M12.336 12.336c2.634-2.635 2.682-6.859.106-9.435-2.576-2.576-6.8-2.528-9.435.106C.373 5.642.325 9.866 2.901 12.442c2.576 2.576 6.8 2.528 9.435-.106zm0 0L17 17" fill="none" stroke="currentColor" stroke-width="2"></path>
           </svg>
         </button>
-        <input class="main-search__input input__field" type="text" name="q" autocomplete="off" autocorrect="off" aria-label="Search" placeholder="What are you looking for?" value="{{ search.terms | escape }}">
+        <input class="rl-search-refine__input" type="text" name="q" autocomplete="off" autocorrect="off" aria-label="Buscar de nuevo" placeholder="Buscar de nuevo" value="{{ search.terms | escape }}">
       </form>
-      {% liquid
-        assign count_article = 0
-        assign count_product = 0
 
-        for item in search.results
-          case item.object_type
-
-            when 'article'
-              assign count_article = count_article | plus: 1
-            when 'product' 
-              assign count_product = count_product | plus: 1
-              
-          endcase
-        endfor
-
-      %}
-      <ap-navtabs id="search-ap-navtabs" class="ap-navtabs ap-navtabs--center ap-navtabs--no-border ap-navtabs--edge2edge">
+      {%- comment -%} Onglets masqués mais gardés : le JS d'Apollo en a besoin pour activer le panneau produits {%- endcomment -%}
+      <ap-navtabs id="search-ap-navtabs" class="ap-navtabs ap-navtabs--center ap-navtabs--no-border ap-navtabs--edge2edge rl-navtabs-hidden" aria-hidden="true">
         <ap-scrollablecontent class="ap-navtabs__scroller hide-scrollbar">
           <div class="ap-navtabs__scroller-inner">
             <div class="ap-navtabs__item-list">
-
-                <button class="ap-navtabs__item heading h4" data-type="product" ap-expanded-aria="true" ap-controlsaria="search-{{ section.id }}-product">Productos</button>
-                
-                <button class="ap-navtabs__item heading h4 d-none" data-type="article" ap-expanded-aria="false" ap-controlsaria="search-{{ section.id }}-article">Artículos</button>
-              
+              <button class="ap-navtabs__item heading h4" data-type="product" ap-expanded-aria="true" ap-controlsaria="search-{{ section.id }}-product">Productos</button>
+              <button class="ap-navtabs__item heading h4 d-none" data-type="article" ap-expanded-aria="false" ap-controlsaria="search-{{ section.id }}-article">Artículos</button>
             </div>
             <span class="ap-navtabs__position is-initialized"></span>
           </div>
