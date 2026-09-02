@@ -116,28 +116,28 @@
         "logo_xFfdrY": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/Codigo_de_barras_gris.png",
+            "image": "shopify://shop_images/Codigo_de_barras_e7b107.png",
             "link_logo": ""
           }
         },
         "logo_MnFRgg": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/Billete_gris.png",
+            "image": "shopify://shop_images/Billete_e7b107.png",
             "link_logo": ""
           }
         },
         "logo_yqNztV": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/caja_gris.png",
+            "image": "shopify://shop_images/caja_e7b107.png",
             "link_logo": ""
           }
         },
         "logo_kcwXHQ": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/Dinerito__1___1__gris.png",
+            "image": "shopify://shop_images/Dinerito__1___1__e7b107.png",
             "link_logo": ""
           }
         }
