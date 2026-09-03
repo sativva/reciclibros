@@ -173,13 +173,13 @@
         "enable_guide": true,
         "guide1_label": "Entrega",
         "guide1_icon": "<svg fill=\"none\" focusable=\"false\" width=\"29\" height=\"24\" class=\"icon icon--picto-fast-delivery   product-tabs__trust-icon\" viewbox=\"0 0 29 24\">\n        <path d=\"M4 3H20V8M20 17H11.68C11.68 17 11 16 10 16M20 17V8M20 17H22.32M20 8H26.5L28 12.5V17H25.68C25.68 17 25 16 24 16M24 16C25 16 26 17 26 18C26 19 25 20 24 20C23 20 22 19 22 18C22 17.6527 22.1206 17.3054 22.32 17M24 16C23.3473 16 22.6946 16.426 22.32 17M10 16C11 16 12 17 12 18C12 19 11 20 10 20C9 20 8 19 8 18C8 17.6527 8.12061 17.3054 8.31996 17M10 16C9.3473 16 8.69459 16.426 8.31996 17M8.31996 17H4M10 12H3M10 8H1\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n      </svg>",
-        "guide1_returns_content": "<p><strong>Entrega<br/></strong>Recibirás tu tarjeta regalo digital por mail después de la compra. </p>",
+        "guide1_returns_content": "<p>Recibirás tu tarjeta regalo digital por mail después de la compra. </p>",
         "guide2_label": "",
         "guide2_icon": "",
         "guide2_returns_content": "<p><br/></p>",
         "guide3_label": "Uso de la tarjeta",
         "guide3_icon": "<svg fill=\"none\" focusable=\"false\" width=\"24\" height=\"24\" class=\"icon icon--picto-secure-payment   product-tabs__trust-icon\" viewbox=\"0 0 24 24\">\n        <path d=\"M4 18H1V6M4 18V16H6M4 18V22H11V18M6 16C6 15.6667 6 15.3 6 14.5C6 13.5 6.73438 13 7.5 13C8.26562 13 9 13.5 9 14.5C9 15.3 9 15.6667 9 16M6 16H9M9 16H11V18M11 18H23V6M1 6V2H23V6M1 6H23M9 10H5M19 10V14H13V10H19Z\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n      </svg>",
-        "guide3_returns_content": "<p>- Valida en todos los libros de reciclibros.com durante un año</p><p>- Se puede utilizar en varias ocasiones </p>"
+        "guide3_returns_content": "<ul><li>Valida en todos los libros de reciclibros.com durante un año.</li><li>Se puede utilizar en varias ocasiones.</li><li>Para utilizarla copia el código de tu tarjeta y pegalo en la pantalla de pago.  </li></ul>"
       }
     },
     "image_banner_EGTiFE": {
