@@ -154,6 +154,7 @@
         },
         "5d25217f-c0a7-454c-9bdf-2e9b6e9cfd03": {
           "type": "tab_custom",
+          "disabled": true,
           "settings": {
             "tab_name": "Características",
             "tab_custom_content": "<p></p><p></p><p></p>"
